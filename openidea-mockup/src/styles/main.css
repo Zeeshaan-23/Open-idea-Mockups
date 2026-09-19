@@ -1,6 +1,7 @@
 @import './tokens.css';
 @import './navbar.css';
 @import './hero.css';
+@import './rosette.css';
 
 /* Universal Reset */
 *, *::before, *::after {
@@ -232,7 +233,25 @@ html.theme-transitioning * {
 .studio-showcase-section,
 .websites-service-section,
 .community-section,
-.closing-cta-section {
+.closing-cta-section,
+.studio-workspace-page,
+.community-page-wrapper,
+.websites-page-root,
+.wb-hero-section,
+.wb-catalog-section,
+.wb-fee-section,
+.wb-faq-section,
+.wb-bridge-section,
+.open-resources-workstation {
+  background-color: transparent !important;
+}
+
+[data-theme="dark"] .websites-page-root,
+[data-theme="dark"] .wb-hero-section,
+[data-theme="dark"] .wb-catalog-section,
+[data-theme="dark"] .wb-fee-section,
+[data-theme="dark"] .wb-faq-section,
+[data-theme="dark"] .wb-bridge-section {
   background-color: transparent !important;
 }
 
@@ -253,7 +272,11 @@ html.theme-transitioning * {
 .websites-container,
 .community-container,
 .closing-cta-container,
-.footer-container {
+.footer-container,
+.studio-workspace-container,
+.community-container-max,
+.wb-container,
+.or-container {
   position: relative;
   z-index: 2;
 }

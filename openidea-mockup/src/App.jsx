@@ -9,6 +9,7 @@ import CommunityPage from './components/CommunityPage';
 import WebsitesPage from './components/WebsitesPage';
 import NotFoundPage from './components/NotFoundPage';
 import BrandRevealLoader from './components/BrandRevealLoader';
+import GlobalRosetteBackground from './components/GlobalRosetteBackground';
 import StudioShowcaseSection from './components/StudioShowcaseSection';
 import WebsitesOffering from './components/WebsitesOffering';
 import CommunitySection from './components/CommunitySection';
@@ -227,6 +228,9 @@ export default function App() {
 
   return (
     <div className="open-idea-app-shell" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      {/* 0. Persistent Global Sacred Rosette Ambient Background */}
+      <GlobalRosetteBackground />
+
       {/* 0. Global Brand Reveal Loading Overlay */}
       {showBrandLoader && (
         <BrandRevealLoader onComplete={() => setShowBrandLoader(false)} />

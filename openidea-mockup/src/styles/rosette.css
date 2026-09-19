@@ -1,0 +1,83 @@
+/* ==========================================================================
+   GLOBAL SACRED ROSETTE BACKGROUND DOME
+   Extracted from Hero into persistent global background component.
+   Conforms strictly to DESIGN.md and approved Open Idea visual identity.
+   ========================================================================== */
+
+/* 0. Fixed Page Background Sacred Rosette Dome (Enlarged Semicircle Edge-to-Edge) */
+.page-background-rosette-dome {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  width: 100vw;
+  height: 100vw;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.19;
+  transition: opacity 500ms ease;
+  user-select: none;
+  clip-path: inset(0 0 50% 0);
+  will-change: transform;
+}
+
+[data-theme="dark"] .page-background-rosette-dome {
+  opacity: 0.17;
+}
+
+/* Disable/hide rosette dome background on mobile (< 768px tablet threshold) */
+@media (max-width: 767.98px) {
+  .page-background-rosette-dome {
+    display: none !important;
+  }
+}
+
+/* Continuous ambient rotation wrapper (pure CSS, no mouse tracking, no JS loops) */
+.bg-rosette-turn-wrapper {
+  width: 100%;
+  height: 100%;
+  transform-origin: 50% 50%;
+  animation: rosetteContinuousRotate 60s linear infinite;
+  will-change: transform;
+}
+
+@keyframes rosetteContinuousRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.page-background-rosette-dome .bg-rosette-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+.page-background-rosette-dome .rosette-circle {
+  transition: stroke-width 400ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.page-background-rosette-dome .rosette-petals {
+  transition: stroke-width 400ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Prefers-reduced-motion: stop spatial rotation and maintain static dome */
+@media (prefers-reduced-motion: reduce) {
+  .bg-rosette-turn-wrapper,
+  .page-background-rosette-dome .rosette-petals,
+  .page-background-rosette-dome .rosette-circle {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .page-background-rosette-dome {
+    transition: none !important;
+    animation: none !important;
+    transform: translate(-50%, 50%) !important;
+  }
+}

@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Mic, MicOff, Paperclip, X, FileText, ArrowRight } from 'lucide-react';
-import { OpenIdeaFlowerSymbol } from './OpenIdeaLogo';
 
 export default function Hero({ onPromptSubmit }) {
   // Mode State: 'build' | 'discover' | 'projects' | 'network'
@@ -191,22 +190,6 @@ export default function Hero({ onPromptSubmit }) {
 
   return (
     <section ref={heroSectionRef} className="hero-editorial-section" aria-labelledby="hero-main-headline">
-      {/* Enlarged Fixed Background Sacred Rosette Semicircle Dome */}
-      <div
-        className="page-background-rosette-dome"
-        aria-hidden="true"
-      >
-        <div className="bg-rosette-turn-wrapper">
-          <OpenIdeaFlowerSymbol
-            size="100%"
-            id="bg-rosette-grad"
-            viewBox="4 4 92 92"
-            circleStroke={1.0}
-            petalStroke={0.8}
-            className="bg-rosette-svg"
-          />
-        </div>
-      </div>
 
       <div className="container hero-container">
         {/* Headline: Start with an idea. Build something real. */}
