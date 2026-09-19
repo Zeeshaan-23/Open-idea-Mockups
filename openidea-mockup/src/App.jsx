@@ -4,6 +4,8 @@ import Hero from './components/Hero';
 import EcosystemSection from './components/EcosystemSection';
 import OpenResourcesSection from './components/OpenResourcesSection';
 import OpenResourcesPage from './components/OpenResourcesPage';
+import NotFoundPage from './components/NotFoundPage';
+import BrandRevealLoader from './components/BrandRevealLoader';
 import StudioShowcaseSection from './components/StudioShowcaseSection';
 import WebsitesOffering from './components/WebsitesOffering';
 import CommunitySection from './components/CommunitySection';
@@ -26,6 +28,7 @@ export default function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [actionModalData, setActionModalData] = useState(null);
+  const [showBrandLoader, setShowBrandLoader] = useState(true);
 
   // Client-side route state tracking
   const [currentPath, setCurrentPath] = useState(() => {
@@ -35,6 +38,31 @@ export default function App() {
       return '/';
     }
   });
+
+  // Known valid application routes and mock prototype endpoints
+  const VALID_ROUTES = useMemo(() => new Set([
+    '/',
+    '',
+    '/openresources',
+    '/studio',
+    '/projects',
+    '/pricing',
+    '/form',
+    '/about',
+    '/features',
+    '/feedback',
+    '/auth',
+    '/coming-soon',
+    '/intern-fellowship',
+    '/contribute',
+    '/partnership',
+    '/careers',
+    '/problems-and-ideas',
+    '/privacy',
+    '/terms',
+    '/cookies',
+    '/support'
+  ]), []);
 
   // Sync theme with document element
   useEffect(() => {
@@ -66,8 +94,27 @@ export default function App() {
     }
   };
 
-  // Determine active view
-  const isOpenResources = currentPath.startsWith('/openresources');
+  // Route resolution
+  const cleanPath = useMemo(() => {
+    return currentPath.split('?')[0].split('#')[0];
+  }, [currentPath]);
+
+  const isHome = cleanPath === '' || cleanPath === '/';
+  const isOpenResources = cleanPath === '/openresources';
+  const isKnownMockRoute = !isHome && !isOpenResources && VALID_ROUTES.has(cleanPath);
+  const isNotFound = !isHome && !isOpenResources && !isKnownMockRoute;
+
+  // Auto-open modal if someone lands on a known mock route like /studio or /pricing
+  useEffect(() => {
+    if (isKnownMockRoute) {
+      setActionModalData({
+        destination: cleanPath,
+        label: cleanPath.slice(1).replace(/-/g, ' ').toUpperCase(),
+        type: 'Prototype Route',
+        note: `Navigated to prototype route: ${cleanPath}`
+      });
+    }
+  }, [isKnownMockRoute, cleanPath]);
 
   // Extract query parameter if coming to /openresources?q=...
   const initialQuery = useMemo(() => {
@@ -125,12 +172,22 @@ export default function App() {
         navigateTo('/');
         return;
       }
+      const targetClean = dest.split('?')[0].split('#')[0];
+      if (!VALID_ROUTES.has(targetClean)) {
+        navigateTo(dest);
+        return;
+      }
     }
     setActionModalData(action);
   };
 
   return (
     <div className="open-idea-app-shell" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      {/* 0. Global Brand Reveal Loading Overlay */}
+      {showBrandLoader && (
+        <BrandRevealLoader onComplete={() => setShowBrandLoader(false)} />
+      )}
+
       {/* 1. Restrained Editorial Navbar */}
       <Navbar
         theme={theme}
@@ -140,8 +197,15 @@ export default function App() {
         onNavigateAction={handleNavigateAction}
       />
 
-      {/* 2. Main Content: Either Dedicated /openresources or Approved Frozen Homepage */}
-      {isOpenResources ? (
+      {/* 2. Main Content: Dedicated /openresources, Custom 404, or Approved Frozen Homepage */}
+      {isNotFound ? (
+        <main style={{ flex: 1 }}>
+          <NotFoundPage
+            onNavigate={navigateTo}
+            invalidPath={currentPath}
+          />
+        </main>
+      ) : isOpenResources ? (
         <main style={{ flex: 1 }}>
           <OpenResourcesPage
             onNavigate={navigateTo}

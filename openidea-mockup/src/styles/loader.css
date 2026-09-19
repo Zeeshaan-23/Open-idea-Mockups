@@ -1,0 +1,140 @@
+/* ==========================================================================
+   OPEN IDEA GLOBAL BRAND REVEAL LOADER STYLES
+   Choreography: Centered Emblem -> Fast Controlled Spin -> Lockup Formation -> Curtain Up
+   ========================================================================== */
+
+.brand-reveal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--bg-page);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  user-select: none;
+  /* Hardware acceleration for the upward curtain motion */
+  will-change: transform;
+  transform: translateY(0);
+}
+
+/* Curtain Lifting State (Stage 4) */
+.brand-reveal-overlay.curtain-up {
+  transform: translateY(-100%);
+  transition: transform 650ms cubic-bezier(0.76, 0, 0.24, 1);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.18);
+}
+
+[data-theme="dark"] .brand-reveal-overlay.curtain-up {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+/* Stage & Center Composition Container */
+.brand-reveal-stage-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 
+ * The composition wrapper stays centered in the viewport.
+ * When wordmark width is 0, the emblem is precisely at viewport center.
+ * When wordmark width expands, the emblem glides left and the composition stays centered.
+ */
+.brand-reveal-composition {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Emblem Wrapper */
+.brand-reveal-emblem-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  will-change: transform;
+  transform-origin: center center;
+  transition: transform 150ms ease-out;
+}
+
+/* Fast Controlled Rotation (Stage 2) */
+.brand-reveal-emblem-wrapper.is-spinning {
+  animation: orLoaderSpin 650ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes orLoaderSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(720deg);
+  }
+}
+
+/* Settled State after spin */
+.brand-reveal-emblem-wrapper.is-settled {
+  transform: rotate(0deg);
+}
+
+/* Wordmark Wrapper (Stage 3) */
+.brand-reveal-wordmark-wrapper {
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-left: 0;
+  display: flex;
+  align-items: center;
+  transition:
+    max-width 520ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 400ms cubic-bezier(0.16, 1, 0.3, 1) 80ms,
+    margin-left 520ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Wordmark Revealed */
+.brand-reveal-wordmark-wrapper.is-revealed {
+  max-width: 240px;
+  opacity: 1;
+  margin-left: 10px;
+}
+
+/* Typography for Wordmark: Matches Instrument Serif baseline */
+.brand-reveal-wordmark-text {
+  font-family: var(--font-serif, 'Instrument Serif', Georgia, serif);
+  font-size: 46px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  display: inline-block;
+  transform: translateY(-2px);
+}
+
+/* Reduced Motion Alternative */
+@media (prefers-reduced-motion: reduce) {
+  .brand-reveal-overlay.curtain-up {
+    transform: translateY(-100%);
+    transition: transform 250ms ease-out;
+  }
+
+  .brand-reveal-emblem-wrapper.is-spinning {
+    animation: none !important;
+    transform: rotate(0deg) !important;
+  }
+
+  .brand-reveal-wordmark-wrapper {
+    transition: opacity 150ms ease !important;
+  }
+
+  .brand-reveal-wordmark-wrapper.is-revealed {
+    max-width: 240px !important;
+    margin-left: 10px !important;
+    opacity: 1 !important;
+  }
+}
