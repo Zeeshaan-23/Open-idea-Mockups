@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import EcosystemSection from './components/EcosystemSection';
 import OpenResourcesSection from './components/OpenResourcesSection';
+import OpenResourcesPage from './components/OpenResourcesPage';
 import StudioShowcaseSection from './components/StudioShowcaseSection';
 import WebsitesOffering from './components/WebsitesOffering';
 import CommunitySection from './components/CommunitySection';
@@ -26,6 +27,15 @@ export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [actionModalData, setActionModalData] = useState(null);
 
+  // Client-side route state tracking
+  const [currentPath, setCurrentPath] = useState(() => {
+    try {
+      return window.location.pathname + window.location.search;
+    } catch {
+      return '/';
+    }
+  });
+
   // Sync theme with document element
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
@@ -35,6 +45,41 @@ export default function App() {
       console.error(e);
     }
   }, [theme]);
+
+  // Sync with browser back/forward history
+  useEffect(() => {
+    const handlePopState = () => {
+      setCurrentPath(window.location.pathname + window.location.search);
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  // Programmatic client-side navigation
+  const navigateTo = (destination) => {
+    try {
+      window.history.pushState({}, '', destination);
+      setCurrentPath(destination);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  // Determine active view
+  const isOpenResources = currentPath.startsWith('/openresources');
+
+  // Extract query parameter if coming to /openresources?q=...
+  const initialQuery = useMemo(() => {
+    try {
+      const qIndex = currentPath.indexOf('?');
+      if (qIndex !== -1) {
+        const params = new URLSearchParams(currentPath.slice(qIndex));
+        return params.get('q') || '';
+      }
+    } catch {}
+    return '';
+  }, [currentPath]);
 
   // Handle Prompt Submission (from Hero primary doorway)
   const handlePromptSubmit = ({ mode, query, attachedFiles }) => {
@@ -46,7 +91,8 @@ export default function App() {
       actionLabel = 'AI Studio Application Scaffolding';
     } else if (mode === 'discover') {
       targetRoute = query ? `/openresources?q=${encodeURIComponent(query)}` : '/openresources';
-      actionLabel = 'Open Resources Search';
+      navigateTo(targetRoute);
+      return;
     } else if (mode === 'projects') {
       targetRoute = query ? `/projects?q=${encodeURIComponent(query)}` : '/projects';
       actionLabel = 'Community Projects Directory';
@@ -55,7 +101,7 @@ export default function App() {
       actionLabel = 'Open Innovation Network';
     }
 
-    // Trigger simulation modal showing technical parameters
+    // Trigger simulation modal for non-implemented mock destinations
     setActionModalData({
       destination: targetRoute,
       label: actionLabel,
@@ -67,8 +113,19 @@ export default function App() {
     });
   };
 
-  // General Navigation Interceptor for verification
+  // General Navigation Interceptor
   const handleNavigateAction = (action) => {
+    const dest = typeof action === 'string' ? action : action?.destination;
+    if (dest) {
+      if (dest.startsWith('/openresources')) {
+        navigateTo(dest);
+        return;
+      }
+      if (dest === '/' || dest === '/#') {
+        navigateTo('/');
+        return;
+      }
+    }
     setActionModalData(action);
   };
 
@@ -83,49 +140,59 @@ export default function App() {
         onNavigateAction={handleNavigateAction}
       />
 
-      {/* 2. Hero Section with Focused Primary Prompt Interaction */}
-      <main style={{ flex: 1 }}>
-        <Hero
-          onPromptSubmit={handlePromptSubmit}
-        />
+      {/* 2. Main Content: Either Dedicated /openresources or Approved Frozen Homepage */}
+      {isOpenResources ? (
+        <main style={{ flex: 1 }}>
+          <OpenResourcesPage
+            onNavigate={navigateTo}
+            initialQuery={initialQuery}
+          />
+        </main>
+      ) : (
+        <main style={{ flex: 1 }}>
+          {/* Hero Section with Focused Primary Prompt Interaction */}
+          <Hero
+            onPromptSubmit={handlePromptSubmit}
+          />
 
-        {/* 3. Section 2: Ecosystem Introduction (Sparse, Editorial Triptych) */}
-        <EcosystemSection
-          onNavigateAction={handleNavigateAction}
-        />
+          {/* Section 2: Ecosystem Introduction (Sparse, Editorial Triptych) */}
+          <EcosystemSection
+            onNavigateAction={handleNavigateAction}
+          />
 
-        {/* 4. Section 3: Open Resources (Structured Search & Discovery Index) */}
-        <OpenResourcesSection
-          onNavigateAction={handleNavigateAction}
-        />
+          {/* Section 3: Open Resources (Structured Search & Discovery Index) */}
+          <OpenResourcesSection
+            onNavigateAction={handleNavigateAction}
+          />
 
-        {/* 5. Section 4: Studio / Build Showcase (60/40 Asymmetric Product Preview) */}
-        <StudioShowcaseSection
-          onNavigateAction={handleNavigateAction}
-        />
+          {/* Section 4: Studio / Build Showcase (60/40 Asymmetric Product Preview) */}
+          <StudioShowcaseSection
+            onNavigateAction={handleNavigateAction}
+          />
 
-        {/* 6. Section 5: Websites / Bespoke Services (Compact Editorial Band) */}
-        <WebsitesOffering
-          onNavigateAction={handleNavigateAction}
-        />
+          {/* Section 5: Websites / Bespoke Services (Compact Editorial Band) */}
+          <WebsitesOffering
+            onNavigateAction={handleNavigateAction}
+          />
 
-        {/* 7. Section 6: Community / Contribution (Quiet Typographic Pathways) */}
-        <CommunitySection
-          onNavigateAction={handleNavigateAction}
-        />
+          {/* Section 6: Community / Contribution (Quiet Typographic Pathways) */}
+          <CommunitySection
+            onNavigateAction={handleNavigateAction}
+          />
 
-        {/* 8. Section 7: Closing CTA (Calm, Decisive Conclusion) */}
-        <ClosingCtaSection
-          onNavigateAction={handleNavigateAction}
-        />
-      </main>
+          {/* Section 7: Closing CTA (Calm, Decisive Conclusion) */}
+          <ClosingCtaSection
+            onNavigateAction={handleNavigateAction}
+          />
+        </main>
+      )}
 
-      {/* 9. Restrained Editorial Footer (Phase 3B) */}
+      {/* 3. Restrained Editorial Footer */}
       <Footer
         onNavigateAction={handleNavigateAction}
       />
 
-      {/* Interactive Verification Modal (For checking routes, modes, queries) */}
+      {/* Interactive Verification Modal (For non-implemented prototype routes) */}
       <ActionSimulationModal
         actionData={actionModalData}
         onClose={() => setActionModalData(null)}

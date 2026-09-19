@@ -137,6 +137,13 @@ export default function Navbar({
           href="/"
           onClick={(e) => {
             e.preventDefault();
+            if (onNavigateAction) {
+              onNavigateAction({
+                destination: '/',
+                label: 'Home',
+                type: 'Navigation Link'
+              });
+            }
             window.scrollTo({ top: 0, behavior: 'smooth' });
           }}
           aria-label="Open Idea Homepage"
