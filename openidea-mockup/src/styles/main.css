@@ -242,7 +242,8 @@ html.theme-transitioning * {
 .wb-fee-section,
 .wb-faq-section,
 .wb-bridge-section,
-.open-resources-workstation {
+.open-resources-workstation,
+.pricing-page-wrapper {
   background-color: transparent !important;
 }
 
@@ -276,7 +277,8 @@ html.theme-transitioning * {
 .studio-workspace-container,
 .community-container-max,
 .wb-container,
-.or-container {
+.or-container,
+.pricing-container-max {
   position: relative;
   z-index: 2;
 }

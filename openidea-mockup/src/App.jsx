@@ -7,6 +7,7 @@ import OpenResourcesPage from './components/OpenResourcesPage';
 import StudioPage from './components/StudioPage';
 import CommunityPage from './components/CommunityPage';
 import WebsitesPage from './components/WebsitesPage';
+import PricingPage from './components/PricingPage';
 import NotFoundPage from './components/NotFoundPage';
 import BrandRevealLoader from './components/BrandRevealLoader';
 import GlobalRosetteBackground from './components/GlobalRosetteBackground';
@@ -111,8 +112,9 @@ export default function App() {
   const isStudio = cleanPath === '/studio';
   const isCommunity = cleanPath === '/community' || cleanPath === '/projects';
   const isWebsites = cleanPath === '/websites' || cleanPath === '/form' || cleanPath === '/demo';
-  const isKnownMockRoute = !isHome && !isOpenResources && !isStudio && !isCommunity && !isWebsites && VALID_ROUTES.has(cleanPath);
-  const isNotFound = !isHome && !isOpenResources && !isStudio && !isCommunity && !isWebsites && !isKnownMockRoute;
+  const isPricing = cleanPath === '/pricing';
+  const isKnownMockRoute = !isHome && !isOpenResources && !isStudio && !isCommunity && !isWebsites && !isPricing && VALID_ROUTES.has(cleanPath);
+  const isNotFound = !isHome && !isOpenResources && !isStudio && !isCommunity && !isWebsites && !isPricing && !isKnownMockRoute;
 
   // Auto-open modal if someone lands on a known mock route like /pricing
   useEffect(() => {
@@ -207,6 +209,7 @@ export default function App() {
         dest.startsWith('/community') ||
         dest.startsWith('/projects') ||
         dest.startsWith('/websites') ||
+        dest.startsWith('/pricing') ||
         dest.startsWith('/form') ||
         dest.startsWith('/demo')
       ) {
@@ -277,6 +280,12 @@ export default function App() {
       ) : isWebsites ? (
         <main style={{ flex: 1 }}>
           <WebsitesPage
+            onNavigate={navigateTo}
+          />
+        </main>
+      ) : isPricing ? (
+        <main style={{ flex: 1 }}>
+          <PricingPage
             onNavigate={navigateTo}
           />
         </main>
