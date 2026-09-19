@@ -6,10 +6,10 @@ export default function WebsitesOffering({ onNavigateAction }) {
     e.preventDefault();
     if (onNavigateAction) {
       onNavigateAction({
-        destination: '/form',
-        label: 'Start Website Project',
-        type: 'Service Intake Brief',
-        note: 'Navigating to bespoke website project intake form (/form)'
+        destination: '/websites',
+        label: 'Bespoke Websites',
+        type: 'Product Destination',
+        note: 'Navigating to bespoke websites offering (/websites)'
       });
     }
   };
@@ -58,7 +58,7 @@ export default function WebsitesOffering({ onNavigateAction }) {
           {/* Right Column: Direct Intake Action */}
           <div className="websites-band-action">
             <a
-              href="/form"
+              href="/websites"
               onClick={handleCtaClick}
               className="websites-cta-btn"
             >

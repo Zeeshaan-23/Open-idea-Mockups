@@ -6,6 +6,7 @@ import OpenResourcesSection from './components/OpenResourcesSection';
 import OpenResourcesPage from './components/OpenResourcesPage';
 import StudioPage from './components/StudioPage';
 import CommunityPage from './components/CommunityPage';
+import WebsitesPage from './components/WebsitesPage';
 import NotFoundPage from './components/NotFoundPage';
 import BrandRevealLoader from './components/BrandRevealLoader';
 import StudioShowcaseSection from './components/StudioShowcaseSection';
@@ -49,6 +50,8 @@ export default function App() {
     '/studio',
     '/community',
     '/projects',
+    '/websites',
+    '/demo',
     '/pricing',
     '/form',
     '/about',
@@ -106,8 +109,9 @@ export default function App() {
   const isOpenResources = cleanPath === '/openresources';
   const isStudio = cleanPath === '/studio';
   const isCommunity = cleanPath === '/community' || cleanPath === '/projects';
-  const isKnownMockRoute = !isHome && !isOpenResources && !isStudio && !isCommunity && VALID_ROUTES.has(cleanPath);
-  const isNotFound = !isHome && !isOpenResources && !isStudio && !isCommunity && !isKnownMockRoute;
+  const isWebsites = cleanPath === '/websites' || cleanPath === '/form' || cleanPath === '/demo';
+  const isKnownMockRoute = !isHome && !isOpenResources && !isStudio && !isCommunity && !isWebsites && VALID_ROUTES.has(cleanPath);
+  const isNotFound = !isHome && !isOpenResources && !isStudio && !isCommunity && !isWebsites && !isKnownMockRoute;
 
   // Auto-open modal if someone lands on a known mock route like /pricing
   useEffect(() => {
@@ -200,7 +204,10 @@ export default function App() {
         dest.startsWith('/openresources') ||
         dest.startsWith('/studio') ||
         dest.startsWith('/community') ||
-        dest.startsWith('/projects')
+        dest.startsWith('/projects') ||
+        dest.startsWith('/websites') ||
+        dest.startsWith('/form') ||
+        dest.startsWith('/demo')
       ) {
         navigateTo(dest);
         return;
@@ -261,6 +268,12 @@ export default function App() {
           <CommunityPage
             onNavigate={navigateTo}
             initialTab={initialCommunityTab}
+          />
+        </main>
+      ) : isWebsites ? (
+        <main style={{ flex: 1 }}>
+          <WebsitesPage
+            onNavigate={navigateTo}
           />
         </main>
       ) : (

@@ -113,7 +113,7 @@ export default function Navbar({
   const navLinks = [
     { label: 'Open Resources', href: '/openresources' },
     { label: 'Studio', href: '/studio' },
-    { label: 'Websites', href: '/form' },
+    { label: 'Websites', href: '/websites' },
     { label: 'Community', href: '/community' },
     { label: 'Pricing', href: '/pricing' }
   ];

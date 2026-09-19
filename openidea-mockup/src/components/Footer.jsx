@@ -34,7 +34,7 @@ export default function Footer({ onNavigateAction }) {
     { label: 'AI Studio', href: '/studio' },
     { label: 'Open Resources', href: '/openresources' },
     { label: 'Community', href: '/community' },
-    { label: 'Bespoke Websites', href: '/form' },
+    { label: 'Bespoke Websites', href: '/websites' },
     { label: 'Pricing & Plans', href: '/pricing' }
   ];
 
