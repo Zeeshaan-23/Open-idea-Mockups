@@ -193,7 +193,7 @@ export default function Hero({ onPromptSubmit }) {
     <section ref={heroSectionRef} className="hero-editorial-section" aria-labelledby="hero-main-headline">
       {/* Enlarged Fixed Background Sacred Rosette Semicircle Dome */}
       <div
-        className={`page-background-rosette-dome ${isPromptFocused ? 'is-focused' : ''}`}
+        className="page-background-rosette-dome"
         aria-hidden="true"
       >
         <div className="bg-rosette-turn-wrapper">
@@ -201,9 +201,8 @@ export default function Hero({ onPromptSubmit }) {
             size="100%"
             id="bg-rosette-grad"
             viewBox="4 4 92 92"
-            isFocused={isPromptFocused}
-            circleStroke={isPromptFocused ? 1.2 : 1.0}
-            petalStroke={isPromptFocused ? 0.95 : 0.8}
+            circleStroke={1.0}
+            petalStroke={0.8}
             className="bg-rosette-svg"
           />
         </div>

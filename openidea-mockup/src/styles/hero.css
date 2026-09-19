@@ -62,9 +62,6 @@
   will-change: transform;
 }
 
-.page-background-rosette-dome.is-focused .bg-rosette-turn-wrapper {
-  animation-duration: 30s;
-}
 
 @keyframes rosetteContinuousRotate {
   from {

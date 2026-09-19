@@ -850,6 +850,7 @@
   border-radius: var(--radius-xs);
 }
 
+
 /* App Canvas Interior */
 .studio-canvas-interior {
   padding: 1.25rem 1.5rem;
@@ -893,15 +894,49 @@
   font-size: 0.75rem;
   font-weight: 500;
   color: var(--text-muted);
-  padding: 0.2rem 0.5rem;
+  padding: 0.25rem 0.6rem;
   border-radius: var(--radius-xs);
   background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-family: inherit;
+}
+
+.studio-canvas-tab:hover {
+  color: var(--text-primary);
+  background: var(--bg-card-subtle);
 }
 
 .studio-canvas-tab.active {
   color: var(--text-primary);
   font-weight: 600;
   background: var(--bg-subtle);
+  border-color: var(--border-subtle);
+}
+
+.studio-canvas-tab:focus-visible {
+  outline: 2px solid var(--brand-blue);
+  outline-offset: 1px;
+}
+
+/* Tab Content Fade Transition */
+.studio-tab-panel {
+  animation: studioTabFade 220ms ease-out forwards;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+@keyframes studioTabFade {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Telemetry Summary Cards */
@@ -992,6 +1027,157 @@
   color: var(--text-muted);
 }
 
+/* Tab 2: Sensors Specific Visualization */
+.studio-sensors-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.studio-sensor-card {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 0.875rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.studio-sensor-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.studio-sensor-id {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.studio-sensor-zone {
+  font-size: 0.6875rem;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 0.4rem;
+}
+
+.studio-sensor-metrics {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.studio-sensor-metric-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.71875rem;
+}
+
+.sensor-metric-label {
+  color: var(--text-muted);
+}
+
+.sensor-metric-val {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.sensor-metric-bar-wrap {
+  width: 48px;
+  height: 4px;
+  background: var(--border-card);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.sensor-metric-bar-fill {
+  height: 100%;
+  background: var(--brand-blue);
+  border-radius: 2px;
+}
+
+.studio-sensors-summary-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.6rem 0.875rem;
+  background: var(--bg-card-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  font-size: 0.6875rem;
+  color: var(--text-muted);
+}
+
+.sensors-summary-item {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* Tab 3: Export Specific Representation */
+.studio-code-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 0.75rem;
+}
+
+.studio-code-filename {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+}
+
+.studio-code-badge {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--brand-blue);
+  background: var(--brand-blue-soft);
+  padding: 0.1rem 0.4rem;
+  border-radius: var(--radius-xs);
+}
+
+.studio-code-tech {
+  font-size: 0.6875rem;
+  color: var(--text-muted);
+}
+
+.studio-code-view {
+  margin: 0;
+  padding: 0.875rem;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono, 'JetBrains Mono', 'Fira Code', monospace);
+  font-size: 0.71875rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  overflow-x: auto;
+}
+
+.studio-export-notice {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.71875rem;
+  color: var(--text-secondary);
+  background: var(--bg-card-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  padding: 0.5rem 0.75rem;
+}
+
+
 /* App Canvas Footer */
 .studio-canvas-footer {
   display: flex;
@@ -1008,7 +1194,7 @@
   font-weight: 500;
 }
 
-/* Responsive Breakpoint for Section 4 */
+/* Responsive Breakpoints for Section 4 */
 @media (max-width: 900px) {
   .studio-showcase-section {
     padding-top: 3.5rem;
@@ -1031,9 +1217,24 @@
   }
 }
 
+/* Mobile Breakpoint: Stack sensors grid */
+@media (max-width: 767.98px) {
+  .studio-sensors-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 480px) {
   .studio-metrics-row {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Prefers Reduced Motion: Disable tab fade transition */
+@media (prefers-reduced-motion: reduce) {
+  .studio-tab-panel {
+    animation: none !important;
+    transform: none !important;
   }
 }
 
