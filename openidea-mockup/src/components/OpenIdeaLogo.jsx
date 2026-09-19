@@ -1,0 +1,95 @@
+import React from 'react';
+
+/**
+ * Open Idea Official Brand Logo
+ * Direct from official Open Idea Brand Identity:
+ * Features the sacred geometry 6-petal rosette symbol paired with 'pen idea' in Instrument Serif,
+ * where the rosette symbol naturally completes the wordmark as 'open idea'.
+ */
+export function OpenIdeaFlowerSymbol({ size = 32, className = '', id = 'oi-grad', stroke = null }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 100 100"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      aria-hidden="true"
+      style={{ flexShrink: 0 }}
+    >
+      <defs>
+        <linearGradient id={id} x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#13B2CF" />
+          <stop offset="50%" stopColor="#2F8FEF" />
+          <stop offset="100%" stopColor="#8C88D5" />
+        </linearGradient>
+      </defs>
+      
+      {/* Outer Enclosing Circle */}
+      <circle
+        cx="50"
+        cy="50"
+        r="46"
+        stroke={stroke || `url(#${id})`}
+        strokeWidth="3.5"
+      />
+      
+      {/* 6 Overlapping Sacred Rosette Petals */}
+      <g stroke={stroke || `url(#${id})`} strokeWidth="2.75" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M 50 50 A 46 46 0 0 0 50 4 A 46 46 0 0 0 50 50" />
+        <path d="M 50 50 A 46 46 0 0 0 89.84 27 A 46 46 0 0 0 50 50" />
+        <path d="M 50 50 A 46 46 0 0 0 89.84 73 A 46 46 0 0 0 50 50" />
+        <path d="M 50 50 A 46 46 0 0 0 50 96 A 46 46 0 0 0 50 50" />
+        <path d="M 50 50 A 46 46 0 0 0 10.16 73 A 46 46 0 0 0 50 50" />
+        <path d="M 50 50 A 46 46 0 0 0 10.16 27 A 46 46 0 0 0 50 50" />
+      </g>
+    </svg>
+  );
+}
+
+export default function OpenIdeaLogo({
+  size = 32,
+  showText = true,
+  stroke = null,
+  textClassName = '',
+  className = '',
+  onClick
+}) {
+  return (
+    <div
+      className={`open-idea-brand-lockup ${className}`}
+      onClick={onClick}
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: `${Math.round(size * 0.16)}px`,
+        userSelect: 'none',
+        cursor: onClick ? 'pointer' : 'default',
+        textDecoration: 'none'
+      }}
+      role="img"
+      aria-label="Open Idea"
+    >
+      <OpenIdeaFlowerSymbol size={size} stroke={stroke} />
+      {showText && (
+        <span
+          className={`open-idea-wordmark ${textClassName}`}
+          style={{
+            fontFamily: "var(--font-serif, 'Instrument Serif', Georgia, serif)",
+            fontSize: `${Math.round(size * 0.94)}px`,
+            fontWeight: 400,
+            lineHeight: 1,
+            letterSpacing: '-0.02em',
+            color: stroke || 'var(--text-primary)',
+            whiteSpace: 'nowrap',
+            display: 'inline-block',
+            transform: 'translateY(-1px)'
+          }}
+        >
+          pen idea
+        </span>
+      )}
+    </div>
+  );
+}

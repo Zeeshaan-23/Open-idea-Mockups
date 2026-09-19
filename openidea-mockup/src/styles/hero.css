@@ -1,0 +1,476 @@
+/* Open Idea Hero Styles — Editorial, Calm, Intelligent, Useful */
+
+.hero-editorial-section {
+  padding-top: 4.75rem;
+  padding-bottom: 5.5rem;
+  position: relative;
+  background-color: var(--bg-page);
+  transition: background-color var(--transition-base);
+}
+
+@media (max-width: 768px) {
+  .hero-editorial-section {
+    padding-top: 2.75rem;
+    padding-bottom: 3.75rem;
+  }
+}
+
+.hero-container {
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 1. Headline: Start with an idea. Build something real. */
+.hero-headline {
+  font-family: var(--font-sans);
+  font-size: clamp(2.15rem, 4.6vw, 3.45rem);
+  font-weight: 700;
+  line-height: 1.16;
+  letter-spacing: -0.035em;
+  color: var(--text-primary);
+  margin-bottom: 1.125rem;
+  text-wrap: balance;
+}
+
+.hero-headline-primary {
+  display: inline-block;
+}
+
+.hero-headline-secondary {
+  display: inline-block;
+}
+
+/* Typographic relationship: Instrument Serif as intentional literary accent */
+.hero-editorial-accent {
+  font-family: var(--font-serif, 'Instrument Serif', Georgia, serif);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.06em;
+  letter-spacing: -0.015em;
+  color: var(--text-primary);
+  vertical-align: baseline;
+}
+
+/* 2. Concise Plain-Language Supporting Explanation */
+.hero-subtitle {
+  font-size: clamp(1rem, 1.8vw, 1.125rem);
+  line-height: 1.6;
+  color: var(--text-secondary);
+  max-width: 580px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2.35rem;
+  text-wrap: pretty;
+}
+
+/* 3. Refined Prompt Surface (Single Visual Center) */
+.prompt-surface-card {
+  width: 100%;
+  max-width: 680px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-base);
+  text-align: left;
+  overflow: hidden;
+}
+
+/* Calm resting focus state without distracting bright blue border or shadow */
+.prompt-surface-card:focus-within {
+  border-color: var(--border-card);
+  box-shadow: var(--shadow-card);
+}
+
+/* Form Container */
+.prompt-form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Subordinated Mode Selector */
+.prompt-mode-row {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.5rem 0.75rem 0.45rem 0.75rem;
+  border-bottom: 1px solid var(--border-subtle);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.prompt-mode-row::-webkit-scrollbar {
+  display: none;
+}
+
+.prompt-mode-pill {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  padding: 0.28rem 0.7rem;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  background: transparent;
+  border: 1px solid transparent;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.prompt-mode-pill:hover {
+  color: var(--text-primary);
+  background: var(--bg-subtle);
+}
+
+.prompt-mode-pill.active {
+  color: var(--text-primary);
+  background: var(--bg-subtle);
+  border-color: var(--border-subtle);
+  font-weight: 600;
+}
+
+[data-theme="dark"] .prompt-mode-pill.active {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #FFFFFF;
+}
+
+.prompt-mode-pill:focus-visible {
+  outline: 2px solid var(--border-active);
+  outline-offset: 1px;
+}
+
+/* Textarea Wrapper */
+.prompt-textarea-wrapper {
+  padding: 0.875rem 1rem 0.25rem 1rem;
+}
+
+.prompt-textarea {
+  width: 100%;
+  min-height: 84px;
+  max-height: 220px;
+  border: none;
+  background: transparent;
+  outline: none;
+  resize: vertical;
+  font-family: inherit;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--text-primary);
+  padding: 0;
+}
+
+.prompt-textarea:focus,
+.prompt-textarea:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.prompt-textarea::placeholder {
+  color: var(--text-muted);
+  opacity: 0.8;
+}
+
+/* Attached File Chips */
+.prompt-attached-files {
+  padding: 0.25rem 1rem 0.5rem 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+}
+
+.prompt-file-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-xs);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+}
+
+.chip-name {
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chip-size {
+  color: var(--text-muted);
+  font-size: 0.6875rem;
+}
+
+.chip-remove-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  margin-left: 2px;
+  border-radius: 2px;
+}
+
+.chip-remove-btn:hover {
+  color: #DC2626;
+  background: rgba(220, 38, 38, 0.08);
+}
+
+.chip-remove-btn:focus-visible {
+  outline: 1px solid #DC2626;
+}
+
+/* Bottom Utility Bar */
+.prompt-utility-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.45rem 0.875rem 0.75rem 0.875rem;
+  gap: 0.75rem;
+}
+
+.prompt-utility-left {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.prompt-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  background: transparent;
+  border: 1px solid transparent;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.prompt-icon-btn:hover {
+  color: var(--text-primary);
+  background: var(--bg-subtle);
+  border-color: var(--border-subtle);
+}
+
+.prompt-icon-btn.listening {
+  color: #DC2626;
+  background: rgba(220, 38, 38, 0.08);
+  border-color: rgba(220, 38, 38, 0.2);
+}
+
+.prompt-icon-btn:focus-visible {
+  outline: 2px solid var(--border-active);
+  outline-offset: 1px;
+}
+
+.speech-status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #DC2626;
+  margin-left: 0.25rem;
+}
+
+.pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #DC2626;
+  animation: pulse 1.2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(1.15); }
+}
+
+/* Submit Button */
+.prompt-submit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.84375rem;
+  font-weight: 600;
+  padding: 0.45rem 1rem;
+  border-radius: var(--radius-md);
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  border: 1px solid transparent;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  white-space: nowrap;
+  min-height: 38px;
+  box-shadow: var(--shadow-sm);
+}
+
+.prompt-submit-btn:hover {
+  background: var(--btn-primary-hover);
+  transform: translateY(-1px);
+}
+
+.prompt-submit-btn:active {
+  background: var(--btn-primary-active);
+  transform: translateY(0);
+}
+
+.prompt-submit-btn:focus-visible {
+  outline: 2px solid var(--border-active);
+  outline-offset: 2px;
+}
+
+/* 5. Lightweight Starting Points (Suggestions) */
+.hero-suggestions-row {
+  margin-top: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.suggestions-label {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.suggestions-chips-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.suggestion-chip {
+  font-size: 0.78125rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  padding: 0.22rem 0.65rem;
+  border-radius: var(--radius-full);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  user-select: none;
+}
+
+.suggestion-chip:hover {
+  color: var(--brand-blue);
+  border-color: rgba(47, 143, 239, 0.35);
+  background: var(--bg-card-hover);
+  transform: translateY(-1px);
+}
+
+.suggestion-chip:active {
+  transform: translateY(0);
+}
+
+.suggestion-chip:focus-visible {
+  outline: 2px solid var(--border-active);
+  outline-offset: 2px;
+}
+
+/* Mobile Breakpoint Refinements */
+@media (max-width: 480px) {
+  .hero-headline {
+    font-size: 2rem;
+    letter-spacing: -0.025em;
+  }
+
+  .hero-subtitle {
+    font-size: 0.9375rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .prompt-surface-card {
+    border-radius: var(--radius-md);
+  }
+
+  .prompt-textarea-wrapper {
+    padding: 0.75rem 0.875rem 0.25rem 0.875rem;
+  }
+
+  .prompt-textarea {
+    min-height: 72px;
+    font-size: 0.875rem;
+  }
+
+  .prompt-utility-bar {
+    padding: 0.375rem 0.75rem 0.625rem 0.75rem;
+  }
+
+  .prompt-submit-btn {
+    padding: 0.4rem 0.85rem;
+    font-size: 0.8125rem;
+  }
+
+  /* Mobile Touch Target Expansion: >= 44x44px interactive hit area */
+  .prompt-icon-btn {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  /* Mobile Suggestions: Single compact horizontal scroll row instead of 3-row wrapping */
+  .hero-suggestions-row {
+    margin-top: 1rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    width: 100%;
+  }
+
+  .suggestions-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .suggestions-chips-group {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    max-width: 100%;
+    width: 100%;
+    padding: 0.25rem 0.5rem 0.5rem 0.5rem;
+    gap: 0.5rem;
+    justify-content: flex-start;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .suggestions-chips-group::-webkit-scrollbar {
+    display: none;
+  }
+
+  .suggestion-chip {
+    flex-shrink: 0;
+    white-space: nowrap;
+    padding: 0.35rem 0.8rem;
+    font-size: 0.8125rem;
+    min-height: 36px;
+    display: inline-flex;
+    align-items: center;
+  }
+}
+

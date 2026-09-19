@@ -1,0 +1,113 @@
+:root {
+  /* Brand Core Colors (From Official Brand Identity) */
+  --brand-navy: #1B3C53;
+  --brand-navy-hover: #142F42;
+  --brand-blue: #2F8FEF;
+  --brand-blue-hover: #2578CB;
+  --brand-cyan: #13B2CF;
+  --brand-lavender: #8C88D5;
+  
+  /* Subtle Brand Accents (Strict Restraint: < 10% surface area) */
+  --brand-cyan-soft: rgba(19, 178, 207, 0.10);
+  --brand-blue-soft: rgba(47, 143, 239, 0.08);
+  --brand-lavender-soft: rgba(140, 136, 213, 0.10);
+  --brand-navy-soft: rgba(27, 60, 83, 0.06);
+
+  /* Typography */
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+
+  /* Spacing Scale */
+  --space-2xs: 0.125rem;
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 5rem;
+  --container-max: 1200px;
+
+  /* Restrained Radii (8-12px range for panels, pills only where appropriate) */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+
+  /* Touch Targets */
+  --min-touch-target: 44px;
+
+  /* Transitions (150-200ms per prompt direction) */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 280ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* LIGHT THEME (Strict Default) */
+  --bg-page: #F8F9FA;
+  --bg-subtle: #F1F4F6;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #FAFBFD;
+  --bg-card-subtle: #F4F7FA;
+  --bg-input: #FFFFFF;
+  --bg-header: rgba(248, 249, 250, 0.94);
+  --bg-popover: #FFFFFF;
+  
+  --text-primary: #1B3C53;
+  --text-secondary: #475569;
+  --text-muted: #64748B;
+  --text-inverse: #FFFFFF;
+
+  /* Crisp 1px Architectural Hairline Borders */
+  --border-subtle: rgba(27, 60, 83, 0.08);
+  --border-card: rgba(27, 60, 83, 0.12);
+  --border-card-hover: rgba(27, 60, 83, 0.2);
+  --border-active: #2F8FEF;
+  --border-focus-ring: rgba(47, 143, 239, 0.35);
+
+  /* Restrained Flat / Paper Elevation (No neon glow, soft offset) */
+  --shadow-sm: 0 1px 2px rgba(27, 60, 83, 0.04);
+  --shadow-card: 0 2px 8px rgba(27, 60, 83, 0.05);
+  --shadow-focus: 0 4px 16px rgba(47, 143, 239, 0.12);
+  --shadow-md: 0 4px 12px rgba(27, 60, 83, 0.08);
+
+  /* Primary Button (Solid Deep Navy, No Gradient) */
+  --btn-primary-bg: #1B3C53;
+  --btn-primary-text: #FFFFFF;
+  --btn-primary-hover: #142F42;
+  --btn-primary-active: #0F2331;
+}
+
+/* DARK THEME (Supported High-Contrast Navy Tone) */
+[data-theme="dark"] {
+  --bg-page: #0B1520;
+  --bg-subtle: #0E1B29;
+  --bg-card: #132435;
+  --bg-card-hover: #172C41;
+  --bg-card-subtle: #0F1E2D;
+  --bg-input: #0E1B28;
+  --bg-header: rgba(11, 21, 32, 0.92);
+  --bg-popover: #132435;
+
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+  --text-inverse: #0B1520;
+
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-card: rgba(255, 255, 255, 0.14);
+  --border-card-hover: rgba(255, 255, 255, 0.24);
+  --border-active: #2F8FEF;
+  --border-focus-ring: rgba(47, 143, 239, 0.45);
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+  --shadow-card: 0 3px 12px rgba(0, 0, 0, 0.4);
+  --shadow-focus: 0 4px 20px rgba(47, 143, 239, 0.25);
+  --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.5);
+
+  --btn-primary-bg: #1B3C53;
+  --btn-primary-text: #FFFFFF;
+  --btn-primary-hover: #244C69;
+  --btn-primary-active: #163248;
+}
