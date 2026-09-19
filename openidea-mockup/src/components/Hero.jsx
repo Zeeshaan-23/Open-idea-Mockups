@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Mic, MicOff, Paperclip, X, FileText, ArrowRight } from 'lucide-react';
+import { OpenIdeaFlowerSymbol } from './OpenIdeaLogo';
 
 export default function Hero({ onPromptSubmit }) {
   // Mode State: 'build' | 'discover' | 'projects' | 'network'
@@ -8,10 +9,40 @@ export default function Hero({ onPromptSubmit }) {
   const [attachedFiles, setAttachedFiles] = useState([]);
   const [isListening, setIsListening] = useState(false);
   const [speechSupported, setSpeechSupported] = useState(true);
+  const [isPromptFocused, setIsPromptFocused] = useState(false);
 
   const textareaRef = useRef(null);
   const fileInputRef = useRef(null);
   const recognitionRef = useRef(null);
+
+  const heroSectionRef = useRef(null);
+
+  // Mode Selector sliding indicator state & refs
+  const modeRowRef = useRef(null);
+  const tabRefs = useRef({});
+  const [sliderStyle, setSliderStyle] = useState({ left: 0, top: 0, width: 0, height: 0, ready: false });
+
+  // Update mode selector sliding indicator
+  useEffect(() => {
+    const updateSlider = () => {
+      const currentTab = tabRefs.current[activeMode];
+      if (currentTab && modeRowRef.current) {
+        setSliderStyle({
+          left: currentTab.offsetLeft,
+          top: currentTab.offsetTop,
+          width: currentTab.offsetWidth,
+          height: currentTab.offsetHeight,
+          ready: true
+        });
+      }
+    };
+
+    updateSlider();
+    window.addEventListener('resize', updateSlider);
+    return () => window.removeEventListener('resize', updateSlider);
+  }, [activeMode]);
+
+
 
   // Dynamic placeholders clearly indicating intent
   const placeholders = {
@@ -159,9 +190,26 @@ export default function Hero({ onPromptSubmit }) {
   };
 
   return (
-    <section className="hero-editorial-section" aria-labelledby="hero-main-headline">
+    <section ref={heroSectionRef} className="hero-editorial-section" aria-labelledby="hero-main-headline">
+      {/* Enlarged Fixed Background Sacred Rosette Semicircle Dome */}
+      <div
+        className={`page-background-rosette-dome ${isPromptFocused ? 'is-focused' : ''}`}
+        aria-hidden="true"
+      >
+        <div className="bg-rosette-turn-wrapper">
+          <OpenIdeaFlowerSymbol
+            size="100%"
+            id="bg-rosette-grad"
+            viewBox="4 4 92 92"
+            isFocused={isPromptFocused}
+            circleStroke={isPromptFocused ? 1.2 : 1.0}
+            petalStroke={isPromptFocused ? 0.95 : 0.8}
+            className="bg-rosette-svg"
+          />
+        </div>
+      </div>
+
       <div className="container hero-container">
-        
         {/* Headline: Start with an idea. Build something real. */}
         <h1 id="hero-main-headline" className="hero-headline">
           <span className="hero-headline-primary">Start with an idea.</span>{' '}
@@ -176,11 +224,23 @@ export default function Hero({ onPromptSubmit }) {
         </p>
 
         {/* 4. Refined Prompt Surface (Single Visual Center) */}
-        <div className="prompt-surface-card">
+        <div className={`prompt-surface-card ${isPromptFocused ? 'is-focused' : ''}`}>
           <form onSubmit={handleSubmit} className="prompt-form" role="search" aria-label="Open Idea Creation and Search Console">
             
             {/* Subordinated Intent / Mode Selector */}
-            <div className="prompt-mode-row" role="tablist" aria-label="Select Mode">
+            <div ref={modeRowRef} className="prompt-mode-row" role="tablist" aria-label="Select Mode">
+              {/* Fluid Sliding Active Indicator */}
+              <span
+                className="prompt-mode-slider"
+                style={{
+                  transform: `translate3d(${sliderStyle.left}px, ${sliderStyle.top}px, 0)`,
+                  width: `${sliderStyle.width}px`,
+                  height: `${sliderStyle.height}px`,
+                  opacity: sliderStyle.ready ? 1 : 0
+                }}
+                aria-hidden="true"
+              />
+
               {[
                 { id: 'build', label: 'Build App' },
                 { id: 'discover', label: 'Discover' },
@@ -189,6 +249,7 @@ export default function Hero({ onPromptSubmit }) {
               ].map((mode) => (
                 <button
                   key={mode.id}
+                  ref={(el) => { tabRefs.current[mode.id] = el; }}
                   type="button"
                   role="tab"
                   id={`mode-tab-${mode.id}`}
@@ -212,6 +273,8 @@ export default function Hero({ onPromptSubmit }) {
                 value={promptText}
                 onChange={(e) => setPromptText(e.target.value)}
                 onKeyDown={handleKeyDown}
+                onFocus={() => setIsPromptFocused(true)}
+                onBlur={() => setIsPromptFocused(false)}
                 placeholder={placeholders[activeMode]}
                 rows={3}
                 className="prompt-textarea"

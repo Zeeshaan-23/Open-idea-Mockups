@@ -25,6 +25,81 @@
   align-items: center;
 }
 
+/* 0. Fixed Page Background Sacred Rosette Dome (Enlarged Semicircle Edge-to-Edge) */
+.page-background-rosette-dome {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  width: 100vw;
+  height: 100vw;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.19; /* Reduced by 30% from 0.28 */
+  transition: opacity 500ms ease;
+  user-select: none;
+  clip-path: inset(0 0 50% 0);
+  will-change: transform;
+}
+
+[data-theme="dark"] .page-background-rosette-dome {
+  opacity: 0.17; /* Reduced by 30% from 0.24 */
+}
+
+/* Disable/hide rosette dome background on mobile (< 768px tablet threshold) */
+@media (max-width: 767.98px) {
+  .page-background-rosette-dome {
+    display: none !important;
+  }
+}
+
+/* Continuous ambient rotation wrapper (pure CSS, no mouse tracking) */
+.bg-rosette-turn-wrapper {
+  width: 100%;
+  height: 100%;
+  transform-origin: 50% 50%;
+  animation: rosetteContinuousRotate 60s linear infinite;
+  will-change: transform;
+}
+
+.page-background-rosette-dome.is-focused .bg-rosette-turn-wrapper {
+  animation-duration: 30s;
+}
+
+@keyframes rosetteContinuousRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.page-background-rosette-dome .bg-rosette-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+.page-background-rosette-dome .rosette-circle {
+  transition: stroke-width 400ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.page-background-rosette-dome .rosette-petals {
+  transition: stroke-width 400ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-editorial-section {
+  position: relative;
+  background-color: transparent !important;
+}
+
+.hero-container {
+  position: relative;
+  z-index: 2;
+}
+
 /* 1. Headline: Start with an idea. Build something real. */
 .hero-headline {
   font-family: var(--font-sans);
@@ -79,12 +154,49 @@
   transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-base);
   text-align: left;
   overflow: hidden;
+  position: relative;
 }
 
-/* Calm resting focus state without distracting bright blue border or shadow */
-.prompt-surface-card:focus-within {
-  border-color: var(--border-card);
-  box-shadow: var(--shadow-card);
+/* Subtle 1px brand-gradient boundary treatment on focus */
+.prompt-surface-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(19, 178, 207, 0.75) 0%,
+    rgba(47, 143, 239, 0.85) 50%,
+    rgba(140, 136, 213, 0.75) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms ease;
+  z-index: 3;
+}
+
+.prompt-surface-card.is-focused::before,
+.prompt-surface-card:focus-within::before {
+  opacity: 1;
+}
+
+[data-theme="dark"] .prompt-surface-card::before {
+  background: linear-gradient(
+    135deg,
+    rgba(19, 178, 207, 0.9) 0%,
+    rgba(47, 143, 239, 1) 50%,
+    rgba(140, 136, 213, 0.9) 100%
+  );
+}
+
+/* Accessible focus ring for keyboard navigation */
+.prompt-surface-card:has(:focus-visible) {
+  outline: 2px solid var(--border-active);
+  outline-offset: 2px;
 }
 
 /* Form Container */
@@ -95,6 +207,7 @@
 
 /* Subordinated Mode Selector */
 .prompt-mode-row {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 0.35rem;
@@ -108,7 +221,30 @@
   display: none;
 }
 
+/* Fluid Sliding Active Indicator */
+.prompt-mode-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: var(--radius-sm);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+  pointer-events: none;
+  z-index: 0;
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+              width 220ms cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 150ms ease;
+  box-sizing: border-box;
+}
+
+[data-theme="dark"] .prompt-mode-slider {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
 .prompt-mode-pill {
+  position: relative;
+  z-index: 1;
   font-size: 0.8125rem;
   font-weight: 500;
   padding: 0.28rem 0.7rem;
@@ -116,7 +252,7 @@
   color: var(--text-muted);
   background: transparent;
   border: 1px solid transparent;
-  transition: all var(--transition-fast);
+  transition: color var(--transition-fast);
   cursor: pointer;
   white-space: nowrap;
   user-select: none;
@@ -124,20 +260,19 @@
 
 .prompt-mode-pill:hover {
   color: var(--text-primary);
-  background: var(--bg-subtle);
 }
 
 .prompt-mode-pill.active {
   color: var(--text-primary);
-  background: var(--bg-subtle);
-  border-color: var(--border-subtle);
+  background: transparent;
+  border-color: transparent;
   font-weight: 600;
 }
 
 [data-theme="dark"] .prompt-mode-pill.active {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.12);
   color: #FFFFFF;
+  background: transparent;
+  border-color: transparent;
 }
 
 .prompt-mode-pill:focus-visible {
@@ -165,11 +300,16 @@
   padding: 0;
 }
 
-.prompt-textarea:focus,
+.prompt-textarea:focus {
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
+
 .prompt-textarea:focus-visible {
-  outline: none !important;
-  box-shadow: none !important;
-  border: none !important;
+  outline: 2px solid var(--border-active);
+  outline-offset: 3px;
+  border-radius: var(--radius-xs);
 }
 
 .prompt-textarea::placeholder {
@@ -473,4 +613,24 @@
     align-items: center;
   }
 }
+
+/* Prefers-reduced-motion: disable spatial motion and animations */
+@media (prefers-reduced-motion: reduce) {
+  .bg-rosette-turn-wrapper,
+  .page-background-rosette-dome .rosette-petals,
+  .page-background-rosette-dome .rosette-circle,
+  .prompt-mode-slider,
+  .prompt-surface-card::before {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .page-background-rosette-dome {
+    transition: none !important;
+    animation: none !important;
+    transform: translate(-50%, 50%) !important;
+  }
+}
+
 

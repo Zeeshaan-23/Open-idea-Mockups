@@ -226,6 +226,38 @@ html.theme-transitioning * {
   }
 }
 
+/* Page Background Rosette Layering: allow fixed background dome to show through content */
+.hero-editorial-section,
+.ecosystem-section,
+.studio-showcase-section,
+.websites-service-section,
+.community-section,
+.closing-cta-section {
+  background-color: transparent !important;
+}
+
+.open-resources-section {
+  background-color: rgba(241, 244, 246, 0.88) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+[data-theme="dark"] .open-resources-section {
+  background-color: rgba(14, 27, 41, 0.88) !important;
+}
+
+.hero-container,
+.ecosystem-container,
+.resources-container,
+.studio-container,
+.websites-container,
+.community-container,
+.closing-cta-container,
+.footer-container {
+  position: relative;
+  z-index: 2;
+}
+
 /* Accessibility */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

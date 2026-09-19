@@ -6,12 +6,25 @@ import React from 'react';
  * Features the sacred geometry 6-petal rosette symbol paired with 'pen idea' in Instrument Serif,
  * where the rosette symbol naturally completes the wordmark as 'open idea'.
  */
-export function OpenIdeaFlowerSymbol({ size = 32, className = '', id = 'oi-grad', stroke = null }) {
+export function OpenIdeaFlowerSymbol({
+  size = 32,
+  className = '',
+  id = 'oi-grad',
+  stroke = null,
+  gradientAngle = 0,
+  isFocused = false,
+  circleStroke = null,
+  petalStroke = null,
+  viewBox = '0 0 100 100'
+}) {
+  const cStroke = circleStroke !== null ? circleStroke : (isFocused ? 3.75 : 3.5);
+  const pStroke = petalStroke !== null ? petalStroke : (isFocused ? 2.9 : 2.75);
+
   return (
     <svg
       width={size}
       height={size}
-      viewBox="0 0 100 100"
+      viewBox={viewBox}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
@@ -19,7 +32,15 @@ export function OpenIdeaFlowerSymbol({ size = 32, className = '', id = 'oi-grad'
       style={{ flexShrink: 0 }}
     >
       <defs>
-        <linearGradient id={id} x1="0%" y1="0%" x2="100%" y2="100%">
+        <linearGradient
+          id={id}
+          gradientUnits="userSpaceOnUse"
+          x1="15"
+          y1="15"
+          x2="85"
+          y2="85"
+          gradientTransform={gradientAngle ? `rotate(${gradientAngle} 50 50)` : undefined}
+        >
           <stop offset="0%" stopColor="#13B2CF" />
           <stop offset="50%" stopColor="#2F8FEF" />
           <stop offset="100%" stopColor="#8C88D5" />
@@ -32,11 +53,18 @@ export function OpenIdeaFlowerSymbol({ size = 32, className = '', id = 'oi-grad'
         cy="50"
         r="46"
         stroke={stroke || `url(#${id})`}
-        strokeWidth="3.5"
+        strokeWidth={cStroke}
+        className="rosette-circle"
       />
       
       {/* 6 Overlapping Sacred Rosette Petals */}
-      <g stroke={stroke || `url(#${id})`} strokeWidth="2.75" strokeLinecap="round" strokeLinejoin="round">
+      <g
+        stroke={stroke || `url(#${id})`}
+        strokeWidth={pStroke}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="rosette-petals"
+      >
         <path d="M 50 50 A 46 46 0 0 0 50 4 A 46 46 0 0 0 50 50" />
         <path d="M 50 50 A 46 46 0 0 0 89.84 27 A 46 46 0 0 0 50 50" />
         <path d="M 50 50 A 46 46 0 0 0 89.84 73 A 46 46 0 0 0 50 50" />
