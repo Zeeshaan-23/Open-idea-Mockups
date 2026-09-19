@@ -29,7 +29,7 @@ export default function NotFoundPage({ onNavigate, invalidPath = '' }) {
 
         {/* Subtle Brand Rosette Mark */}
         <div className="not-found-emblem-halo" aria-hidden="true">
-          <OpenIdeaFlowerSymbol size={44} id="notfound-rosette-grad" />
+          <OpenIdeaFlowerSymbol size={52} id="notfound-rosette-grad" />
         </div>
 
         {/* Kicker */}

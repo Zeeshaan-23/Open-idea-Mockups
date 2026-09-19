@@ -149,7 +149,7 @@ export default function Navbar({
           aria-label="Open Idea Homepage"
           className="navbar-brand-link"
         >
-          <OpenIdeaLogo size={30} id="navbar-brand-logo-grad" />
+          <OpenIdeaLogo size={38} id="navbar-brand-logo-grad" />
         </a>
 
         {/* Center: Restrained Editorial Desktop Navigation */}

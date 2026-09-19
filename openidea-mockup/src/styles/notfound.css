@@ -29,8 +29,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 76px;
-  height: 76px;
+  width: 88px;
+  height: 88px;
   border-radius: var(--radius-full);
   background-color: var(--bg-card);
   border: 1px solid var(--border-subtle);

@@ -81,7 +81,7 @@ export function OpenIdeaFlowerSymbol({
 }
 
 export default function OpenIdeaLogo({
-  size = 30,
+  size = 38,
   showText = true,
   stroke = null,
   textClassName = '',
@@ -89,6 +89,13 @@ export default function OpenIdeaLogo({
   id = null,
   onClick
 }) {
+  // Proportional scaling: emblem functions as the initial 'O' in 'open idea'
+  // When text is present, scale emblem proportionally (~72% of reference size) to match letter cap-height
+  const emblemSize = showText ? Math.round(size * 0.72) : size;
+  const textFontSize = Math.round(size * 0.96);
+  // Decreased distance to match natural typographic letter-spacing within the word 'open'
+  const letterGap = Math.max(1.5, (size * 0.05).toFixed(1));
+
   return (
     <div
       className={`open-idea-brand-lockup ${className}`}
@@ -96,7 +103,7 @@ export default function OpenIdeaLogo({
       style={{
         display: 'inline-flex',
         alignItems: 'center',
-        gap: `${Math.round(size * 0.16)}px`,
+        gap: `${letterGap}px`,
         userSelect: 'none',
         cursor: onClick ? 'pointer' : 'default',
         textDecoration: 'none'
@@ -104,13 +111,24 @@ export default function OpenIdeaLogo({
       role="img"
       aria-label="Open Idea"
     >
-      <OpenIdeaFlowerSymbol size={size} stroke={stroke} id={id} />
+      <div
+        className="open-idea-emblem-wrap"
+        style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          transform: 'translateY(-1px)',
+          flexShrink: 0
+        }}
+      >
+        <OpenIdeaFlowerSymbol size={emblemSize} stroke={stroke} id={id} />
+      </div>
       {showText && (
         <span
           className={`open-idea-wordmark ${textClassName}`}
           style={{
             fontFamily: "var(--font-serif, 'Instrument Serif', Georgia, serif)",
-            fontSize: `${Math.round(size * 0.94)}px`,
+            fontSize: `${textFontSize}px`,
             fontWeight: 400,
             lineHeight: 1,
             letterSpacing: '-0.02em',

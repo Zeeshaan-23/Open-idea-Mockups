@@ -69,7 +69,7 @@ export default function Footer({ onNavigateAction }) {
                 style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}
                 aria-label="Open Idea Homepage"
               >
-                <OpenIdeaLogo size={30} id="footer-brand-logo-grad" />
+                <OpenIdeaLogo size={38} id="footer-brand-logo-grad" />
               </a>
             </div>
             

@@ -26,8 +26,8 @@ export default function PwaBanner() {
       animation: 'slideUp 200ms ease-out'
     }}>
       <div style={{
-        width: '40px',
-        height: '40px',
+        width: '46px',
+        height: '46px',
         borderRadius: 'var(--radius-md)',
         background: 'var(--brand-navy)',
         display: 'flex',
@@ -35,7 +35,7 @@ export default function PwaBanner() {
         justifyContent: 'center',
         flexShrink: 0
       }}>
-        <OpenIdeaFlowerSymbol size={26} />
+        <OpenIdeaFlowerSymbol size={32} />
       </div>
 
       <div style={{ flex: 1 }}>

@@ -96,7 +96,7 @@ export default function BrandRevealLoader({ onComplete, forceTrigger = false }) 
           <div
             className={`brand-reveal-emblem-wrapper ${isSpinning ? 'is-spinning' : ''} ${hasSettled ? 'is-settled' : ''}`}
           >
-            <OpenIdeaFlowerSymbol size={48} id="global-loader-rosette-grad" />
+            <OpenIdeaFlowerSymbol size={44} id="global-loader-rosette-grad" />
           </div>
 
           {/* Wordmark ('pen idea') reveals to form '[EMBLEM]pen idea' */}
