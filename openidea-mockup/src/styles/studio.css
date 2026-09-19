@@ -1,0 +1,921 @@
+/* ==========================================================================
+   OPEN IDEA STUDIO WORKSPACE STYLES
+   Design System: design.md (Editorial Technology)
+   Palette: Deep Navy (#1B3C53), Blue (#2F8FEF), Cyan (#13B2CF), Lavender (#8C88D5)
+   Surfaces: Paper (#F8F9FA), Pure Card (#FFFFFF), Hairline (rgba(27, 60, 83, 0.08))
+   Typography: Plus Jakarta Sans (Primary UI), Instrument Serif (Editorial display accents)
+   ========================================================================== */
+
+.studio-workspace-page {
+  width: 100%;
+  min-height: calc(100vh - 72px);
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  padding-bottom: var(--space-3xl);
+  transition: background-color var(--transition-base), color var(--transition-base);
+}
+
+.studio-workspace-container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: var(--space-xl) var(--space-lg) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+/* --------------------------------------------------------------------------
+   1. STUDIO WORKSPACE HEADER
+   -------------------------------------------------------------------------- */
+.studio-workspace-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: var(--space-md);
+}
+
+.studio-header-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.studio-header-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brand-blue);
+}
+
+.studio-header-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.studio-header-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #10B981;
+}
+
+.studio-header-headline-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+.studio-header-title {
+  font-family: var(--font-sans);
+  font-size: clamp(1.6rem, 2.8vw, 2.1rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.studio-header-serif {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--brand-blue);
+  margin-left: 0.35rem;
+}
+
+.studio-header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.studio-btn-action {
+  appearance: none;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all var(--transition-fast);
+}
+
+.studio-btn-primary {
+  background-color: var(--brand-navy);
+  color: #FFFFFF;
+  border: 1px solid var(--brand-navy);
+}
+
+.studio-btn-primary:hover {
+  background-color: var(--brand-navy-hover);
+}
+
+.studio-btn-secondary {
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border-card);
+}
+
+.studio-btn-secondary:hover {
+  border-color: var(--border-card-hover);
+  background-color: var(--bg-card-hover);
+}
+
+/* --------------------------------------------------------------------------
+   2. NATURAL-LANGUAGE SPECIFICATION & CONTEXT BAR
+   -------------------------------------------------------------------------- */
+.studio-spec-console {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.studio-spec-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.studio-spec-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.studio-spec-input-box {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  background-color: var(--bg-page);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 6px 10px;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.studio-spec-input-box:focus-within {
+  border-color: var(--brand-blue);
+  box-shadow: var(--shadow-focus);
+}
+
+.studio-spec-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  color: var(--text-primary);
+  outline: none;
+  min-width: 200px;
+}
+
+.studio-spec-input::placeholder {
+  color: var(--text-muted);
+}
+
+.studio-spec-refine-btn {
+  background-color: var(--brand-navy);
+  color: #FFFFFF;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 8px 14px;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background-color var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.studio-spec-refine-btn:hover {
+  background-color: var(--brand-navy-hover);
+}
+
+.studio-spec-refine-btn.loading {
+  background-color: var(--brand-blue);
+}
+
+/* Uploaded context chips */
+.studio-context-chips-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 4px;
+}
+
+.studio-context-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.studio-context-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  background-color: var(--bg-card-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  color: var(--text-secondary);
+}
+
+.studio-context-chip-remove {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  margin-left: 2px;
+}
+
+.studio-context-chip-remove:hover {
+  color: var(--text-primary);
+}
+
+.studio-attach-file-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--brand-blue);
+  cursor: pointer;
+  padding: 3px 8px;
+  border: 1px dashed var(--border-card);
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-page);
+  transition: border-color var(--transition-fast);
+}
+
+.studio-attach-file-label:hover {
+  border-color: var(--brand-blue);
+}
+
+/* --------------------------------------------------------------------------
+   3. WORKBENCH VIEW TABS (PREVIEW, ARCHITECTURE, CODE, TOKENS)
+   -------------------------------------------------------------------------- */
+.studio-workbench-view {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.studio-workbench-tabs-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--bg-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0 16px;
+  overflow-x: auto;
+}
+
+.studio-workbench-tabs-list {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.studio-workbench-tab {
+  appearance: none;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 12px 14px;
+  font-family: var(--font-sans);
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  transition: all var(--transition-fast);
+}
+
+.studio-workbench-tab:hover {
+  color: var(--text-primary);
+}
+
+.studio-workbench-tab.active {
+  color: var(--brand-navy);
+  border-bottom-color: var(--brand-blue);
+  background-color: var(--bg-card);
+}
+
+[data-theme="dark"] .studio-workbench-tab.active {
+  color: #FFFFFF;
+}
+
+.studio-workbench-tab-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: var(--radius-full);
+  background-color: var(--bg-card-subtle);
+  color: var(--text-muted);
+}
+
+.studio-workbench-tab.active .studio-workbench-tab-badge {
+  background-color: var(--brand-blue-soft);
+  color: var(--brand-blue);
+}
+
+.studio-workbench-submeta {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* --------------------------------------------------------------------------
+   4. TAB 1: LIVE APPLICATION PREVIEW (AGRISENSE IOT)
+   -------------------------------------------------------------------------- */
+.studio-preview-pane {
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  background-color: var(--bg-page);
+  min-height: 480px;
+}
+
+.studio-preview-window-frame {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+}
+
+.studio-preview-chrome {
+  background-color: var(--bg-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.studio-chrome-url {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 3px 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.studio-app-interior {
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.studio-app-header-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: var(--space-sm);
+}
+
+.studio-app-title-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.studio-app-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #10B981;
+}
+
+.studio-app-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.studio-app-meta-badges {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.studio-app-badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  background-color: var(--bg-card-subtle);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-subtle);
+}
+
+/* Sensor nodes list */
+.studio-nodes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-md);
+}
+
+.studio-node-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: border-color var(--transition-fast);
+}
+
+.studio-node-card:hover {
+  border-color: var(--border-card-hover);
+}
+
+.studio-node-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.studio-node-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.studio-node-id {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.studio-node-zone {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.studio-node-status {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #10B981;
+}
+
+.studio-node-metrics-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 8px;
+}
+
+.studio-node-metric-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8rem;
+}
+
+.studio-node-metric-key {
+  color: var(--text-secondary);
+}
+
+.studio-node-metric-val {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.studio-metric-bar {
+  width: 70px;
+  height: 6px;
+  background-color: var(--bg-subtle);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-left: 8px;
+}
+
+.studio-metric-bar-fill {
+  height: 100%;
+  background-color: var(--brand-cyan);
+  border-radius: var(--radius-full);
+}
+
+/* Actuator card */
+.studio-node-card.actuator {
+  border-color: rgba(47, 143, 239, 0.25);
+  background-color: var(--bg-card-subtle);
+}
+
+.studio-valve-control-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 8px;
+}
+
+.studio-valve-btn {
+  appearance: none;
+  border: 1px solid var(--border-card);
+  padding: 4px 12px;
+  border-radius: var(--radius-xs);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.studio-valve-btn.open {
+  background-color: rgba(16, 185, 129, 0.12);
+  border-color: #10B981;
+  color: #10B981;
+}
+
+.studio-valve-btn.closed {
+  background-color: var(--bg-card);
+  border-color: var(--border-card);
+  color: var(--text-secondary);
+}
+
+/* --------------------------------------------------------------------------
+   5. TAB 2: ARCHITECTURE & COMPONENT HIERARCHY
+   -------------------------------------------------------------------------- */
+.studio-arch-pane {
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.studio-arch-specs-band {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--space-md);
+}
+
+.studio-arch-spec-item {
+  background-color: var(--bg-page);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.studio-arch-spec-lbl {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.studio-arch-spec-val {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.studio-arch-spec-note {
+  font-size: 0.74rem;
+  color: var(--text-secondary);
+}
+
+/* Component file hierarchy */
+.studio-components-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  background-color: var(--bg-page);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.studio-components-table th {
+  text-align: left;
+  padding: 10px 14px;
+  background-color: var(--bg-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+}
+
+.studio-components-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  vertical-align: top;
+}
+
+.studio-components-table tr:last-child td {
+  border-bottom: none;
+}
+
+.studio-comp-name {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.studio-comp-type-pill {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: var(--radius-xs);
+  background-color: var(--bg-card-subtle);
+  color: var(--brand-blue);
+  border: 1px solid var(--border-subtle);
+}
+
+/* --------------------------------------------------------------------------
+   6. TAB 3: GENERATED SOURCE CODE
+   -------------------------------------------------------------------------- */
+.studio-code-pane {
+  display: flex;
+  flex-direction: column;
+}
+
+.studio-code-pane-header {
+  background-color: var(--bg-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.studio-code-filename {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.studio-code-pre-box {
+  margin: 0;
+  padding: 16px 20px;
+  background-color: var(--bg-card);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.82rem;
+  line-height: 1.65;
+  color: var(--text-primary);
+  overflow-x: auto;
+  max-height: 540px;
+}
+
+/* --------------------------------------------------------------------------
+   7. TAB 4: DESIGN TOKENS
+   -------------------------------------------------------------------------- */
+.studio-tokens-pane {
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.studio-tokens-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  background-color: var(--bg-page);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.studio-tokens-table th {
+  text-align: left;
+  padding: 10px 14px;
+  background-color: var(--bg-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+}
+
+.studio-tokens-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+}
+
+.studio-tokens-table tr:last-child td {
+  border-bottom: none;
+}
+
+.studio-token-name {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-weight: 600;
+  color: var(--brand-navy);
+}
+
+[data-theme="dark"] .studio-token-name {
+  color: #FFFFFF;
+}
+
+.studio-token-color-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.studio-token-swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  border: 1px solid rgba(0,0,0,0.12);
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   8. EXPORT & CODE OWNERSHIP STRIP
+   -------------------------------------------------------------------------- */
+.studio-ownership-strip {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md) var(--space-lg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+.studio-ownership-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  max-width: 720px;
+}
+
+.studio-ownership-icon {
+  color: #10B981;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.studio-ownership-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 2px;
+}
+
+.studio-ownership-desc {
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Prototype disclaimer note */
+.studio-prototype-disclaimer {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* --------------------------------------------------------------------------
+   9. RESPONSIVE BREAKPOINTS
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .studio-workspace-container {
+    padding: var(--space-md) var(--space-md) 0;
+    gap: var(--space-md);
+  }
+
+  .studio-header-headline-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .studio-header-actions {
+    width: 100%;
+  }
+
+  .studio-btn-action {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .studio-spec-input-box {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .studio-spec-refine-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .studio-workbench-tabs-nav {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 8px;
+  }
+
+  .studio-workbench-tabs-list {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .studio-workbench-submeta {
+    padding: 6px 8px;
+  }
+
+  .studio-preview-pane,
+  .studio-arch-pane,
+  .studio-tokens-pane {
+    padding: var(--space-md);
+  }
+
+  .studio-nodes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .studio-ownership-strip {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

@@ -1,0 +1,200 @@
+// Studio Data Model: Agrisense IoT Telemetry Workstation
+// Single source of truth for the primary production Studio example
+
+export const AGRISENSE_SPECIFICATION = {
+  id: 'agrisense-iot',
+  title: 'Agrisense IoT Telemetry',
+  subtitle: 'Autonomous agricultural sensor mesh with valve actuation',
+  defaultPrompt: 'Autonomous agricultural telemetry monitoring station with real-time soil moisture arrays, ambient temperature telemetry, and solenoid valve relays.',
+  blueprintPath: 'studio.openidea.world/workspace/agrisense-telemetry',
+  version: '1.0.0',
+  framework: 'React 19 (Zero Lock-in)',
+  styling: 'Standard CSS Custom Properties',
+  license: 'MIT / 100% Code Ownership',
+  
+  // Architectural specifications
+  specs: [
+    { label: 'Runtime Target', value: 'React 19 · Next.js 14 / Vite compatible', note: 'Standard web components' },
+    { label: 'Styling Architecture', value: 'Vanilla CSS Design Tokens', note: 'No Tailwind or CSS-in-JS dependency' },
+    { label: 'State Model', value: 'Local React State Hooks', note: 'Portable without state library' },
+    { label: 'Network Protocol', value: 'Sub-GHz 868MHz Mesh / REST API', note: 'Standard JSON telemetry payloads' },
+    { label: 'Bundle Footprint', value: '8.6 kB (gzipped)', note: 'Zero external SDK overhead' },
+    { label: 'Code Ownership', value: '100% Portable (MIT)', note: 'Runs anywhere without Open Idea servers' }
+  ],
+
+  // Component hierarchy & files
+  components: [
+    {
+      name: 'AgrisenseTelemetry.jsx',
+      path: 'src/components/AgrisenseTelemetry.jsx',
+      type: 'Root Shell',
+      size: '3.4 kB',
+      description: 'Main application container managing telemetry polling, node aggregation, and actuator state.',
+      props: ['nodes: Array', 'refreshRate: String', 'onActuatorToggle: Function']
+    },
+    {
+      name: 'SensorNodeCard.jsx',
+      path: 'src/components/SensorNodeCard.jsx',
+      type: 'Leaf Component',
+      size: '1.8 kB',
+      description: 'Renders individual soil moisture, temperature, and power metrics with threshold indicators.',
+      props: ['node: Object', 'isWarning: Boolean']
+    },
+    {
+      name: 'ValveControlRelay.jsx',
+      path: 'src/components/ValveControlRelay.jsx',
+      type: 'Actuator Control',
+      size: '1.6 kB',
+      description: 'Interactive solenoid valve switch controlling irrigation line flow and telemetry feedback.',
+      props: ['valveState: "Open" | "Closed"', 'flowRate: String', 'onToggle: Function']
+    },
+    {
+      name: 'useTelemetryStream.js',
+      path: 'src/hooks/useTelemetryStream.js',
+      type: 'React Hook',
+      size: '1.2 kB',
+      description: 'Encapsulates simulated socket connection and periodic heartbeat updates.',
+      props: ['initialNodes: Array']
+    },
+    {
+      name: 'agrisense-tokens.css',
+      path: 'src/tokens/agrisense-tokens.css',
+      type: 'CSS Design Tokens',
+      size: '0.9 kB',
+      description: 'Token definitions for status colors, surface backgrounds, and typography scales.',
+      props: ['CSS Custom Properties']
+    }
+  ],
+
+  // Design tokens
+  tokens: [
+    { token: '--agrisense-navy', value: '#1B3C53', role: 'Header text & structural borders' },
+    { token: '--agrisense-blue', value: '#2F8FEF', role: 'Interactive links & focus rings' },
+    { token: '--agrisense-cyan', value: '#13B2CF', role: 'Telemetry sensor indicators' },
+    { token: '--agrisense-nominal', value: '#10B981', role: 'Normal node status & open valves' },
+    { token: '--agrisense-warning', value: '#F59E0B', role: 'Moisture threshold alerts' },
+    { token: '--agrisense-bg-card', value: '#FFFFFF', role: 'Card surface plane' },
+    { token: '--agrisense-border', value: 'rgba(27, 60, 83, 0.08)', role: '1px hairline dividing rules' }
+  ],
+
+  // Live node dataset for interactive preview
+  nodes: [
+    {
+      id: 'Node-01A',
+      zone: 'Zone A · Topsoil Array',
+      depth: '10 cm depth',
+      moisture: '42%',
+      moistureNum: 42,
+      temp: '24.2°C',
+      power: '88% Solar',
+      status: 'Nominal',
+      lastSeen: '1s ago'
+    },
+    {
+      id: 'Node-02B',
+      zone: 'Zone B · Deep Root Sensor',
+      depth: '40 cm depth',
+      moisture: '38%',
+      moistureNum: 38,
+      temp: '25.8°C',
+      power: '94% Solar',
+      status: 'Nominal',
+      lastSeen: '2s ago'
+    },
+    {
+      id: 'Relay-03',
+      zone: 'Sector 3 · Drip Irrigation Valve',
+      depth: 'Line Actuator',
+      flow: '14.2 L/min',
+      temp: '26.1°C',
+      power: 'AC Relay',
+      status: 'Active',
+      valveState: 'Open',
+      lastSeen: 'Real-time'
+    },
+    {
+      id: 'Node-04D',
+      zone: 'Perimeter · Ambient Station',
+      depth: 'Canopy height',
+      humidity: '68% RH',
+      temp: '23.6°C',
+      power: '100% Solar',
+      status: 'Nominal',
+      lastSeen: '3s ago'
+    }
+  ],
+
+  // Clean, production-grade exportable React 19 source code
+  sourceCode: `// Generated by Open Idea Studio
+// Blueprint: Agrisense IoT Telemetry (React 19 / Clean JSX)
+// Zero proprietary runtime. Runs with standard React + CSS tokens.
+
+import React, { useState } from 'react';
+import './agrisense-tokens.css';
+
+export function AgrisenseTelemetry({ initialNodes = [] }) {
+  const [nodes, setNodes] = useState(initialNodes);
+  const [valveOpen, setValveOpen] = useState(true);
+
+  const toggleValve = () => {
+    setValveOpen(prev => !prev);
+  };
+
+  return (
+    <div className="agrisense-app" role="region" aria-label="Agrisense Telemetry">
+      <header className="agrisense-header">
+        <div className="status-indicator">
+          <span className="dot" aria-hidden="true" />
+          <h2>Agrisense IoT Telemetry</h2>
+        </div>
+        <div className="mesh-meta">
+          <span>Mesh Rate: 1.0 Hz</span>
+          <span>Status: Nominal</span>
+        </div>
+      </header>
+
+      <main className="agrisense-nodes-grid">
+        {nodes.map(node => (
+          <article key={node.id} className="sensor-card">
+            <div className="card-header">
+              <span className="node-id">{node.id}</span>
+              <span className="node-zone">{node.zone}</span>
+            </div>
+            <div className="card-metrics">
+              {node.moisture && (
+                <div className="metric">
+                  <span className="label">Soil Moisture</span>
+                  <span className="value">{node.moisture}</span>
+                </div>
+              )}
+              {node.temp && (
+                <div className="metric">
+                  <span className="label">Temperature</span>
+                  <span className="value">{node.temp}</span>
+                </div>
+              )}
+            </div>
+          </article>
+        ))}
+
+        <article className="sensor-card actuator-card">
+          <div className="card-header">
+            <span className="node-id">Relay-03</span>
+            <span className="node-zone">Drip Irrigation Valve</span>
+          </div>
+          <div className="actuator-controls">
+            <span>Flow: {valveOpen ? '14.2 L/min' : '0.0 L/min'}</span>
+            <button 
+              type="button" 
+              onClick={toggleValve}
+              className={valveOpen ? 'btn-open' : 'btn-closed'}
+            >
+              {valveOpen ? 'Valve Open' : 'Valve Closed'}
+            </button>
+          </div>
+        </article>
+      </main>
+    </div>
+  );
+}`
+};

@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import EcosystemSection from './components/EcosystemSection';
 import OpenResourcesSection from './components/OpenResourcesSection';
 import OpenResourcesPage from './components/OpenResourcesPage';
+import StudioPage from './components/StudioPage';
 import NotFoundPage from './components/NotFoundPage';
 import BrandRevealLoader from './components/BrandRevealLoader';
 import StudioShowcaseSection from './components/StudioShowcaseSection';
@@ -101,10 +102,11 @@ export default function App() {
 
   const isHome = cleanPath === '' || cleanPath === '/';
   const isOpenResources = cleanPath === '/openresources';
-  const isKnownMockRoute = !isHome && !isOpenResources && VALID_ROUTES.has(cleanPath);
-  const isNotFound = !isHome && !isOpenResources && !isKnownMockRoute;
+  const isStudio = cleanPath === '/studio';
+  const isKnownMockRoute = !isHome && !isOpenResources && !isStudio && VALID_ROUTES.has(cleanPath);
+  const isNotFound = !isHome && !isOpenResources && !isStudio && !isKnownMockRoute;
 
-  // Auto-open modal if someone lands on a known mock route like /studio or /pricing
+  // Auto-open modal if someone lands on a known mock route like /pricing
   useEffect(() => {
     if (isKnownMockRoute) {
       setActionModalData({
@@ -128,14 +130,27 @@ export default function App() {
     return '';
   }, [currentPath]);
 
+  // Extract description parameter if coming to /studio?description=...
+  const initialDescription = useMemo(() => {
+    try {
+      const qIndex = currentPath.indexOf('?');
+      if (qIndex !== -1) {
+        const params = new URLSearchParams(currentPath.slice(qIndex));
+        return params.get('description') || '';
+      }
+    } catch {}
+    return '';
+  }, [currentPath]);
+
   // Handle Prompt Submission (from Hero primary doorway)
   const handlePromptSubmit = ({ mode, query, attachedFiles }) => {
     let targetRoute = '';
     let actionLabel = '';
 
     if (mode === 'build') {
-      targetRoute = query ? `/studio?description=${encodeURIComponent(query)}` : '/studio?new=1';
-      actionLabel = 'AI Studio Application Scaffolding';
+      targetRoute = query ? `/studio?description=${encodeURIComponent(query)}` : '/studio';
+      navigateTo(targetRoute);
+      return;
     } else if (mode === 'discover') {
       targetRoute = query ? `/openresources?q=${encodeURIComponent(query)}` : '/openresources';
       navigateTo(targetRoute);
@@ -164,7 +179,7 @@ export default function App() {
   const handleNavigateAction = (action) => {
     const dest = typeof action === 'string' ? action : action?.destination;
     if (dest) {
-      if (dest.startsWith('/openresources')) {
+      if (dest.startsWith('/openresources') || dest.startsWith('/studio')) {
         navigateTo(dest);
         return;
       }
@@ -197,7 +212,7 @@ export default function App() {
         onNavigateAction={handleNavigateAction}
       />
 
-      {/* 2. Main Content: Dedicated /openresources, Custom 404, or Approved Frozen Homepage */}
+      {/* 2. Main Content: Dedicated /openresources, Dedicated /studio, Custom 404, or Approved Frozen Homepage */}
       {isNotFound ? (
         <main style={{ flex: 1 }}>
           <NotFoundPage
@@ -210,6 +225,13 @@ export default function App() {
           <OpenResourcesPage
             onNavigate={navigateTo}
             initialQuery={initialQuery}
+          />
+        </main>
+      ) : isStudio ? (
+        <main style={{ flex: 1 }}>
+          <StudioPage
+            onNavigate={navigateTo}
+            initialDescription={initialDescription}
           />
         </main>
       ) : (
