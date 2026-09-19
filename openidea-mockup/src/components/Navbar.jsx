@@ -114,7 +114,7 @@ export default function Navbar({
     { label: 'Open Resources', href: '/openresources' },
     { label: 'Studio', href: '/studio' },
     { label: 'Websites', href: '/form' },
-    { label: 'Community', href: '/projects' },
+    { label: 'Community', href: '/community' },
     { label: 'Pricing', href: '/pricing' }
   ];
 
@@ -149,7 +149,7 @@ export default function Navbar({
           aria-label="Open Idea Homepage"
           className="navbar-brand-link"
         >
-          <OpenIdeaLogo size={30} />
+          <OpenIdeaLogo size={30} id="navbar-brand-logo-grad" />
         </a>
 
         {/* Center: Restrained Editorial Desktop Navigation */}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useId } from 'react';
 
 /**
  * Open Idea Official Brand Logo
@@ -7,9 +7,9 @@ import React from 'react';
  * where the rosette symbol naturally completes the wordmark as 'open idea'.
  */
 export function OpenIdeaFlowerSymbol({
-  size = 32,
+  size = 30,
   className = '',
-  id = 'oi-grad',
+  id = null,
   stroke = null,
   gradientAngle = 0,
   isFocused = false,
@@ -17,6 +17,10 @@ export function OpenIdeaFlowerSymbol({
   petalStroke = null,
   viewBox = '0 0 100 100'
 }) {
+  const generatedId = useId();
+  const safeAutoId = `oi-grad-${generatedId.replace(/[^a-zA-Z0-9_-]/g, '')}`;
+  const gradId = id || safeAutoId;
+
   const cStroke = circleStroke !== null ? circleStroke : (isFocused ? 3.75 : 3.5);
   const pStroke = petalStroke !== null ? petalStroke : (isFocused ? 2.9 : 2.75);
 
@@ -33,7 +37,7 @@ export function OpenIdeaFlowerSymbol({
     >
       <defs>
         <linearGradient
-          id={id}
+          id={gradId}
           gradientUnits="userSpaceOnUse"
           x1="15"
           y1="15"
@@ -52,14 +56,14 @@ export function OpenIdeaFlowerSymbol({
         cx="50"
         cy="50"
         r="46"
-        stroke={stroke || `url(#${id})`}
+        stroke={stroke || `url(#${gradId})`}
         strokeWidth={cStroke}
         className="rosette-circle"
       />
       
       {/* 6 Overlapping Sacred Rosette Petals */}
       <g
-        stroke={stroke || `url(#${id})`}
+        stroke={stroke || `url(#${gradId})`}
         strokeWidth={pStroke}
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -77,11 +81,12 @@ export function OpenIdeaFlowerSymbol({
 }
 
 export default function OpenIdeaLogo({
-  size = 32,
+  size = 30,
   showText = true,
   stroke = null,
   textClassName = '',
   className = '',
+  id = null,
   onClick
 }) {
   return (
@@ -99,7 +104,7 @@ export default function OpenIdeaLogo({
       role="img"
       aria-label="Open Idea"
     >
-      <OpenIdeaFlowerSymbol size={size} stroke={stroke} />
+      <OpenIdeaFlowerSymbol size={size} stroke={stroke} id={id} />
       {showText && (
         <span
           className={`open-idea-wordmark ${textClassName}`}

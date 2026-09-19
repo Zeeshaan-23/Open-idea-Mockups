@@ -5,6 +5,7 @@ import EcosystemSection from './components/EcosystemSection';
 import OpenResourcesSection from './components/OpenResourcesSection';
 import OpenResourcesPage from './components/OpenResourcesPage';
 import StudioPage from './components/StudioPage';
+import CommunityPage from './components/CommunityPage';
 import NotFoundPage from './components/NotFoundPage';
 import BrandRevealLoader from './components/BrandRevealLoader';
 import StudioShowcaseSection from './components/StudioShowcaseSection';
@@ -46,6 +47,7 @@ export default function App() {
     '',
     '/openresources',
     '/studio',
+    '/community',
     '/projects',
     '/pricing',
     '/form',
@@ -103,8 +105,9 @@ export default function App() {
   const isHome = cleanPath === '' || cleanPath === '/';
   const isOpenResources = cleanPath === '/openresources';
   const isStudio = cleanPath === '/studio';
-  const isKnownMockRoute = !isHome && !isOpenResources && !isStudio && VALID_ROUTES.has(cleanPath);
-  const isNotFound = !isHome && !isOpenResources && !isStudio && !isKnownMockRoute;
+  const isCommunity = cleanPath === '/community' || cleanPath === '/projects';
+  const isKnownMockRoute = !isHome && !isOpenResources && !isStudio && !isCommunity && VALID_ROUTES.has(cleanPath);
+  const isNotFound = !isHome && !isOpenResources && !isStudio && !isCommunity && !isKnownMockRoute;
 
   // Auto-open modal if someone lands on a known mock route like /pricing
   useEffect(() => {
@@ -142,6 +145,19 @@ export default function App() {
     return '';
   }, [currentPath]);
 
+  // Extract initial community tab if coming to /community?tab=... or /projects
+  const initialCommunityTab = useMemo(() => {
+    if (cleanPath === '/projects') return 'showcase';
+    try {
+      const qIndex = currentPath.indexOf('?');
+      if (qIndex !== -1) {
+        const params = new URLSearchParams(currentPath.slice(qIndex));
+        return params.get('tab') || 'groups';
+      }
+    } catch {}
+    return 'groups';
+  }, [currentPath, cleanPath]);
+
   // Handle Prompt Submission (from Hero primary doorway)
   const handlePromptSubmit = ({ mode, query, attachedFiles }) => {
     let targetRoute = '';
@@ -156,8 +172,9 @@ export default function App() {
       navigateTo(targetRoute);
       return;
     } else if (mode === 'projects') {
-      targetRoute = query ? `/projects?q=${encodeURIComponent(query)}` : '/projects';
-      actionLabel = 'Community Projects Directory';
+      targetRoute = query ? `/community?tab=showcase&q=${encodeURIComponent(query)}` : '/community?tab=showcase';
+      navigateTo(targetRoute);
+      return;
     } else if (mode === 'network') {
       targetRoute = query ? `/coming-soon?q=${encodeURIComponent(query)}` : '/coming-soon';
       actionLabel = 'Open Innovation Network';
@@ -179,7 +196,12 @@ export default function App() {
   const handleNavigateAction = (action) => {
     const dest = typeof action === 'string' ? action : action?.destination;
     if (dest) {
-      if (dest.startsWith('/openresources') || dest.startsWith('/studio')) {
+      if (
+        dest.startsWith('/openresources') ||
+        dest.startsWith('/studio') ||
+        dest.startsWith('/community') ||
+        dest.startsWith('/projects')
+      ) {
         navigateTo(dest);
         return;
       }
@@ -212,7 +234,7 @@ export default function App() {
         onNavigateAction={handleNavigateAction}
       />
 
-      {/* 2. Main Content: Dedicated /openresources, Dedicated /studio, Custom 404, or Approved Frozen Homepage */}
+      {/* 2. Main Content: Dedicated /openresources, Dedicated /studio, Dedicated /community, Custom 404, or Approved Frozen Homepage */}
       {isNotFound ? (
         <main style={{ flex: 1 }}>
           <NotFoundPage
@@ -232,6 +254,13 @@ export default function App() {
           <StudioPage
             onNavigate={navigateTo}
             initialDescription={initialDescription}
+          />
+        </main>
+      ) : isCommunity ? (
+        <main style={{ flex: 1 }}>
+          <CommunityPage
+            onNavigate={navigateTo}
+            initialTab={initialCommunityTab}
           />
         </main>
       ) : (

@@ -16,6 +16,9 @@ export default function Footer({ onNavigateAction }) {
         note: `Navigating to ${href}`
       });
     }
+    if (href === '/') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   const socialLinks = [
@@ -30,7 +33,7 @@ export default function Footer({ onNavigateAction }) {
   const platformLinks = [
     { label: 'AI Studio', href: '/studio' },
     { label: 'Open Resources', href: '/openresources' },
-    { label: 'Community Projects', href: '/projects' },
+    { label: 'Community', href: '/community' },
     { label: 'Bespoke Websites', href: '/form' },
     { label: 'Pricing & Plans', href: '/pricing' }
   ];
@@ -60,7 +63,14 @@ export default function Footer({ onNavigateAction }) {
           {/* Column 1: Brand, Description, Social */}
           <div className="footer-col footer-col-brand">
             <div className="footer-brand-lockup">
-              <OpenIdeaLogo size={32} />
+              <a
+                href="/"
+                onClick={(e) => handleLink(e, '/', 'Home', 'Brand Link')}
+                style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}
+                aria-label="Open Idea Homepage"
+              >
+                <OpenIdeaLogo size={30} id="footer-brand-logo-grad" />
+              </a>
             </div>
             
             <p className="footer-brand-desc">
