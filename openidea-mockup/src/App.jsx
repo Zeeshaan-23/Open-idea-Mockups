@@ -10,6 +10,7 @@ import WebsitesPage from './components/WebsitesPage';
 import PricingPage from './components/PricingPage';
 import AboutPage from './components/AboutPage';
 import FeaturesPage from './components/FeaturesPage';
+import ContactPage from './components/ContactPage';
 import NotFoundPage from './components/NotFoundPage';
 import BrandRevealLoader from './components/BrandRevealLoader';
 import GlobalRosetteBackground from './components/GlobalRosetteBackground';
@@ -61,6 +62,7 @@ export default function App() {
     '/about',
     '/features',
     '/resources',
+    '/contact',
     '/feedback',
     '/auth',
     '/coming-soon',
@@ -118,8 +120,9 @@ export default function App() {
   const isPricing = cleanPath === '/pricing';
   const isAbout = cleanPath === '/about';
   const isFeatures = cleanPath === '/features' || cleanPath === '/resources';
-  const isKnownMockRoute = !isHome && !isOpenResources && !isStudio && !isCommunity && !isWebsites && !isPricing && !isAbout && !isFeatures && VALID_ROUTES.has(cleanPath);
-  const isNotFound = !isHome && !isOpenResources && !isStudio && !isCommunity && !isWebsites && !isPricing && !isAbout && !isFeatures && !isKnownMockRoute;
+  const isContact = cleanPath === '/contact';
+  const isKnownMockRoute = !isHome && !isOpenResources && !isStudio && !isCommunity && !isWebsites && !isPricing && !isAbout && !isFeatures && !isContact && VALID_ROUTES.has(cleanPath);
+  const isNotFound = !isHome && !isOpenResources && !isStudio && !isCommunity && !isWebsites && !isPricing && !isAbout && !isFeatures && !isContact && !isKnownMockRoute;
 
   // Auto-open modal if someone lands on a known mock route like /pricing
   useEffect(() => {
@@ -170,6 +173,18 @@ export default function App() {
     return 'groups';
   }, [currentPath, cleanPath]);
 
+  // Extract enquiry parameter if coming to /contact?enquiry=...
+  const initialEnquiry = useMemo(() => {
+    try {
+      const qIndex = currentPath.indexOf('?');
+      if (qIndex !== -1) {
+        const params = new URLSearchParams(currentPath.slice(qIndex));
+        return params.get('enquiry') || 'general';
+      }
+    } catch {}
+    return 'general';
+  }, [currentPath]);
+
   // Handle Prompt Submission (from Hero primary doorway)
   const handlePromptSubmit = ({ mode, query, attachedFiles }) => {
     let targetRoute = '';
@@ -218,6 +233,7 @@ export default function App() {
         dest.startsWith('/about') ||
         dest.startsWith('/features') ||
         dest.startsWith('/resources') ||
+        dest.startsWith('/contact') ||
         dest.startsWith('/form') ||
         dest.startsWith('/demo')
       ) {
@@ -307,6 +323,13 @@ export default function App() {
         <main style={{ flex: 1 }}>
           <FeaturesPage
             onNavigate={navigateTo}
+          />
+        </main>
+      ) : isContact ? (
+        <main style={{ flex: 1 }}>
+          <ContactPage
+            onNavigate={navigateTo}
+            initialEnquiry={initialEnquiry}
           />
         </main>
       ) : (

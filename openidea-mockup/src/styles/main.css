@@ -245,7 +245,8 @@ html.theme-transitioning * {
 .open-resources-workstation,
 .pricing-page-wrapper,
 .about-page-wrapper,
-.features-page-wrapper {
+.features-page-wrapper,
+.contact-page-wrapper {
   background-color: transparent !important;
 }
 
@@ -282,7 +283,8 @@ html.theme-transitioning * {
 .or-container,
 .pricing-container-max,
 .about-container-max,
-.features-container-max {
+.features-container-max,
+.contact-container-max {
   position: relative;
   z-index: 2;
 }
