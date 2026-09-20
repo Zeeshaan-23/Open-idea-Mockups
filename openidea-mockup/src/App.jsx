@@ -9,6 +9,7 @@ import CommunityPage from './components/CommunityPage';
 import WebsitesPage from './components/WebsitesPage';
 import PricingPage from './components/PricingPage';
 import AboutPage from './components/AboutPage';
+import FeaturesPage from './components/FeaturesPage';
 import NotFoundPage from './components/NotFoundPage';
 import BrandRevealLoader from './components/BrandRevealLoader';
 import GlobalRosetteBackground from './components/GlobalRosetteBackground';
@@ -59,6 +60,7 @@ export default function App() {
     '/form',
     '/about',
     '/features',
+    '/resources',
     '/feedback',
     '/auth',
     '/coming-soon',
@@ -115,8 +117,9 @@ export default function App() {
   const isWebsites = cleanPath === '/websites' || cleanPath === '/form' || cleanPath === '/demo';
   const isPricing = cleanPath === '/pricing';
   const isAbout = cleanPath === '/about';
-  const isKnownMockRoute = !isHome && !isOpenResources && !isStudio && !isCommunity && !isWebsites && !isPricing && !isAbout && VALID_ROUTES.has(cleanPath);
-  const isNotFound = !isHome && !isOpenResources && !isStudio && !isCommunity && !isWebsites && !isPricing && !isAbout && !isKnownMockRoute;
+  const isFeatures = cleanPath === '/features' || cleanPath === '/resources';
+  const isKnownMockRoute = !isHome && !isOpenResources && !isStudio && !isCommunity && !isWebsites && !isPricing && !isAbout && !isFeatures && VALID_ROUTES.has(cleanPath);
+  const isNotFound = !isHome && !isOpenResources && !isStudio && !isCommunity && !isWebsites && !isPricing && !isAbout && !isFeatures && !isKnownMockRoute;
 
   // Auto-open modal if someone lands on a known mock route like /pricing
   useEffect(() => {
@@ -213,6 +216,8 @@ export default function App() {
         dest.startsWith('/websites') ||
         dest.startsWith('/pricing') ||
         dest.startsWith('/about') ||
+        dest.startsWith('/features') ||
+        dest.startsWith('/resources') ||
         dest.startsWith('/form') ||
         dest.startsWith('/demo')
       ) {
@@ -295,6 +300,12 @@ export default function App() {
       ) : isAbout ? (
         <main style={{ flex: 1 }}>
           <AboutPage
+            onNavigate={navigateTo}
+          />
+        </main>
+      ) : isFeatures ? (
+        <main style={{ flex: 1 }}>
+          <FeaturesPage
             onNavigate={navigateTo}
           />
         </main>

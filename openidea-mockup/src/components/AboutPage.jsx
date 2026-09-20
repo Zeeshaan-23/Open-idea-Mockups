@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import {
   Compass,
   ArrowRight,
@@ -36,6 +37,26 @@ export default function AboutPage({ onNavigate }) {
   const [activeAudienceId, setActiveAudienceId] = useState('researchers');
   const [isInquiryModalOpen, setIsInquiryModalOpen] = useState(false);
   const [copiedField, setCopiedField] = useState(null);
+
+  // Prevent background scrolling and handle Escape key when modal is open
+  useEffect(() => {
+    if (!isInquiryModalOpen) return;
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setIsInquiryModalOpen(false);
+      }
+    };
+
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isInquiryModalOpen]);
 
   const activeAudience =
     STAKEHOLDER_AUDIENCES.find((item) => item.id === activeAudienceId) ||
@@ -230,6 +251,18 @@ export default function AboutPage({ onNavigate }) {
                 </div>
               </div>
             ))}
+          </div>
+
+          <div style={{ marginTop: '2rem', display: 'flex', justifyContent: 'flex-end' }}>
+            <button
+              type="button"
+              className="pillar-action-link"
+              style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontSize: '0.875rem' }}
+              onClick={() => onNavigate && onNavigate('/features')}
+            >
+              <span>Explore full platform capabilities index</span>
+              <ArrowRight size={14} />
+            </button>
           </div>
         </div>
       </section>
@@ -471,9 +504,10 @@ export default function AboutPage({ onNavigate }) {
       </section>
 
       {/* --------------------------------------------------------------------
-          Institutional Contact Dialog / Modal
+          Institutional Contact Dialog / Modal (Portal mounted to document.body
+          to ensure 100% root-level stacking isolation from page elements)
           -------------------------------------------------------------------- */}
-      {isInquiryModalOpen && (
+      {isInquiryModalOpen && typeof document !== 'undefined' && createPortal(
         <div
           className="about-modal-backdrop"
           onClick={() => setIsInquiryModalOpen(false)}
@@ -577,7 +611,8 @@ export default function AboutPage({ onNavigate }) {
               </button>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );

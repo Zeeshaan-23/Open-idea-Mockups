@@ -1,0 +1,569 @@
+/* ==========================================================================
+   Open Idea — Platform Capabilities & Features Index Styles
+   Aesthetic: Editorial Technology (Smart, Human, Useful, Open)
+   Strictly adheres to DESIGN.md tokens and visual guidelines.
+   ========================================================================== */
+
+/* Card Surface Tokens: 100% Solid & Completely Opaque */
+:root {
+  --features-card-bg: #FFFFFF;
+  --features-card-border: #D1D9E0;
+  --features-card-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 4px 14px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="dark"] {
+  --features-card-bg: #132435;
+  --features-card-border: #264563;
+  --features-card-shadow: 0 2px 6px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.features-page-wrapper {
+  background-color: transparent !important;
+  color: var(--text-primary);
+  min-height: 100vh;
+  padding-bottom: 6rem;
+  transition: color var(--transition-base);
+}
+
+.features-container-max {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+@media (min-width: 768px) {
+  .features-container-max {
+    padding: 0 2rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .features-container-max {
+    padding: 0 3rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   1. Editorial Header / Platform Premise
+   -------------------------------------------------------------------------- */
+
+.features-header {
+  padding-top: 4rem;
+  padding-bottom: 3.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.features-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--brand-blue);
+  margin-bottom: 1rem;
+}
+
+.features-headline {
+  font-family: var(--font-sans);
+  font-size: clamp(2.35rem, 4.8vw, 3.75rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+  color: var(--text-primary);
+  margin: 0 0 1.25rem 0;
+  max-width: 980px;
+}
+
+.features-headline .serif-accent {
+  font-family: var(--font-serif, 'Instrument Serif', Georgia, serif);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--brand-blue);
+}
+
+.features-subheading {
+  font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin: 0 0 2rem 0;
+  max-width: 860px;
+}
+
+/* Jump Anchor Strip */
+.features-jump-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px dashed var(--border-subtle);
+}
+
+.features-jump-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78125rem;
+  font-weight: 600;
+  padding: 0.4rem 0.85rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  color: var(--text-secondary);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.features-jump-pill:hover {
+  background: var(--bg-subtle);
+  color: var(--brand-blue);
+  border-color: rgba(47, 143, 239, 0.3);
+}
+
+/* --------------------------------------------------------------------------
+   2. Core Platform Capabilities Grid
+   -------------------------------------------------------------------------- */
+
+.features-section {
+  padding: 4.5rem 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.features-section:last-of-type {
+  border-bottom: none;
+}
+
+.features-section-header {
+  margin-bottom: 2.75rem;
+  max-width: 760px;
+}
+
+.features-section-kicker {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.features-section-title {
+  font-family: var(--font-sans);
+  font-size: clamp(1.75rem, 3.2vw, 2.35rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--text-primary);
+  line-height: 1.22;
+  margin: 0 0 0.75rem 0;
+}
+
+.features-section-desc {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Capability Cards Grid */
+.capabilities-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .capabilities-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1100px) {
+  .capabilities-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.capability-card {
+  background: var(--features-card-bg);
+  border: 1px solid var(--features-card-border);
+  border-radius: var(--radius-lg);
+  padding: 2.25rem 1.85rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--features-card-shadow);
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.capability-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(47, 143, 239, 0.45);
+  box-shadow: 0 6px 20px rgba(27, 60, 83, 0.1);
+}
+
+.capability-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.capability-number {
+  font-family: var(--font-serif, 'Instrument Serif', Georgia, serif);
+  font-size: 2.25rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  line-height: 1;
+  opacity: 0.85;
+}
+
+.capability-role-badge {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #1A5388;
+  background-color: #EDF5FD;
+  border: 1px solid #C8E1FA;
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-sm);
+}
+
+[data-theme="dark"] .capability-role-badge {
+  color: #90C8FC;
+  background-color: #0F2A45;
+  border-color: #1A3E63;
+}
+
+.capability-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 0.35rem 0;
+  line-height: 1.3;
+}
+
+.capability-kicker {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.capability-summary {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0 0 1.25rem 0;
+}
+
+/* User Benefit Callout Box */
+.capability-benefit-box {
+  background-color: #F4F7F9;
+  border: 1px solid #DDE3EA;
+  border-radius: var(--radius-md);
+  padding: 1rem 1.15rem;
+  margin-bottom: 1.5rem;
+}
+
+[data-theme="dark"] .capability-benefit-box {
+  background-color: #0E1B29;
+  border-color: #1E374F;
+}
+
+.benefit-box-label {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--brand-blue);
+  margin-bottom: 0.35rem;
+}
+
+.benefit-box-text {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Key Features Bullet List */
+.capability-features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.75rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  flex-grow: 1;
+}
+
+.capability-feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+.capability-check-icon {
+  color: var(--brand-blue);
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+
+/* Action Button Container */
+.capability-action-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.capability-primary-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  width: 100%;
+  font-size: 0.84375rem;
+  font-weight: 600;
+  padding: 0.65rem 1rem;
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  min-height: 42px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.capability-primary-btn:hover {
+  background: var(--btn-primary-hover);
+  transform: translateY(-1px);
+}
+
+.capability-secondary-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  font-size: 0.78125rem;
+  font-weight: 600;
+  color: var(--brand-blue);
+  text-decoration: none;
+  padding: 0.4rem;
+  transition: color var(--transition-fast);
+}
+
+.capability-secondary-link:hover {
+  text-decoration: underline;
+}
+
+/* --------------------------------------------------------------------------
+   3. The Unified Creation Continuum (Workflow Steps)
+   -------------------------------------------------------------------------- */
+
+.continuum-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .continuum-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .continuum-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+.continuum-step-card {
+  background: var(--features-card-bg);
+  border: 1px solid var(--features-card-border);
+  border-radius: var(--radius-md);
+  padding: 1.65rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--features-card-shadow);
+  transition: all var(--transition-fast);
+}
+
+.continuum-step-card:hover {
+  border-color: rgba(47, 143, 239, 0.45);
+  transform: translateY(-2px);
+}
+
+.continuum-step-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.continuum-step-num {
+  font-family: var(--font-serif, 'Instrument Serif', Georgia, serif);
+  font-size: 1.5rem;
+  color: var(--text-muted);
+  line-height: 1;
+}
+
+.continuum-phase-badge {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #1A5388;
+  background-color: #EDF5FD;
+  border: 1px solid #C8E1FA;
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--radius-xs);
+}
+
+[data-theme="dark"] .continuum-phase-badge {
+  color: #90C8FC;
+  background-color: #0F2A45;
+  border-color: #1A3E63;
+}
+
+.continuum-step-title {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem 0;
+  line-height: 1.35;
+}
+
+.continuum-step-desc {
+  font-size: 0.78125rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0 0 1.25rem 0;
+  flex-grow: 1;
+}
+
+.continuum-step-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--brand-blue);
+  text-decoration: none;
+}
+
+.continuum-step-link:hover {
+  text-decoration: underline;
+}
+
+/* --------------------------------------------------------------------------
+   4. Production Synthesis & Direct Engagement Banner
+   -------------------------------------------------------------------------- */
+
+.features-cta-banner {
+  background: var(--features-card-bg);
+  border: 1px solid var(--features-card-border);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 2.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  box-shadow: var(--features-card-shadow);
+}
+
+@media (min-width: 860px) {
+  .features-cta-banner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.features-cta-content {
+  max-width: 620px;
+}
+
+.features-cta-title {
+  font-family: var(--font-sans);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 0.35rem 0;
+}
+
+.features-cta-desc {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.features-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.features-cta-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.75rem 1.4rem;
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  min-height: 44px;
+  text-decoration: none;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-fast);
+}
+
+.features-cta-primary:hover {
+  background: var(--btn-primary-hover);
+  transform: translateY(-1px);
+}
+
+.features-cta-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.75rem 1.25rem;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  min-height: 44px;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.features-cta-ghost:hover {
+  background: var(--bg-subtle);
+  border-color: rgba(47, 143, 239, 0.3);
+}

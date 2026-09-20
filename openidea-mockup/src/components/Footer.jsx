@@ -31,6 +31,7 @@ export default function Footer({ onNavigateAction }) {
   ];
 
   const platformLinks = [
+    { label: 'Platform Capabilities', href: '/features' },
     { label: 'AI Studio', href: '/studio' },
     { label: 'Open Resources', href: '/openresources' },
     { label: 'Community', href: '/community' },
