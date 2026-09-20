@@ -73,21 +73,14 @@ Every single internal route referenced across the 9 homepage sections was extrac
 | **Hero** | `/openresources?q=...` | Form Submit: "Explore Resources" | **Valid** | Filters resources by keyword |
 | **Hero** | `/projects?q=...` | Form Submit: "Search Projects" | **Valid** | Filters community projects |
 | **Hero** | `/coming-soon?q=...` | Form Submit: "Connect" | **Placeholder** | Open Innovation Network gateway |
-| **Ecosystem** | `/openresources` | Pathway 01 CTA: "Browse resources" | **Valid** | Entry to Open Resources |
-| **Ecosystem** | `/studio` | Pathway 02 CTA: "Open Studio" | **Valid** | Entry to Studio |
-| **Ecosystem** | `/projects` | Pathway 03 CTA: "Explore projects" | **Valid** | Entry to Community Projects |
-| **Open Resources** | `/openresources` | Header CTA: "Explore Open Resources" | **Valid** | Full catalogue gateway |
-| **Open Resources** | `/openresources?q=...` | Search Form Submit | **Valid** | Keyword search query |
-| **Open Resources** | `/openresources?q=...` | Resource Row Selection (x4) | **Valid** | Direct detail lookup for specific item |
-| **Open Resources** | `/openresources` | Table Footer: "View all indexed resources" | **Valid** | Full catalogue link |
-| **Studio Showcase** | `/studio` | Editorial CTA: "Explore Studio" | **Valid** | Entry to Studio Workspace |
-| **Websites** | `/form` | Band CTA: "Start a Website Project" | **Valid** | Bespoke website intake form |
-| **Community** | `/projects` | Pathway: "Projects" | **Valid** | Public projects directory |
-| **Community** | `/contribute` | Pathway: "Contribute" | **Valid** | Open-source contribution guide |
-| **Community** | `/intern-fellowship` | Pathway: "Fellowship" | **Valid** | Student residency & grants intake |
-| **Community** | `/problems-and-ideas`| Pathway: "Problems & Ideas" | **Valid** | Global problems registry |
-| **Closing CTA** | `/studio` | Primary Button: "Open Studio" | **Valid** | Primary creation entry point |
-| **Closing CTA** | `/openresources` | Secondary Link: "Browse open resources"| **Valid** | Secondary discovery entry point |
+| **Scroll Narrative (01 Explore)** | `/openresources` | Primary CTA: "Browse resources" | **Valid** | Entry to Open Resources Directory |
+| **Scroll Narrative (01 Explore)** | `/openresources` | Preview Link: "View catalogue" | **Valid** | Curated metadata catalogue lookup |
+| **Scroll Narrative (02 Build)** | `/studio` | Primary CTA: "Open Studio" | **Valid** | Entry to Studio Workspace |
+| **Scroll Narrative (02 Build)** | `/studio` | Preview Link: "Launch workspace" | **Valid** | Scaffolding code export environment |
+| **Scroll Narrative (03 Connect)** | `/projects` | Primary CTA: "Explore projects" | **Valid** | Entry to Community Projects |
+| **Scroll Narrative (03 Connect)** | `/projects` | Preview Link: "View all initiatives" | **Valid** | Active public working groups lookup |
+| **Scroll Narrative (Brief)** | `/openresources` | Band CTA: "Explore all resources" | **Valid** | Knowledge infrastructure repository |
+| **Websites** | `/form` | Band CTA: "Start a Website Project" | **Valid** | Bespoke website engineering intake |
 | **Footer** | `/studio` | Platform: "AI Studio" | **Valid** | Platform navigation |
 | **Footer** | `/openresources` | Platform: "Open Resources" | **Valid** | Platform navigation |
 | **Footer** | `/projects` | Platform: "Community Projects" | **Valid** | Platform navigation |
@@ -166,24 +159,28 @@ The homepage was inspected across four standard responsive breakpoints: **390px*
 +-------------------------------------------------------------------------------+
 |  1440px / Desktop                                                             |
 |  [Navbar: Lockup | 5 Links | Moon | Sign in]                                  |
-|  [Hero: Start with an idea. Build something real. | Prompt Card | 4 Chips]   |
-|  [Ecosystem: 3-Col Triptych (Hairline Dividers)]                              |
-|  [Open Resources: Search + 4 Filter Pills | 4-Col Structured Table]          |
-|  [Studio Showcase: 38% Editorial Copy | 62% Large App Preview Window]         |
-|  [Websites: High-Contrast Service Band with 3 Feature Badges + Intake CTA]    |
-|  [Community: Headline | 4 Hairline-Divided Typographic Columns]              |
-|  [Closing CTA: Centered Decisive Headline | Studio CTA + Resources Link]      |
+|  [Hero: Full-Viewport Ideation Doorway | Prompt Console | Starter Chips]      |
+|  [Scroll Narrative Sequence (with Falling 3D Sacred Rosette Medallion):       |
+|     - 01 Explore: Content (Top) + Curated Resources Preview Card (Bottom)    |
+|       Opposite Flank: Falling 3D Sacred Rosette Medallion (180° In-Place Turn)|
+|     - 02 Build: Content (Top) + Studio Workspace Preview Card (Bottom)        |
+|       Opposite Flank: Falling 3D Sacred Rosette Medallion (180° In-Place Turn)|
+|     - 03 Connect: Content (Top) + Working Groups Preview Card (Bottom)        |
+|       Opposite Flank: Falling 3D Sacred Rosette Medallion (180° In-Place Turn)|
+|     - Knowledge Infrastructure Brief: 3 Categories + Catalogue CTA Button     |
+|       (Medallion glides behind card at y: 46vh & dissolves completely to 0)]  |
+|  [Websites: High-Contrast Bespoke Engineering Band with 3 Badges + Intake CTA]|
 |  [Footer: 4-Col Grid (Brand + Social | Platform | Ecosystem | Inquiries)]     |
 +-------------------------------------------------------------------------------+
 |  390px / Mobile                                                               |
 |  [Navbar: Lockup | Moon | Hamburger]                                         |
-|  [Hero: 2rem Headline | Stacked Prompt Card | Single-Row Scroll Chips]        |
-|  [Ecosystem: Stacked Cards with Horizontal Hairlines]                         |
-|  [Open Resources: Full-Width Search | Stacked Resource Rows]                  |
-|  [Studio Showcase: Stacked Copy -> App Window (Table collapsed to 2 cols)]   |
+|  [Hero: Full-Viewport Mobile Doorway | Stacked Prompt Card | Scroll Chips]    |
+|  [Scroll Narrative: Single-Column Stacked Reading Order (Sticky Layer Hidden)]|
+|     - 01 Explore: Content Column -> Curated Resources Preview Card            |
+|     - 02 Build: Content Column -> Studio Workspace Preview Card               |
+|     - 03 Connect: Content Column -> Working Groups Preview Card               |
+|     - Knowledge Infrastructure Brief: Stacked Category Cards + Full-Width CTA |
 |  [Websites: Stacked Band with Full-Width CTA Button]                          |
-|  [Community: Stacked 1-Col Typographic List with Border Separators]           |
-|  [Closing CTA: Stacked Headline + Full-Width Primary Button]                  |
 |  [Footer: Stacked Single Column Grid]                                         |
 +-------------------------------------------------------------------------------+
 ```

@@ -24,17 +24,18 @@ Editorial Technology: Smart, Human, Useful, Open. An open creation environment t
 
 ## Operating Context
 
-Modern web browser access on desktop, tablet, and mobile devices. Primary workflows: exploratory research, prompt-led ideation, studio web app creation, open data exploration, and turnkey website ordering.
+Modern web browser access on desktop, tablet, and mobile devices. Primary workflows: exploratory research, prompt-led ideation, studio web app creation, open data exploration, and bespoke web engineering inquiries.
 
 ## Capabilities and Constraints
 
 - Prompt-led entry doorway supporting 4 modes: Build App (`/studio`), Discover (`/openresources`), Projects (`/projects`), Network (`/coming-soon`).
 - Multi-format file attachment pipeline (`.pdf, .txt, .csv, .md, .json, .png, .jpg, .webp, .gif`) preserved in `sessionStorage.uploadedFileContext`.
 - Real-time Web Speech API voice dictation.
-- Turnkey bespoke business websites delivered in 5 days with ₹500 refundable booking deposit.
-- Open resources directory for research papers, open datasets, and developer toolkits.
+- Unified vertical scroll narrative connecting the ecosystem: Explore (01), Build (02), Connect (03), and Knowledge Infrastructure brief, guided by the falling Sacred Rosette 3D medallion.
+- Bespoke production website engineering and custom web applications with full code ownership (`/form`).
+- Open resources directory for verified research papers, open datasets, and developer toolkits (`/openresources`).
 - User session & profile management, community user links, developer API keys.
-- Lightweight, accessible, responsive across 390px to 1440px+ with 44px+ touch targets.
+- Lightweight, accessible, responsive across 390px to 1440px+ with 44px+ touch targets and zero layout thrashing.
 
 ## Brand Commitments
 

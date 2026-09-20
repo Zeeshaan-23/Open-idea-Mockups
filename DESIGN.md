@@ -143,6 +143,28 @@ Open Idea is a predominantly flat, ink-on-paper system. Depth is communicated vi
 - **Ghost:** Transparent with Deep Navy text, highlighting in soft blue tint on hover.
 - **Touch Target:** Strictly 44px+ on all devices.
 
+## Motion & Scroll Narrative System
+
+The scroll experience is an active architectural journey that translates the user from abstract ideation into tangible execution.
+
+### The Falling Sacred Rosette Medallion
+- **Architectural Scale:** The emblem is a monumental physical medallion sized at `clamp(340px, 28vw, 460px)` designed to command and balance the expansive whitespace flank opposite content clusters.
+- **Numismatic Craftsmanship:** Features authentic mint detailing:
+  - Dual concentric rims: outer metallic highlight bevel (`::after`) and inner dashed mint ring (`::before`).
+  - Specular radial gradient reflecting light from the top-left (`circle at 38% 35%`).
+  - Dynamic ground shadow foreshortening on the X-axis (`0.25 + 0.75 * |cos(ry)|`) simulating true 3D spatial rotation.
+- **Calibrated Pacing:**
+  - **In-Place Dwell Zones:** Rotations are intentionally calibrated to **180° per step** (face-on → edge-on → face-on) so the emblem spins calmly and authoritatively as visitors read.
+  - **S-Curve Cosine Easing:** Horizontal movement follows `sCurve(t) = (1 - Math.cos(π * t)) / 2`, providing smooth zero-derivative tangents at dwell zone boundaries with zero sharp corners.
+  - **Corridor Offsetting:** Positioned 65% across the open whitespace corridor (~160px separation from content cards) while maintaining a safe buffer before edge action lines.
+  - **Vanishing Transit:** As the scroll approaches the Knowledge Infrastructure card, the medallion glides behind the card's opaque surface (`z-index: 5`) and fades completely to `0.0` opacity, never poking out below the card.
+
+### Motion Streaks (Speed & Action Lines)
+- **Viewport Edges:** 14 individual hairline streaks stream bottom-to-up on the left and right margins of the viewport during active scrolling.
+- **Emblem Slipstream:** 5 staggered action streaks directly above the medallion stream upward during motion, reinforcing the sensation of smooth, vertical descent.
+- **Zero-Lag Architecture:** All motion is driven by GPU-composited CSS transforms (`translate3d`, `rotateY`) and passive DOM CSS variable mutations without triggering React state re-renders.
+- **Adaptive Degradation:** Motion layers automatically unmount on viewports `< 1024px` and strictly respect `prefers-reduced-motion: reduce`.
+
 ## Do's and Don'ts
 
 ### Do:
