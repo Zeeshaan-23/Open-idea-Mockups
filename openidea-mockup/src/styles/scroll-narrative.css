@@ -66,11 +66,11 @@
 /* Action / Motion Lines: Hairline vertical streaks streaming bottom-to-up directly above coin */
 .narrative-action-lines {
   position: absolute;
-  bottom: calc(50% + clamp(180px, 15vw, 240px));
+  bottom: calc(50% + clamp(160px, 13.2vw, 210px));
   left: 50%;
   transform: translateX(-50%);
-  width: clamp(100px, 10vw, 160px);
-  height: clamp(120px, 12vw, 180px);
+  width: clamp(90px, 8.8vw, 140px);
+  height: clamp(105px, 10.5vw, 160px);
   display: flex;
   justify-content: space-around;
   opacity: var(--action-lines-opacity, 0);
@@ -251,10 +251,10 @@
 .streak-r6 { right: 88%; width: 1.0px; height: 115px; --streak-op: 0.60; animation-duration: 1.30s; animation-delay: -0.75s; }
 .streak-r7 { right: 48%; width: 1.5px; height: 155px; --streak-op: 0.75; animation-duration: 1.85s; animation-delay: -1.20s; }
 
-/* Monumental 3D Emblem Body occupying whitespace beside content */
+/* Monumental 3D Emblem Body occupying whitespace beside content (~12% size reduction) */
 .narrative-falling-coin-3d {
-  width: clamp(340px, 28vw, 460px);
-  height: clamp(340px, 28vw, 460px);
+  width: clamp(300px, 24.6vw, 405px);
+  height: clamp(300px, 24.6vw, 405px);
   border-radius: var(--radius-full);
   background: radial-gradient(
     circle at 38% 35%,
@@ -333,14 +333,14 @@
   pointer-events: none;
 }
 
-/* Grounding / Landing Shadow underneath coin */
+/* Grounding / Landing Shadow underneath coin (~12% size reduction) */
 .narrative-coin-ground-shadow {
   position: absolute;
-  top: calc(50% + clamp(185px, 15.5vw, 245px));
+  top: calc(50% + clamp(165px, 13.6vw, 215px));
   left: 50%;
   transform: translate(-50%, -50%) scaleX(var(--shadow-scale-x, 1)) scale(var(--shadow-scale, 1));
-  width: clamp(260px, 22vw, 360px);
-  height: clamp(22px, 2vw, 32px);
+  width: clamp(230px, 19.4vw, 315px);
+  height: clamp(20px, 1.75vw, 28px);
   border-radius: 50%;
   background: radial-gradient(ellipse at center, rgba(27, 60, 83, 0.28) 0%, rgba(27, 60, 83, 0.08) 50%, transparent 75%);
   opacity: var(--shadow-opacity, 0.35);
@@ -370,11 +370,11 @@
   padding-bottom: 5rem;
 }
 
-/* Sequence Header */
+/* Sequence Header - Anchored to Left Editorial Spine */
 .narrative-sequence-header {
-  text-align: center;
-  max-width: 680px;
-  margin: 0 auto 4.5rem auto;
+  text-align: left;
+  max-width: 540px;
+  margin: 0 0 4.5rem 0;
 }
 
 .narrative-kicker {
@@ -404,7 +404,7 @@
 }
 
 /* --------------------------------------------------------------------------
-   4. Staged Alternating 3-Step Sequence (Clustered with Left/Right Offsets)
+   4. Staged Left Editorial Column (Single-Column Flow with Right Coin Flight)
    -------------------------------------------------------------------------- */
 
 .narrative-steps-container {
@@ -415,9 +415,10 @@
 
 .narrative-step-block {
   display: flex;
+  justify-content: flex-start;
   width: 100%;
   min-height: auto;
-  padding: 5rem 0;
+  padding: 5.5rem 0;
   align-items: flex-start;
   border-bottom: 1px solid var(--border-subtle);
 }
@@ -426,41 +427,24 @@
   border-bottom: none;
 }
 
-/* Step 01 & Step 03: Elements moved collectively to the LEFT */
-.step-align-left {
-  justify-content: flex-start;
-}
-
-.step-align-left .narrative-step-cluster {
-  margin-right: auto;
-  margin-left: 0;
-}
-
-/* Step 02: Elements moved collectively to the RIGHT */
-.step-align-right {
-  justify-content: flex-end;
-}
-
-.step-align-right .narrative-step-cluster {
-  margin-left: auto;
-  margin-right: 0;
-}
-
-/* Vertical order of enlarged Content & Preview card to produce natural section length */
+/* Controlled Left Editorial Column (Max-width 540px, anchored left) */
 .narrative-step-cluster {
   display: flex;
   flex-direction: column;
   gap: 2.25rem;
   width: 100%;
-  max-width: 580px;
+  max-width: 540px;
+  margin-left: 0;
+  margin-right: auto;
 }
 
-/* Content Column (Top) */
+/* Content Column (Text & CTAs) */
 .narrative-step-content {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   width: 100%;
+  max-width: 100%;
 }
 
 .narrative-step-header-meta {
@@ -511,7 +495,7 @@
   color: var(--text-secondary);
   line-height: 1.65;
   margin: 0 0 1.75rem 0;
-  max-width: 540px;
+  max-width: 520px;
 }
 
 .narrative-step-cta {
@@ -963,7 +947,9 @@
     display: none !important;
   }
 
-  .narrative-step-cluster {
+  .narrative-step-cluster,
+  .narrative-step-content,
+  .narrative-step-preview {
     max-width: 100%;
   }
 

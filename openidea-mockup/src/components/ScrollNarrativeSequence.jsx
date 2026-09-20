@@ -37,40 +37,40 @@ function sCurve(t) {
 
 const NARRATIVE_MILESTONES = [
   // =========================================================================
-  // STEP 01: EXPLORE DWELL ZONE (Occupying Right Whitespace right beside Step 01)
-  // 180° ROTATION (0° → 180° - halved again)
-  // In-place at y: 50vh, positioned further away from content
+  // STEP 01: EXPLORE DWELL ZONE (Right-Side Whitespace Corridor)
+  // 180° ROTATION (0° → 180°)
+  // In-place at y: 50vh, dedicated right-side flight corridor
   // =========================================================================
   { p: 0.00, flank: 'right',  y: 50, ry: 0,    scale: 1.00, shadow: 0.40, opacity: 1.0 },
   { p: 0.14, flank: 'right',  y: 50, ry: 90,   scale: 1.00, shadow: 0.35, opacity: 1.0 }, // Edge-on midway (+90°)
   { p: 0.28, flank: 'right',  y: 50, ry: 180,  scale: 1.00, shadow: 0.42, opacity: 1.0 }, // Face-on (+180° total)
 
   // =========================================================================
-  // TRANSIT 1 → 2: FLUID S-CURVE (Right Flank → Left Flank)
-  // S-curve cosine glide across center with subtle natural swoop
+  // TRANSIT 1 → 2: RIGHT CORRIDOR DESCENT (Step 01 → Step 02)
+  // Glides vertically down the right-side flight corridor (never crosses left)
   // =========================================================================
-  { p: 0.34, flank: 'center', y: 53, ry: 270,  scale: 1.00, shadow: 0.25, opacity: 1.0 }, // Midpoint S-curve crossing (edge-on)
-  { p: 0.40, flank: 'left',   y: 50, ry: 360,  scale: 1.00, shadow: 0.35, opacity: 1.0 }, // Arrival on left flank (face-on)
+  { p: 0.34, flank: 'right',  y: 52, ry: 270,  scale: 1.00, shadow: 0.30, opacity: 1.0 }, // Edge-on midway (+90°)
+  { p: 0.40, flank: 'right',  y: 50, ry: 360,  scale: 1.00, shadow: 0.40, opacity: 1.0 }, // Face-on arrival at Step 02
 
   // =========================================================================
-  // STEP 02: BUILD DWELL ZONE (Occupying Left Whitespace right beside Step 02)
-  // 180° ROTATION (360° → 540° - halved again)
-  // In-place at y: 50vh, positioned further away from content
+  // STEP 02: BUILD DWELL ZONE (Right-Side Whitespace Corridor)
+  // 180° ROTATION (360° → 540°)
+  // In-place at y: 50vh, cleanly opposite Step 02 left editorial column
   // =========================================================================
-  { p: 0.50, flank: 'left',   y: 50, ry: 450,  scale: 1.00, shadow: 0.35, opacity: 1.0 }, // Edge-on midway (+90°)
-  { p: 0.61, flank: 'left',   y: 50, ry: 540,  scale: 1.00, shadow: 0.42, opacity: 1.0 }, // Face-on (+180° total)
+  { p: 0.50, flank: 'right',  y: 50, ry: 450,  scale: 1.00, shadow: 0.35, opacity: 1.0 }, // Edge-on midway (+90°)
+  { p: 0.61, flank: 'right',  y: 50, ry: 540,  scale: 1.00, shadow: 0.42, opacity: 1.0 }, // Face-on (+180° total)
 
   // =========================================================================
-  // TRANSIT 2 → 3: FLUID S-CURVE (Left Flank → Right Flank)
-  // S-curve cosine glide across center with subtle natural swoop
+  // TRANSIT 2 → 3: RIGHT CORRIDOR DESCENT (Step 02 → Step 03)
+  // Glides vertically down the right-side flight corridor (never crosses left)
   // =========================================================================
-  { p: 0.67, flank: 'center', y: 53, ry: 630,  scale: 1.00, shadow: 0.25, opacity: 1.0 }, // Midpoint S-curve crossing (edge-on)
-  { p: 0.73, flank: 'right',  y: 50, ry: 720,  scale: 1.00, shadow: 0.35, opacity: 1.0 }, // Arrival on right flank (face-on)
+  { p: 0.67, flank: 'right',  y: 52, ry: 630,  scale: 1.00, shadow: 0.30, opacity: 1.0 }, // Edge-on midway (+90°)
+  { p: 0.73, flank: 'right',  y: 50, ry: 720,  scale: 1.00, shadow: 0.40, opacity: 1.0 }, // Face-on arrival at Step 03
 
   // =========================================================================
-  // STEP 03: CONNECT DWELL ZONE (Occupying Right Whitespace right beside Step 03)
-  // 180° ROTATION (720° → 900° - halved again)
-  // In-place at y: 50vh, positioned further away from content
+  // STEP 03: CONNECT DWELL ZONE (Right-Side Whitespace Corridor)
+  // 180° ROTATION (720° → 900°)
+  // In-place at y: 50vh, cleanly opposite Step 03 left editorial column
   // =========================================================================
   { p: 0.81, flank: 'right',  y: 50, ry: 810,  scale: 1.00, shadow: 0.35, opacity: 1.0 }, // Edge-on midway (+90°)
   { p: 0.88, flank: 'right',  y: 50, ry: 900,  scale: 1.00, shadow: 0.42, opacity: 1.0 }, // Face-on (+180° total)
@@ -111,35 +111,24 @@ export default function ScrollNarrativeSequence({ onNavigateAction }) {
       const docEl = document.documentElement;
 
       // Dynamically measure rendered step cluster coordinates
-      // Offset 65% across corridor: moves coin further away from contents (~160px gap) while keeping a safe buffer before side action lines
-      let rightFlank = 76;
-      let leftFlank = 24;
+      // Offset 65% across corridor: moves coin into right-side flight corridor safely separated from left content
+      let rightFlank = 77;
       const s1Cluster = containerRef.current.querySelector('#step-explore .narrative-step-cluster');
-      const s2Cluster = containerRef.current.querySelector('#step-build .narrative-step-cluster');
       const contentFlow = containerRef.current.querySelector('.narrative-content-flow');
       const winW = window.innerWidth || 1440;
 
       if (s1Cluster && contentFlow) {
         const r1 = s1Cluster.getBoundingClientRect();
         const cf = contentFlow.getBoundingClientRect();
-        // Shift coin away from cluster (towards container right edge)
+        // Shift coin into open right corridor away from left content column
         const targetRight = r1.right + (cf.right - r1.right) * 0.65;
-        rightFlank = Math.min(79, Math.max(65, (targetRight / winW) * 100));
-      }
-
-      if (s2Cluster && contentFlow) {
-        const r2 = s2Cluster.getBoundingClientRect();
-        const cf = contentFlow.getBoundingClientRect();
-        // Shift coin away from cluster (towards container left edge)
-        const targetLeft = r2.left - (r2.left - cf.left) * 0.65;
-        leftFlank = Math.max(21, Math.min(35, (targetLeft / winW) * 100));
+        rightFlank = Math.min(80, Math.max(70, (targetRight / winW) * 100));
       }
 
       const resolveX = (m) => {
         if (m.flank === 'right') return rightFlank;
-        if (m.flank === 'left') return leftFlank;
         if (m.flank === 'center') return 50;
-        return m.x !== undefined ? m.x : 50;
+        return m.x !== undefined ? m.x : rightFlank;
       };
 
       // Phase 1: User is above or scrolling through the Hero transition zone
@@ -392,10 +381,14 @@ export default function ScrollNarrativeSequence({ onNavigateAction }) {
               Vertical Order: Content on Top, Enlarged Preview Card Below
               Aligned to LEFT | Coin falls on RIGHT flank
               -------------------------------------------------------------- */}
-          <div className="narrative-step-block step-align-left" id="step-explore">
+          {/* --------------------------------------------------------------
+              STEP 01: EXPLORE
+              Single Left Editorial Column: Content -> Preview Stacked
+              -------------------------------------------------------------- */}
+          <div className="narrative-step-block" id="step-explore">
             <div className="narrative-step-cluster">
               
-              {/* Step 01 Content (Top) */}
+              {/* Step 01 Content */}
               <div className="narrative-step-content">
                 <div className="narrative-step-header-meta">
                   <span className="narrative-step-num" aria-hidden="true">01</span>
@@ -416,7 +409,7 @@ export default function ScrollNarrativeSequence({ onNavigateAction }) {
                 </a>
               </div>
 
-              {/* Step 01 Enlarged Preview Card (Bottom) */}
+              {/* Step 01 Compact Preview Card (Directly Below Content) */}
               <div className="narrative-step-preview">
                 <div className="step-preview-card" role="region" aria-label="Open Resources Preview">
                   <div className="step-preview-header">
@@ -492,13 +485,12 @@ export default function ScrollNarrativeSequence({ onNavigateAction }) {
 
           {/* --------------------------------------------------------------
               STEP 02: BUILD
-              Vertical Order: Content on Top, Enlarged Workspace Card Below
-              Aligned to RIGHT | Coin falls on LEFT flank
+              Single Left Editorial Column: Content -> Preview Stacked
               -------------------------------------------------------------- */}
-          <div className="narrative-step-block step-align-right" id="step-build">
+          <div className="narrative-step-block" id="step-build">
             <div className="narrative-step-cluster">
               
-              {/* Step 02 Content (Top) */}
+              {/* Step 02 Content */}
               <div className="narrative-step-content">
                 <div className="narrative-step-header-meta">
                   <span className="narrative-step-num" aria-hidden="true">02</span>
@@ -519,7 +511,7 @@ export default function ScrollNarrativeSequence({ onNavigateAction }) {
                 </a>
               </div>
 
-              {/* Step 02 Workspace Preview (Bottom) */}
+              {/* Step 02 Workspace Preview (Directly Below Content) */}
               <div className="narrative-step-preview">
                 <div className="step-preview-card" role="region" aria-label="Studio Workspace Preview">
                   <div className="step-preview-header">
@@ -566,13 +558,12 @@ export default function ScrollNarrativeSequence({ onNavigateAction }) {
 
           {/* --------------------------------------------------------------
               STEP 03: CONNECT
-              Vertical Order: Content on Top, Enlarged Community Card Below
-              Aligned to LEFT | Coin falls on RIGHT flank
+              Single Left Editorial Column: Content -> Preview Stacked
               -------------------------------------------------------------- */}
-          <div className="narrative-step-block step-align-left" id="step-connect">
+          <div className="narrative-step-block" id="step-connect">
             <div className="narrative-step-cluster">
               
-              {/* Step 03 Content (Top) */}
+              {/* Step 03 Content */}
               <div className="narrative-step-content">
                 <div className="narrative-step-header-meta">
                   <span className="narrative-step-num" aria-hidden="true">03</span>
@@ -593,7 +584,7 @@ export default function ScrollNarrativeSequence({ onNavigateAction }) {
                 </a>
               </div>
 
-              {/* Step 03 Community Preview (Bottom) */}
+              {/* Step 03 Community Preview (Directly Below Content) */}
               <div className="narrative-step-preview">
                 <div className="step-preview-card" role="region" aria-label="Community Working Groups Preview">
                   <div className="step-preview-header">
