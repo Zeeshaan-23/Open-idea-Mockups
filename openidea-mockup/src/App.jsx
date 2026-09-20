@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import EcosystemSection from './components/EcosystemSection';
-import OpenResourcesSection from './components/OpenResourcesSection';
+import ScrollNarrativeSequence from './components/ScrollNarrativeSequence';
 import OpenResourcesPage from './components/OpenResourcesPage';
 import StudioPage from './components/StudioPage';
 import CommunityPage from './components/CommunityPage';
@@ -11,10 +10,7 @@ import PricingPage from './components/PricingPage';
 import NotFoundPage from './components/NotFoundPage';
 import BrandRevealLoader from './components/BrandRevealLoader';
 import GlobalRosetteBackground from './components/GlobalRosetteBackground';
-import StudioShowcaseSection from './components/StudioShowcaseSection';
 import WebsitesOffering from './components/WebsitesOffering';
-import CommunitySection from './components/CommunitySection';
-import ClosingCtaSection from './components/ClosingCtaSection';
 import Footer from './components/Footer';
 import ActionSimulationModal from './components/ActionSimulationModal';
 import './styles/main.css';
@@ -291,38 +287,18 @@ export default function App() {
         </main>
       ) : (
         <main style={{ flex: 1 }}>
-          {/* Hero Section with Focused Primary Prompt Interaction */}
+          {/* Hero Section: Idea & Primary Creation Doorway */}
           <Hero
             onPromptSubmit={handlePromptSubmit}
           />
 
-          {/* Section 2: Ecosystem Introduction (Sparse, Editorial Triptych) */}
-          <EcosystemSection
+          {/* Vertical Scroll Narrative Sequence: Explore (01) -> Build (02) -> Connect (03) -> Open Resources Brief */}
+          <ScrollNarrativeSequence
             onNavigateAction={handleNavigateAction}
           />
 
-          {/* Section 3: Open Resources (Structured Search & Discovery Index) */}
-          <OpenResourcesSection
-            onNavigateAction={handleNavigateAction}
-          />
-
-          {/* Section 4: Studio / Build Showcase (60/40 Asymmetric Product Preview) */}
-          <StudioShowcaseSection
-            onNavigateAction={handleNavigateAction}
-          />
-
-          {/* Section 5: Websites / Bespoke Services (Compact Editorial Band) */}
+          {/* Final Major Section: Bespoke Websites Offering (Where the rosette sequence settles) */}
           <WebsitesOffering
-            onNavigateAction={handleNavigateAction}
-          />
-
-          {/* Section 6: Community / Contribution (Quiet Typographic Pathways) */}
-          <CommunitySection
-            onNavigateAction={handleNavigateAction}
-          />
-
-          {/* Section 7: Closing CTA (Calm, Decisive Conclusion) */}
-          <ClosingCtaSection
             onNavigateAction={handleNavigateAction}
           />
         </main>

@@ -1,0 +1,1036 @@
+/* ==========================================================================
+   Open Idea — Scroll Narrative & Falling Sacred Rosette Styles
+   Aesthetic: Editorial Technology (Smart, Human, Useful, Open)
+   Strictly adheres to DESIGN.md tokens and visual guidelines.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Main Narrative Container
+   -------------------------------------------------------------------------- */
+
+.scroll-narrative-section {
+  position: relative;
+  background-color: var(--bg-page);
+  border-top: 1px solid var(--border-subtle);
+  transition: background-color var(--transition-base);
+  overflow: visible;
+}
+
+/* --------------------------------------------------------------------------
+   2. Sticky Visual Animation Layer (Pointer-events: none, Desktop Only)
+   -------------------------------------------------------------------------- */
+
+.narrative-sticky-stage {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  margin-bottom: -100vh;
+  pointer-events: none;
+  z-index: 1;
+  overflow: visible;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* 3D Perspective Track */
+.narrative-coin-track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+
+/* Coin Anchor: Directly driven by CSS variables from scroll progress */
+.narrative-falling-coin-anchor {
+  position: absolute;
+  left: var(--coin-x, 50%);
+  top: var(--coin-y, 8vh);
+  transform: translate(-50%, -50%);
+  opacity: var(--coin-opacity, 0);
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  will-change: left, top, opacity;
+  /* Zero transition delay: lockstep correspondence with scroll */
+  transition: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Action / Motion Lines: Hairline vertical streaks streaming bottom-to-up directly above coin */
+.narrative-action-lines {
+  position: absolute;
+  bottom: calc(50% + clamp(180px, 15vw, 240px));
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(100px, 10vw, 160px);
+  height: clamp(120px, 12vw, 180px);
+  display: flex;
+  justify-content: space-around;
+  opacity: var(--action-lines-opacity, 0);
+  pointer-events: none;
+  overflow: hidden;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity;
+}
+
+.narrative-action-line {
+  position: relative;
+  border-radius: 999px;
+  background: linear-gradient(
+    to top,
+    transparent 0%,
+    rgba(19, 178, 207, 0.35) 20%,
+    rgba(47, 143, 239, 0.90) 65%,
+    transparent 100%
+  );
+  box-shadow: 0 0 6px rgba(47, 143, 239, 0.4);
+  animation-name: coinStreakRiseUp;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+[data-theme="dark"] .narrative-action-line {
+  background: linear-gradient(
+    to top,
+    transparent 0%,
+    rgba(19, 178, 207, 0.45) 20%,
+    rgba(77, 163, 255, 0.95) 65%,
+    transparent 100%
+  );
+  box-shadow: 0 0 8px rgba(77, 163, 255, 0.5);
+}
+
+@keyframes coinStreakRiseUp {
+  0% {
+    transform: translate3d(0, 140px, 0);
+    opacity: 0;
+  }
+  20% {
+    opacity: var(--coin-streak-op, 0.85);
+  }
+  80% {
+    opacity: var(--coin-streak-op, 0.85);
+  }
+  100% {
+    transform: translate3d(0, -50px, 0);
+    opacity: 0;
+  }
+}
+
+/* Staggered streak properties for high-energy motion feel */
+.narrative-action-line:nth-child(1) {
+  width: 1.0px;
+  height: 50px;
+  --coin-streak-op: 0.70;
+  animation-duration: 0.85s;
+  animation-delay: -0.15s;
+}
+
+.narrative-action-line:nth-child(2) {
+  width: 1.5px;
+  height: 80px;
+  --coin-streak-op: 0.85;
+  animation-duration: 1.15s;
+  animation-delay: -0.65s;
+}
+
+.narrative-action-line:nth-child(3) {
+  width: 2.0px;
+  height: 100px;
+  --coin-streak-op: 1.00;
+  animation-duration: 0.75s;
+  animation-delay: -0.35s;
+}
+
+.narrative-action-line:nth-child(4) {
+  width: 1.5px;
+  height: 75px;
+  --coin-streak-op: 0.85;
+  animation-duration: 1.05s;
+  animation-delay: -0.85s;
+}
+
+.narrative-action-line:nth-child(5) {
+  width: 1.0px;
+  height: 45px;
+  --coin-streak-op: 0.65;
+  animation-duration: 0.80s;
+  animation-delay: -0.45s;
+}
+
+/* Whitespace Side Action Lines (Streaks streaming bottom-to-up along the sides) */
+.narrative-side-streaks {
+  position: absolute;
+  top: 0;
+  height: 100vh;
+  width: clamp(50px, 8.5vw, 150px);
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+  opacity: var(--side-streaks-opacity, 0);
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.narrative-side-streaks-left {
+  left: 0;
+}
+
+.narrative-side-streaks-right {
+  right: 0;
+}
+
+.side-streak {
+  position: absolute;
+  top: 0;
+  border-radius: 999px;
+  background: linear-gradient(
+    to top,
+    transparent 0%,
+    rgba(19, 178, 207, 0.3) 25%,
+    rgba(47, 143, 239, 0.85) 70%,
+    transparent 100%
+  );
+  box-shadow: 0 0 6px rgba(47, 143, 239, 0.35);
+  animation-name: streakRiseUp;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+[data-theme="dark"] .side-streak {
+  background: linear-gradient(
+    to top,
+    transparent 0%,
+    rgba(19, 178, 207, 0.4) 25%,
+    rgba(77, 163, 255, 0.95) 70%,
+    transparent 100%
+  );
+  box-shadow: 0 0 8px rgba(77, 163, 255, 0.45);
+}
+
+@keyframes streakRiseUp {
+  0% {
+    transform: translate3d(0, 105vh, 0);
+    opacity: 0;
+  }
+  15% {
+    opacity: var(--streak-op, 0.75);
+  }
+  85% {
+    opacity: var(--streak-op, 0.75);
+  }
+  100% {
+    transform: translate3d(0, -260px, 0);
+    opacity: 0;
+  }
+}
+
+/* Individual left-side streaks with staggered properties */
+.streak-l1 { left: 18%; width: 1.5px; height: 140px; --streak-op: 0.80; animation-duration: 1.35s; animation-delay: -0.25s; }
+.streak-l2 { left: 38%; width: 1.0px; height: 210px; --streak-op: 0.85; animation-duration: 1.95s; animation-delay: -1.10s; }
+.streak-l3 { left: 58%; width: 1.0px; height: 90px;  --streak-op: 0.55; animation-duration: 1.15s; animation-delay: -0.60s; }
+.streak-l4 { left: 78%; width: 1.5px; height: 165px; --streak-op: 0.75; animation-duration: 1.70s; animation-delay: -1.45s; }
+.streak-l5 { left: 28%; width: 2.0px; height: 240px; --streak-op: 0.90; animation-duration: 2.25s; animation-delay: -0.85s; }
+.streak-l6 { left: 88%; width: 1.0px; height: 125px; --streak-op: 0.65; animation-duration: 1.50s; animation-delay: -1.65s; }
+.streak-l7 { left: 48%; width: 1.5px; height: 180px; --streak-op: 0.70; animation-duration: 1.80s; animation-delay: -0.40s; }
+
+/* Individual right-side streaks with staggered properties */
+.streak-r1 { right: 18%; width: 1.0px; height: 130px; --streak-op: 0.70; animation-duration: 1.40s; animation-delay: -0.50s; }
+.streak-r2 { right: 38%; width: 1.5px; height: 220px; --streak-op: 0.85; animation-duration: 2.05s; animation-delay: -1.30s; }
+.streak-r3 { right: 58%; width: 1.0px; height: 95px;  --streak-op: 0.55; animation-duration: 1.20s; animation-delay: -0.30s; }
+.streak-r4 { right: 78%; width: 2.0px; height: 175px; --streak-op: 0.80; animation-duration: 1.65s; animation-delay: -0.90s; }
+.streak-r5 { right: 28%; width: 1.5px; height: 250px; --streak-op: 0.90; animation-duration: 2.35s; animation-delay: -1.75s; }
+.streak-r6 { right: 88%; width: 1.0px; height: 115px; --streak-op: 0.60; animation-duration: 1.30s; animation-delay: -0.75s; }
+.streak-r7 { right: 48%; width: 1.5px; height: 155px; --streak-op: 0.75; animation-duration: 1.85s; animation-delay: -1.20s; }
+
+/* Monumental 3D Emblem Body occupying whitespace beside content */
+.narrative-falling-coin-3d {
+  width: clamp(340px, 28vw, 460px);
+  height: clamp(340px, 28vw, 460px);
+  border-radius: var(--radius-full);
+  background: radial-gradient(
+    circle at 38% 35%,
+    #FFFFFF 0%,
+    #F8FAFC 40%,
+    #EFF4F9 75%,
+    #E2E8F0 95%,
+    #CBD5E1 100%
+  );
+  border: 3.5px solid rgba(47, 143, 239, 0.45);
+  box-shadow: 
+    0 24px 64px rgba(27, 60, 83, 0.20),
+    0 8px 24px rgba(27, 60, 83, 0.10),
+    inset 0 3px 1px rgba(255, 255, 255, 0.95),
+    inset 0 -6px 14px rgba(27, 60, 83, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotateY(var(--coin-ry, 0deg)) scale(var(--coin-scale, 1));
+  transform-style: preserve-3d;
+  will-change: transform;
+  /* Zero transition delay: instant scroll correspondence */
+  transition: none;
+  position: relative;
+  backface-visibility: visible;
+}
+
+/* Outer bevel rim highlight */
+.narrative-falling-coin-3d::after {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border-radius: var(--radius-full);
+  border: 1.5px solid rgba(19, 178, 207, 0.40);
+  pointer-events: none;
+}
+
+/* Inner numismatic concentric ring */
+.narrative-falling-coin-3d::before {
+  content: '';
+  position: absolute;
+  inset: clamp(12px, 1.4vw, 20px);
+  border-radius: var(--radius-full);
+  border: 1px dashed rgba(47, 143, 239, 0.25);
+  pointer-events: none;
+}
+
+[data-theme="dark"] .narrative-falling-coin-3d {
+  background: radial-gradient(
+    circle at 38% 35%,
+    #245070 0%,
+    #1B3C53 45%,
+    #122A3B 80%,
+    #0B1B26 100%
+  );
+  border: 3.5px solid rgba(19, 178, 207, 0.60);
+  box-shadow: 
+    0 28px 72px rgba(0, 0, 0, 0.65),
+    0 10px 28px rgba(0, 0, 0, 0.50),
+    inset 0 3px 1px rgba(255, 255, 255, 0.25),
+    inset 0 -6px 16px rgba(0, 0, 0, 0.65);
+}
+
+[data-theme="dark"] .narrative-falling-coin-3d::before {
+  border-color: rgba(19, 178, 207, 0.35);
+}
+
+[data-theme="dark"] .narrative-falling-coin-3d::after {
+  border-color: rgba(19, 178, 207, 0.55);
+}
+
+.narrative-falling-coin-svg {
+  display: block;
+  width: 82%;
+  height: 82%;
+  pointer-events: none;
+}
+
+/* Grounding / Landing Shadow underneath coin */
+.narrative-coin-ground-shadow {
+  position: absolute;
+  top: calc(50% + clamp(185px, 15.5vw, 245px));
+  left: 50%;
+  transform: translate(-50%, -50%) scaleX(var(--shadow-scale-x, 1)) scale(var(--shadow-scale, 1));
+  width: clamp(260px, 22vw, 360px);
+  height: clamp(22px, 2vw, 32px);
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(27, 60, 83, 0.28) 0%, rgba(27, 60, 83, 0.08) 50%, transparent 75%);
+  opacity: var(--shadow-opacity, 0.35);
+  pointer-events: none;
+  will-change: transform, opacity;
+  transition: none;
+}
+
+[data-theme="dark"] .narrative-coin-ground-shadow {
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.2) 50%, transparent 75%);
+  opacity: var(--shadow-opacity, 0.45);
+}
+
+/* --------------------------------------------------------------------------
+   3. Document Content in Normal Flow
+   -------------------------------------------------------------------------- */
+
+.narrative-content-flow {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 3rem;
+  padding-bottom: 5rem;
+}
+
+/* Sequence Header */
+.narrative-sequence-header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 4.5rem auto;
+}
+
+.narrative-kicker {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 0.4rem;
+}
+
+.narrative-headline {
+  font-family: var(--font-sans);
+  font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem 0;
+  line-height: 1.25;
+}
+
+.narrative-headline .serif-accent {
+  font-family: var(--font-serif, 'Instrument Serif', Georgia, serif);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--brand-blue);
+}
+
+/* --------------------------------------------------------------------------
+   4. Staged Alternating 3-Step Sequence (Clustered with Left/Right Offsets)
+   -------------------------------------------------------------------------- */
+
+.narrative-steps-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4.5rem;
+}
+
+.narrative-step-block {
+  display: flex;
+  width: 100%;
+  min-height: auto;
+  padding: 5rem 0;
+  align-items: flex-start;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.narrative-step-block:last-of-type {
+  border-bottom: none;
+}
+
+/* Step 01 & Step 03: Elements moved collectively to the LEFT */
+.step-align-left {
+  justify-content: flex-start;
+}
+
+.step-align-left .narrative-step-cluster {
+  margin-right: auto;
+  margin-left: 0;
+}
+
+/* Step 02: Elements moved collectively to the RIGHT */
+.step-align-right {
+  justify-content: flex-end;
+}
+
+.step-align-right .narrative-step-cluster {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+/* Vertical order of enlarged Content & Preview card to produce natural section length */
+.narrative-step-cluster {
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem;
+  width: 100%;
+  max-width: 580px;
+}
+
+/* Content Column (Top) */
+.narrative-step-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.narrative-step-header-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 0.85rem;
+}
+
+.narrative-step-num {
+  font-family: var(--font-serif, 'Instrument Serif', Georgia, serif);
+  font-size: 2.75rem;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+
+.narrative-step-product-badge {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--brand-blue);
+  background: rgba(47, 143, 239, 0.08);
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(47, 143, 239, 0.18);
+}
+
+[data-theme="dark"] .narrative-step-product-badge {
+  background: rgba(47, 143, 239, 0.15);
+  border-color: rgba(47, 143, 239, 0.3);
+}
+
+.narrative-step-verb {
+  font-family: var(--font-sans);
+  font-size: clamp(2.35rem, 4.2vw, 3.25rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  color: var(--text-primary);
+  margin: 0 0 0.85rem 0;
+  line-height: 1.1;
+}
+
+.narrative-step-desc {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin: 0 0 1.75rem 0;
+  max-width: 540px;
+}
+
+.narrative-step-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  padding: 0.75rem 1.6rem;
+  border-radius: var(--radius-md);
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  border: 1px solid transparent;
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  min-height: var(--min-touch-target);
+  transition: all var(--transition-fast);
+  align-self: flex-start;
+}
+
+.narrative-step-cta:hover {
+  background: var(--btn-primary-hover);
+  transform: translateY(-1px);
+}
+
+.narrative-step-cta:focus-visible {
+  outline: 2px solid var(--border-active);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   5. Compact Step Previews
+   -------------------------------------------------------------------------- */
+
+.narrative-step-preview {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.step-preview-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.step-preview-card:hover {
+  border-color: rgba(47, 143, 239, 0.35);
+  box-shadow: var(--shadow-md);
+}
+
+.step-preview-header {
+  padding: 0.75rem 1.15rem;
+  background: var(--bg-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.step-preview-label {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-muted);
+}
+
+.step-preview-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--brand-blue);
+  background: rgba(47, 143, 239, 0.08);
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--radius-sm);
+}
+
+.step-preview-body {
+  padding: 1.25rem;
+}
+
+/* Step 01 Preview: Resource Rows */
+.preview-resource-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.preview-resource-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.preview-resource-item:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.preview-item-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.preview-tag {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--brand-blue);
+}
+
+.preview-format {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.preview-item-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.35;
+}
+
+.preview-item-publisher {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* Step 02 Preview: Studio Code View */
+.preview-code-tabs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.preview-tab-pill {
+  font-family: monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  background: var(--bg-card);
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+}
+
+.preview-code-snippet {
+  margin: 0;
+  padding: 0.95rem 1rem;
+  font-family: "SF Mono", Monaco, Inconsolata, "Fira Code", monospace;
+  font-size: 0.78125rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  background: var(--bg-subtle);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  overflow-x: auto;
+}
+
+.preview-code-snippet .code-kw {
+  color: #2F8FEF;
+  font-weight: 600;
+}
+
+.preview-code-snippet .code-fn {
+  color: #13B2CF;
+}
+
+.preview-code-snippet .code-str {
+  color: #8C88D5;
+}
+
+.preview-code-snippet .code-cm {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* Step 03 Preview: Community Working Groups */
+.preview-project-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.preview-project-item {
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.preview-project-item:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.preview-project-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.25rem;
+}
+
+.preview-project-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.preview-project-contributors {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--brand-blue);
+}
+
+.preview-project-desc {
+  font-size: 0.78125rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  margin: 0 0 0.4rem 0;
+}
+
+.preview-project-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.preview-meta-pill {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--bg-subtle);
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+}
+
+/* Card Footers */
+.step-preview-footer {
+  padding: 0.65rem 1.15rem;
+  background: var(--bg-card);
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.step-preview-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--brand-blue);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.step-preview-link:hover {
+  color: var(--brand-blue-hover);
+}
+
+/* --------------------------------------------------------------------------
+   6. Open Resources Dedicated Brief
+   -------------------------------------------------------------------------- */
+
+.narrative-resources-brief {
+  position: relative;
+  z-index: 5;
+  margin-top: 4.5rem;
+  margin-bottom: 3.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 2.5rem;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.brief-header {
+  max-width: 680px;
+  margin-bottom: 2rem;
+}
+
+.brief-kicker {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 0.35rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.brief-title {
+  font-family: var(--font-sans);
+  font-size: clamp(1.4rem, 2.4vw, 1.85rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--text-primary);
+  line-height: 1.25;
+  margin: 0 0 0.65rem 0;
+}
+
+.brief-desc {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* 3 Representative Category Columns */
+.brief-categories-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.brief-category-col {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.15rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.brief-category-header {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.35rem;
+}
+
+.brief-category-icon {
+  color: var(--brand-blue);
+}
+
+.brief-category-name {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.brief-category-text {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Brief Action Bar */
+.brief-action-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.brief-note {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.brief-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.65rem 1.35rem;
+  border-radius: var(--radius-md);
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  border: 1px solid transparent;
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  min-height: var(--min-touch-target);
+  transition: all var(--transition-fast);
+}
+
+.brief-cta-btn:hover {
+  background: var(--btn-primary-hover);
+  transform: translateY(-1px);
+}
+
+/* --------------------------------------------------------------------------
+   7. Landing Trail to Websites CTA
+   -------------------------------------------------------------------------- */
+
+.narrative-landing-trail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1.5rem;
+  margin-bottom: -1rem;
+  user-select: none;
+}
+
+.narrative-landing-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(
+    to bottom,
+    rgba(47, 143, 239, 0.5) 0%,
+    rgba(27, 60, 83, 0.2) 100%
+  );
+}
+
+.narrative-landing-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--brand-blue);
+  box-shadow: 0 0 8px rgba(47, 143, 239, 0.6);
+}
+
+/* --------------------------------------------------------------------------
+   8. Responsive Behavior (Mobile & Tablet)
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 1023.98px) {
+  /* Disable desktop sticky animation track on tablet and mobile */
+  .narrative-sticky-stage {
+    display: none !important;
+  }
+
+  .narrative-step-cluster {
+    max-width: 100%;
+  }
+
+  .brief-categories-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .narrative-content-flow {
+    padding-top: 1.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .narrative-steps-container {
+    gap: 2.5rem;
+  }
+
+  .narrative-step-block {
+    min-height: auto;
+    padding: 2rem 0;
+  }
+
+  .narrative-step-cluster {
+    max-width: 100%;
+    gap: 1.75rem;
+  }
+
+  .narrative-step-content {
+    max-width: 100%;
+  }
+
+  .narrative-resources-brief {
+    padding: 1.5rem 1.25rem;
+    margin-top: 2.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .brief-categories-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .brief-action-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .brief-cta-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   9. Reduced Motion Behavior
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .narrative-sticky-stage {
+    display: none !important;
+  }
+
+  .narrative-step-cta,
+  .brief-cta-btn,
+  .step-preview-card {
+    transition: none !important;
+    transform: none !important;
+  }
+}
