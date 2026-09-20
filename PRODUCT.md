@@ -20,7 +20,7 @@ Open Idea is an editorial technology platform. It enables individuals and organi
 
 ## Positioning
 
-Editorial Technology: Smart, Human, Useful, Open. An open creation environment that unites research, open datasets, AI software scaffolding, and turnkey web services. Unlike generic AI builders, template marketplaces, or chatbot wrappers, Open Idea connects ideas, research provenance, community collaboration, and open-source contribution.
+Editorial Technology: Smart, Human, Useful, Open. An open creation environment that unites research, open datasets, AI software scaffolding, and bespoke web engineering services. Unlike generic AI builders, template marketplaces, or chatbot wrappers, Open Idea connects ideas, research provenance, community collaboration, and open-source contribution.
 
 ## Operating Context
 
