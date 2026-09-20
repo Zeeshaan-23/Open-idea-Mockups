@@ -1,0 +1,875 @@
+/* ==========================================================================
+   Open Idea — About Page Styles
+   Aesthetic: Editorial Technology (Smart, Human, Useful, Open)
+   Strictly adheres to DESIGN.md tokens and visual guidelines.
+   ========================================================================== */
+
+.about-page-wrapper {
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  min-height: 100vh;
+  padding-bottom: 6rem;
+  transition: background-color var(--transition-base);
+}
+
+.about-container-max {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .about-container-max {
+    padding: 0 2rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .about-container-max {
+    padding: 0 3rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   1. Editorial Header / Hero Premise
+   -------------------------------------------------------------------------- */
+
+.about-header {
+  padding-top: 4rem;
+  padding-bottom: 3.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.about-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--brand-blue);
+  margin-bottom: 1rem;
+}
+
+.about-headline {
+  font-family: var(--font-sans);
+  font-size: clamp(2.35rem, 4.8vw, 3.75rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+  color: var(--text-primary);
+  margin: 0 0 1.25rem 0;
+  max-width: 980px;
+}
+
+.about-headline .serif-accent {
+  font-family: var(--font-serif, 'Instrument Serif', Georgia, serif);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--brand-blue);
+}
+
+.about-subheading {
+  font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin: 0 0 2rem 0;
+  max-width: 840px;
+}
+
+.about-meta-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px dashed var(--border-subtle);
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.about-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 500;
+}
+
+.about-meta-item strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   2. Shared Section Layouts & Typography
+   -------------------------------------------------------------------------- */
+
+.about-section {
+  padding: 4.5rem 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.about-section:last-of-type {
+  border-bottom: none;
+}
+
+.about-section-header {
+  margin-bottom: 2.75rem;
+  max-width: 720px;
+}
+
+.about-section-kicker {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.about-section-title {
+  font-family: var(--font-sans);
+  font-size: clamp(1.75rem, 3.2vw, 2.35rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--text-primary);
+  line-height: 1.22;
+  margin: 0 0 0.75rem 0;
+}
+
+.about-section-desc {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   3. The Fragmentation Problem (Two-Column Asymmetric Exposition)
+   -------------------------------------------------------------------------- */
+
+.fragmentation-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  margin-top: 2rem;
+}
+
+@media (min-width: 992px) {
+  .fragmentation-grid {
+    grid-template-columns: 4.5fr 5.5fr;
+    gap: 3.5rem;
+    align-items: flex-start;
+  }
+}
+
+.problem-editorial-manifesto {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  padding: 2.25rem 2rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.manifesto-quote {
+  font-family: var(--font-serif, 'Instrument Serif', Georgia, serif);
+  font-size: 1.55rem;
+  line-height: 1.35;
+  color: var(--text-primary);
+  margin: 0 0 1.25rem 0;
+  font-style: italic;
+}
+
+.manifesto-body {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin: 0 0 1.5rem 0;
+}
+
+.manifesto-stats-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.stat-callout-num {
+  font-family: var(--font-sans);
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--brand-blue);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.stat-callout-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  margin-top: 0.25rem;
+}
+
+/* Pain Points / Resolution Stack */
+.fragmentation-cards-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.pain-point-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.pain-point-card:hover {
+  border-color: rgba(47, 143, 239, 0.35);
+  box-shadow: var(--shadow-sm);
+}
+
+.pain-point-header {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 0.65rem;
+}
+
+.pain-point-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.pain-point-context {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin: 0 0 0.85rem 0;
+}
+
+.pain-point-resolution {
+  font-size: 0.8125rem;
+  color: var(--brand-blue);
+  background: rgba(47, 143, 239, 0.06);
+  border-left: 2px solid var(--brand-blue);
+  padding: 0.5rem 0.75rem;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  line-height: 1.5;
+}
+
+[data-theme="dark"] .pain-point-resolution {
+  background: rgba(47, 143, 239, 0.12);
+}
+
+/* --------------------------------------------------------------------------
+   4. The Unified Platform Architecture (4 Pillars Grid)
+   -------------------------------------------------------------------------- */
+
+.pillars-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .pillars-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .pillars-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.pillar-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  padding: 2rem 1.65rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.pillar-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(47, 143, 239, 0.4);
+  box-shadow: var(--shadow-md);
+}
+
+.pillar-header-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.pillar-number {
+  font-family: var(--font-serif, 'Instrument Serif', Georgia, serif);
+  font-size: 2.25rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  line-height: 1;
+  opacity: 0.65;
+}
+
+.pillar-kicker {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--brand-blue);
+  background: rgba(47, 143, 239, 0.08);
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(47, 143, 239, 0.15);
+}
+
+.pillar-title {
+  font-size: 1.1875rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 0.75rem 0;
+  line-height: 1.3;
+}
+
+.pillar-desc {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0 0 1.75rem 0;
+  flex-grow: 1;
+}
+
+.pillar-action-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.84375rem;
+  font-weight: 600;
+  color: var(--brand-blue);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.pillar-action-link:hover {
+  color: var(--brand-blue-hover);
+}
+
+/* --------------------------------------------------------------------------
+   5. Who Open Idea Is Built For (Interactive Stakeholder Showcase)
+   -------------------------------------------------------------------------- */
+
+.stakeholders-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 992px) {
+  .stakeholders-container {
+    grid-template-columns: 320px 1fr;
+    gap: 2.5rem;
+    align-items: flex-start;
+  }
+}
+
+.stakeholder-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.stakeholder-tab-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  padding: 1rem 1.25rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-md);
+  text-align: left;
+  cursor: pointer;
+  min-height: 48px;
+  transition: all var(--transition-fast);
+}
+
+.stakeholder-tab-btn:hover {
+  background: var(--bg-subtle);
+  border-color: rgba(47, 143, 239, 0.3);
+}
+
+.stakeholder-tab-btn.active {
+  background: var(--bg-card);
+  border-color: var(--brand-blue);
+  box-shadow: 0 0 0 1px var(--brand-blue);
+}
+
+.stakeholder-tab-title {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.15rem;
+}
+
+.stakeholder-tab-sub {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.stakeholder-tab-btn.active .stakeholder-tab-title {
+  color: var(--brand-blue);
+}
+
+/* Detail Panel */
+.stakeholder-detail-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  padding: 2.25rem 2rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.stakeholder-detail-header {
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 1.5rem;
+}
+
+.stakeholder-detail-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--brand-blue);
+  margin-bottom: 0.35rem;
+}
+
+.stakeholder-detail-heading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.stakeholder-detail-desc {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin: 0 0 1.5rem 0;
+}
+
+.stakeholder-usecase-box {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  margin-bottom: 1.75rem;
+}
+
+.usecase-box-label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.usecase-box-text {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.stakeholder-tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.stakeholder-tag-pill {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--bg-card);
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-subtle);
+}
+
+.stakeholder-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  box-shadow: var(--shadow-sm);
+  min-height: 44px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.stakeholder-cta-btn:hover {
+  background: var(--btn-primary-hover);
+  transform: translateY(-1px);
+}
+
+/* --------------------------------------------------------------------------
+   6. Institutional Footprint & Governance
+   -------------------------------------------------------------------------- */
+
+.institutional-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 860px) {
+  .institutional-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.institutional-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-md);
+  padding: 1.75rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.institutional-card-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  background: rgba(47, 143, 239, 0.08);
+  color: var(--brand-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.institutional-card-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem 0;
+}
+
+.institutional-card-text {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.institutional-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--brand-blue);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-decoration: none;
+  margin-top: 1rem;
+}
+
+.institutional-card-link:hover {
+  text-decoration: underline;
+}
+
+/* --------------------------------------------------------------------------
+   7. Action Pathways & Institutional Contact Drawer
+   -------------------------------------------------------------------------- */
+
+.pathways-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-bottom: 3.5rem;
+}
+
+@media (min-width: 640px) {
+  .pathways-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .pathways-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.pathway-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-md);
+  padding: 1.75rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-fast);
+}
+
+.pathway-card:hover {
+  border-color: rgba(47, 143, 239, 0.4);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.pathway-category {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--brand-blue);
+  margin-bottom: 0.5rem;
+}
+
+.pathway-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem 0;
+  line-height: 1.35;
+}
+
+.pathway-desc {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0 0 1.25rem 0;
+  flex-grow: 1;
+}
+
+.pathway-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  width: 100%;
+  font-size: 0.84375rem;
+  font-weight: 600;
+  padding: 0.65rem 1rem;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  text-decoration: none;
+  min-height: 40px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.pathway-cta-btn:hover {
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  border-color: transparent;
+}
+
+/* Institutional Contact Banner */
+.contact-hub-banner {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 2.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+@media (min-width: 860px) {
+  .contact-hub-banner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.contact-hub-content {
+  max-width: 580px;
+}
+
+.contact-hub-title {
+  font-family: var(--font-sans);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 0.35rem 0;
+}
+
+.contact-hub-desc {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.contact-hub-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.contact-hub-primary-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.75rem 1.4rem;
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  min-height: 44px;
+  text-decoration: none;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-fast);
+}
+
+.contact-hub-primary-btn:hover {
+  background: var(--btn-primary-hover);
+  transform: translateY(-1px);
+}
+
+.contact-hub-ghost-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.75rem 1.25rem;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  min-height: 44px;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.contact-hub-ghost-btn:hover {
+  background: var(--bg-subtle);
+  border-color: rgba(47, 143, 239, 0.3);
+}
+
+/* --------------------------------------------------------------------------
+   8. Inquiry Modal / Direct Contact Dialog
+   -------------------------------------------------------------------------- */
+
+.about-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.about-modal-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  max-width: 540px;
+  width: 100%;
+  padding: 2rem;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+}
+
+.about-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.about-modal-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.about-modal-close {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+}
+
+.about-modal-close:hover {
+  color: var(--text-primary);
+}
+
+.about-modal-contact-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.about-modal-contact-row:last-child {
+  border-bottom: none;
+}
+
+.about-modal-contact-icon {
+  color: var(--brand-blue);
+  flex-shrink: 0;
+}
+
+.about-modal-contact-val {
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.about-modal-contact-val:hover {
+  text-decoration: underline;
+}
