@@ -12,6 +12,7 @@ import AboutPage from './components/AboutPage';
 import FeaturesPage from './components/FeaturesPage';
 import ContactPage from './components/ContactPage';
 import CareersPage from './components/CareersPage';
+import ContributePage from './components/ContributePage';
 import NotFoundPage from './components/NotFoundPage';
 import BrandRevealLoader from './components/BrandRevealLoader';
 import GlobalRosetteBackground from './components/GlobalRosetteBackground';
@@ -123,8 +124,9 @@ export default function App() {
   const isFeatures = cleanPath === '/features' || cleanPath === '/resources';
   const isContact = cleanPath === '/contact';
   const isCareers = cleanPath === '/careers';
-  const isKnownMockRoute = !isHome && !isOpenResources && !isStudio && !isCommunity && !isWebsites && !isPricing && !isAbout && !isFeatures && !isContact && !isCareers && VALID_ROUTES.has(cleanPath);
-  const isNotFound = !isHome && !isOpenResources && !isStudio && !isCommunity && !isWebsites && !isPricing && !isAbout && !isFeatures && !isContact && !isCareers && !isKnownMockRoute;
+  const isContribute = cleanPath === '/contribute';
+  const isKnownMockRoute = !isHome && !isOpenResources && !isStudio && !isCommunity && !isWebsites && !isPricing && !isAbout && !isFeatures && !isContact && !isCareers && !isContribute && VALID_ROUTES.has(cleanPath);
+  const isNotFound = !isHome && !isOpenResources && !isStudio && !isCommunity && !isWebsites && !isPricing && !isAbout && !isFeatures && !isContact && !isCareers && !isContribute && !isKnownMockRoute;
 
   // Auto-open modal if someone lands on a known mock route like /pricing
   useEffect(() => {
@@ -237,6 +239,7 @@ export default function App() {
         dest.startsWith('/resources') ||
         dest.startsWith('/contact') ||
         dest.startsWith('/careers') ||
+        dest.startsWith('/contribute') ||
         dest.startsWith('/form') ||
         dest.startsWith('/demo')
       ) {
@@ -338,6 +341,12 @@ export default function App() {
       ) : isCareers ? (
         <main style={{ flex: 1 }}>
           <CareersPage
+            onNavigate={navigateTo}
+          />
+        </main>
+      ) : isContribute ? (
+        <main style={{ flex: 1 }}>
+          <ContributePage
             onNavigate={navigateTo}
           />
         </main>
