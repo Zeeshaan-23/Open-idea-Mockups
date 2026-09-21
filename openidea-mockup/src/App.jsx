@@ -15,6 +15,7 @@ import CareersPage from './components/CareersPage';
 import ContributePage from './components/ContributePage';
 import FounderContactPage from './components/FounderContactPage';
 import NewsletterPage from './components/NewsletterPage';
+import AuthPage from './components/AuthPage';
 import NotFoundPage from './components/NotFoundPage';
 import BrandRevealLoader from './components/BrandRevealLoader';
 import GlobalRosetteBackground from './components/GlobalRosetteBackground';
@@ -131,8 +132,9 @@ export default function App() {
   const isContribute = cleanPath === '/contribute';
   const isFounderContact = cleanPath === '/founder-contact';
   const isNewsletter = cleanPath === '/newsletter';
-  const isKnownMockRoute = !isHome && !isOpenResources && !isStudio && !isCommunity && !isWebsites && !isPricing && !isAbout && !isFeatures && !isContact && !isCareers && !isContribute && !isFounderContact && !isNewsletter && VALID_ROUTES.has(cleanPath);
-  const isNotFound = !isHome && !isOpenResources && !isStudio && !isCommunity && !isWebsites && !isPricing && !isAbout && !isFeatures && !isContact && !isCareers && !isContribute && !isFounderContact && !isNewsletter && !isKnownMockRoute;
+  const isAuth = cleanPath === '/auth';
+  const isKnownMockRoute = !isHome && !isOpenResources && !isStudio && !isCommunity && !isWebsites && !isPricing && !isAbout && !isFeatures && !isContact && !isCareers && !isContribute && !isFounderContact && !isNewsletter && !isAuth && VALID_ROUTES.has(cleanPath);
+  const isNotFound = !isHome && !isOpenResources && !isStudio && !isCommunity && !isWebsites && !isPricing && !isAbout && !isFeatures && !isContact && !isCareers && !isContribute && !isFounderContact && !isNewsletter && !isAuth && !isKnownMockRoute;
 
   // Auto-open modal if someone lands on a known mock route like /pricing
   useEffect(() => {
@@ -248,6 +250,7 @@ export default function App() {
         dest.startsWith('/newsletter') ||
         dest.startsWith('/careers') ||
         dest.startsWith('/contribute') ||
+        dest.startsWith('/auth') ||
         dest.startsWith('/form') ||
         dest.startsWith('/demo')
       ) {
@@ -277,14 +280,16 @@ export default function App() {
         <BrandRevealLoader onComplete={() => setShowBrandLoader(false)} />
       )}
 
-      {/* 1. Restrained Editorial Navbar */}
-      <Navbar
-        theme={theme}
-        setTheme={setTheme}
-        isLoggedIn={isLoggedIn}
-        setIsLoggedIn={setIsLoggedIn}
-        onNavigateAction={handleNavigateAction}
-      />
+      {/* 1. Restrained Editorial Navbar (Hidden on standalone Auth surface) */}
+      {!isAuth && (
+        <Navbar
+          theme={theme}
+          setTheme={setTheme}
+          isLoggedIn={isLoggedIn}
+          setIsLoggedIn={setIsLoggedIn}
+          onNavigateAction={handleNavigateAction}
+        />
+      )}
 
       {/* 2. Main Content: Dedicated /openresources, Dedicated /studio, Dedicated /community, Custom 404, or Approved Frozen Homepage */}
       {isNotFound ? (
@@ -370,6 +375,15 @@ export default function App() {
             onNavigate={navigateTo}
           />
         </main>
+      ) : isAuth ? (
+        <main style={{ flex: 1 }}>
+          <AuthPage
+            onNavigate={navigateTo}
+            isLoggedIn={isLoggedIn}
+            setIsLoggedIn={setIsLoggedIn}
+            currentPath={currentPath}
+          />
+        </main>
       ) : (
         <main style={{ flex: 1 }}>
           {/* Hero Section with Focused Primary Prompt Interaction */}
@@ -409,10 +423,12 @@ export default function App() {
         </main>
       )}
 
-      {/* 3. Restrained Editorial Footer */}
-      <Footer
-        onNavigateAction={handleNavigateAction}
-      />
+      {/* 3. Restrained Editorial Footer (Hidden on standalone Auth surface) */}
+      {!isAuth && (
+        <Footer
+          onNavigateAction={handleNavigateAction}
+        />
+      )}
 
       {/* Interactive Verification Modal (For non-implemented prototype routes) */}
       <ActionSimulationModal

@@ -235,17 +235,11 @@ export default function Navbar({
             <button
               type="button"
               onClick={() => {
-                setIsLoggedIn(true);
-                onNavigateAction({
-                  destination: '/studio?login=1',
-                  label: 'User Authentication',
-                  type: 'Sign In Action',
-                  note: 'Authenticated mock session: John Doe'
-                });
+                onNavigateAction('/auth');
               }}
               className="navbar-signin-btn"
             >
-              Sign in
+              Sign Up
             </button>
           )}
 
@@ -297,13 +291,13 @@ export default function Navbar({
                 <button
                   type="button"
                   onClick={() => {
-                    setIsLoggedIn(true);
                     setMobileMenuOpen(false);
+                    onNavigateAction('/auth');
                   }}
                   className="btn btn-primary"
                   style={{ width: '100%', minHeight: '44px' }}
                 >
-                  Sign in
+                  Sign Up
                 </button>
               )}
             </div>
