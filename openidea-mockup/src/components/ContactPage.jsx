@@ -298,6 +298,39 @@ export default function ContactPage({ onNavigate, initialEnquiry = 'general' }) 
                 routed to our active engineering and ecosystem dispatch coordinators.
               </div>
             </div>
+
+            {/* Founder Executive Direct Line Referral */}
+            <div className="operating-sla-card" style={{ marginTop: '0.75rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.35rem' }}>
+                <span style={{ fontSize: '0.6875rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--brand-blue, #2F8FEF)' }}>
+                  Executive Direct Line
+                </span>
+                <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Sony Yadav</span>
+              </div>
+              <div style={{ fontSize: '0.8125rem', color: 'var(--text-secondary)', marginBottom: '0.65rem', lineHeight: 1.45 }}>
+                For high-impact strategic alliances, press inquiries, or direct founder-level correspondence:
+              </div>
+              <button
+                type="button"
+                onClick={() => onNavigate && onNavigate('/founder-contact')}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.35rem',
+                  fontSize: '0.8125rem',
+                  fontWeight: 600,
+                  color: 'var(--text-primary)',
+                  background: 'none',
+                  border: 'none',
+                  padding: 0,
+                  cursor: 'pointer',
+                  textAlign: 'left'
+                }}
+              >
+                <span>Connect via Founder Contact</span>
+                <ArrowRight size={13} style={{ color: 'var(--brand-blue)' }} />
+              </button>
+            </div>
           </aside>
 
           {/* ----------------------------------------------------------------

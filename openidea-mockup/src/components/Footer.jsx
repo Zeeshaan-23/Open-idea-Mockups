@@ -42,6 +42,7 @@ export default function Footer({ onNavigateAction }) {
   const ecosystemLinks = [
     { label: 'About Open Idea', href: '/about' },
     { label: 'Contact & Inquiries', href: '/contact' },
+    { label: 'Founder Contact', href: '/founder-contact' },
     { label: 'Problems & Ideas', href: '/problems-and-ideas' },
     { label: 'Fellowship & Residency', href: '/intern-fellowship' },
     { label: 'Open Source Contribution', href: '/contribute' },

@@ -13,6 +13,7 @@ import FeaturesPage from './components/FeaturesPage';
 import ContactPage from './components/ContactPage';
 import CareersPage from './components/CareersPage';
 import ContributePage from './components/ContributePage';
+import FounderContactPage from './components/FounderContactPage';
 import NotFoundPage from './components/NotFoundPage';
 import BrandRevealLoader from './components/BrandRevealLoader';
 import GlobalRosetteBackground from './components/GlobalRosetteBackground';
@@ -73,6 +74,7 @@ export default function App() {
     '/partnership',
     '/careers',
     '/problems-and-ideas',
+    '/founder-contact',
     '/privacy',
     '/terms',
     '/cookies',
@@ -125,8 +127,9 @@ export default function App() {
   const isContact = cleanPath === '/contact';
   const isCareers = cleanPath === '/careers';
   const isContribute = cleanPath === '/contribute';
-  const isKnownMockRoute = !isHome && !isOpenResources && !isStudio && !isCommunity && !isWebsites && !isPricing && !isAbout && !isFeatures && !isContact && !isCareers && !isContribute && VALID_ROUTES.has(cleanPath);
-  const isNotFound = !isHome && !isOpenResources && !isStudio && !isCommunity && !isWebsites && !isPricing && !isAbout && !isFeatures && !isContact && !isCareers && !isContribute && !isKnownMockRoute;
+  const isFounderContact = cleanPath === '/founder-contact';
+  const isKnownMockRoute = !isHome && !isOpenResources && !isStudio && !isCommunity && !isWebsites && !isPricing && !isAbout && !isFeatures && !isContact && !isCareers && !isContribute && !isFounderContact && VALID_ROUTES.has(cleanPath);
+  const isNotFound = !isHome && !isOpenResources && !isStudio && !isCommunity && !isWebsites && !isPricing && !isAbout && !isFeatures && !isContact && !isCareers && !isContribute && !isFounderContact && !isKnownMockRoute;
 
   // Auto-open modal if someone lands on a known mock route like /pricing
   useEffect(() => {
@@ -238,6 +241,7 @@ export default function App() {
         dest.startsWith('/features') ||
         dest.startsWith('/resources') ||
         dest.startsWith('/contact') ||
+        dest.startsWith('/founder-contact') ||
         dest.startsWith('/careers') ||
         dest.startsWith('/contribute') ||
         dest.startsWith('/form') ||
@@ -347,6 +351,12 @@ export default function App() {
       ) : isContribute ? (
         <main style={{ flex: 1 }}>
           <ContributePage
+            onNavigate={navigateTo}
+          />
+        </main>
+      ) : isFounderContact ? (
+        <main style={{ flex: 1 }}>
+          <FounderContactPage
             onNavigate={navigateTo}
           />
         </main>
