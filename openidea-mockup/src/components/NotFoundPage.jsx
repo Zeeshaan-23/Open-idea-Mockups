@@ -1,5 +1,4 @@
 import React from 'react';
-import { OpenIdeaFlowerSymbol } from './OpenIdeaLogo';
 import { ArrowLeft, Compass, ArrowRight } from 'lucide-react';
 import '../styles/notfound.css';
 
@@ -27,14 +26,9 @@ export default function NotFoundPage({ onNavigate, invalidPath = '' }) {
     <div className="not-found-page-shell" role="main" aria-label="Page Not Found">
       <div className="not-found-container">
 
-        {/* Subtle Brand Rosette Mark */}
-        <div className="not-found-emblem-halo" aria-hidden="true">
-          <OpenIdeaFlowerSymbol size={52} id="notfound-rosette-grad" />
-        </div>
-
-        {/* Kicker */}
+        {/* Centered Large 404 Kicker */}
         <div className="not-found-kicker">
-          <span>404 — Page Not Found</span>
+          <span>404 &mdash; Page Not Found</span>
         </div>
 
         {/* Editorial Headline */}

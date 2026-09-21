@@ -24,37 +24,19 @@
   z-index: 10;
 }
 
-/* Subtle Emblem Accent Treatment */
-.not-found-emblem-halo {
-  display: inline-flex;
+/* Centered Large 404 Kicker */
+.not-found-kicker {
+  display: flex;
   align-items: center;
   justify-content: center;
-  width: 88px;
-  height: 88px;
-  border-radius: var(--radius-full);
-  background-color: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  box-shadow: var(--shadow-card);
-  margin-bottom: 1.75rem;
-  transition: transform var(--transition-base), border-color var(--transition-base);
-}
-
-.not-found-emblem-halo:hover {
-  transform: rotate(30deg);
-  border-color: var(--brand-blue);
-}
-
-/* Kicker */
-.not-found-kicker {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
+  font-size: clamp(1.25rem, 2.8vw, 1.75rem);
+  font-weight: 800;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--brand-cyan);
-  margin-bottom: 0.75rem;
+  margin: 0 auto 1.25rem auto;
+  text-align: center;
+  line-height: 1.2;
 }
 
 /* Headline */
