@@ -14,6 +14,7 @@ import ContactPage from './components/ContactPage';
 import CareersPage from './components/CareersPage';
 import ContributePage from './components/ContributePage';
 import FounderContactPage from './components/FounderContactPage';
+import NewsletterPage from './components/NewsletterPage';
 import NotFoundPage from './components/NotFoundPage';
 import BrandRevealLoader from './components/BrandRevealLoader';
 import GlobalRosetteBackground from './components/GlobalRosetteBackground';
@@ -75,6 +76,7 @@ export default function App() {
     '/careers',
     '/problems-and-ideas',
     '/founder-contact',
+    '/newsletter',
     '/privacy',
     '/terms',
     '/cookies',
@@ -128,8 +130,9 @@ export default function App() {
   const isCareers = cleanPath === '/careers';
   const isContribute = cleanPath === '/contribute';
   const isFounderContact = cleanPath === '/founder-contact';
-  const isKnownMockRoute = !isHome && !isOpenResources && !isStudio && !isCommunity && !isWebsites && !isPricing && !isAbout && !isFeatures && !isContact && !isCareers && !isContribute && !isFounderContact && VALID_ROUTES.has(cleanPath);
-  const isNotFound = !isHome && !isOpenResources && !isStudio && !isCommunity && !isWebsites && !isPricing && !isAbout && !isFeatures && !isContact && !isCareers && !isContribute && !isFounderContact && !isKnownMockRoute;
+  const isNewsletter = cleanPath === '/newsletter';
+  const isKnownMockRoute = !isHome && !isOpenResources && !isStudio && !isCommunity && !isWebsites && !isPricing && !isAbout && !isFeatures && !isContact && !isCareers && !isContribute && !isFounderContact && !isNewsletter && VALID_ROUTES.has(cleanPath);
+  const isNotFound = !isHome && !isOpenResources && !isStudio && !isCommunity && !isWebsites && !isPricing && !isAbout && !isFeatures && !isContact && !isCareers && !isContribute && !isFounderContact && !isNewsletter && !isKnownMockRoute;
 
   // Auto-open modal if someone lands on a known mock route like /pricing
   useEffect(() => {
@@ -242,6 +245,7 @@ export default function App() {
         dest.startsWith('/resources') ||
         dest.startsWith('/contact') ||
         dest.startsWith('/founder-contact') ||
+        dest.startsWith('/newsletter') ||
         dest.startsWith('/careers') ||
         dest.startsWith('/contribute') ||
         dest.startsWith('/form') ||
@@ -357,6 +361,12 @@ export default function App() {
       ) : isFounderContact ? (
         <main style={{ flex: 1 }}>
           <FounderContactPage
+            onNavigate={navigateTo}
+          />
+        </main>
+      ) : isNewsletter ? (
+        <main style={{ flex: 1 }}>
+          <NewsletterPage
             onNavigate={navigateTo}
           />
         </main>
