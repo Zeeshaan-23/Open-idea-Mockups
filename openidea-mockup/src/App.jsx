@@ -41,7 +41,8 @@ export default function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [actionModalData, setActionModalData] = useState(null);
-  const [showBrandLoader, setShowBrandLoader] = useState(true);
+  // Global loading overlay put on hold per Sony directive (documented in ANIMATION_ARCHIVE.txt)
+  const [showBrandLoader, setShowBrandLoader] = useState(false);
 
   // Client-side route state tracking
   const [currentPath, setCurrentPath] = useState(() => {

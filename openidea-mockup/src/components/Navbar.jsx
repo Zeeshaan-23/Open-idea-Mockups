@@ -15,76 +15,10 @@ export default function Navbar({
   const dropdownRef = useRef(null);
   const isTransitioningRef = useRef(false);
 
-  // Radial pulse theme toggle spanning the entire viewport
-  const handleToggleTheme = (e) => {
-    if (isTransitioningRef.current) return;
+  // Theme toggle: instantaneous static switch per Sony directive (animation on hold, archived in ANIMATION_ARCHIVE.txt)
+  const handleToggleTheme = () => {
     const nextTheme = theme === 'light' ? 'dark' : 'light';
-
-    // Fallback if View Transitions API is not supported or reduced motion preferred
-    if (
-      !document.startViewTransition ||
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    ) {
-      setTheme(nextTheme);
-      return;
-    }
-
-    isTransitioningRef.current = true;
-
-    // Origin coordinates from the trigger button
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = rect.left + rect.width / 2;
-    const y = rect.top + rect.height / 2;
-
-    // Radius needed to reach the farthest corner of the viewport
-    const endRadius = Math.hypot(
-      Math.max(x, window.innerWidth - x),
-      Math.max(y, window.innerHeight - y)
-    );
-
-    document.documentElement.classList.add('theme-transitioning');
-
-    const transition = document.startViewTransition(() => {
-      flushSync(() => {
-        setTheme(nextTheme);
-        document.documentElement.setAttribute('data-theme', nextTheme);
-      });
-    });
-
-    transition.ready
-      .then(() => {
-        // Luminous pulse wave ring at the leading edge of the expanding circle
-        const wave = document.createElement('div');
-        wave.className = 'theme-pulse-wave';
-        wave.style.left = `${x}px`;
-        wave.style.top = `${y}px`;
-        wave.style.setProperty('--pulse-max-size', `${endRadius * 2}px`);
-        document.body.appendChild(wave);
-        setTimeout(() => wave.remove(), 650);
-
-        const animation = document.documentElement.animate(
-          {
-            clipPath: [
-              `circle(0px at ${x}px ${y}px)`,
-              `circle(${endRadius}px at ${x}px ${y}px)`
-            ]
-          },
-          {
-            duration: 550,
-            easing: 'cubic-bezier(0.2, 0, 0, 1)',
-            pseudoElement: '::view-transition-new(root)'
-          }
-        );
-
-        animation.finished.finally(() => {
-          document.documentElement.classList.remove('theme-transitioning');
-          isTransitioningRef.current = false;
-        });
-      })
-      .catch(() => {
-        document.documentElement.classList.remove('theme-transitioning');
-        isTransitioningRef.current = false;
-      });
+    setTheme(nextTheme);
   };
 
   // Close dropdown on click outside

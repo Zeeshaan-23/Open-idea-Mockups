@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en" class="--font-space-grotesk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0c2321">
+  <title>Open Idea</title>
+  <meta name="description" content="The World's Open Innovation Infrastructure">
+  <meta name="application-name" content="Open Idea">
+  <link rel="icon" href="../favicon.ico" type="image/x-icon" sizes="48x48">
+
+  <!-- Google Fonts: Space Grotesk & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Free CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Page Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="antialiased">
+
+  <!-- ========================================================================
+       STICKY HEADER / NAVIGATION
+       ======================================================================== -->
+  <header class="site-header">
+    <div class="header-container">
+      <!-- Brand Logo -->
+      <a class="brand-logo" href="../site.html">
+        <img class="logo-img" src="../assets/logos/logo.png" alt="Open Idea Logo" width="36" height="36">
+        <span class="brand-name">Open Idea</span>
+      </a>
+
+      <!-- Desktop Nav (lg:flex) -->
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <a class="nav-link active-page" href="site.html" aria-current="page">About</a>
+        <a class="nav-link" href="/features">Features</a>
+        <a class="nav-link" href="../pricing/site.html">Pricing</a>
+        <a class="btn-app-studio" href="/studio">App Studio</a>
+      </nav>
+
+      <!-- Right Header Actions -->
+      <div class="header-right">
+        <!-- Mobile User Quick Sign-in (md:hidden) -->
+        <a class="mobile-auth-btn" href="../auth/site.html?redirect=%2Fabout" aria-label="Sign up or sign in">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M19 8v6"></path>
+            <path d="M22 11h-6"></path>
+          </svg>
+        </a>
+
+        <!-- Desktop Action Buttons (hidden md:flex) -->
+        <div class="desktop-actions">
+          <a class="btn-sign-in" href="../auth/site.html?redirect=%2Fabout">Sign In</a>
+          <a class="link-feedback" href="/feedback">Feedback</a>
+          <span class="badge-beta">BETA</span>
+        </div>
+
+        <!-- Mobile Hamburger Button (md:hidden) -->
+        <button type="button" class="btn-hamburger" id="hamburger-btn" aria-label="Open menu" aria-controls="mobile-nav" aria-expanded="false">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Nav Dropdown Panel -->
+    <div id="mobile-nav" class="mobile-nav-panel" aria-label="Mobile Navigation">
+      <a class="mobile-link active-page" href="site.html" aria-current="page">About</a>
+      <a class="mobile-link" href="/features">Features</a>
+      <a class="mobile-link" href="../pricing/site.html">Pricing</a>
+      <a class="mobile-btn-full" href="/studio">App Studio</a>
+      <div class="mobile-feedback-row">
+        <div class="inner">
+          <a class="link-feedback" href="/feedback">Feedback</a>
+          <span class="badge-beta">BETA</span>
+        </div>
+      </div>
+      <a class="mobile-btn-full" href="../auth/site.html?redirect=%2Fabout">Sign In</a>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       MAIN HERO SECTION (LIVE ABOUT PAGE)
+       ======================================================================== -->
+  <main class="main-content">
+    <section class="about-hero-section">
+      <!-- Background Globe and Radial Cyan Blur -->
+      <div class="hero-bg-layer">
+        <img class="hero-globe-img" src="../assets/images/hero-globe.png" alt="Digital Globe Background" loading="eager">
+        <div class="hero-radial-glow"></div>
+      </div>
+
+      <!-- Top-Right Floating Actions: Contribute & GitHub -->
+      <div class="top-right-actions">
+        <a class="btn-contribute-badge" href="/contribute">
+          <span>Contribute to Open Idea</span>
+        </a>
+        <a class="btn-github-badge" href="https://github.com/Sony17/Ecosyz" target="_blank" rel="noopener noreferrer" aria-label="GitHub Repository">
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+
+      <!-- Content Container -->
+      <div class="hero-content-wrapper">
+        <div class="hero-container">
+          <div class="hero-grid">
+            <div class="hero-col">
+              <!-- Headline -->
+              <h1 class="hero-title">
+                <span class="hero-title-prefix">The future of</span>
+                <span class="hero-title-gradient">INNOVATION</span>
+              </h1>
+
+              <!-- Subtitle -->
+              <p class="hero-subtitle">The World's Open Innovation Infrastructure</p>
+
+              <!-- Search Bar & Discover Button -->
+              <div class="search-form-wrapper">
+                <form class="search-form" id="about-search-form">
+                  <div class="search-input-group">
+                    <div class="search-icon-wrapper">
+                      <svg class="search-icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
+                      </svg>
+                    </div>
+                    <input type="text" id="about-search-input" placeholder="Search problems, ideas, or open-source solutions." class="search-input" value="">
+                    <button type="submit" class="btn-discover">Discover</button>
+                  </div>
+                </form>
+              </div>
+
+              <!-- 3 CTA Buttons -->
+              <div class="hero-cta-group">
+                <a class="btn-cta-primary" href="/projects">Build App</a>
+                <a class="btn-cta-secondary" href="/community">Join Community</a>
+                <a class="btn-cta-tertiary" href="/projects">View Projects</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Separator Line -->
+      <div class="hero-bottom-divider"></div>
+
+      <!-- Bottom-Right Floating Whitepaper Button -->
+      <div class="bottom-right-whitepaper">
+        <a class="btn-whitepaper" href="/researchwhitepaper">
+          <i class="fas fa-file-alt"></i>
+          <span>Research Whitepaper</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- PWA Install Toast Prompt -->
+  <div class="pwa-toast-container" id="pwa-toast" role="dialog" aria-label="Install App">
+    <div class="pwa-toast-title">Install Open Idea</div>
+    <div class="pwa-toast-desc">Add it to your home screen for full-screen access and offline reading.</div>
+    <div class="pwa-toast-actions">
+      <button class="btn-pwa-install" id="pwa-install-btn">Install</button>
+      <button class="btn-pwa-dismiss" id="pwa-dismiss-btn">Not now</button>
+    </div>
+  </div>
+
+  <!-- Divider Line -->
+  <div class="footer-divider-line"></div>
+
+  <!-- ========================================================================
+       SHARED PRODUCTION FOOTER
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-grid-top">
+        <!-- Brand Logo & Name -->
+        <div class="footer-brand-col">
+          <div class="footer-brand-inner">
+            <img class="footer-logo-img" src="../assets/logos/logo.png" alt="Open Idea logo" width="32" height="32" loading="lazy">
+            <span class="footer-brand-title">Open Idea</span>
+          </div>
+        </div>
+
+        <!-- Center Mission -->
+        <p class="footer-mission-text">
+          Empowering Open, Sustainable Innovation Worldwide
+        </p>
+
+        <!-- Right Contact & Links -->
+        <div class="footer-right-col">
+          <!-- Social Icons -->
+          <div class="footer-social-row">
+            <a href="https://discord.gg/4weahHXQYY" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Discord">
+              <i class="fab fa-discord"></i>
+            </a>
+            <a href="https://www.linkedin.com/company/ecosyz/" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="LinkedIn">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://x.com/OpenIdeaOrg" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Twitter">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=61570639731676" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Facebook">
+              <i class="fab fa-facebook"></i>
+            </a>
+            <a href="https://www.instagram.com/openidea.ai_platform/" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="mailto:info@openidea.world" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Email">
+              <i class="fas fa-envelope"></i>
+            </a>
+          </div>
+
+          <!-- Phones & Primary Nav Links -->
+          <div class="footer-links-stack">
+            <a href="tel:+918130296940" class="footer-phone-link" aria-label="Phone">
+              <i class="fas fa-phone"></i>
+              <span>+91 81302 96940</span>
+            </a>
+            <a href="tel:+911141193699" class="footer-phone-link" aria-label="Landline">
+              <i class="fas fa-phone"></i>
+              <span>011 4119 3699</span>
+            </a>
+            <a href="/careers" class="footer-nav-link">Careers</a>
+            <a href="/intern-fellowship" class="footer-nav-link">Fellowship</a>
+            <a href="/partnership" class="footer-nav-link">Partnership</a>
+            <a href="/form" class="footer-nav-link">Get a Website</a>
+            <a href="/support" class="footer-nav-link">Support</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Secondary Links -->
+      <div class="footer-secondary-row">
+        <a href="/problems-and-ideas" class="footer-secondary-link">Problems &amp; Ideas</a>
+        <a href="/newsletter" class="footer-secondary-link">Newsletter</a>
+        <a href="/ai-news" class="footer-secondary-link">AI News</a>
+      </div>
+
+      <!-- Legal Links -->
+      <div class="footer-legal-row">
+        <a href="/privacy" class="footer-legal-link">Privacy Policy</a>
+        <a href="/terms" class="footer-legal-link">Terms of Use</a>
+        <a href="/cookies" class="footer-legal-link">Cookie Policy</a>
+      </div>
+
+      <!-- Address & Copyright -->
+      <div class="footer-address">
+        Registered Address: 8125, 8th Floor, Gaur City Mall Office Space, Sector 4, Greater Noida West, Gautam Buddha Nagar, 201318
+      </div>
+      <div class="footer-copyright">
+        &copy; 2026 Open Idea. All rights reserved. Proudly built in India 🇮🇳 with ❤️ for global innovation.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+</body>
+</html>

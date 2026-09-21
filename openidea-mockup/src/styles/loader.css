@@ -64,9 +64,9 @@
   transform: translateY(-2px);
 }
 
-/* Fast Controlled Rotation (Stage 2) */
+/* Fast Controlled Rotation (Stage 2) — ANIMATION ON HOLD (Archived in ANIMATION_ARCHIVE.txt) */
 .brand-reveal-emblem-wrapper.is-spinning {
-  animation: orLoaderSpin 650ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  animation: none !important;
 }
 
 @keyframes orLoaderSpin {

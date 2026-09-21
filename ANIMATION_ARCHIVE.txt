@@ -1,0 +1,502 @@
+================================================================================
+OPEN IDEA — ANIMATION ARCHIVE & RECOVERY REFERENCE
+================================================================================
+
+Document Purpose:
+This document contains the complete technical archive of all animation logic,
+keyframes, transitions, choreography sequences, and component relationships
+originally active on the Open Idea codebase (main branch).
+
+Following product leadership directive (Sony), all active decorative animations
+have been put on hold to deliver a completely static editorial presentation.
+
+When animation work is approved for restoration, use this document to restore
+the exact code and configurations without rebuilding from scratch.
+
+================================================================================
+TABLE OF CONTENTS
+================================================================================
+1. Global Sacred Rosette Background Dome (rosette.css & GlobalRosetteBackground.jsx)
+2. Global Brand Reveal Loader Overlay (loader.css & BrandRevealLoader.jsx)
+3. Theme Toggle Radial Pulse Wave (main.css & Navbar.jsx)
+4. Hero Mode Selector Sliding Pill Transition (hero.css & Hero.jsx)
+5. Studio Showcase Tab Panel Transition (lower-homepage.css)
+6. Open Resources Inspection & Q&A Transitions (openresources.css)
+7. Modal & Dialog Entrance Animations (auth.css, about.css, careers.css)
+8. Intentionally Preserved Functional Animations (Voice dictation, loading spinners)
+9. Recovery Instructions for Future Re-enablement
+
+
+================================================================================
+1. GLOBAL SACRED ROSETTE BACKGROUND DOME
+================================================================================
+Controls:
+Continuous ambient 60-second spatial rotation of the 6-petal sacred rosette dome
+pinned to the bottom center of the viewport (edge-to-edge semicircle dome).
+Also controlled dynamic stroke-width transitions on circle and petal paths.
+
+Origin Files:
+- CSS: src/styles/rosette.css
+- Component: src/components/GlobalRosetteBackground.jsx
+- Mounted in: src/App.jsx (<GlobalRosetteBackground />)
+
+Original Code:
+--------------------------------------------------------------------------------
+/* src/styles/rosette.css */
+
+.bg-rosette-turn-wrapper {
+  width: 100%;
+  height: 100%;
+  transform-origin: 50% 50%;
+  animation: rosetteContinuousRotate 60s linear infinite;
+  will-change: transform;
+}
+
+@keyframes rosetteContinuousRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.page-background-rosette-dome .rosette-circle {
+  transition: stroke-width 400ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.page-background-rosette-dome .rosette-petals {
+  transition: stroke-width 400ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.page-background-rosette-dome {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  width: 100vw;
+  height: 100vw;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.19;
+  transition: opacity 500ms ease;
+  user-select: none;
+  clip-path: inset(0 0 50% 0);
+  will-change: transform;
+}
+
+[data-theme="dark"] .page-background-rosette-dome {
+  opacity: 0.17;
+}
+--------------------------------------------------------------------------------
+Component Structure:
+/* src/components/GlobalRosetteBackground.jsx */
+export default function GlobalRosetteBackground() {
+  return (
+    <div className="page-background-rosette-dome" aria-hidden="true">
+      <div className="bg-rosette-turn-wrapper">
+        <OpenIdeaFlowerSymbol
+          size="100%"
+          id="global-bg-rosette-grad"
+          viewBox="4 4 92 92"
+          circleStroke={1.0}
+          petalStroke={0.8}
+          className="bg-rosette-svg"
+        />
+      </div>
+    </div>
+  );
+}
+--------------------------------------------------------------------------------
+Static Modification Made:
+In src/styles/rosette.css, .bg-rosette-turn-wrapper animation is set to "none",
+and transitions on stroke widths are disabled. The dome itself remains visible
+as an editorial background element at opacity 0.19/0.17, but completely stationary.
+
+
+================================================================================
+2. GLOBAL BRAND REVEAL LOADER OVERLAY
+================================================================================
+Controls:
+A choreographed 4-stage brand reveal overlay on initial page load:
+- Stage 1: Centered Rosette Emblem (~150ms hold)
+- Stage 2: Fast Controlled 720-degree Rotation (~650ms via orLoaderSpin)
+- Stage 3: Lockup Formation — Emblem glides left as 'pen idea' reveals (~500ms)
+- Stage 4: Upward Curtain Reveal — Entire overlay translates -100% upward (~650ms)
+Total sequence: 2350ms before unmounting.
+
+Origin Files:
+- CSS: src/styles/loader.css
+- Component: src/components/BrandRevealLoader.jsx
+- Mounted in: src/App.jsx ({showBrandLoader && <BrandRevealLoader ... />})
+
+Original Code:
+--------------------------------------------------------------------------------
+/* src/styles/loader.css */
+
+.brand-reveal-overlay.curtain-up {
+  transform: translateY(-100%);
+  transition: transform 650ms cubic-bezier(0.76, 0, 0.24, 1);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.18);
+}
+
+[data-theme="dark"] .brand-reveal-overlay.curtain-up {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+.brand-reveal-emblem-wrapper.is-spinning {
+  animation: orLoaderSpin 650ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes orLoaderSpin {
+  0% {
+    transform: translateY(-2px) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-2px) rotate(720deg);
+  }
+}
+
+.brand-reveal-emblem-wrapper.is-settled {
+  transform: translateY(-2px) rotate(0deg);
+}
+
+.brand-reveal-wordmark-wrapper {
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-left: 0;
+  display: flex;
+  align-items: center;
+  transition:
+    max-width 520ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 400ms cubic-bezier(0.16, 1, 0.3, 1) 80ms,
+    margin-left 520ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.brand-reveal-wordmark-wrapper.is-revealed {
+  max-width: 320px;
+  opacity: 1;
+  margin-left: 3px;
+}
+--------------------------------------------------------------------------------
+Original Timing Orchestration in BrandRevealLoader.jsx:
+const tSpinStart = setTimeout(() => { setStage(2); setIsSpinning(true); }, 150);
+const tLockup = setTimeout(() => { setStage(3); setIsSpinning(false); setHasSettled(true); setShowWordmark(true); }, 800);
+const tCurtain = setTimeout(() => { setStage(4); setIsExiting(true); }, 1700);
+const tFinish = setTimeout(() => { setIsFinished(true); if (onComplete) onComplete(); }, 2350);
+--------------------------------------------------------------------------------
+Static Modification Made:
+In src/App.jsx, showBrandLoader is initialized to false (default off) so the
+page renders statically immediately without delay. The BrandRevealLoader component
+and loader.css remain intact in the codebase for future re-enablement.
+
+
+================================================================================
+3. THEME TOGGLE RADIAL PULSE VIEW TRANSITION
+================================================================================
+Controls:
+Full-viewport 360-degree circular radial expansion and luminous ring pulse
+wave expanding from the exact coordinates of the theme toggle button.
+
+Origin Files:
+- CSS: src/styles/main.css
+- Component: src/components/Navbar.jsx (handleToggleTheme)
+
+Original Code:
+--------------------------------------------------------------------------------
+/* src/styles/main.css */
+
+.theme-pulse-wave {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 100000;
+  border: 1.5px solid rgba(19, 178, 207, 0.65);
+  box-shadow: 0 0 16px rgba(47, 143, 239, 0.45);
+  transform: translate(-50%, -50%);
+  animation: themePulseWaveExpand 550ms cubic-bezier(0.2, 0, 0, 1) forwards;
+}
+
+@keyframes themePulseWaveExpand {
+  0% {
+    width: 0px;
+    height: 0px;
+    opacity: 0.9;
+  }
+  60% {
+    opacity: 0.5;
+  }
+  100% {
+    width: var(--pulse-max-size);
+    height: var(--pulse-max-size);
+    opacity: 0;
+  }
+}
+--------------------------------------------------------------------------------
+Original View Transition Logic in Navbar.jsx:
+const handleToggleTheme = (e) => {
+  if (isTransitioningRef.current) return;
+  const nextTheme = theme === 'light' ? 'dark' : 'light';
+  if (!document.startViewTransition || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    setTheme(nextTheme);
+    return;
+  }
+  isTransitioningRef.current = true;
+  const rect = e.currentTarget.getBoundingClientRect();
+  const x = rect.left + rect.width / 2;
+  const y = rect.top + rect.height / 2;
+  const endRadius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
+  document.documentElement.classList.add('theme-transitioning');
+  const transition = document.startViewTransition(() => {
+    flushSync(() => { setTheme(nextTheme); document.documentElement.setAttribute('data-theme', nextTheme); });
+  });
+  transition.ready.then(() => {
+    const wave = document.createElement('div');
+    wave.className = 'theme-pulse-wave';
+    wave.style.left = `${x}px`; wave.style.top = `${y}px`;
+    wave.style.setProperty('--pulse-max-size', `${endRadius * 2}px`);
+    document.body.appendChild(wave);
+    setTimeout(() => wave.remove(), 650);
+    document.documentElement.animate({ clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${endRadius}px at ${x}px ${y}px)`] }, { duration: 550, easing: 'cubic-bezier(0.2, 0, 0, 1)', pseudoElement: '::view-transition-new(root)' }).finished.finally(() => {
+      document.documentElement.classList.remove('theme-transitioning');
+      isTransitioningRef.current = false;
+    });
+  });
+};
+--------------------------------------------------------------------------------
+Static Modification Made:
+Theme switching is executed as an immediate, static state switch:
+setTheme(nextTheme) directly without View Transitions or .theme-pulse-wave.
+In src/styles/main.css, .theme-pulse-wave is set to display: none !important.
+
+
+================================================================================
+4. HERO MODE SELECTOR SLIDING PILL TRANSITION
+================================================================================
+Controls:
+Continuous sliding transformation of the active background pill across the
+4 mode tabs (Build App, Discover, Projects, Network).
+
+Origin Files:
+- CSS: src/styles/hero.css
+- Component: src/components/Hero.jsx
+
+Original Code:
+--------------------------------------------------------------------------------
+/* src/styles/hero.css */
+
+.prompt-mode-slider {
+  position: absolute;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-xs);
+  pointer-events: none;
+  z-index: 0;
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+              width 220ms cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 150ms ease;
+  box-sizing: border-box;
+}
+--------------------------------------------------------------------------------
+Static Modification Made:
+In src/styles/hero.css, transition on .prompt-mode-slider is set to "none !important".
+The active pill position updates instantly upon click with zero sliding motion.
+
+
+================================================================================
+5. STUDIO SHOWCASE TAB PANEL TRANSITION
+================================================================================
+Controls:
+Fade-in and 4px upward translation when switching between Overview, Sensors,
+and Export views in the Agrisense Telemetry mockup canvas.
+
+Origin File:
+- CSS: src/styles/lower-homepage.css
+- Component: src/components/StudioShowcaseSection.jsx
+
+Original Code:
+--------------------------------------------------------------------------------
+/* src/styles/lower-homepage.css */
+
+.studio-tab-panel {
+  animation: studioTabFade 220ms ease-out forwards;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+@keyframes studioTabFade {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+--------------------------------------------------------------------------------
+Static Modification Made:
+In src/styles/lower-homepage.css, animation on .studio-tab-panel is set to "none !important".
+Tabs switch instantly with zero fade or translation.
+
+
+================================================================================
+6. OPEN RESOURCES INSPECTION & Q&A TRANSITIONS
+================================================================================
+Controls:
+Accordion expansion and Q&A card fade-in when expanding items in the
+Open Resources explorer.
+
+Origin File:
+- CSS: src/styles/openresources.css
+
+Original Code:
+--------------------------------------------------------------------------------
+/* src/styles/openresources.css */
+
+.or-inspection-panel {
+  border-top: 1px solid var(--border-subtle);
+  background-color: var(--bg-card);
+  padding: 1.25rem 1rem 1.5rem 3.5rem;
+  animation: orExpandIn 220ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes orExpandIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.or-qa-response-card {
+  animation: orFadeIn 180ms ease-out;
+}
+
+@keyframes orFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+--------------------------------------------------------------------------------
+Static Modification Made:
+In src/styles/openresources.css, animation on .or-inspection-panel and
+.or-qa-response-card is set to "none !important".
+
+
+================================================================================
+7. MODAL & DIALOG ENTRANCE ANIMATIONS
+================================================================================
+Controls:
+Fade-in, slide-up, and scale-up entrance keyframes on modal dialogs across
+Auth, Careers, About, and ActionSimulationModal.
+
+Origin Files:
+- src/styles/auth.css (authFadeIn, authScaleUp)
+- src/styles/about.css (aboutModalFadeIn, aboutModalZoomIn)
+- src/styles/careers.css (modalFadeIn, modalSlideUp)
+- src/components/ActionSimulationModal.jsx (fadeIn)
+
+Original Code:
+--------------------------------------------------------------------------------
+/* src/styles/auth.css */
+.auth-modal-overlay {
+  animation: authFadeIn 0.15s ease-out;
+}
+.auth-modal-card {
+  animation: authScaleUp 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes authFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes authScaleUp {
+  from { opacity: 0; transform: scale(0.96) translateY(8px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* src/styles/about.css */
+.about-dialog-overlay {
+  animation: aboutModalFadeIn 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.about-dialog-content {
+  animation: aboutModalZoomIn 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* src/styles/careers.css */
+.job-modal-backdrop {
+  animation: modalFadeIn 0.2s ease-out;
+}
+.job-modal-card {
+  animation: modalSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+--------------------------------------------------------------------------------
+Static Modification Made:
+Modal backdrops and cards render immediately in their final state without
+scaling, sliding, or fading.
+
+
+================================================================================
+8. INTENTIONALLY PRESERVED FUNCTIONAL ANIMATIONS
+================================================================================
+In accordance with engineering guidelines, the following functional animations
+have NOT been removed, as they communicate active user operations or network state:
+
+1. Voice Dictation Active Recording Pulse:
+   - File: src/styles/hero.css (.pulse-dot, @keyframes pulse)
+   - Function: Communicates to the user that the microphone is actively listening.
+
+2. Authentication Form Network Loading Spinner:
+   - File: src/styles/auth.css (.auth-spinner, @keyframes authSpin)
+   - Function: Communicates active network request during "Signing In...", "Signing Up...",
+     and "Updating Password...".
+
+3. Newsletter Subscription Network Spinner:
+   - File: src/styles/newsletter.css (.animate-spin, @keyframes spin)
+   - Function: Communicates in-flight API submission.
+
+4. Usability Hover/Focus Interactions:
+   - Button hover color changes, border-color shifts, and accessibility
+     focus-visible outlines are preserved for functional usability.
+
+
+================================================================================
+9. RECOVERY INSTRUCTIONS FOR FUTURE RE-ENABLEMENT
+================================================================================
+To restore animations when approved by Sony:
+
+1. Global Rosette Rotation:
+   In src/styles/rosette.css, revert .bg-rosette-turn-wrapper to:
+   animation: rosetteContinuousRotate 60s linear infinite;
+
+2. Brand Reveal Loader:
+   In src/App.jsx, change:
+   const [showBrandLoader, setShowBrandLoader] = useState(false);
+   to:
+   const [showBrandLoader, setShowBrandLoader] = useState(true);
+
+3. Theme Toggle Radial Pulse:
+   In src/components/Navbar.jsx, restore the document.startViewTransition and
+   theme-pulse-wave creation block inside handleToggleTheme.
+   In src/styles/main.css, remove display: none !important from .theme-pulse-wave.
+
+4. Hero Mode Slider:
+   In src/styles/hero.css, restore transition on .prompt-mode-slider to:
+   transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+               width 220ms cubic-bezier(0.16, 1, 0.3, 1),
+               opacity 150ms ease;
+
+5. Studio Showcase Tabs:
+   In src/styles/lower-homepage.css, restore animation on .studio-tab-panel to:
+   animation: studioTabFade 220ms ease-out forwards;
+
+6. Open Resources Inspection Panels:
+   In src/styles/openresources.css, restore animation on .or-inspection-panel and
+   .or-qa-response-card.
+================================================================================

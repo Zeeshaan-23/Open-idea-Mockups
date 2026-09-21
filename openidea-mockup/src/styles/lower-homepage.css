@@ -920,9 +920,9 @@
   outline-offset: 1px;
 }
 
-/* Tab Content Fade Transition */
+/* Tab Content Fade Transition — ANIMATION ON HOLD (Archived in ANIMATION_ARCHIVE.txt) */
 .studio-tab-panel {
-  animation: studioTabFade 220ms ease-out forwards;
+  animation: none !important;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;

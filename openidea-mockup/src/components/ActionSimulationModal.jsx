@@ -32,8 +32,7 @@ export default function ActionSimulationModal({ actionData, onClose }) {
         alignItems: 'center',
         justifyContent: 'center',
         padding: '1rem',
-        zIndex: 200,
-        animation: 'fadeIn 150ms ease-out'
+        zIndex: 200
       }}
     >
       <div

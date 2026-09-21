@@ -1,0 +1,496 @@
+================================================================================
+OPEN IDEA — HOMEPAGE CONTENT REVIEW & EDITING DOCUMENT
+================================================================================
+
+Purpose of this document:
+This file contains the complete, exact user-facing text, labels, placeholders,
+prompts, headings, descriptions, and links currently visible on the Open Idea
+homepage (https://openidea.world).
+
+Organized top-to-bottom in the exact order experienced by a visitor.
+Sony can review this text, suggest edits, make additions, or revise copy directly.
+
+================================================================================
+1. GLOBAL LOADING & BRAND REVEAL (Initial Screen Load)
+================================================================================
+
+Screen Reader / Loading Status Announcement:
+Loading Open Idea
+
+Visual Brand Composition:
+The 6-petal sacred rosette flower emblem serves as the initial letter 'O',
+paired with the wordmark "pen idea" to form "Open idea".
+
+
+================================================================================
+2. TOP NAVIGATION BAR (Header)
+================================================================================
+
+Brand Logo:
+Open idea (Links to homepage)
+
+Main Navigation Links:
+- Open Resources (links to /openresources)
+- Studio (links to /studio)
+- Websites (links to /websites)
+- Community (links to /community)
+- Pricing (links to /pricing)
+
+Header Actions:
+- Appearance / Theme Toggle:
+  "Switch to dark mode" / "Switch to light mode"
+- Primary Auth CTA Button (when signed out):
+  "Sign Up" (navigates to /auth)
+
+User Profile Menu (when signed in):
+- Avatar Initials: "JD"
+- User Display Name: "John Doe"
+- User Email: "john@example.com"
+- Menu Action: "Sign out"
+
+Mobile Navigation Drawer (on mobile devices):
+- Navigation Links:
+  - Open Resources
+  - Studio
+  - Websites
+  - Community
+  - Pricing
+- Appearance label with Theme Toggle button ("Toggle Theme")
+- Primary Button: "Sign Up"
+
+
+================================================================================
+3. HERO SECTION
+================================================================================
+
+Primary Headline:
+Start with an idea. Build something real.
+
+Supporting Paragraph / Subtitle:
+Explore ideas, build useful software, discover resources, and connect with what others are making.
+
+Creation & Search Console (Prompt Input):
+
+Mode Selector Tabs:
+1. Build App (Default active mode)
+2. Discover
+3. Projects
+4. Network
+
+Dynamic Placeholder Text (changes based on selected mode):
+- When "Build App" is selected:
+  "Describe an app, dashboard, or tool to build..."
+- When "Discover" is selected:
+  "Search open datasets, research papers, or toolkits..."
+- When "Projects" is selected:
+  "Search community projects, experiments, or tools..."
+- When "Network" is selected:
+  "Explore open contributor networks and collaboration groups..."
+
+Prompt Utility Controls:
+- Attach Reference Files Button:
+  Tooltip / Accessibility label: "Attach reference files (.pdf, .txt, .csv, .json, images)"
+  (Accepted formats: PDF, TXT, CSV, MD, JSON, PNG, JPG, JPEG, WEBP, GIF)
+- Attached File Display (when files are attached):
+  Shows file name and file size with a remove button:
+  "Remove attached file [filename]"
+- Voice Dictation Button:
+  Tooltip / Accessibility label: "Dictate with voice" / "Stop listening"
+  Active Dictation Status Indicator: "Listening..."
+- Dynamic Action Submit Button (changes based on selected mode):
+  - When "Build App" is selected: "Build in Studio"
+  - When "Discover" is selected: "Explore Resources"
+  - When "Projects" is selected: "Search Projects"
+  - When "Network" is selected: "Connect"
+
+Starter Suggestions Row:
+Label:
+Try starting with
+
+Suggestion Chips (clicking populates the prompt box):
+- "Dashboard"
+  Populates: "Build an interactive analytics dashboard for monitoring web performance and API metrics."
+- "Portfolio"
+  Populates: "Build a minimalist developer portfolio showcasing open source repositories and case studies."
+- "Directory"
+  Populates: "Build a curated directory of open source AI research datasets and developer tools."
+- "API tool"
+  Populates: "Build a lightweight API tester tool with request inspector, response viewer, and cURL export."
+
+
+================================================================================
+4. ECOSYSTEM INTRODUCTION — THE ARCHITECTURE
+================================================================================
+
+Section Kicker:
+The Architecture
+
+Section Heading:
+Three ways to start.
+
+Pathway 01:
+Number: 01
+Action / Verb: Explore
+Domain / Title: Open Resources
+Description:
+Verified research papers, open datasets, and technical standards.
+Action Link:
+Browse resources -> (links to /openresources)
+
+Pathway 02:
+Number: 02
+Action / Verb: Build
+Domain / Title: Studio
+Description:
+AI-assisted workspace to build functional web applications with exportable code.
+Action Link:
+Open Studio -> (links to /studio)
+
+Pathway 03:
+Number: 03
+Action / Verb: Connect
+Domain / Title: Projects & Community
+Description:
+Public project repository, fellowship initiatives, and open-source collaboration.
+Action Link:
+Explore projects -> (links to /projects)
+
+
+================================================================================
+5. OPEN RESOURCES — KNOWLEDGE INFRASTRUCTURE
+================================================================================
+
+Section Kicker:
+Knowledge Infrastructure
+
+Section Title:
+Open Resources
+
+Section Subheading (Editorial Serif):
+Find something worth building on.
+
+Section Description:
+A curated catalogue of verified research papers, open datasets, and developer toolkits.
+
+Header Action Button:
+Explore Open Resources -> (links to /openresources)
+
+Search Bar:
+Input Placeholder:
+Search resources...
+Button Label (appears when text is typed):
+Search
+
+Category Filter Buttons:
+- All (Active default)
+- Research
+- Datasets
+- Tools
+
+Resource Index Table:
+
+Column Headers:
+- Category
+- Resource Title
+- Publisher / Format
+- Action
+
+Resource Entry 1:
+Category Badge: Research Paper
+Title: Decentralized Intelligence in Open Innovation Networks
+Semantic Tags: #Open Innovation  #Collective Intelligence
+Publisher: Open Idea Research Group
+Format: PDF / Whitepaper
+
+Resource Entry 2:
+Category Badge: Open Dataset
+Title: Global Climate Adaptation & Urban Infrastructure Index
+Semantic Tags: #Geospatial  #Climate Tech
+Publisher: EcoSyz Public Data Lab
+Format: Parquet / CSV
+
+Resource Entry 3:
+Category Badge: Developer Toolkit
+Title: Next.js + Supabase Open Studio Application Template
+Semantic Tags: #Next.js  #React
+Publisher: Open Idea Labs
+Format: GitHub Repo
+
+Resource Entry 4:
+Category Badge: Open Dataset
+Title: Multimodal Indic Language Corpus for Low-Resource AI
+Semantic Tags: #NLP  #Multilingual
+Publisher: Open Language Collective
+Format: HuggingFace / Audio
+
+Section Table Footer:
+Status Indicator:
+● Prototype index preview · Verified repository metadata
+Catalogue Link:
+View all resources -> (links to /openresources)
+
+
+================================================================================
+6. STUDIO SHOWCASE — SCAFFOLDING & APPLICATION PREVIEW
+================================================================================
+
+Left Narrative Column:
+
+Section Kicker:
+Studio & Scaffolding
+
+Section Title:
+Build with Open Idea
+
+Section Subheading (Editorial Serif):
+From an idea to something you can use.
+
+Section Description:
+Describe what you want to build. Studio scaffolds functional web applications, configures responsive layouts, and outputs clean code you fully own.
+
+Key Value Points:
+- Clean Architecture: Semantic React components and standard CSS tokens without proprietary lock-in.
+- Direct Code Ownership: Export complete, production-grade source code anytime.
+- Production Ready: Pre-configured responsive layouts, accessible markup, and verified performance.
+
+Action Button:
+Explore Studio -> (links to /studio)
+
+Right Column: Interactive Application Canvas (Agrisense IoT Telemetry Preview):
+
+Window Chrome:
+Browser Address Bar: studio.openidea.world/workspace/agrisense-iot
+Window Badge: Generated Preview
+
+Canvas Interior Header:
+Application Name: Agrisense Telemetry
+Navigation Tabs:
+- Overview (Default active view)
+- Sensors
+- Export
+
+Tab 1: Overview View:
+Summary Metric Cards:
+- System Status: Nominal (12 nodes online)
+- Telemetry Rate: 1.0 Hz (Active mesh stream)
+- Code Output: Clean React (Zero lock-in)
+
+Telemetry Table:
+Table Headers: Node ID | Sensor Telemetry | Power | Status
+- Row 1: Node 01 | Moisture: 42% · Temp: 24.2°C | 88% Solar | ● Active
+- Row 2: Node 02 | Moisture: 38% · Temp: 25.8°C | 94% Solar | ● Active
+- Row 3: Hub 03 | Flow: 14.2 L/min · Valve: Open | Main Grid | ● Active
+
+Tab 2: Sensors View:
+Sensor Cards:
+- Node 01:
+  Zone: Zone A · Topsoil Array
+  Status: ● Active
+  Metrics:
+  - Soil Moisture: 42%
+  - Temperature: 24.2°C
+  - Power Source: 88% Solar
+- Node 02:
+  Zone: Zone B · Root Depth
+  Status: ● Active
+  Metrics:
+  - Soil Moisture: 38%
+  - Temperature: 25.8°C
+  - Power Source: 94% Solar
+- Hub 03:
+  Zone: Canopy & Valve Relay
+  Status: ● Active
+  Metrics:
+  - Irrigation Flow: 14.2 L/min
+  - Solenoid Valve: Open
+  - Power Source: Main Grid
+Sensors Summary Strip:
+- 12 nodes verified in mesh
+- Broadcast: 1.0 Hz nominal
+- Mesh protocol: Sub-GHz active
+
+Tab 3: Export View:
+Code Header:
+- File Name: AgrisenseTelemetry.jsx
+- Framework Badge: React 19 / JSX
+- Architecture Tag: CSS Tokens · Zero Proprietary Runtime
+Code Preview Explanatory Notice:
+Export complete, production-grade source code anytime. Runs on Next.js, Vite, or vanilla React.
+
+Canvas Footer:
+- Blueprint: Agrisense IoT Telemetry
+- Architecture: Next.js 14 · React 19 · CSS Tokens
+
+
+================================================================================
+7. BESPOKE WEBSITES — BESPOKE WEB ENGINEERING
+================================================================================
+
+Section Kicker:
+Bespoke Web Engineering
+
+Section Title:
+Need a website?
+
+Section Subheading (Editorial Serif):
+We can build it for you.
+
+Section Description:
+We design, engineer, and deploy production-grade websites for organizations that need a high-performance web presence.
+
+Capability Badges:
+- Custom React Architecture
+- Mobile & SEO Optimized
+- Full Code Ownership
+
+Action & Inquiry CTA:
+Primary Action Button:
+Start a Website Project -> (links to /websites)
+Supporting Subtext:
+Direct intake review with engineering leads
+
+
+================================================================================
+8. COMMUNITY & CONTRIBUTION
+================================================================================
+
+Section Title:
+Open ideas are better when they can move.
+
+Section Supporting Text:
+A shared commons to explore projects, contribute tools, and collaborate on real-world challenges.
+
+Community Pathways:
+
+Pathway 1:
+Title: Projects
+Description:
+Browse projects built on Open Idea or share what you have created.
+Action Link:
+Explore projects -> (links to /projects)
+
+Pathway 2:
+Title: Contribute
+Description:
+Help improve the platform, documentation, and tools.
+Action Link:
+View contribution guide -> (links to /contribute)
+
+Pathway 3:
+Title: Fellowship
+Description:
+Mentorship and project residency for students and independent builders.
+Action Link:
+Fellowship information -> (links to /intern-fellowship)
+
+Pathway 4:
+Title: Problems & Ideas
+Description:
+Submit a problem worth solving or propose an idea for others to explore.
+Action Link:
+View problems and ideas -> (links to /problems-and-ideas)
+
+
+================================================================================
+9. CLOSING CALL TO ACTION
+================================================================================
+
+Section Headline:
+Start with an idea. Build something real.
+
+Supporting Description:
+Start building in Studio, or explore verified open resources.
+
+Call to Action Buttons:
+- Primary Button:
+  Open Studio -> (links to /studio)
+- Secondary Link:
+  Browse open resources -> (links to /openresources)
+
+
+================================================================================
+10. SITE FOOTER
+================================================================================
+
+Column 1: Brand & Social Channels
+Brand Logo:
+Open idea (links to homepage)
+Brand Mission / Description:
+An open platform to research problems, build software, and share knowledge.
+
+Social & Community Channel Links:
+- Discord (https://discord.gg/4weahHXQYY)
+- LinkedIn (https://www.linkedin.com/company/ecosyz/)
+- X / Twitter (https://x.com/OpenIdeaOrg)
+- Instagram (https://www.instagram.com/openidea.ai_platform/)
+- GitHub (https://github.com/Sony17/Ecosyz)
+- Email (mailto:info@openidea.world)
+
+Column 2: Platform Links
+Column Header: Platform
+- Platform Capabilities (links to /features)
+- AI Studio (links to /studio)
+- Open Resources (links to /openresources)
+- Community (links to /community)
+- Bespoke Websites (links to /websites)
+- Pricing & Plans (links to /pricing)
+
+Column 3: Ecosystem Links
+Column Header: Ecosystem
+- About Open Idea (links to /about)
+- Contact & Inquiries (links to /contact)
+- Founder Contact (links to /founder-contact)
+- Newsletter (links to /newsletter)
+- Problems & Ideas (links to /problems-and-ideas)
+- Fellowship & Residency (links to /intern-fellowship)
+- Open Source Contribution (links to /contribute)
+- Strategic Partnerships (links to /partnership)
+- Careers (links to /careers)
+
+Column 4: Presence & Inquiries
+Column Header: Presence & Inquiries
+Contact Details:
+- Email: info@openidea.world
+- Phone: +91 81302 96940
+- Landline: 011 4119 3699
+- Office Address:
+  8125, 8th Floor, Gaur City Mall, Greater Noida West, UP 201318
+
+Feedback Action:
+Button: Send Feedback -> (links to /feedback)
+
+Bottom Utility & Legal Bar:
+Legal Policy Links:
+- Privacy Policy (links to /privacy)
+- Terms of Service (links to /terms)
+- Cookie Settings (links to /cookies)
+- Support Center (links to /support)
+
+Copyright Notice:
+© [Current Year] Open Idea. Built in India for global open innovation.
+
+
+================================================================================
+11. PROTOTYPE ACTION SIMULATION MODAL (Accessible via Prototype Navigation)
+================================================================================
+When clicking a navigation link or prompt submission that leads to a simulated
+or external production route, a verification modal displays:
+
+Header:
+Action Preserved: [Action Type / Navigation]
+Functional Verification Modal
+
+Body:
+- Label: Action Triggered
+- Value: [Name of triggered action]
+- Label: Target Route in Production
+- Badge: Route Verified
+- Value: [URL path e.g. /studio?description=...]
+- Label: Prompt Query Parameter (if prompt was entered)
+- Label: Session Storage Payload (sessionStorage.uploadedFileContext) (if files attached)
+- Operational Note:
+  "In the live Next.js application, this interaction seamlessly transitions to [destination]. All parameter states and context are fully preserved."
+
+Buttons:
+- "Stay in Mockup"
+- "Test Live Route"

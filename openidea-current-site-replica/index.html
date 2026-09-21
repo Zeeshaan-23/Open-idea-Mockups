@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Open Idea Replica · Desktop &amp; Mobile Comparison Workspace</title>
+  <link rel="icon" href="assets/icons/favicon.ico" type="image/x-icon">
+
+  <!-- Google Fonts: Space Grotesk & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       DEVELOPMENT COMPARISON WORKSPACE STYLES
+       This outer frame is development-only. The actual website replica is
+       contained inside site.html and loaded identically into both viewports.
+       ========================================================================== */
+    :root {
+      --bg-workbench: #070c0f;
+      --bg-panel: #0d1519;
+      --border-panel: rgba(255, 255, 255, 0.08);
+      --accent-emerald: #34d399;
+      --accent-cyan: #22d3ee;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-workbench);
+      color: var(--text-main);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: auto;
+    }
+
+    /* Workbench Top Navigation Bar */
+    .workbench-header {
+      background-color: var(--bg-panel);
+      border-bottom: 1px solid var(--border-panel);
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(8px);
+    }
+
+    .workbench-branding {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .workbench-logo {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+    }
+
+    .workbench-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.125rem;
+      letter-spacing: -0.02em;
+      background: linear-gradient(to right, var(--accent-emerald), var(--accent-cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .workbench-badge {
+      background: rgba(52, 211, 153, 0.15);
+      border: 1px solid rgba(52, 211, 153, 0.3);
+      color: var(--accent-emerald);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .workbench-source-link {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: color 0.15s;
+    }
+
+    .workbench-source-link:hover {
+      color: var(--accent-cyan);
+    }
+
+    /* Workbench Controls */
+    .workbench-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .zoom-group {
+      display: flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-panel);
+      border-radius: 6px;
+      padding: 2px;
+    }
+
+    .zoom-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 0.35rem 0.65rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .zoom-btn:hover {
+      color: #ffffff;
+    }
+
+    .zoom-btn.active {
+      background: rgba(52, 211, 153, 0.2);
+      color: var(--accent-emerald);
+      font-weight: 600;
+    }
+
+    .btn-action-tool {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border-panel);
+      color: var(--text-main);
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .btn-action-tool:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-action-tool.active-sync {
+      border-color: rgba(52, 211, 153, 0.4);
+      background: rgba(52, 211, 153, 0.12);
+      color: #34d399;
+    }
+
+    .sync-indicator {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: var(--accent-emerald);
+      box-shadow: 0 0 6px var(--accent-emerald);
+      display: inline-block;
+      transition: background-color 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-action-tool:not(.active-sync) .sync-indicator {
+      background-color: var(--text-muted);
+      box-shadow: none;
+    }
+
+    /* Comparison Workspace Area */
+    .comparison-workspace {
+      flex: 1;
+      padding: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 2rem;
+      overflow-x: auto;
+      transform-origin: top center;
+      transition: transform 0.2s ease;
+    }
+
+    /* Viewport Container Columns */
+    .viewport-column {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      flex-shrink: 0;
+    }
+
+    /* Header Bar above each viewport */
+    .viewport-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.5rem 0.75rem;
+      background: var(--bg-panel);
+      border: 1px solid var(--border-panel);
+      border-radius: 8px;
+    }
+
+    .viewport-info {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .status-indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-emerald);
+      box-shadow: 0 0 8px var(--accent-emerald);
+    }
+
+    .viewport-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 0.875rem;
+      letter-spacing: 0.05em;
+      color: #ffffff;
+    }
+
+    .viewport-dims {
+      font-family: monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.05);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+    }
+
+    /* Frame Wrappers */
+    .frame-wrapper {
+      border: 1px solid var(--border-panel);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+      background: #000000;
+    }
+
+    /* Exact Desktop Viewport: 1440px */
+    .desktop-frame-container {
+      width: 1440px;
+    }
+
+    .desktop-frame-container iframe {
+      width: 1440px;
+      height: 900px;
+      border: none;
+      display: block;
+      background: #0c2321;
+    }
+
+    /* Exact Mobile Viewport: 390px */
+    .mobile-frame-container {
+      width: 390px;
+    }
+
+    .mobile-frame-container iframe {
+      width: 390px;
+      height: 844px;
+      border: none;
+      display: block;
+      background: #0c2321;
+    }
+
+    /* Footer Note in Workbench */
+    .workbench-footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-panel);
+      background: var(--bg-panel);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================================================
+       WORKBENCH CONTROL HEADER
+       ======================================================================== -->
+  <header class="workbench-header">
+    <div class="workbench-branding">
+      <img src="assets/logos/logo.png" alt="Open Idea" class="workbench-logo">
+      <h1 class="workbench-title">OPEN IDEA REPLICA</h1>
+      <span class="workbench-badge">Side-by-Side Comparison</span>
+      <a class="workbench-source-link" href="https://openidea.world/" target="_blank" rel="noopener noreferrer" title="View Source of Truth">
+        <span>Production: openidea.world</span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+          <polyline points="15 3 21 3 21 9"></polyline>
+          <line x1="10" y1="14" x2="21" y2="3"></line>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Zoom & Layout Controls -->
+    <div class="workbench-controls">
+      <!-- Sync Toggle Button -->
+      <button type="button" class="btn-action-tool active-sync" id="btn-toggle-sync" title="Toggle synchronization between desktop and mobile views">
+        <span class="sync-indicator"></span>
+        <span id="sync-text">Sync: ON</span>
+      </button>
+
+      <!-- Scale Presets -->
+      <div class="zoom-group" aria-label="Scale controls">
+        <button type="button" class="zoom-btn active" data-scale="auto" id="btn-scale-fit">Fit Screen</button>
+        <button type="button" class="zoom-btn" data-scale="1" id="btn-scale-100">100%</button>
+        <button type="button" class="zoom-btn" data-scale="0.75" id="btn-scale-75">75%</button>
+        <button type="button" class="zoom-btn" data-scale="0.65" id="btn-scale-65">65%</button>
+        <button type="button" class="zoom-btn" data-scale="0.5" id="btn-scale-50">50%</button>
+      </div>
+
+      <!-- Reload Frames Tool -->
+      <button type="button" class="btn-action-tool" id="btn-refresh-frames" title="Reload both frames">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="23 4 23 10 17 10"></polyline>
+          <polyline points="1 20 1 14 7 14"></polyline>
+          <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+        </svg>
+        <span>Reload Views</span>
+      </button>
+
+      <!-- Open Standalone Site Link -->
+      <a class="btn-action-tool" href="site.html" target="_blank" rel="noopener noreferrer" title="Open full-page replica in a new tab">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M15 3h6v6"></path>
+          <path d="M10 14L21 3"></path>
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+        </svg>
+        <span>Open Standalone (site.html)</span>
+      </a>
+
+      <!-- Open Pricing Workbench Link -->
+      <a class="btn-action-tool" href="pricing/index.html" title="Open Pricing Comparison Workbench">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="12" y1="1" x2="12" y2="23"></line>
+          <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+        </svg>
+        <span>Pricing Workbench</span>
+      </a>
+
+      <!-- Open Auth Workbench Link -->
+      <a class="btn-action-tool" href="auth/index.html" title="Open Auth Comparison Workbench">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+          <circle cx="9" cy="7" r="4"></circle>
+          <path d="M19 8v6"></path>
+          <path d="M22 11h-6"></path>
+        </svg>
+        <span>Auth Workbench</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       SIDE-BY-SIDE VIEWPORT WORKSPACE
+       Left: Exactly 1440px Desktop Viewport
+       Right: Exactly 390px Mobile Viewport
+       Both load the exact same responsive site.html file!
+       ======================================================================== -->
+  <main class="comparison-workspace" id="comparison-workspace">
+
+    <!-- DESKTOP VIEWPORT: 1440px -->
+    <div class="viewport-column desktop-frame-container">
+      <div class="viewport-header">
+        <div class="viewport-info">
+          <span class="status-indicator"></span>
+          <span class="viewport-name">DESKTOP</span>
+        </div>
+        <span class="viewport-dims">1440px &times; 900px</span>
+      </div>
+      <div class="frame-wrapper">
+        <iframe id="desktop-iframe" name="desktop-frame" src="site.html?frame=desktop-frame&v=2" title="Open Idea Desktop Viewport (1440px)"></iframe>
+      </div>
+    </div>
+
+    <!-- MOBILE VIEWPORT: 390px -->
+    <div class="viewport-column mobile-frame-container">
+      <div class="viewport-header">
+        <div class="viewport-info">
+          <span class="status-indicator"></span>
+          <span class="viewport-name">MOBILE</span>
+        </div>
+        <span class="viewport-dims">390px &times; 844px</span>
+      </div>
+      <div class="frame-wrapper">
+        <iframe id="mobile-iframe" name="mobile-frame" src="site.html?frame=mobile-frame&v=2" title="Open Idea Mobile Viewport (390px)"></iframe>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Workbench Footer Notice -->
+  <footer class="workbench-footer">
+    Development Comparison Workbench &bull; Synchronized Scrolling &amp; Interaction &bull; Both frames execute the identical responsive <code>site.html</code> with Vanilla HTML, CSS, and JS
+  </footer>
+
+  <script>
+    // Workbench Zoom & Scaling Controller
+    const workspace = document.getElementById('comparison-workspace');
+    const zoomButtons = document.querySelectorAll('.zoom-btn');
+    const refreshBtn = document.getElementById('btn-refresh-frames');
+    const syncToggleBtn = document.getElementById('btn-toggle-sync');
+    const syncText = document.getElementById('sync-text');
+    const desktopIframe = document.getElementById('desktop-iframe');
+    const mobileIframe = document.getElementById('mobile-iframe');
+
+    let currentScaleMode = 'auto';
+    let isSyncEnabled = true;
+
+    // Toggle Sync on/off
+    if (syncToggleBtn) {
+      syncToggleBtn.addEventListener('click', () => {
+        isSyncEnabled = !isSyncEnabled;
+        syncToggleBtn.classList.toggle('active-sync', isSyncEnabled);
+        if (syncText) {
+          syncText.textContent = isSyncEnabled ? 'Sync: ON' : 'Sync: OFF';
+        }
+      });
+    }
+
+    // Bi-directional message relay between Desktop and Mobile iframes
+    window.addEventListener('message', (event) => {
+      if (!isSyncEnabled) return;
+      const data = event.data;
+      if (!data || !data.type) return;
+
+      if (data.sourceId === 'desktop-frame') {
+        if (mobileIframe && mobileIframe.contentWindow) {
+          mobileIframe.contentWindow.postMessage(data, '*');
+        }
+      } else if (data.sourceId === 'mobile-frame') {
+        if (desktopIframe && desktopIframe.contentWindow) {
+          desktopIframe.contentWindow.postMessage(data, '*');
+        }
+      }
+    });
+
+    function calculateFitScale() {
+      // Total unscaled width of comparison workspace:
+      // Desktop frame (1440px) + gap (32px) + Mobile frame (390px) + padding (~64px) = ~1926px
+      const totalContentWidth = 1926;
+      const availableWidth = window.innerWidth - 48;
+
+      if (availableWidth >= totalContentWidth) {
+        return 1;
+      }
+      return Math.max(0.4, Math.min(1, availableWidth / totalContentWidth));
+    }
+
+    function applyScale(scaleMode) {
+      currentScaleMode = scaleMode;
+      let scale = 1;
+
+      if (scaleMode === 'auto') {
+        scale = calculateFitScale();
+      } else {
+        scale = parseFloat(scaleMode);
+      }
+
+      if (scale === 1) {
+        workspace.style.transform = 'none';
+        workspace.style.marginBottom = '0';
+      } else {
+        workspace.style.transform = `scale(${scale})`;
+        // Compensate for transform scale height reduction
+        const heightReduction = (1 - scale) * 960;
+        workspace.style.marginBottom = `-${heightReduction}px`;
+      }
+
+      // Update button active states
+      zoomButtons.forEach(btn => {
+        const btnScale = btn.getAttribute('data-scale');
+        btn.classList.toggle('active', btnScale === scaleMode);
+      });
+    }
+
+    // Set up button event listeners
+    zoomButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        applyScale(btn.getAttribute('data-scale'));
+      });
+    });
+
+    // Window resize handler for auto-fit
+    window.addEventListener('resize', () => {
+      if (currentScaleMode === 'auto') {
+        applyScale('auto');
+      }
+    });
+
+    // Refresh both frames
+    if (refreshBtn) {
+      refreshBtn.addEventListener('click', () => {
+        if (desktopIframe) desktopIframe.src = 'site.html?frame=desktop-frame&r=' + Date.now();
+        if (mobileIframe) mobileIframe.src = 'site.html?frame=mobile-frame&r=' + Date.now();
+      });
+    }
+
+    // Initial scale calculation on load
+    window.addEventListener('DOMContentLoaded', () => {
+      applyScale('auto');
+    });
+  </script>
+</body>
+</html>

@@ -324,7 +324,7 @@
   font-size: 0.8125rem;
   line-height: 1.45;
   margin-bottom: 1.25rem;
-  animation: authFadeIn 0.2s ease-out;
+  animation: none !important;
 }
 
 .auth-banner-error {
@@ -687,7 +687,7 @@
   justify-content: center;
   padding: 1.25rem;
   z-index: 200;
-  animation: authFadeIn 0.15s ease-out;
+  animation: none !important;
 }
 
 .auth-modal-card {
@@ -699,7 +699,7 @@
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
   padding: 1.75rem;
   box-sizing: border-box;
-  animation: authScaleUp 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: none !important;
 }
 
 [data-theme='dark'] .auth-modal-card {

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Open Idea About Replica · Desktop &amp; Mobile Comparison Workspace</title>
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+
+  <!-- Google Fonts: Space Grotesk & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       DEVELOPMENT COMPARISON WORKSPACE STYLES - ABOUT PAGE
+       ========================================================================== */
+    :root {
+      --bg-workbench: #070c0f;
+      --bg-panel: #0d1519;
+      --border-panel: rgba(255, 255, 255, 0.08);
+      --accent-emerald: #34d399;
+      --accent-cyan: #22d3ee;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-workbench);
+      color: var(--text-main);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: auto;
+    }
+
+    /* Workbench Top Navigation Bar */
+    .workbench-header {
+      background-color: var(--bg-panel);
+      border-bottom: 1px solid var(--border-panel);
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(8px);
+    }
+
+    .workbench-branding {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .workbench-logo {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+    }
+
+    .workbench-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.125rem;
+      letter-spacing: -0.02em;
+      background: linear-gradient(to right, var(--accent-emerald), var(--accent-cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .workbench-badge {
+      background: rgba(52, 211, 153, 0.15);
+      border: 1px solid rgba(52, 211, 153, 0.3);
+      color: var(--accent-emerald);
+      padding: 0.2rem 0.6rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .workbench-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-control {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-panel);
+      color: var(--text-main);
+      padding: 0.4rem 0.75rem;
+      border-radius: 0.375rem;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.15s ease;
+      text-decoration: none;
+    }
+
+    .btn-control:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-control.active {
+      background: rgba(52, 211, 153, 0.2);
+      border-color: rgba(52, 211, 153, 0.4);
+      color: var(--accent-emerald);
+    }
+
+    .btn-action-primary {
+      background: linear-gradient(to right, var(--accent-emerald), var(--accent-cyan));
+      color: #0f172a;
+      font-weight: 600;
+      border: none;
+    }
+
+    .btn-action-primary:hover {
+      opacity: 0.95;
+      transform: translateY(-1px);
+    }
+
+    /* Comparison Stage Area */
+    .comparison-stage {
+      flex: 1;
+      padding: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 2rem;
+      overflow-x: auto;
+      transform-origin: top center;
+      transition: transform 0.2s ease;
+    }
+
+    /* Device Preview Container */
+    .device-column {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      flex-shrink: 0;
+    }
+
+    .device-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.5rem 0.75rem;
+      background: var(--bg-panel);
+      border: 1px solid var(--border-panel);
+      border-radius: 8px;
+    }
+
+    .device-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-emerald);
+      box-shadow: 0 0 8px var(--accent-emerald);
+    }
+
+    .device-dimension {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-family: monospace;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 0.15rem 0.4rem;
+      border-radius: 0.25rem;
+    }
+
+    /* Device Frames */
+    .viewport-frame {
+      border: 1px solid var(--border-panel);
+      border-radius: 12px;
+      background-color: #000;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+      overflow: hidden;
+    }
+
+    /* Exact Desktop Viewport: 1440px */
+    .desktop-col {
+      width: 1440px;
+    }
+
+    .desktop-frame iframe {
+      width: 1440px;
+      height: 900px;
+      border: none;
+      display: block;
+      background: #0c2321;
+    }
+
+    /* Exact Mobile Viewport: 390px */
+    .mobile-col {
+      width: 390px;
+    }
+
+    .mobile-frame iframe {
+      width: 390px;
+      height: 844px;
+      border: none;
+      display: block;
+      background: #0c2321;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Workbench Top Bar -->
+  <header class="workbench-header">
+    <div class="workbench-branding">
+      <img src="../assets/logos/logo.png" alt="Open Idea" class="workbench-logo">
+      <span class="workbench-title">Open Idea Replica Workbench</span>
+      <span class="workbench-badge">About Page Replica</span>
+    </div>
+
+    <!-- Zoom & Utility Controls -->
+    <div class="workbench-controls">
+      <span style="font-size:0.75rem; color:var(--text-muted); margin-right:0.25rem;">Zoom:</span>
+      <button class="btn-control active" data-scale="auto" id="btn-zoom-fit">Fit Screen</button>
+      <button class="btn-control" data-scale="1.0" id="btn-zoom-100">100%</button>
+      <button class="btn-control" data-scale="0.75" id="btn-zoom-75">75%</button>
+      <button class="btn-control" data-scale="0.65" id="btn-zoom-65">65%</button>
+      <button class="btn-control" data-scale="0.5" id="btn-zoom-50">50%</button>
+      <button class="btn-control" id="btn-reload" title="Reload Views">↻ Reload</button>
+      <a href="site.html" target="_blank" class="btn-control btn-action-primary">↗ Open Standalone</a>
+    </div>
+  </header>
+
+  <!-- Side-by-Side Comparison Workspace -->
+  <main class="comparison-stage" id="comparison-stage">
+    
+    <!-- LEFT: 1440px Desktop Column -->
+    <div class="device-column desktop-col">
+      <div class="device-header">
+        <div class="device-name">
+          <span class="status-dot"></span>
+          <span>DESKTOP VIEWPORT</span>
+        </div>
+        <span class="device-dimension">1440px &times; 900px</span>
+      </div>
+      <div class="viewport-frame desktop-frame">
+        <iframe src="site.html" id="iframe-desktop" title="Open Idea About Page - Desktop 1440px"></iframe>
+      </div>
+    </div>
+
+    <!-- RIGHT: 390px Mobile Column -->
+    <div class="device-column mobile-col">
+      <div class="device-header">
+        <div class="device-name">
+          <span class="status-dot"></span>
+          <span>MOBILE VIEWPORT</span>
+        </div>
+        <span class="device-dimension">390px &times; 844px</span>
+      </div>
+      <div class="viewport-frame mobile-frame">
+        <iframe src="site.html" id="iframe-mobile" title="Open Idea About Page - Mobile 390px"></iframe>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    // Workbench Zoom & Resize Controller
+    document.addEventListener('DOMContentLoaded', () => {
+      const stage = document.getElementById('comparison-stage');
+      const zoomButtons = document.querySelectorAll('[data-scale]');
+      const btnReload = document.getElementById('btn-reload');
+      const iframeDesktop = document.getElementById('iframe-desktop');
+      const iframeMobile = document.getElementById('iframe-mobile');
+
+      let currentScaleMode = 'auto';
+
+      function calculateFitScale() {
+        // Desktop (1440) + Mobile (390) + gap (32) + padding (48) = 1910px
+        const totalContentWidth = 1910;
+        const availableWidth = window.innerWidth - 48;
+        if (availableWidth >= totalContentWidth) return 1;
+        return Math.max(0.4, Math.min(1, availableWidth / totalContentWidth));
+      }
+
+      function applyScale(scaleMode) {
+        currentScaleMode = scaleMode;
+        let scale = 1;
+
+        if (scaleMode === 'auto') {
+          scale = calculateFitScale();
+        } else {
+          scale = parseFloat(scaleMode);
+        }
+
+        if (scale === 1) {
+          stage.style.transform = 'none';
+          stage.style.marginBottom = '0';
+        } else {
+          stage.style.transform = `scale(${scale})`;
+          const heightReduction = (1 - scale) * 960;
+          stage.style.marginBottom = `-${heightReduction}px`;
+        }
+
+        // Update button states
+        zoomButtons.forEach(btn => {
+          btn.classList.toggle('active', btn.getAttribute('data-scale') === scaleMode);
+        });
+      }
+
+      zoomButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          applyScale(btn.getAttribute('data-scale'));
+        });
+      });
+
+      btnReload.addEventListener('click', () => {
+        iframeDesktop.src = 'site.html?r=' + Date.now();
+        iframeMobile.src = 'site.html?r=' + Date.now();
+      });
+
+      // Initialize
+      applyScale('auto');
+
+      window.addEventListener('resize', () => {
+        if (currentScaleMode === 'auto') {
+          applyScale('auto');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
