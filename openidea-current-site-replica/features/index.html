@@ -368,10 +368,19 @@
       // Initialize
       applyScale('auto');
 
-      window.addEventListener('resize', () => {
-        if (currentScaleMode === 'auto') {
-          applyScale('auto');
-        }
+      // Forward internal navigation to main workbench
+      window.addEventListener('message', (event) => {
+        const data = event.data;
+        if (!data || data.type !== 'WORKBENCH_NAVIGATE') return;
+        let page = '';
+        const path = data.pathname || '';
+        if (path.includes('/about')) page = 'about';
+        else if (path.includes('/features')) page = 'features';
+        else if (path.includes('/pricing')) page = 'pricing';
+        else if (path.includes('/auth')) page = 'auth';
+        
+        const url = '../index.html' + (page ? '?page=' + page : '') + (data.search || '');
+        window.location.href = url;
       });
     });
   </script>
