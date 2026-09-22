@@ -54,38 +54,11 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const query = searchInput.value.trim();
       if (query) {
-        // Production behavior: router.push('/openresources?q=' + encodeURIComponent(query))
-        alert(`[Open Idea Discovery Engine]\n\nSearching open-source solutions for:\n"${query}"\n\nNavigating to /openresources?q=${encodeURIComponent(query)}`);
+        // Production Next.js behavior: router.push('/openresources?q=' + encodeURIComponent(query))
+        window.location.href = '/openresources?q=' + encodeURIComponent(query);
       } else {
         searchInput.focus();
-        searchInput.style.boxShadow = '0 0 0 2px rgba(239, 68, 68, 0.4), 0 0 20px rgba(239, 68, 68, 0.2)';
-        setTimeout(() => {
-          searchInput.style.boxShadow = '';
-        }, 1200);
       }
-    });
-  }
-
-  // 3. PWA Install Prompt
-  const pwaToast = document.getElementById('pwa-toast');
-  const pwaDismissBtn = document.getElementById('pwa-dismiss-btn');
-  const pwaInstallBtn = document.getElementById('pwa-install-btn');
-
-  if (pwaToast && pwaDismissBtn) {
-    pwaDismissBtn.addEventListener('click', () => {
-      pwaToast.style.transition = 'all 0.3s ease';
-      pwaToast.style.opacity = '0';
-      pwaToast.style.transform = 'translate(-50%, 20px)';
-      setTimeout(() => {
-        pwaToast.style.display = 'none';
-      }, 300);
-    });
-  }
-
-  if (pwaToast && pwaInstallBtn) {
-    pwaInstallBtn.addEventListener('click', () => {
-      alert('Open Idea web app added to your home screen!');
-      pwaToast.style.display = 'none';
     });
   }
 });
