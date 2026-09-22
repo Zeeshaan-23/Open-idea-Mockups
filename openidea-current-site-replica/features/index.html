@@ -10,8 +10,8 @@
     }
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Open Idea About Replica · Desktop &amp; Mobile Comparison Workspace</title>
-  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  <title>Open Idea Features Replica · Desktop &amp; Mobile Comparison Workspace</title>
+  <link rel="icon" href="../assets/icons/favicon.ico" type="image/x-icon">
 
   <!-- Google Fonts: Space Grotesk & Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,7 +20,7 @@
 
   <style>
     /* ==========================================================================
-       DEVELOPMENT COMPARISON WORKSPACE STYLES - ABOUT PAGE
+       DEVELOPMENT COMPARISON WORKSPACE STYLES - FEATURES PAGE
        ========================================================================== */
     :root {
       --bg-workbench: #070c0f;
@@ -236,6 +236,15 @@
       display: block;
       background: #0c2321;
     }
+
+    .workbench-footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-panel);
+      background: var(--bg-panel);
+    }
   </style>
 </head>
 <body>
@@ -245,7 +254,7 @@
     <div class="workbench-branding">
       <img src="../assets/logos/logo.png" alt="Open Idea" class="workbench-logo">
       <span class="workbench-title">Open Idea Replica Workbench</span>
-      <span class="workbench-badge">About Page Replica</span>
+      <span class="workbench-badge">Features Page Replica</span>
     </div>
 
     <!-- Zoom & Utility Controls -->
@@ -258,7 +267,7 @@
       <button class="btn-control" data-scale="0.5" id="btn-zoom-50">50%</button>
       <button class="btn-control" id="btn-reload" title="Reload Views">↻ Reload</button>
       <a href="site.html" target="_blank" class="btn-control btn-action-primary">↗ Open Standalone</a>
-      <a href="../features/index.html" class="btn-control">Features Workbench</a>
+      <a href="../about/index.html" class="btn-control">About Workbench</a>
       <a href="../index.html" class="btn-control">← Home Workbench</a>
     </div>
   </header>
@@ -276,7 +285,7 @@
         <span class="device-dimension">1440px &times; 900px</span>
       </div>
       <div class="viewport-frame desktop-frame">
-        <iframe src="site.html" id="iframe-desktop" title="Open Idea About Page - Desktop 1440px"></iframe>
+        <iframe src="site.html" id="iframe-desktop" title="Open Idea Features Page - Desktop 1440px"></iframe>
       </div>
     </div>
 
@@ -290,11 +299,16 @@
         <span class="device-dimension">390px &times; 844px</span>
       </div>
       <div class="viewport-frame mobile-frame">
-        <iframe src="site.html" id="iframe-mobile" title="Open Idea About Page - Mobile 390px"></iframe>
+        <iframe src="site.html" id="iframe-mobile" title="Open Idea Features Page - Mobile 390px"></iframe>
       </div>
     </div>
 
   </main>
+
+  <!-- Workbench Footer Notice -->
+  <footer class="workbench-footer">
+    Features Comparison Workbench &bull; Independent Scrolling &bull; Both frames execute the identical responsive <code>features/site.html</code>
+  </footer>
 
   <script>
     // Workbench Zoom & Resize Controller

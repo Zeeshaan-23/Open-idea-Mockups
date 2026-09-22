@@ -7,7 +7,7 @@
   <title>Open Idea</title>
   <meta name="description" content="The World's Open Innovation Infrastructure">
   <meta name="application-name" content="Open Idea">
-  <link rel="icon" href="../favicon.ico" type="image/x-icon" sizes="48x48">
+  <link rel="icon" href="../assets/icons/favicon.ico" type="image/x-icon" sizes="48x48">
 
   <!-- Google Fonts: Space Grotesk & Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,15 +28,15 @@
   <header class="site-header">
     <div class="header-container">
       <!-- Brand Logo -->
-      <a class="brand-logo" href="../site.html">
+      <a class="brand-logo" href="../site.html" aria-label="Open Idea Home">
         <img class="logo-img" src="../assets/logos/logo.png" alt="Open Idea Logo" width="36" height="36">
         <span class="brand-name">Open Idea</span>
       </a>
 
-      <!-- Desktop Nav (lg:flex) -->
+      <!-- Desktop Nav (hidden on mobile, lg:flex) -->
       <nav class="desktop-nav" aria-label="Main Navigation">
-        <a class="nav-link active-page" href="site.html" aria-current="page">About</a>
-        <a class="nav-link" href="../features/site.html">Features</a>
+        <a class="nav-link" href="../about/site.html">About</a>
+        <a class="nav-link active-page" href="site.html" aria-current="page">Features</a>
         <a class="nav-link" href="../pricing/site.html">Pricing</a>
         <a class="btn-app-studio" href="/studio">App Studio</a>
       </nav>
@@ -44,7 +44,7 @@
       <!-- Right Header Actions -->
       <div class="header-right">
         <!-- Mobile User Quick Sign-in (md:hidden) -->
-        <a class="mobile-auth-btn" href="../auth/site.html?redirect=%2Fabout" aria-label="Sign up or sign in">
+        <a class="mobile-auth-btn" href="../auth/site.html?redirect=%2Ffeatures" aria-label="Sign up or sign in">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
             <circle cx="9" cy="7" r="4"></circle>
@@ -55,7 +55,7 @@
 
         <!-- Desktop Action Buttons (hidden md:flex) -->
         <div class="desktop-actions">
-          <a class="btn-sign-in" href="../auth/site.html?redirect=%2Fabout">Sign In</a>
+          <a class="btn-sign-in" href="../auth/site.html?redirect=%2Ffeatures">Sign In</a>
           <a class="link-feedback" href="/feedback">Feedback</a>
           <span class="badge-beta">BETA</span>
         </div>
@@ -71,8 +71,8 @@
 
     <!-- Mobile Nav Dropdown Panel -->
     <div id="mobile-nav" class="mobile-nav-panel" aria-label="Mobile Navigation">
-      <a class="mobile-link active-page" href="site.html" aria-current="page">About</a>
-      <a class="mobile-link" href="../features/site.html">Features</a>
+      <a class="mobile-link" href="../about/site.html">About</a>
+      <a class="mobile-link active-page" href="site.html" aria-current="page">Features</a>
       <a class="mobile-link" href="../pricing/site.html">Pricing</a>
       <a class="mobile-btn-full" href="/studio">App Studio</a>
       <div class="mobile-feedback-row">
@@ -81,16 +81,16 @@
           <span class="badge-beta">BETA</span>
         </div>
       </div>
-      <a class="mobile-btn-full" href="../auth/site.html?redirect=%2Fabout">Sign In</a>
+      <a class="mobile-btn-full" href="../auth/site.html?redirect=%2Ffeatures">Sign In</a>
     </div>
   </header>
 
   <!-- ========================================================================
-       MAIN HERO SECTION (LIVE ABOUT PAGE)
+       MAIN FEATURES SECTION
        ======================================================================== -->
   <main class="main-content">
-    <section class="about-hero-section">
-      <!-- Background Globe and Radial Cyan Blur -->
+    <section class="features-hero-section">
+      <!-- Background Globe & Radial Emerald Glow -->
       <div class="hero-bg-layer">
         <img class="hero-globe-img" src="../assets/images/hero-globe.png" alt="Digital Globe Background" loading="eager">
         <div class="hero-radial-glow"></div>
@@ -107,58 +107,73 @@
       </div>
 
       <!-- Content Container -->
-      <div class="hero-content-wrapper">
-        <div class="hero-container">
-          <div class="hero-grid">
-            <div class="hero-col">
-              <!-- Headline -->
-              <h1 class="hero-title">
-                <span class="hero-title-prefix">The future of</span>
-                <span class="hero-title-gradient">INNOVATION</span>
-              </h1>
+      <div class="features-content-wrapper">
+        <div class="features-container">
+          <div class="features-center-stage">
+            
+            <!-- Section Heading Block -->
+            <div class="features-header-text">
+              <h1 class="features-title">Features</h1>
+              <p class="features-subtitle">Everything you need to innovate, collaborate, and build the future</p>
+            </div>
 
-              <!-- Subtitle -->
-              <p class="hero-subtitle">The World's Open Innovation Infrastructure</p>
-
-              <!-- Search Bar & Discover Button -->
-              <div class="search-form-wrapper">
-                <form class="search-form" id="about-search-form">
-                  <div class="search-input-group">
-                    <div class="search-icon-wrapper">
-                      <svg class="search-icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
-                      </svg>
-                    </div>
-                    <input type="text" id="about-search-input" placeholder="Search problems, ideas, or open-source solutions." class="search-input" value="">
-                    <button type="submit" class="btn-discover">Discover</button>
+            <!-- 3 Core Feature Cards Grid -->
+            <div class="features-cards-wrapper">
+              <div class="features-cards-grid">
+                
+                <!-- Card 1: Resources -->
+                <a class="feature-card card-resources" href="/openresources">
+                  <div class="card-icon">📚</div>
+                  <h2 class="card-title">Resources</h2>
+                  <p class="card-desc">Access a vast collection of open-source resources including papers, datasets, code, models, hardware, and videos from multiple providers.</p>
+                  <div class="card-action-pill pill-resources">
+                    <span>Explore Resources</span>
                   </div>
-                </form>
-              </div>
+                </a>
 
-              <!-- 3 CTA Buttons -->
-              <div class="hero-cta-group">
-                <a class="btn-cta-primary" href="/projects">Build App</a>
-                <a class="btn-cta-secondary" href="/community">Join Community</a>
-                <a class="btn-cta-tertiary" href="/projects">View Projects</a>
+                <!-- Card 2: Projects -->
+                <a class="feature-card card-projects" href="/projects">
+                  <div class="card-icon">🚀</div>
+                  <h2 class="card-title">Projects</h2>
+                  <p class="card-desc">Discover and explore innovative open-source projects built by the community. Share your own projects and collaborate with others.</p>
+                  <div class="card-action-pill pill-projects">
+                    <span>Explore Projects</span>
+                  </div>
+                </a>
+
+                <!-- Card 3: Community -->
+                <a class="feature-card card-community" href="/community">
+                  <div class="card-icon">👥</div>
+                  <h2 class="card-title">Community</h2>
+                  <p class="card-desc">Join a vibrant community of innovators, developers, and creators. Connect, collaborate, and grow together.</p>
+                  <div class="card-action-pill pill-community">
+                    <span>Explore Community</span>
+                  </div>
+                </a>
+
               </div>
             </div>
+
+            <!-- Platform Banner Card ("All Features, One Platform") -->
+            <div class="platform-banner-wrapper">
+              <div class="platform-banner-card">
+                <h2 class="platform-banner-title">All Features, One Platform</h2>
+                <p class="platform-banner-desc">Open Idea brings together resources, projects, and community in one unified platform. Whether you're searching for datasets, exploring projects, or connecting with innovators, everything you need is right here.</p>
+                <div class="platform-banner-buttons">
+                  <a class="btn-chat-search" href="/chat">Try Chat Search</a>
+                  <a class="btn-learn-more" href="../about/site.html">Learn More</a>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
 
-      <!-- Bottom Separator Line -->
+      <!-- Bottom Dividing Line -->
       <div class="hero-bottom-divider"></div>
-
-      <!-- Bottom-Right Floating Whitepaper Button -->
-      <div class="bottom-right-whitepaper">
-        <a class="btn-whitepaper" href="/researchwhitepaper">
-          <i class="fas fa-file-alt"></i>
-          <span>Research Whitepaper</span>
-        </a>
-      </div>
     </section>
   </main>
-
 
   <!-- Divider Line -->
   <div class="footer-divider-line"></div>
