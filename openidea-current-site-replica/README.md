@@ -83,23 +83,35 @@ No React, Next.js, TypeScript, Vite, Tailwind, or external component libraries.
 
 ---
 
-## Desktop + Mobile Synchronized Comparison Workspace
+## Desktop + Mobile Comparison Workspace & Permanent Invariant
 
 The primary entry point `index.html` implements the side-by-side comparison workbench:
 - **Left Viewport**: Desktop viewport at exactly **1440px × 900px**.
 - **Right Viewport**: Mobile viewport at exactly **390px × 844px**.
-- **Single Source of Truth**: Both viewports load the exact same responsive file `site.html`, sharing `styles.css` and `script.js`.
-- **Bi-Directional Real-Time Synchronization**:
-  - **Scroll Sync**: Scrolling either the desktop or mobile viewport automatically scrolls the other proportionally so you can review both layouts at the same vertical position.
-  - **Prompt Input Sync**: Typing into the prompt textarea in either view updates the other view in real time.
-  - **Template Selection Sync**: Clicking any of the 4 template pills (`SaaS Landing`, `Dev Portfolio`, `E-commerce`, `Agency Site`) populates the prompt into both viewports simultaneously.
-  - **Mode Pills Sync**: Toggling between `Build App`, `Discover`, `Projects`, and `Network` updates the active tab in both viewports.
-  - **Chat Drawer Sync**: Opening the floating chat drawer or sending messages synchronizes across both viewports.
+- **Single Source of Truth**: The parent workbench (`index.html`) is the single source of truth for the active replica page.
+- **Permanent Project Invariant — Navigation Synchronization**:
+  - Desktop and Mobile frames **MUST ALWAYS** be on the same page.
+  - Whenever navigation occurs from either frame (desktop navbar, mobile drawer, CTA, logo, etc.), **both frames immediately navigate to the same destination**.
+  - Internal navigation is handled centrally via `assets/nav-sync.js` posting `WORKBENCH_NAVIGATE` to `window.parent`.
+  - External links (`target="_blank"`, non-local domains) and protocols (`mailto:`, `tel:`) remain untouched.
+- **Strictly Independent State & Scrolling**:
+  - **No scroll synchronization**: Desktop and Mobile viewports scroll 100% independently.
+  - **No input/cursor/hover synchronization**: Inputs, focus, and local UI interaction are completely independent.
+  - The **ONLY** shared state is the current route/page.
+
+### Mandatory Checklist Before Completing Any Future Page
+Every current and future replicated page must pass this verification:
+1. Navigate to the new page from Desktop → Both frames display the new page.
+2. Navigate to the new page from Mobile → Both frames display the new page.
+3. Navigate from the new page to an existing page from Desktop → Both frames change.
+4. Navigate from the new page to an existing page from Mobile → Both frames change.
+5. Scroll Desktop → Mobile does **NOT** scroll.
+6. Scroll Mobile → Desktop does **NOT** scroll.
+
 - **Workbench Toolbar Controls**:
-  - `Sync: ON / OFF`: Toggle synchronization on or off with a single click.
-  - `Fit Screen`: Automatically scales both viewports using CSS transforms so both 1440px desktop and 390px mobile viewports fit comfortably on any laptop or desktop screen simultaneously without horizontal scrolling.
+  - `Fit Screen`: Automatically scales both viewports using CSS transforms so both 1440px desktop and 390px mobile viewports fit comfortably on any screen.
   - Scale Presets: `100%`, `75%`, `65%`, `50%`.
-  - `Reload Views`: Synchronously refreshes both iframes.
+  - `Reload Views`: Synchronously refreshes the current page in both iframes.
   - `Open Standalone (site.html)`: Direct link to view the website replica in standard fullscreen mode.
 
 ---
