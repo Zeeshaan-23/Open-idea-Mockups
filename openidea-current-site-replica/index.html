@@ -397,6 +397,14 @@
         </svg>
         <span>Auth Workbench</span>
       </a>
+
+      <!-- Open Feedback Workbench Link -->
+      <a class="btn-action-tool" href="feedback/index.html" title="Open Feedback Comparison Workbench">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+        <span>Feedback Workbench</span>
+      </a>
     </div>
   </header>
 
@@ -482,6 +490,9 @@
       if (path.includes('/auth/') || path.endsWith('/auth') || path.endsWith('/auth/site.html')) {
         return 'auth/site.html' + search + hash;
       }
+      if (path.includes('/feedback/') || path.endsWith('/feedback') || path.endsWith('/feedback/site.html')) {
+        return 'feedback/site.html' + search + hash;
+      }
       if (path === '/' || path.endsWith('/site.html') || path.endsWith('/index.html') || path === '') {
         return 'site.html' + search + hash;
       }
@@ -520,6 +531,7 @@
         else if (targetPath.startsWith('features')) page = 'features';
         else if (targetPath.startsWith('pricing')) page = 'pricing';
         else if (targetPath.startsWith('auth')) page = 'auth';
+        else if (targetPath.startsWith('feedback')) page = 'feedback';
 
         if (page) {
           url.searchParams.set('page', page);
@@ -579,6 +591,27 @@
             payload: data.payload
           }, '*');
         }
+      } else if (data.type === 'WORKBENCH_THEME_CHANGE') {
+        const theme = data.theme;
+        if (theme === 'light' || theme === 'dark') {
+          try {
+            localStorage.setItem('openidea-theme', theme);
+          } catch (_) {}
+
+          // Relay theme update to the opposite frame
+          if (desktopIframe && desktopIframe.contentWindow && event.source !== desktopIframe.contentWindow) {
+            desktopIframe.contentWindow.postMessage({
+              type: 'APPLY_REMOTE_THEME',
+              theme: theme
+            }, '*');
+          }
+          if (mobileIframe && mobileIframe.contentWindow && event.source !== mobileIframe.contentWindow) {
+            mobileIframe.contentWindow.postMessage({
+              type: 'APPLY_REMOTE_THEME',
+              theme: theme
+            }, '*');
+          }
+        }
       }
     });
 
@@ -590,6 +623,7 @@
       else if (page === 'features') target = 'features/site.html';
       else if (page === 'pricing') target = 'pricing/site.html';
       else if (page === 'auth') target = 'auth/site.html';
+      else if (page === 'feedback') target = 'feedback/site.html';
       navigateBothFrames(target);
     });
 
@@ -602,6 +636,7 @@
       else if (initialPage === 'features') initialPath = 'features/site.html';
       else if (initialPage === 'pricing') initialPath = 'pricing/site.html';
       else if (initialPage === 'auth') initialPath = 'auth/site.html';
+      else if (initialPage === 'feedback') initialPath = 'feedback/site.html';
 
       if (initialPath) {
         currentReplicaPath = initialPath;

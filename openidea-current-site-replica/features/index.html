@@ -371,16 +371,30 @@
       // Forward internal navigation to main workbench
       window.addEventListener('message', (event) => {
         const data = event.data;
-        if (!data || data.type !== 'WORKBENCH_NAVIGATE') return;
-        let page = '';
-        const path = data.pathname || '';
-        if (path.includes('/about')) page = 'about';
-        else if (path.includes('/features')) page = 'features';
-        else if (path.includes('/pricing')) page = 'pricing';
-        else if (path.includes('/auth')) page = 'auth';
-        
-        const url = '../index.html' + (page ? '?page=' + page : '') + (data.search || '');
-        window.location.href = url;
+        if (!data) return;
+        if (data.type === 'WORKBENCH_NAVIGATE') {
+          let page = '';
+          const path = data.pathname || '';
+          if (path.includes('/about')) page = 'about';
+          else if (path.includes('/features')) page = 'features';
+          else if (path.includes('/pricing')) page = 'pricing';
+          else if (path.includes('/auth')) page = 'auth';
+          else if (path.includes('/feedback')) page = 'feedback';
+          
+          const url = '../index.html' + (page ? '?page=' + page : '') + (data.search || '');
+          window.location.href = url;
+        } else if (data.type === 'WORKBENCH_THEME_CHANGE') {
+          const theme = data.theme;
+          if (theme === 'light' || theme === 'dark') {
+            try { localStorage.setItem('openidea-theme', theme); } catch (_) {}
+            if (iframeDesktop && iframeDesktop.contentWindow && event.source !== iframeDesktop.contentWindow) {
+              iframeDesktop.contentWindow.postMessage({ type: 'APPLY_REMOTE_THEME', theme: theme }, '*');
+            }
+            if (iframeMobile && iframeMobile.contentWindow && event.source !== iframeMobile.contentWindow) {
+              iframeMobile.contentWindow.postMessage({ type: 'APPLY_REMOTE_THEME', theme: theme }, '*');
+            }
+          }
+        }
       });
     });
   </script>

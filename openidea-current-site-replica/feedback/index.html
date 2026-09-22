@@ -10,8 +10,8 @@
     }
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Open Idea Pricing Replica · Desktop &amp; Mobile Comparison Workspace</title>
-  <link rel="icon" href="assets/icons/favicon.ico" type="image/x-icon">
+  <title>Open Idea Feedback Replica · Desktop &amp; Mobile Comparison Workspace</title>
+  <link rel="icon" href="../assets/icons/favicon.ico" type="image/x-icon">
 
   <!-- Google Fonts: Space Grotesk & Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,7 +20,7 @@
 
   <style>
     /* ==========================================================================
-       DEVELOPMENT COMPARISON WORKSPACE STYLES - PRICING PAGE
+       DEVELOPMENT COMPARISON WORKSPACE STYLES - FEEDBACK PAGE
        ========================================================================== */
     :root {
       --bg-workbench: #070c0f;
@@ -292,11 +292,11 @@
   <!-- WORKBENCH CONTROL HEADER -->
   <header class="workbench-header">
     <div class="workbench-branding">
-      <img src="assets/logos/logo.png" alt="Open Idea" class="workbench-logo">
-      <h1 class="workbench-title">PRICING REPLICA</h1>
+      <img src="../assets/logos/logo.png" alt="Open Idea" class="workbench-logo">
+      <h1 class="workbench-title">FEEDBACK REPLICA</h1>
       <span class="workbench-badge">Side-by-Side Comparison</span>
-      <a class="workbench-source-link" href="https://openidea.world/pricing" target="_blank" rel="noopener noreferrer" title="View Source of Truth">
-        <span>Production: openidea.world/pricing</span>
+      <a class="workbench-source-link" href="https://openidea.world/feedback" target="_blank" rel="noopener noreferrer" title="View Source of Truth">
+        <span>Production: openidea.world/feedback</span>
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
           <polyline points="15 3 21 3 21 9"></polyline>
@@ -359,7 +359,7 @@
         <span class="viewport-dims">1440px &times; 900px</span>
       </div>
       <div class="frame-wrapper">
-        <iframe id="desktop-iframe" name="desktop-frame" src="site.html" title="Open Idea Pricing Desktop Viewport (1440px)"></iframe>
+        <iframe id="desktop-iframe" name="desktop-frame" src="site.html" title="Open Idea Feedback Desktop Viewport (1440px)"></iframe>
       </div>
     </div>
 
@@ -373,7 +373,7 @@
         <span class="viewport-dims">390px &times; 844px</span>
       </div>
       <div class="frame-wrapper">
-        <iframe id="mobile-iframe" name="mobile-frame" src="site.html" title="Open Idea Pricing Mobile Viewport (390px)"></iframe>
+        <iframe id="mobile-iframe" name="mobile-frame" src="site.html" title="Open Idea Feedback Mobile Viewport (390px)"></iframe>
       </div>
     </div>
 
@@ -381,7 +381,7 @@
 
   <!-- Workbench Footer Notice -->
   <footer class="workbench-footer">
-    Development Comparison Workbench &bull; Pricing Page Replica &bull; Desktop (1440px) &amp; Mobile (390px) Viewports
+    Development Comparison Workbench &bull; Feedback Page Replica &bull; Desktop (1440px) &amp; Mobile (390px) Viewports
   </footer>
 
   <script>
@@ -438,15 +438,14 @@
 
     if (refreshBtn) {
       refreshBtn.addEventListener('click', () => {
-        if (desktopIframe) desktopIframe.src = desktopIframe.src;
-        if (mobileIframe) mobileIframe.src = mobileIframe.src;
+        if (desktopIframe) desktopIframe.src = 'site.html?r=' + Date.now();
+        if (mobileIframe) mobileIframe.src = 'site.html?r=' + Date.now();
       });
     }
 
-    // Forward internal navigation to main workbench and relay theme changes
+    // Forward internal navigation to parent workbench
     window.addEventListener('message', (event) => {
       const data = event.data;
-      if (!data) return;
       if (data.type === 'WORKBENCH_NAVIGATE') {
         let page = '';
         const path = data.pathname || '';

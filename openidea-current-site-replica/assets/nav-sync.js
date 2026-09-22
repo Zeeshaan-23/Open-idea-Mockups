@@ -195,6 +195,11 @@
       return;
     }
 
+    // Ignore theme toggle buttons (handled semantically via theme.js and WORKBENCH_THEME_CHANGE)
+    if (event.target.closest('.theme-toggle-btn, .mobile-theme-drawer-row, [data-action="toggle-theme"]')) {
+      return;
+    }
+
     // Find closest actionable element
     const interactive = event.target.closest('button, [role="button"], [data-mode], [data-template], [data-category], [data-tab], [data-plan], .mode-pill, .template-pill, .chat-cat-tab, input[type="button"], input[type="submit"], input[type="checkbox"], input[type="radio"]');
     if (!interactive) return;
