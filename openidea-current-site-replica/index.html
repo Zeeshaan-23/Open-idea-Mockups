@@ -418,7 +418,7 @@
         <span class="viewport-dims">1440px &times; 900px</span>
       </div>
       <div class="frame-wrapper">
-        <iframe id="desktop-iframe" name="desktop-frame" src="site.html?v=4" title="Open Idea Desktop Viewport (1440px)"></iframe>
+        <iframe id="desktop-iframe" name="desktop-frame" src="site.html?v=5" title="Open Idea Desktop Viewport (1440px)"></iframe>
       </div>
     </div>
 
@@ -432,7 +432,7 @@
         <span class="viewport-dims">390px &times; 844px</span>
       </div>
       <div class="frame-wrapper">
-        <iframe id="mobile-iframe" name="mobile-frame" src="site.html?v=4" title="Open Idea Mobile Viewport (390px)"></iframe>
+        <iframe id="mobile-iframe" name="mobile-frame" src="site.html?v=5" title="Open Idea Mobile Viewport (390px)"></iframe>
       </div>
     </div>
 
@@ -561,6 +561,24 @@
         }
 
         navigateBothFrames(targetPath);
+      } else if (data.type === 'WORKBENCH_INTERACTION') {
+        if (!isNavSyncEnabled) return;
+
+        // Relay interaction to the opposite frame
+        let targetWindow = null;
+        if (event.source === desktopIframe.contentWindow && mobileIframe) {
+          targetWindow = mobileIframe.contentWindow;
+        } else if (event.source === mobileIframe.contentWindow && desktopIframe) {
+          targetWindow = desktopIframe.contentWindow;
+        }
+
+        if (targetWindow) {
+          targetWindow.postMessage({
+            type: 'APPLY_REMOTE_INTERACTION',
+            action: data.action,
+            payload: data.payload
+          }, '*');
+        }
       }
     });
 
