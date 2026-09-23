@@ -742,7 +742,8 @@ html[data-theme="light"] .site-footer {
   color: #475569;
 }
 
-html[data-theme="light"] .footer-divider {
+html[data-theme="light"] .footer-divider,
+html[data-theme="light"] .site-divider {
   background: linear-gradient(to right, transparent, rgba(5, 150, 105, 0.25), transparent);
 }
 
@@ -750,15 +751,18 @@ html[data-theme="light"] .footer-brand-title {
   color: #0f172a;
 }
 
-html[data-theme="light"] .footer-tagline {
+html[data-theme="light"] .footer-tagline,
+html[data-theme="light"] .footer-mission-text {
   color: #475569;
 }
 
-html[data-theme="light"] .footer-social-link {
+html[data-theme="light"] .footer-social-link,
+html[data-theme="light"] .footer-social-icon {
   color: #64748b;
 }
 
-html[data-theme="light"] .footer-social-link:hover {
+html[data-theme="light"] .footer-social-link:hover,
+html[data-theme="light"] .footer-social-icon:hover {
   color: #059669;
 }
 
