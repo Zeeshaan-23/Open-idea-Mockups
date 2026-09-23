@@ -295,78 +295,51 @@ html[data-theme="light"] .btn-hamburger:hover {
 }
 
 /* ==========================================================================
-   HERO LIGHT MODE BACKGROUND: EARTH GLOBE & ATMOSPHERE
+   REUSABLE LIGHT THEME ATMOSPHERIC BACKGROUND SYSTEM
    ========================================================================== */
-html[data-theme="light"] .hero-section,
-html[data-theme="light"] .about-hero-section,
-html[data-theme="light"] .features-hero-section,
-html[data-theme="light"] .pricing-section,
-html[data-theme="light"] .auth-section,
-html[data-theme="light"] .feedback-section {
+
+/* 1. Isolation & Default Dark Mode State */
+.light-theme-atmosphere {
+  display: none !important;
+}
+
+html[data-theme="light"] {
   position: relative;
+}
+
+html[data-theme="light"] body {
+  position: relative;
+  min-height: 100vh;
+}
+
+/* 2. Light Theme Active Atmosphere Container */
+html[data-theme="light"] .light-theme-atmosphere {
+  display: block !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
   overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
   background: 
-    /* Bottom soft clouds white transition */
-    linear-gradient(to top, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.75) 12%, rgba(255, 255, 255, 0.15) 30%, transparent 45%),
-    /* Warm golden/peach sunrise glow from the center-right Earth limb */
-    radial-gradient(ellipse 55% 45% at 72% 48%, rgba(254, 215, 170, 0.55) 0%, rgba(253, 186, 116, 0.25) 35%, transparent 70%),
     /* Soft sky blue pastel ambient glow on top-left */
     radial-gradient(circle at 18% 22%, rgba(219, 234, 254, 0.75) 0%, rgba(224, 242, 254, 0.35) 50%, transparent 75%),
+    /* Warm golden/peach sunrise glow under Earth limb */
+    radial-gradient(ellipse 55% 45% at 72% 48%, rgba(254, 215, 170, 0.55) 0%, rgba(253, 186, 116, 0.25) 35%, transparent 70%),
     /* Base pastel sky */
     linear-gradient(125deg, #eef7fc 0%, #f5f9fe 35%, #faf6f3 70%, #eff6fd 100%) !important;
 }
 
-/* Hide dark digital wireframe globe image in Light Theme on all pages */
-html[data-theme="light"] .hero-globe-img,
-html[data-theme="light"] .pricing-globe-img,
-html[data-theme="light"] .auth-globe-img {
+html[data-theme="dark"] .light-theme-atmosphere {
   display: none !important;
-  opacity: 0 !important;
 }
 
-/* Hero Background Wrapper & Layers across all pages */
-html[data-theme="light"] .hero-bg-wrapper,
-html[data-theme="light"] .hero-bg-layer,
-html[data-theme="light"] .pricing-bg-wrapper,
-html[data-theme="light"] .auth-bg-wrapper {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-/* Photorealistic Daytime Earth Globe - Positioned on right (Desktop) across all pages */
-html[data-theme="light"] .hero-bg-wrapper::after,
-html[data-theme="light"] .hero-bg-layer::after,
-html[data-theme="light"] .pricing-bg-wrapper::after,
-html[data-theme="light"] .auth-bg-wrapper::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url("images/hero-globe-light.jpg");
-  background-repeat: no-repeat;
-  background-position: right 45%;
-  background-size: cover;
-  opacity: 0.96;
-  pointer-events: none;
-  z-index: 1;
-  /* Atmospheric edge blend & gradient mask so Earth integrates seamlessly into the pastel sky */
-  mask-image: 
-    linear-gradient(to right, transparent 0%, transparent 22%, rgba(0, 0, 0, 0.7) 48%, black 65%),
-    linear-gradient(to top, rgba(0, 0, 0, 0.4) 0%, black 25%);
-  -webkit-mask-image: 
-    linear-gradient(to right, transparent 0%, transparent 22%, rgba(0, 0, 0, 0.7) 48%, black 65%),
-    linear-gradient(to top, rgba(0, 0, 0, 0.4) 0%, black 25%);
-  mask-composite: intersect;
-  -webkit-mask-composite: source-in;
-}
-
-/* Diffused atmospheric blue glow around the Earth across all pages */
-html[data-theme="light"] .hero-bg-wrapper::before,
-html[data-theme="light"] .hero-bg-layer::before,
-html[data-theme="light"] .pricing-bg-wrapper::before,
-html[data-theme="light"] .auth-bg-wrapper::before {
+/* Atmospheric diffused cyan/blue aura behind the globe */
+.light-theme-atmosphere::before {
   content: "";
   position: absolute;
   top: 15%;
@@ -380,16 +353,35 @@ html[data-theme="light"] .auth-bg-wrapper::before {
   z-index: 0;
 }
 
-/* Radiant Sunrise Lens Flare & Glow at Earth Limb across all pages */
-html[data-theme="light"] .hero-radial-glow,
-html[data-theme="light"] .pricing-radial-glow,
-html[data-theme="light"] .auth-radial-glow {
+/* 3. Photorealistic Daytime Earth Globe (Desktop Viewport) */
+.light-theme-globe {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100vh;
+  min-height: 650px;
+  background-image: url("images/hero-globe-light.jpg");
+  background-repeat: no-repeat;
+  background-position: right 45%;
+  background-size: cover;
+  opacity: 0.96;
+  pointer-events: none;
+  z-index: 1;
+  /* Atmospheric edge blend: preserves text contrast on the left side */
+  mask-image: linear-gradient(to right, transparent 0%, transparent 22%, rgba(0, 0, 0, 0.7) 48%, black 65%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, transparent 22%, rgba(0, 0, 0, 0.7) 48%, black 65%);
+}
+
+/* 4. Radiant Sunrise Lens Flare & Sunlight Glow at Earth Limb */
+.light-theme-sun-glow {
   position: absolute;
   left: 68%;
   top: 44%;
   transform: translate(-50%, -50%);
   width: 750px;
   height: 500px;
+  border-radius: 50%;
   background: radial-gradient(ellipse at center, 
     rgba(255, 255, 255, 0.95) 0%, 
     rgba(254, 215, 170, 0.65) 25%, 
@@ -402,14 +394,26 @@ html[data-theme="light"] .auth-radial-glow {
   z-index: 2;
 }
 
-/* Mobile Responsive Background: Lower-right Earth positioning across all pages */
+/* 5. Soft Cloud / Haze Atmosphere Layer */
+.light-theme-cloud-haze {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  min-height: 650px;
+  pointer-events: none;
+  z-index: 3;
+  background: 
+    /* Bottom soft clouds white transition */
+    linear-gradient(to top, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.75) 12%, rgba(255, 255, 255, 0.15) 30%, transparent 45%),
+    /* Soft top atmospheric mist */
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.2) 0%, transparent 12%);
+}
+
+/* 6. Mobile Responsive Adjustments (~390px Viewport) */
 @media (max-width: 768px) {
-  html[data-theme="light"] .hero-section,
-  html[data-theme="light"] .about-hero-section,
-  html[data-theme="light"] .features-hero-section,
-  html[data-theme="light"] .pricing-section,
-  html[data-theme="light"] .auth-section,
-  html[data-theme="light"] .feedback-section {
+  html[data-theme="light"] .light-theme-atmosphere {
     background: 
       /* Bottom white cloud fade */
       linear-gradient(to top, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.7) 15%, transparent 35%),
@@ -420,21 +424,7 @@ html[data-theme="light"] .auth-radial-glow {
       linear-gradient(135deg, #eef7fc 0%, #f7f9fe 50%, #eff6fd 100%) !important;
   }
 
-  html[data-theme="light"] .hero-bg-wrapper::after,
-  html[data-theme="light"] .hero-bg-layer::after,
-  html[data-theme="light"] .pricing-bg-wrapper::after,
-  html[data-theme="light"] .auth-bg-wrapper::after {
-    background-position: 85% 82%;
-    background-size: 190% auto;
-    opacity: 0.38;
-    mask-image: radial-gradient(circle at 82% 80%, black 20%, rgba(0, 0, 0, 0.5) 50%, transparent 80%);
-    -webkit-mask-image: radial-gradient(circle at 82% 80%, black 20%, rgba(0, 0, 0, 0.5) 50%, transparent 80%);
-  }
-
-  html[data-theme="light"] .hero-bg-wrapper::before,
-  html[data-theme="light"] .hero-bg-layer::before,
-  html[data-theme="light"] .pricing-bg-wrapper::before,
-  html[data-theme="light"] .auth-bg-wrapper::before {
+  .light-theme-atmosphere::before {
     width: 320px;
     height: 320px;
     top: 55%;
@@ -443,9 +433,17 @@ html[data-theme="light"] .auth-radial-glow {
     opacity: 0.3;
   }
 
-  html[data-theme="light"] .hero-radial-glow,
-  html[data-theme="light"] .pricing-radial-glow,
-  html[data-theme="light"] .auth-radial-glow {
+  .light-theme-globe {
+    height: 100vh;
+    min-height: auto;
+    background-position: 85% 82%;
+    background-size: 190% auto;
+    opacity: 0.38;
+    mask-image: radial-gradient(circle at 82% 80%, black 20%, rgba(0, 0, 0, 0.5) 50%, transparent 80%);
+    -webkit-mask-image: radial-gradient(circle at 82% 80%, black 20%, rgba(0, 0, 0, 0.5) 50%, transparent 80%);
+  }
+
+  .light-theme-sun-glow {
     width: 380px;
     height: 300px;
     left: 75%;
@@ -453,6 +451,57 @@ html[data-theme="light"] .auth-radial-glow {
     filter: blur(35px);
     opacity: 0.65;
   }
+
+  .light-theme-cloud-haze {
+    height: 100vh;
+    min-height: auto;
+    background: 
+      linear-gradient(to top, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.7) 15%, transparent 35%),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 0%, transparent 10%);
+  }
+}
+
+/* 7. Page Section Transparency & Clean Legacy Element Suppression */
+html[data-theme="light"] .hero-section,
+html[data-theme="light"] .about-hero-section,
+html[data-theme="light"] .features-hero-section,
+html[data-theme="light"] .pricing-section,
+html[data-theme="light"] .auth-section,
+html[data-theme="light"] .feedback-section,
+html[data-theme="light"] .main-content,
+html[data-theme="light"] .feedback-main {
+  background: transparent !important;
+}
+
+/* Hide dark digital wireframe globe images & old radial glows in Light Theme on all pages */
+html[data-theme="light"] .hero-globe-img,
+html[data-theme="light"] .pricing-globe-img,
+html[data-theme="light"] .auth-globe-img,
+html[data-theme="light"] .hero-radial-glow,
+html[data-theme="light"] .pricing-radial-glow,
+html[data-theme="light"] .auth-radial-glow {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* Clear any background from existing inner hero background wrappers */
+html[data-theme="light"] .hero-bg-wrapper,
+html[data-theme="light"] .hero-bg-layer,
+html[data-theme="light"] .pricing-bg-wrapper,
+html[data-theme="light"] .auth-bg-wrapper {
+  background: none !important;
+}
+html[data-theme="light"] .hero-bg-wrapper::after,
+html[data-theme="light"] .hero-bg-layer::after,
+html[data-theme="light"] .pricing-bg-wrapper::after,
+html[data-theme="light"] .auth-bg-wrapper::after,
+html[data-theme="light"] .hero-bg-wrapper::before,
+html[data-theme="light"] .hero-bg-layer::before,
+html[data-theme="light"] .pricing-bg-wrapper::before,
+html[data-theme="light"] .auth-bg-wrapper::before {
+  display: none !important;
+  content: none !important;
 }
 
 /* Cards & Surface Containers on Light Theme */
