@@ -1032,6 +1032,22 @@ html[data-theme="light"] .discovery-preview-box {
   border-color: rgba(0, 0, 0, 0.08);
 }
 
+html[data-theme="light"] .discovery-video-wrapper {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+html[data-theme="light"] .network-video-dark,
+html[data-theme="light"] .research-video-dark {
+  display: none !important;
+}
+
+html[data-theme="light"] .network-video-light,
+html[data-theme="light"] .research-video-light {
+  display: block !important;
+}
+
 html[data-theme="light"] .preview-box-header,
 html[data-theme="light"] .preview-box-footer {
   border-color: rgba(0, 0, 0, 0.06);

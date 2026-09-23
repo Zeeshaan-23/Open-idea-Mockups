@@ -333,5 +333,31 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   }
+
+  // 9. Ecosystem Discovery Videos Autoplay & Theme Sync
+  const discoveryVideos = document.querySelectorAll('.discovery-video');
+  function playVisibleDiscoveryVideos() {
+    discoveryVideos.forEach(video => {
+      video.muted = true;
+      if (video.offsetParent !== null) {
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {});
+        }
+      }
+    });
+  }
+
+  // Start on load
+  playVisibleDiscoveryVideos();
+
+  // Watch for theme toggles to resume playback of visible video
+  const themeObserver = new MutationObserver(() => {
+    playVisibleDiscoveryVideos();
+  });
+  themeObserver.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-theme', 'class']
+  });
 });
 
