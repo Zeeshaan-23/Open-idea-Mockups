@@ -334,42 +334,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 9. Ecosystem Discovery Videos Autoplay & Theme Sync
-  const discoveryVideos = document.querySelectorAll('.discovery-video');
-  function playVisibleDiscoveryVideos() {
-    discoveryVideos.forEach(video => {
-      video.muted = true;
-      const isVisible = window.getComputedStyle(video).display !== 'none';
-      if (isVisible) {
-        if (video.readyState === 0 && video.load) {
-          video.load();
-        }
-        if (video.paused) {
-          const playPromise = video.play();
-          if (playPromise !== undefined) {
-            playPromise.catch(() => {});
-          }
-        }
-      } else {
-        if (!video.paused) {
-          video.pause();
-        }
-      }
-    });
-  }
-
-  // Start on load
-  playVisibleDiscoveryVideos();
-
-  // Watch for theme toggles to resume playback of visible video
-  const themeObserver = new MutationObserver(() => {
-    playVisibleDiscoveryVideos();
-    setTimeout(playVisibleDiscoveryVideos, 50);
-    setTimeout(playVisibleDiscoveryVideos, 150);
-  });
-  themeObserver.observe(document.documentElement, {
-    attributes: true,
-    attributeFilter: ['data-theme', 'class']
-  });
 });
 
