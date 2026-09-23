@@ -172,13 +172,6 @@ html[data-theme="light"] body {
   color: #0f172a;
 }
 
-html[data-theme="light"] .about-hero-section,
-html[data-theme="light"] .features-hero-section,
-html[data-theme="light"] .pricing-hero-section,
-html[data-theme="light"] .feedback-section,
-html[data-theme="light"] .auth-section {
-  background: linear-gradient(135deg, #f8fbff 0%, #f0f6fc 45%, #e8f2fa 100%);
-}
 
 /* Headings & Text */
 html[data-theme="light"] h1:not([class*="gradient"]):not([class*="grad-"]),
@@ -304,7 +297,12 @@ html[data-theme="light"] .btn-hamburger:hover {
 /* ==========================================================================
    HERO LIGHT MODE BACKGROUND: EARTH GLOBE & ATMOSPHERE
    ========================================================================== */
-html[data-theme="light"] .hero-section {
+html[data-theme="light"] .hero-section,
+html[data-theme="light"] .about-hero-section,
+html[data-theme="light"] .features-hero-section,
+html[data-theme="light"] .pricing-section,
+html[data-theme="light"] .auth-section,
+html[data-theme="light"] .feedback-section {
   position: relative;
   overflow: hidden;
   background: 
@@ -318,21 +316,19 @@ html[data-theme="light"] .hero-section {
     linear-gradient(125deg, #eef7fc 0%, #f5f9fe 35%, #faf6f3 70%, #eff6fd 100%) !important;
 }
 
-/* Hide dark digital wireframe globe image in Light Theme */
-html[data-theme="light"] .hero-globe-img {
+/* Hide dark digital wireframe globe image in Light Theme on all pages */
+html[data-theme="light"] .hero-globe-img,
+html[data-theme="light"] .pricing-globe-img,
+html[data-theme="light"] .auth-globe-img {
   display: none !important;
   opacity: 0 !important;
 }
 
-html[data-theme="light"] .pricing-globe-img,
-html[data-theme="light"] .auth-globe-img {
-  opacity: 0.12;
-  mix-blend-mode: multiply;
-  filter: contrast(1.1) brightness(0.95);
-}
-
-/* Hero Background Wrapper & Layers */
-html[data-theme="light"] .hero-bg-wrapper {
+/* Hero Background Wrapper & Layers across all pages */
+html[data-theme="light"] .hero-bg-wrapper,
+html[data-theme="light"] .hero-bg-layer,
+html[data-theme="light"] .pricing-bg-wrapper,
+html[data-theme="light"] .auth-bg-wrapper {
   position: absolute;
   inset: 0;
   z-index: 0;
@@ -340,8 +336,11 @@ html[data-theme="light"] .hero-bg-wrapper {
   overflow: hidden;
 }
 
-/* Photorealistic Daytime Earth Globe - Positioned on right (Desktop) */
-html[data-theme="light"] .hero-bg-wrapper::after {
+/* Photorealistic Daytime Earth Globe - Positioned on right (Desktop) across all pages */
+html[data-theme="light"] .hero-bg-wrapper::after,
+html[data-theme="light"] .hero-bg-layer::after,
+html[data-theme="light"] .pricing-bg-wrapper::after,
+html[data-theme="light"] .auth-bg-wrapper::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -363,8 +362,11 @@ html[data-theme="light"] .hero-bg-wrapper::after {
   -webkit-mask-composite: source-in;
 }
 
-/* Diffused atmospheric blue glow around the Earth */
-html[data-theme="light"] .hero-bg-wrapper::before {
+/* Diffused atmospheric blue glow around the Earth across all pages */
+html[data-theme="light"] .hero-bg-wrapper::before,
+html[data-theme="light"] .hero-bg-layer::before,
+html[data-theme="light"] .pricing-bg-wrapper::before,
+html[data-theme="light"] .auth-bg-wrapper::before {
   content: "";
   position: absolute;
   top: 15%;
@@ -378,8 +380,10 @@ html[data-theme="light"] .hero-bg-wrapper::before {
   z-index: 0;
 }
 
-/* Radiant Sunrise Lens Flare & Glow at Earth Limb */
-html[data-theme="light"] .hero-radial-glow {
+/* Radiant Sunrise Lens Flare & Glow at Earth Limb across all pages */
+html[data-theme="light"] .hero-radial-glow,
+html[data-theme="light"] .pricing-radial-glow,
+html[data-theme="light"] .auth-radial-glow {
   position: absolute;
   left: 68%;
   top: 44%;
@@ -398,14 +402,14 @@ html[data-theme="light"] .hero-radial-glow {
   z-index: 2;
 }
 
-html[data-theme="light"] .pricing-radial-glow,
-html[data-theme="light"] .auth-radial-glow {
-  background: radial-gradient(circle, rgba(34, 211, 238, 0.2) 0%, transparent 70%);
-}
-
-/* Mobile Responsive Background: Lower-right Earth positioning */
+/* Mobile Responsive Background: Lower-right Earth positioning across all pages */
 @media (max-width: 768px) {
-  html[data-theme="light"] .hero-section {
+  html[data-theme="light"] .hero-section,
+  html[data-theme="light"] .about-hero-section,
+  html[data-theme="light"] .features-hero-section,
+  html[data-theme="light"] .pricing-section,
+  html[data-theme="light"] .auth-section,
+  html[data-theme="light"] .feedback-section {
     background: 
       /* Bottom white cloud fade */
       linear-gradient(to top, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.7) 15%, transparent 35%),
@@ -416,7 +420,10 @@ html[data-theme="light"] .auth-radial-glow {
       linear-gradient(135deg, #eef7fc 0%, #f7f9fe 50%, #eff6fd 100%) !important;
   }
 
-  html[data-theme="light"] .hero-bg-wrapper::after {
+  html[data-theme="light"] .hero-bg-wrapper::after,
+  html[data-theme="light"] .hero-bg-layer::after,
+  html[data-theme="light"] .pricing-bg-wrapper::after,
+  html[data-theme="light"] .auth-bg-wrapper::after {
     background-position: 85% 82%;
     background-size: 190% auto;
     opacity: 0.38;
@@ -424,7 +431,10 @@ html[data-theme="light"] .auth-radial-glow {
     -webkit-mask-image: radial-gradient(circle at 82% 80%, black 20%, rgba(0, 0, 0, 0.5) 50%, transparent 80%);
   }
 
-  html[data-theme="light"] .hero-bg-wrapper::before {
+  html[data-theme="light"] .hero-bg-wrapper::before,
+  html[data-theme="light"] .hero-bg-layer::before,
+  html[data-theme="light"] .pricing-bg-wrapper::before,
+  html[data-theme="light"] .auth-bg-wrapper::before {
     width: 320px;
     height: 320px;
     top: 55%;
@@ -433,7 +443,9 @@ html[data-theme="light"] .auth-radial-glow {
     opacity: 0.3;
   }
 
-  html[data-theme="light"] .hero-radial-glow {
+  html[data-theme="light"] .hero-radial-glow,
+  html[data-theme="light"] .pricing-radial-glow,
+  html[data-theme="light"] .auth-radial-glow {
     width: 380px;
     height: 300px;
     left: 75%;
