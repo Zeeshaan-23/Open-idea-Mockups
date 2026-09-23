@@ -61,7 +61,7 @@ html {
   font-family: var(--font-sans);
   color-scheme: dark;
   scroll-behavior: smooth;
-  height: 100%;
+  min-height: 100%;
 }
 
 body {
@@ -850,3 +850,11 @@ button {
   color: var(--gray-500);
   line-height: 1.4;
 }
+
+/* Light Theme Section Transparency */
+html[data-theme="light"] .feedback-section,
+html[data-theme="light"] .main-content,
+html[data-theme="light"] .feedback-main {
+  background: transparent !important;
+}
+

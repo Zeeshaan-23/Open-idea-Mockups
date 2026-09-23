@@ -305,11 +305,14 @@ html[data-theme="light"] .btn-hamburger:hover {
 
 html[data-theme="light"] {
   position: relative;
+  min-height: 100% !important;
+  height: auto !important;
 }
 
 html[data-theme="light"] body {
   position: relative;
   min-height: 100vh;
+  height: auto !important;
 }
 
 /* 2. Light Theme Active Atmosphere Container */
@@ -319,6 +322,7 @@ html[data-theme="light"] .light-theme-atmosphere {
   top: 0;
   left: 0;
   right: 0;
+  bottom: 0;
   width: 100%;
   height: 100%;
   min-height: 100vh;
@@ -473,23 +477,20 @@ html[data-theme="light"] .feedback-main {
   background: transparent !important;
 }
 
-/* Hide dark digital wireframe globe images & old radial glows in Light Theme on all pages */
+/* Hide dark digital wireframe globe images, old radial glows, and background wrappers in Light Theme on all pages */
 html[data-theme="light"] .hero-globe-img,
 html[data-theme="light"] .pricing-globe-img,
 html[data-theme="light"] .auth-globe-img,
 html[data-theme="light"] .hero-radial-glow,
 html[data-theme="light"] .pricing-radial-glow,
-html[data-theme="light"] .auth-radial-glow {
+html[data-theme="light"] .auth-radial-glow,
+html[data-theme="light"] .hero-bg-layer,
+html[data-theme="light"] .hero-bg-wrapper,
+html[data-theme="light"] .pricing-bg-wrapper,
+html[data-theme="light"] .auth-bg-wrapper {
   display: none !important;
   opacity: 0 !important;
   visibility: hidden !important;
-}
-
-/* Clear any background from existing inner hero background wrappers */
-html[data-theme="light"] .hero-bg-wrapper,
-html[data-theme="light"] .hero-bg-layer,
-html[data-theme="light"] .pricing-bg-wrapper,
-html[data-theme="light"] .auth-bg-wrapper {
   background: none !important;
 }
 html[data-theme="light"] .hero-bg-wrapper::after,
