@@ -13,8 +13,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700;900&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="assets/theme.css">
+  <link rel="stylesheet" href="styles.css?v=6">
+  <link rel="stylesheet" href="assets/theme.css?v=6">
   <script src="assets/theme.js"></script>
 </head>
 <body>
@@ -382,113 +382,391 @@
           </p>
         </div>
 
-        <!-- 4 Key Ecosystem Discovery Blocks Grid -->
-        <div class="discovery-grid">
-          <!-- Block 1: Resources -->
-          <div id="resources" class="discovery-card">
-            <div class="discovery-card-top">
-              <div class="discovery-icon-wrap icon-cyan">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-                </svg>
+        <!-- 4 Key Ecosystem Discovery Blocks - Expanded Vertical Stack -->
+        <div class="discovery-stack">
+          <!-- Showcase 1: Open Resources -->
+          <article id="resources" class="discovery-showcase-card card-theme-cyan">
+            <!-- Left: Information Column -->
+            <div class="discovery-info-col">
+              <div>
+                <div class="discovery-card-top">
+                  <div class="discovery-icon-wrap icon-cyan">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                    </svg>
+                  </div>
+                  <div class="discovery-badge-group">
+                    <span class="discovery-badge">Curated Catalog</span>
+                    <span class="discovery-status-pill pill-cyan">Verified Commons</span>
+                  </div>
+                </div>
+                <h3 class="discovery-showcase-title">Open Resources</h3>
+                <p class="discovery-showcase-desc">
+                  Access a curated catalogue of verified research papers, open datasets, production boilerplates, and open design systems built to accelerate open technology innovation.
+                </p>
+                <div class="discovery-tags">
+                  <span class="discovery-tag">Research Papers</span>
+                  <span class="discovery-tag">Open Datasets</span>
+                  <span class="discovery-tag">Developer Toolkits</span>
+                  <span class="discovery-tag">Design Systems</span>
+                  <span class="discovery-tag">Verified Repositories</span>
+                </div>
               </div>
-              <span class="discovery-badge">Curated Catalog</span>
+              <div class="discovery-actions-group">
+                <a class="discovery-btn-primary btn-cyan" href="features/site.html">
+                  <span>Browse Resources</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </a>
+                <a class="discovery-link-secondary" href="features/site.html#catalog">
+                  <span>View Catalog Index</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </a>
+              </div>
             </div>
-            <h3 class="discovery-card-title">Open Resources</h3>
-            <p class="discovery-card-desc">
-              Access curated open-source repositories, developer toolkits, production boilerplates, and open design systems built to accelerate tech innovation.
-            </p>
-            <div class="discovery-card-footer">
-              <a class="discovery-action-link" href="features/site.html">
-                <span>Browse Resources</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
-              </a>
-            </div>
-          </div>
 
-          <!-- Block 2: App Studio -->
-          <div id="app-studio" class="discovery-card discovery-highlight-card">
-            <div class="discovery-card-top">
-              <div class="discovery-icon-wrap icon-emerald">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                  <polyline points="2 17 12 22 22 17"></polyline>
-                  <polyline points="2 12 12 17 22 12"></polyline>
-                </svg>
+            <!-- Right: Interactive / Visual Preview Column -->
+            <div class="discovery-preview-col">
+              <div class="discovery-preview-box preview-resources">
+                <div class="preview-box-header">
+                  <div class="preview-header-title">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <line x1="8" y1="6" x2="21" y2="6"></line>
+                      <line x1="8" y1="12" x2="21" y2="12"></line>
+                      <line x1="8" y1="18" x2="21" y2="18"></line>
+                      <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                      <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                      <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                    </svg>
+                    <span>Curated Resource Index</span>
+                  </div>
+                  <span class="preview-status-badge">Verified Metadata</span>
+                </div>
+                <div class="preview-resource-list">
+                  <div class="preview-resource-item">
+                    <div class="resource-meta-top">
+                      <span class="resource-cat">Research Paper</span>
+                      <span class="resource-format-badge format-pdf">PDF</span>
+                    </div>
+                    <div class="resource-item-title">Decentralized Intelligence in Open Innovation Networks</div>
+                    <div class="resource-item-sub">Open Idea Research Group · #Open Innovation #Collective Intelligence</div>
+                  </div>
+                  <div class="preview-resource-item">
+                    <div class="resource-meta-top">
+                      <span class="resource-cat">Open Dataset</span>
+                      <span class="resource-format-badge format-data">Parquet / CSV</span>
+                    </div>
+                    <div class="resource-item-title">Global Climate Adaptation &amp; Urban Infrastructure Index</div>
+                    <div class="resource-item-sub">EcoSyz Public Data Lab · #Geospatial #Climate Tech</div>
+                  </div>
+                  <div class="preview-resource-item">
+                    <div class="resource-meta-top">
+                      <span class="resource-cat">Developer Toolkit</span>
+                      <span class="resource-format-badge format-git">GitHub</span>
+                    </div>
+                    <div class="resource-item-title">Next.js + Supabase Open Studio Application Template</div>
+                    <div class="resource-item-sub">Open Idea Labs · #Next.js #React #Tailwind</div>
+                  </div>
+                </div>
+                <div class="preview-box-footer">
+                  <span class="preview-footer-dot"></span>
+                  <span>Verified repository metadata · Open access licenses</span>
+                </div>
               </div>
-              <span class="discovery-badge badge-emerald">Engine</span>
             </div>
-            <h3 class="discovery-card-title">App Studio</h3>
-            <p class="discovery-card-desc">
-              Launch full-stack web applications and micro-tools in minutes. Prototype with AI-assisted code generation, interactive visual sandboxes, and instant deployment.
-            </p>
-            <div class="discovery-card-footer">
-              <a class="discovery-action-link discovery-btn-studio" href="/studio">
-                <span>Launch App Studio</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
-              </a>
-            </div>
-          </div>
+          </article>
 
-          <!-- Block 3: Open Network -->
-          <div id="open-network" class="discovery-card">
-            <div class="discovery-card-top">
-              <div class="discovery-icon-wrap icon-purple">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <line x1="2" y1="12" x2="22" y2="12"></line>
-                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-                </svg>
+          <!-- Showcase 2: App Studio -->
+          <article id="app-studio" class="discovery-showcase-card card-theme-emerald discovery-highlight-card">
+            <!-- Left: Information Column -->
+            <div class="discovery-info-col">
+              <div>
+                <div class="discovery-card-top">
+                  <div class="discovery-icon-wrap icon-emerald">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                      <polyline points="2 17 12 22 22 17"></polyline>
+                      <polyline points="2 12 12 17 22 12"></polyline>
+                    </svg>
+                  </div>
+                  <div class="discovery-badge-group">
+                    <span class="discovery-badge badge-emerald">Engine</span>
+                    <span class="discovery-status-pill pill-emerald">AI Scaffolding</span>
+                  </div>
+                </div>
+                <h3 class="discovery-showcase-title">App Studio</h3>
+                <p class="discovery-showcase-desc">
+                  Launch full-stack web applications and micro-tools in minutes. Prototype with AI-assisted code generation, interactive visual sandboxes, clean component trees, and zero proprietary lock-in.
+                </p>
+                <div class="discovery-tags">
+                  <span class="discovery-tag">Clean React / JSX</span>
+                  <span class="discovery-tag">Next.js Architecture</span>
+                  <span class="discovery-tag">Visual Sandboxes</span>
+                  <span class="discovery-tag">CSS Design Tokens</span>
+                  <span class="discovery-tag">Direct Code Ownership</span>
+                </div>
               </div>
-              <span class="discovery-badge">Decentralized</span>
+              <div class="discovery-actions-group">
+                <a class="discovery-btn-primary btn-emerald" href="/studio">
+                  <span>Launch App Studio</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </a>
+                <a class="discovery-link-secondary" href="features/site.html#studio">
+                  <span>Studio Capabilities</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </a>
+              </div>
             </div>
-            <h3 class="discovery-card-title">Open Network</h3>
-            <p class="discovery-card-desc">
-              Decentralized collaboration, open APIs, and community-driven node infrastructure empowering builders and researchers across global borders.
-            </p>
-            <div class="discovery-card-footer">
-              <a class="discovery-action-link" href="https://github.com/Sony17/Ecosyz" target="_blank" rel="noopener noreferrer">
-                <span>Network Protocol</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                  <polyline points="15 3 21 3 21 9"></polyline>
-                  <line x1="10" y1="14" x2="21" y2="3"></line>
-                </svg>
-              </a>
-            </div>
-          </div>
 
-          <!-- Block 4: Community -->
-          <div id="community" class="discovery-card">
-            <div class="discovery-card-top">
-              <div class="discovery-icon-wrap icon-indigo">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                  <circle cx="9" cy="7" r="4"></circle>
-                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                </svg>
+            <!-- Right: Interactive / Visual Preview Column -->
+            <div class="discovery-preview-col">
+              <div class="discovery-preview-box preview-studio">
+                <div class="preview-box-header">
+                  <div class="code-window-dots">
+                    <span class="dot dot-red"></span>
+                    <span class="dot dot-yellow"></span>
+                    <span class="dot dot-green"></span>
+                  </div>
+                  <div class="preview-header-tab">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="16 18 22 12 16 6"></polyline>
+                      <polyline points="8 6 2 12 8 18"></polyline>
+                    </svg>
+                    <span>AgrisenseTelemetry.jsx</span>
+                  </div>
+                  <span class="preview-status-badge badge-framework">React 19 / JSX</span>
+                </div>
+                <div class="preview-code-editor">
+                  <div class="code-line"><span class="code-dim">1</span> <span class="code-kw">import</span> { useState } <span class="code-kw">from</span> <span class="code-str">'react'</span>;</div>
+                  <div class="code-line"><span class="code-dim">2</span> <span class="code-kw">export default function</span> <span class="code-fn">AgrisenseApp</span>() {</div>
+                  <div class="code-line"><span class="code-dim">3</span>   <span class="code-comment">// Clean tokens &amp; accessible semantics</span></div>
+                  <div class="code-line"><span class="code-dim">4</span>   <span class="code-kw">return</span> (</div>
+                  <div class="code-line"><span class="code-dim">5</span>     &lt;<span class="code-tag">main</span> className=<span class="code-str">"studio-telemetry-canvas"</span>&gt;</div>
+                  <div class="code-line"><span class="code-dim">6</span>       &lt;<span class="code-tag">TelemetryHeader</span> status=<span class="code-str">"Nominal"</span> /&gt;</div>
+                  <div class="code-line"><span class="code-dim">7</span>       &lt;<span class="code-tag">SensorGrid</span> meshProtocol=<span class="code-str">"Sub-GHz"</span> /&gt;</div>
+                  <div class="code-line"><span class="code-dim">8</span>     &lt;/<span class="code-tag">main</span>&gt;</div>
+                  <div class="code-line"><span class="code-dim">9</span>   );</div>
+                  <div class="code-line"><span class="code-dim">10</span> }</div>
+                </div>
+                <div class="preview-box-footer">
+                  <span class="preview-footer-dot dot-emerald"></span>
+                  <span>Architecture: Next.js 14 · CSS Tokens · Zero Proprietary Runtime</span>
+                </div>
               </div>
-              <span class="discovery-badge">Community</span>
             </div>
-            <h3 class="discovery-card-title">Community &amp; Fellowship</h3>
-            <p class="discovery-card-desc">
-              Connect with thousands of builders, designers, and innovators. Join the Open Idea Discord, collaborate on open challenges, and apply to our Fellowship Program.
-            </p>
-            <div class="discovery-card-footer">
-              <a class="discovery-action-link" href="https://discord.gg/4weahHXQYY" target="_blank" rel="noopener noreferrer">
-                <span>Join Discord</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
-              </a>
+          </article>
+
+          <!-- Showcase 3: Open Network -->
+          <article id="open-network" class="discovery-showcase-card card-theme-purple">
+            <!-- Left: Information Column -->
+            <div class="discovery-info-col">
+              <div>
+                <div class="discovery-card-top">
+                  <div class="discovery-icon-wrap icon-purple">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <line x1="2" y1="12" x2="22" y2="12"></line>
+                      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                    </svg>
+                  </div>
+                  <div class="discovery-badge-group">
+                    <span class="discovery-badge">Decentralized</span>
+                    <span class="discovery-status-pill pill-purple">Open Protocol</span>
+                  </div>
+                </div>
+                <h3 class="discovery-showcase-title">Open Network</h3>
+                <p class="discovery-showcase-desc">
+                  Decentralized collaboration, open APIs, and community-driven node infrastructure empowering builders and researchers across global borders. Built on open source protocols without centralized gatekeeping.
+                </p>
+                <div class="discovery-tags">
+                  <span class="discovery-tag">Decentralized Collaboration</span>
+                  <span class="discovery-tag">Open API Standard</span>
+                  <span class="discovery-tag">Node Infrastructure</span>
+                  <span class="discovery-tag">P2P Protocols</span>
+                  <span class="discovery-tag">Public Commons</span>
+                </div>
+              </div>
+              <div class="discovery-actions-group">
+                <a class="discovery-btn-primary btn-purple" href="https://github.com/Sony17/Ecosyz" target="_blank" rel="noopener noreferrer">
+                  <span>Network Protocol</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                  </svg>
+                </a>
+                <a class="discovery-link-secondary" href="https://github.com/Sony17/Ecosyz#readme" target="_blank" rel="noopener noreferrer">
+                  <span>View Protocol Spec</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </a>
+              </div>
             </div>
-          </div>
+
+            <!-- Right: Interactive / Visual Preview Column -->
+            <div class="discovery-preview-col">
+              <div class="discovery-preview-box preview-network">
+                <div class="preview-box-header">
+                  <div class="preview-header-title">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="18" cy="5" r="3"></circle>
+                      <circle cx="6" cy="12" r="3"></circle>
+                      <circle cx="18" cy="19" r="3"></circle>
+                      <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                      <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                    </svg>
+                    <span>Network Architecture · Topology Preview</span>
+                  </div>
+                  <span class="preview-status-badge">Open Standard</span>
+                </div>
+                <div class="preview-topology-canvas">
+                  <!-- Conceptual Topology Visualization (Abstract Nodes & Relationships) -->
+                  <svg class="topology-svg" viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Conceptual Topology Diagram">
+                    <!-- Connector lines with subtle dash -->
+                    <line x1="200" y1="100" x2="70" y2="50" stroke="rgba(192, 132, 252, 0.3)" stroke-width="1.5" stroke-dasharray="4 4" />
+                    <line x1="200" y1="100" x2="330" y2="50" stroke="rgba(192, 132, 252, 0.3)" stroke-width="1.5" stroke-dasharray="4 4" />
+                    <line x1="200" y1="100" x2="70" y2="150" stroke="rgba(192, 132, 252, 0.3)" stroke-width="1.5" stroke-dasharray="4 4" />
+                    <line x1="200" y1="100" x2="330" y2="150" stroke="rgba(192, 132, 252, 0.3)" stroke-width="1.5" stroke-dasharray="4 4" />
+
+                    <!-- Center Hub -->
+                    <circle cx="200" cy="100" r="32" fill="rgba(192, 132, 252, 0.12)" stroke="rgba(192, 132, 252, 0.45)" stroke-width="1.5" />
+                    <circle cx="200" cy="100" r="6" fill="#c084fc" />
+                    <text x="200" y="142" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="600" font-family="'Space Grotesk', sans-serif">Core Protocol Relay</text>
+
+                    <!-- Node 1: Top Left -->
+                    <circle cx="70" cy="50" r="20" fill="rgba(12, 20, 24, 0.9)" stroke="rgba(192, 132, 252, 0.3)" stroke-width="1.5" />
+                    <circle cx="70" cy="50" r="4" fill="#a855f7" />
+                    <text x="70" y="82" text-anchor="middle" fill="#9ca3af" font-size="10" font-family="'Inter', sans-serif">Data Mesh Layer</text>
+
+                    <!-- Node 2: Top Right -->
+                    <circle cx="330" cy="50" r="20" fill="rgba(12, 20, 24, 0.9)" stroke="rgba(192, 132, 252, 0.3)" stroke-width="1.5" />
+                    <circle cx="330" cy="50" r="4" fill="#c084fc" />
+                    <text x="330" y="82" text-anchor="middle" fill="#9ca3af" font-size="10" font-family="'Inter', sans-serif">API Gateway</text>
+
+                    <!-- Node 3: Bottom Left -->
+                    <circle cx="70" cy="150" r="20" fill="rgba(12, 20, 24, 0.9)" stroke="rgba(192, 132, 252, 0.3)" stroke-width="1.5" />
+                    <circle cx="70" cy="150" r="4" fill="#a855f7" />
+                    <text x="70" y="182" text-anchor="middle" fill="#9ca3af" font-size="10" font-family="'Inter', sans-serif">Compute Node</text>
+
+                    <!-- Node 4: Bottom Right -->
+                    <circle cx="330" cy="150" r="20" fill="rgba(12, 20, 24, 0.9)" stroke="rgba(192, 132, 252, 0.3)" stroke-width="1.5" />
+                    <circle cx="330" cy="150" r="4" fill="#c084fc" />
+                    <text x="330" y="182" text-anchor="middle" fill="#9ca3af" font-size="10" font-family="'Inter', sans-serif">Community Relay</text>
+                  </svg>
+                </div>
+                <div class="preview-box-footer">
+                  <span class="preview-footer-dot dot-purple"></span>
+                  <span>Protocol: Ecosyz Open Mesh · Public Interconnect Standard</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Showcase 4: Community & Fellowship -->
+          <article id="community" class="discovery-showcase-card card-theme-indigo">
+            <!-- Left: Information Column -->
+            <div class="discovery-info-col">
+              <div>
+                <div class="discovery-card-top">
+                  <div class="discovery-icon-wrap icon-indigo">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="9" cy="7" r="4"></circle>
+                      <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                      <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                  </div>
+                  <div class="discovery-badge-group">
+                    <span class="discovery-badge">Community</span>
+                    <span class="discovery-status-pill pill-indigo">Global Commons</span>
+                  </div>
+                </div>
+                <h3 class="discovery-showcase-title">Community &amp; Fellowship</h3>
+                <p class="discovery-showcase-desc">
+                  A shared commons for builders, researchers, and innovators. Collaborate on open challenges, explore verified community projects, participate in our Fellowship Program, and shape value-driven solutions.
+                </p>
+                <div class="discovery-tags">
+                  <span class="discovery-tag">Fellowship Residency</span>
+                  <span class="discovery-tag">Problems &amp; Ideas</span>
+                  <span class="discovery-tag">Open Collaboration</span>
+                  <span class="discovery-tag">Mentorship</span>
+                  <span class="discovery-tag">Global Builder Commons</span>
+                </div>
+              </div>
+              <div class="discovery-actions-group">
+                <a class="discovery-btn-primary btn-indigo" href="https://discord.gg/4weahHXQYY" target="_blank" rel="noopener noreferrer">
+                  <span>Join Discord</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </a>
+                <a class="discovery-link-secondary" href="about/site.html#fellowship">
+                  <span>Fellowship Information</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- Right: Interactive / Visual Preview Column -->
+            <div class="discovery-preview-col">
+              <div class="discovery-preview-box preview-community">
+                <div class="preview-box-header">
+                  <div class="preview-header-title">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                    </svg>
+                    <span>Community Pathways &amp; Commons</span>
+                  </div>
+                  <span class="preview-status-badge">Active Commons</span>
+                </div>
+                <div class="preview-pathways-grid">
+                  <a class="preview-pathway-card" href="about/site.html#fellowship">
+                    <div class="pathway-card-header">
+                      <span class="pathway-title">Fellowship Program</span>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </div>
+                    <p class="pathway-desc">Mentorship and project residency for students and independent builders.</p>
+                  </a>
+                  <a class="preview-pathway-card" href="feedback/site.html">
+                    <div class="pathway-card-header">
+                      <span class="pathway-title">Problems &amp; Ideas</span>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </div>
+                    <p class="pathway-desc">Submit a problem worth solving or propose an idea for others to explore.</p>
+                  </a>
+                  <a class="preview-pathway-card" href="https://github.com/Sony17/Ecosyz" target="_blank" rel="noopener noreferrer">
+                    <div class="pathway-card-header">
+                      <span class="pathway-title">Open Contribution</span>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </div>
+                    <p class="pathway-desc">Help improve platform tools, documentation, open datasets, and guides.</p>
+                  </a>
+                  <a class="preview-pathway-card" href="https://discord.gg/4weahHXQYY" target="_blank" rel="noopener noreferrer">
+                    <div class="pathway-card-header">
+                      <span class="pathway-title">Discord Community</span>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </div>
+                    <p class="pathway-desc">Connect with global innovators and collaborate on real-world challenges.</p>
+                  </a>
+                </div>
+                <div class="preview-box-footer">
+                  <span class="preview-footer-dot dot-indigo"></span>
+                  <span>Ecosystem Commons · Open Collaboration &amp; Mentorship</span>
+                </div>
+              </div>
+            </div>
+          </article>
         </div>
       </div>
     </section>

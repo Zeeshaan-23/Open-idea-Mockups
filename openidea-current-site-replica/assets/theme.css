@@ -161,6 +161,8 @@ html[data-theme="light"] {
   /* Gradients */
   --gradient-primary: linear-gradient(to right, #059669, #0284c7);
   --gradient-text-logo: linear-gradient(to right, #047857, #0284c7);
+  --gradient-features-title: linear-gradient(to right, #047857, #0284c7, #2563eb);
+  --gradient-text-hero: linear-gradient(to right, #047857, #0284c7, #4f46e5);
 }
 
 /* Base Body & Main Sections on Light Theme */
@@ -188,7 +190,6 @@ html[data-theme="light"] h5:not([class*="gradient"]):not([class*="grad-"]),
 html[data-theme="light"] h6:not([class*="gradient"]):not([class*="grad-"]),
 html[data-theme="light"] .text-white,
 html[data-theme="light"] .hero-title-prefix,
-html[data-theme="light"] .features-title,
 html[data-theme="light"] .pricing-title,
 html[data-theme="light"] .feedback-title,
 html[data-theme="light"] .auth-title,
@@ -234,7 +235,7 @@ html[data-theme="light"] .text-gray-300,
 html[data-theme="light"] .text-gray-400,
 html[data-theme="light"] .pricing-subtitle,
 html[data-theme="light"] .features-subtitle {
-  color: #64748b !important;
+  color: #475569 !important;
 }
 
 html[data-theme="light"] .hero-subtitle {
@@ -302,13 +303,17 @@ html[data-theme="light"] .btn-hamburger:hover {
 }
 
 /* Hero Background Globe & Glow on Light Theme */
-html[data-theme="light"] .hero-globe-img {
-  opacity: 0.20;
+html[data-theme="light"] .hero-globe-img,
+html[data-theme="light"] .pricing-globe-img,
+html[data-theme="light"] .auth-globe-img {
+  opacity: 0.18;
   mix-blend-mode: multiply;
   filter: contrast(1.2) brightness(0.92);
 }
 
-html[data-theme="light"] .hero-radial-glow {
+html[data-theme="light"] .hero-radial-glow,
+html[data-theme="light"] .pricing-radial-glow,
+html[data-theme="light"] .auth-radial-glow {
   background: radial-gradient(circle, rgba(34, 211, 238, 0.2) 0%, transparent 70%);
 }
 
@@ -332,11 +337,12 @@ html[data-theme="light"] .pricing-card.popular {
   box-shadow: 0 8px 30px -4px rgba(5, 150, 105, 0.12);
 }
 
-/* Top Floating Actions (Contribute & GitHub) */
+/* Top Floating Actions (Contribute, GitHub, Whitepaper) */
 html[data-theme="light"] .btn-contribute,
 html[data-theme="light"] .btn-github,
 html[data-theme="light"] .btn-contribute-badge,
-html[data-theme="light"] .btn-github-badge {
+html[data-theme="light"] .btn-github-badge,
+html[data-theme="light"] .btn-whitepaper {
   background: rgba(255, 255, 255, 0.88);
   border: 1px solid rgba(5, 150, 105, 0.3);
   color: #065f46;
@@ -346,7 +352,8 @@ html[data-theme="light"] .btn-github-badge {
 html[data-theme="light"] .btn-contribute:hover,
 html[data-theme="light"] .btn-github:hover,
 html[data-theme="light"] .btn-contribute-badge:hover,
-html[data-theme="light"] .btn-github-badge:hover {
+html[data-theme="light"] .btn-github-badge:hover,
+html[data-theme="light"] .btn-whitepaper:hover {
   background: #ffffff;
   border-color: #059669;
   color: #047857;
@@ -520,9 +527,16 @@ html[data-theme="light"] .provider-btn:hover {
 html[data-theme="light"] .category-pill.active,
 html[data-theme="light"] .tab-btn.active,
 html[data-theme="light"] .provider-btn.active {
-  background: rgba(5, 150, 105, 0.1);
+  background: #ffffff;
   border-color: rgba(5, 150, 105, 0.3);
-  color: #059669;
+  color: #047857;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+html[data-theme="light"] .provider-toggle-box {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
 }
 
 /* Search Bars on Light Theme */
@@ -754,7 +768,219 @@ html[data-theme="light"] .btn-consult-email:hover {
   color: #0f172a;
 }
 
-/* Discovery Cards in Light Mode */
+/* --------------------------------------------------------------------------
+   DISCOVERY SHOWCASE CARDS - LIGHT THEME OVERRIDES
+   -------------------------------------------------------------------------- */
+html[data-theme="light"] .discovery-showcase-card {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 30px -4px rgba(0, 0, 0, 0.06);
+}
+
+html[data-theme="light"] .discovery-showcase-card::before {
+  opacity: 0.06;
+}
+
+html[data-theme="light"] .card-theme-cyan:hover {
+  border-color: rgba(6, 182, 212, 0.5);
+  box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.1), 0 0 25px -5px rgba(6, 182, 212, 0.15);
+}
+
+html[data-theme="light"] .card-theme-emerald:hover {
+  border-color: rgba(16, 185, 129, 0.5);
+  box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.1), 0 0 25px -5px rgba(16, 185, 129, 0.15);
+}
+
+html[data-theme="light"] .card-theme-purple:hover {
+  border-color: rgba(168, 85, 247, 0.5);
+  box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.1), 0 0 25px -5px rgba(168, 85, 247, 0.15);
+}
+
+html[data-theme="light"] .card-theme-indigo:hover {
+  border-color: rgba(99, 102, 241, 0.5);
+  box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.1), 0 0 25px -5px rgba(99, 102, 241, 0.15);
+}
+
+html[data-theme="light"] .discovery-showcase-title {
+  color: #0f172a;
+}
+
+html[data-theme="light"] .discovery-showcase-desc {
+  color: #475569;
+}
+
+html[data-theme="light"] .discovery-tag {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.08);
+  color: #475569;
+}
+
+html[data-theme="light"] .discovery-status-pill {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.08);
+  color: #64748b;
+}
+
+html[data-theme="light"] .pill-cyan {
+  background: rgba(6, 182, 212, 0.1);
+  border-color: rgba(6, 182, 212, 0.25);
+  color: #0891b2;
+}
+
+html[data-theme="light"] .pill-emerald {
+  background: rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.25);
+  color: #059669;
+}
+
+html[data-theme="light"] .pill-purple {
+  background: rgba(168, 85, 247, 0.1);
+  border-color: rgba(168, 85, 247, 0.25);
+  color: #9333ea;
+}
+
+html[data-theme="light"] .pill-indigo {
+  background: rgba(99, 102, 241, 0.1);
+  border-color: rgba(99, 102, 241, 0.25);
+  color: #4f46e5;
+}
+
+html[data-theme="light"] .discovery-actions-group {
+  border-top-color: rgba(0, 0, 0, 0.06);
+}
+
+html[data-theme="light"] .btn-cyan {
+  background: #0891b2;
+  color: #ffffff;
+  border-color: #0891b2;
+}
+
+html[data-theme="light"] .btn-cyan:hover {
+  background: #0e7490;
+  color: #ffffff;
+}
+
+html[data-theme="light"] .btn-emerald {
+  background: #059669;
+  color: #ffffff;
+  border-color: #059669;
+}
+
+html[data-theme="light"] .btn-emerald:hover {
+  background: #047857;
+  color: #ffffff;
+}
+
+html[data-theme="light"] .btn-purple {
+  background: #9333ea;
+  color: #ffffff;
+  border-color: #9333ea;
+}
+
+html[data-theme="light"] .btn-purple:hover {
+  background: #7e22ce;
+  color: #ffffff;
+}
+
+html[data-theme="light"] .btn-indigo {
+  background: #4f46e5;
+  color: #ffffff;
+  border-color: #4f46e5;
+}
+
+html[data-theme="light"] .btn-indigo:hover {
+  background: #4338ca;
+  color: #ffffff;
+}
+
+html[data-theme="light"] .discovery-link-secondary {
+  color: #64748b;
+}
+
+html[data-theme="light"] .discovery-link-secondary:hover {
+  color: #0f172a;
+}
+
+html[data-theme="light"] .discovery-preview-box {
+  background: #f8fafc;
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+html[data-theme="light"] .preview-box-header,
+html[data-theme="light"] .preview-box-footer {
+  border-color: rgba(0, 0, 0, 0.06);
+}
+
+html[data-theme="light"] .preview-header-title,
+html[data-theme="light"] .preview-box-footer {
+  color: #64748b;
+}
+
+html[data-theme="light"] .preview-status-badge {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.08);
+  color: #475569;
+}
+
+html[data-theme="light"] .preview-resource-item {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.07);
+}
+
+html[data-theme="light"] .preview-resource-item:hover {
+  background: #f1f5f9;
+}
+
+html[data-theme="light"] .resource-item-title {
+  color: #0f172a;
+}
+
+html[data-theme="light"] .resource-item-sub {
+  color: #64748b;
+}
+
+html[data-theme="light"] .preview-code-editor {
+  background: #0f172a;
+  border-color: rgba(0, 0, 0, 0.15);
+  color: #e2e8f0;
+}
+
+html[data-theme="light"] .preview-header-tab {
+  color: #0f172a;
+}
+
+html[data-theme="light"] .preview-topology-canvas circle[fill="rgba(12, 20, 24, 0.9)"] {
+  fill: #ffffff;
+  stroke: rgba(147, 51, 234, 0.35);
+}
+
+html[data-theme="light"] .preview-topology-canvas text[fill="#ffffff"] {
+  fill: #0f172a;
+}
+
+html[data-theme="light"] .preview-topology-canvas text[fill="#9ca3af"] {
+  fill: #475569;
+}
+
+html[data-theme="light"] .preview-pathway-card {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.07);
+}
+
+html[data-theme="light"] .preview-pathway-card:hover {
+  background: #f5f3ff;
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
+html[data-theme="light"] .pathway-title {
+  color: #0f172a;
+}
+
+html[data-theme="light"] .pathway-desc {
+  color: #64748b;
+}
+
+/* Legacy Card Classes in Light Mode */
 html[data-theme="light"] .discovery-card {
   background: #ffffff;
   border-color: rgba(0, 0, 0, 0.08);
@@ -811,4 +1037,182 @@ html[data-theme="light"] .discovery-btn-studio {
 html[data-theme="light"] .discovery-btn-studio:hover {
   color: #047857;
 }
+
+/* --------------------------------------------------------------------------
+   PRICING PAGE - LIGHT THEME OVERRIDES
+   -------------------------------------------------------------------------- */
+html[data-theme="light"] .main-price-val {
+  color: #0f172a;
+}
+
+html[data-theme="light"] .price-period {
+  color: #475569;
+}
+
+html[data-theme="light"] .price-secondary-usd {
+  color: #64748b;
+}
+
+html[data-theme="light"] .affiliate-label {
+  color: #475569;
+}
+
+html[data-theme="light"] .affiliate-input {
+  background: #ffffff;
+  color: #0f172a;
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+html[data-theme="light"] .affiliate-input:focus {
+  border-color: #059669;
+  box-shadow: 0 0 0 2px rgba(5, 150, 105, 0.2);
+}
+
+html[data-theme="light"] .pricing-card .feature-item {
+  color: #334155;
+}
+
+html[data-theme="light"] .btn-tooltip-trigger {
+  border-color: rgba(0, 0, 0, 0.2);
+  color: #64748b;
+}
+
+html[data-theme="light"] .btn-tooltip-trigger:hover,
+html[data-theme="light"] .btn-tooltip-trigger:focus {
+  border-color: #059669;
+  color: #059669;
+}
+
+html[data-theme="light"] .tooltip-box {
+  background: #ffffff;
+  color: #334155;
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* --------------------------------------------------------------------------
+   FEATURES PAGE - LIGHT THEME OVERRIDES
+   -------------------------------------------------------------------------- */
+html[data-theme="light"] .features-title {
+  background: var(--gradient-features-title);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+html[data-theme="light"] .card-desc {
+  color: #475569;
+}
+
+html[data-theme="light"] .pill-community {
+  border-color: rgba(124, 58, 237, 0.5);
+  color: #7c3aed;
+}
+
+html[data-theme="light"] .feature-card.card-community:hover .pill-community {
+  background: linear-gradient(to right, #7c3aed, #4f46e5);
+  color: #ffffff;
+}
+
+html[data-theme="light"] .platform-banner-card {
+  background: #ffffff;
+  border-color: rgba(5, 150, 105, 0.25);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+html[data-theme="light"] .platform-banner-title {
+  color: #0f172a;
+}
+
+html[data-theme="light"] .platform-banner-desc {
+  color: #475569;
+}
+
+html[data-theme="light"] .btn-learn-more {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(2, 132, 199, 0.4);
+  color: #0284c7;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+html[data-theme="light"] .btn-learn-more:hover {
+  background: #ffffff;
+  border-color: #0284c7;
+  color: #0369a1;
+}
+
+/* --------------------------------------------------------------------------
+   ABOUT PAGE - LIGHT THEME OVERRIDES
+   -------------------------------------------------------------------------- */
+html[data-theme="light"] .hero-title-gradient {
+  background: var(--gradient-text-hero);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+html[data-theme="light"] .btn-cta-secondary {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(5, 150, 105, 0.4);
+  color: #047857;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+html[data-theme="light"] .btn-cta-secondary:hover {
+  background: #ffffff;
+  border-color: #059669;
+  color: #065f46;
+}
+
+html[data-theme="light"] .btn-cta-tertiary {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(2, 132, 199, 0.4);
+  color: #0284c7;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+html[data-theme="light"] .btn-cta-tertiary:hover {
+  background: #ffffff;
+  border-color: #0284c7;
+  color: #0369a1;
+}
+
+/* --------------------------------------------------------------------------
+   AUTH PAGE - LIGHT THEME OVERRIDES
+   -------------------------------------------------------------------------- */
+html[data-theme="light"] .auth-subtitle {
+  color: #475569;
+}
+
+html[data-theme="light"] .form-label {
+  color: #334155;
+}
+
+html[data-theme="light"] .auth-plan-banner {
+  background: rgba(5, 150, 105, 0.12);
+  border-color: rgba(5, 150, 105, 0.3);
+  color: #047857;
+}
+
+html[data-theme="light"] .auth-divider-text {
+  color: #64748b;
+}
+
+html[data-theme="light"] .auth-divider-line {
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+html[data-theme="light"] .btn-google-auth {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.15);
+  color: #1e293b;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+html[data-theme="light"] .btn-google-auth:hover {
+  background: #f8fafc;
+  border-color: rgba(0, 0, 0, 0.25);
+  color: #0f172a;
+}
+
 
