@@ -118,6 +118,17 @@ Every current and future replicated page must pass this verification:
 
 ## Directory Structure
 
+### 5. Creator Workspace (`/creator`)
+- **Structure**: Left Navigation Sidebar + Top Utility Bar + Central Creation Workspace + Large Prompt Box + Quick Action Chips + Atmospheric Earth Background.
+- **Branding**: Native Open Idea identity, official logo, Space Grotesk + Inter typography, and emerald/cyan gradient palette.
+- **Theme Support**: Seamless Dark Mode (celestial space & night Earth) and Light Mode (soft pastel sky & daylight Earth).
+- **Interactions**: Auto-growing prompt textarea, quick action prompt injection, simulated AI canvas generator, attachment, voice, sidebar collapse, and mobile drawer.
+- **Workbench**: Dedicated comparison workbench at `creator/index.html` and integrated into parent `index.html`.
+
+---
+
+## Directory Structure
+
 ```
 openidea-current-site-replica/
 │
@@ -125,15 +136,24 @@ openidea-current-site-replica/
 ├── site.html             # Faithful standalone website replica
 ├── styles.css            # Production CSS styles, responsive breakpoints, animations
 ├── script.js             # Typewriter, template injection, auto-resize, mobile nav, chat
+├── creator/
+│   ├── index.html        # Creator Desktop & Mobile comparison workbench
+│   ├── site.html         # Creator Application Workspace replica
+│   ├── styles.css        # Creator layout, sidebar, prompt, quick actions, themes
+│   └── script.js         # Interactive prompt, generation, collapse, drawer
 ├── assets/
 │   ├── images/
-│   │   └── hero-globe.png   # 1.69 MB high-res digital globe asset from production
+│   │   ├── hero-globe.png       # Production dark digital globe asset
+│   │   └── hero-globe-light.jpg # Photorealistic daylight Earth asset
 │   ├── logos/
-│   │   └── logo.png         # 87.7 KB official Open Idea logo asset from production
+│   │   └── logo.png             # Official Open Idea logo asset
 │   ├── icons/
-│   │   ├── favicon.ico      # Production favicon
-│   │   └── icon-192.png     # PWA icon asset
-│   └── fonts/               # Space Grotesk & Inter via Google Fonts CDN
+│   │   ├── favicon.ico          # Production favicon
+│   │   └── icon-192.png         # PWA icon asset
+│   ├── nav-sync.js              # Centralized cross-frame workbench synchronization
+│   ├── theme.css                # Global dark/light theme definitions & tokens
+│   ├── theme.js                 # Global theme controller & persistence
+│   └── fonts/                   # Space Grotesk & Inter via Google Fonts CDN
 └── README.md             # This documentation
 ```
 

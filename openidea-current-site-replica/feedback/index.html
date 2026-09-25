@@ -454,6 +454,7 @@
         else if (path.includes('/pricing')) page = 'pricing';
         else if (path.includes('/auth')) page = 'auth';
         else if (path.includes('/feedback')) page = 'feedback';
+        else if (path.includes('/creator')) page = 'creator';
 
         const url = '../index.html' + (page ? '?page=' + page : '') + (data.search || '');
         window.location.href = url;

@@ -257,6 +257,114 @@
       border-radius: 4px;
     }
 
+    /* Workbench Page Navigation Bar */
+    .workbench-nav-bar {
+      background: rgba(13, 21, 25, 0.98);
+      border-bottom: 1px solid var(--border-panel);
+      padding: 0.55rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 56px;
+      z-index: 99;
+      backdrop-filter: blur(8px);
+    }
+
+    .workbench-pages-group {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+
+    .workbench-nav-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-emerald);
+      margin-right: 0.35rem;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .btn-page-tab {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-panel);
+      color: var(--text-muted);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      transition: all 0.15s ease;
+      text-decoration: none;
+    }
+
+    .btn-page-tab:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.18);
+    }
+
+    .btn-page-tab.active {
+      background: rgba(52, 211, 153, 0.18);
+      border-color: rgba(52, 211, 153, 0.45);
+      color: var(--accent-emerald);
+      font-weight: 600;
+      box-shadow: 0 0 12px rgba(52, 211, 153, 0.15);
+    }
+
+    .btn-page-tab .tab-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--text-muted);
+      transition: all 0.15s;
+    }
+
+    .btn-page-tab.active .tab-dot {
+      background: var(--accent-emerald);
+      box-shadow: 0 0 6px var(--accent-emerald);
+    }
+
+    .btn-page-tab .tab-badge {
+      font-family: monospace;
+      font-size: 0.6875rem;
+      padding: 0.1rem 0.35rem;
+      border-radius: 3px;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text-muted);
+    }
+
+    .btn-page-tab.active .tab-badge {
+      background: rgba(52, 211, 153, 0.2);
+      color: var(--accent-emerald);
+    }
+
+    .workbench-dedicated-links {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      flex-wrap: wrap;
+    }
+
+    .dedicated-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-right: 0.25rem;
+    }
+
     /* Frame Wrappers */
     .frame-wrapper {
       border: 1px solid var(--border-panel);
@@ -405,8 +513,114 @@
         </svg>
         <span>Feedback Workbench</span>
       </a>
+
+      <!-- Open Creator Workbench Link -->
+      <a class="btn-action-tool" href="creator/index.html" title="Open Creator Comparison Workbench">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+          <polyline points="2 17 12 22 22 17"></polyline>
+          <polyline points="2 12 12 17 22 12"></polyline>
+        </svg>
+        <span>Creator Workbench</span>
+      </a>
+
+      <!-- Open Templates Workbench Link -->
+      <a class="btn-action-tool" href="templates/index.html" title="Open Templates Comparison Workbench">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="7" rx="1"></rect>
+          <rect x="14" y="3" width="7" height="7" rx="1"></rect>
+          <rect x="14" y="14" width="7" height="7" rx="1"></rect>
+          <rect x="3" y="14" width="7" height="7" rx="1"></rect>
+        </svg>
+        <span>Templates Workbench</span>
+      </a>
+
+      <!-- Open Resources Workbench Link -->
+      <a class="btn-action-tool" href="resources/index.html" title="Open Resources Comparison Workbench">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <span>Resources Workbench</span>
+      </a>
     </div>
   </header>
+
+  <!-- ========================================================================
+       WORKBENCH PAGE SELECTOR & DEDICATED WORKBENCHES BAR
+       Enables direct switching between ALL 9 pages in the master workbench
+       ======================================================================== -->
+  <nav class="workbench-nav-bar" aria-label="Workbench Page Selection">
+    <div class="workbench-pages-group" id="workbench-page-tabs">
+      <span class="workbench-nav-title">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <rect x="3" y="3" width="7" height="7"></rect>
+          <rect x="14" y="3" width="7" height="7"></rect>
+          <rect x="14" y="14" width="7" height="7"></rect>
+          <rect x="3" y="14" width="7" height="7"></rect>
+        </svg>
+        Select Page:
+      </span>
+      <button type="button" class="btn-page-tab active" data-page-target="site.html" data-page-key="home">
+        <span class="tab-dot"></span>
+        <span>Homepage</span>
+        <span class="tab-badge">/</span>
+      </button>
+      <button type="button" class="btn-page-tab" data-page-target="creator/site.html" data-page-key="creator">
+        <span class="tab-dot"></span>
+        <span>Creator</span>
+        <span class="tab-badge">/creator</span>
+      </button>
+      <button type="button" class="btn-page-tab" data-page-target="templates/site.html" data-page-key="templates">
+        <span class="tab-dot"></span>
+        <span>Templates</span>
+        <span class="tab-badge">/templates</span>
+      </button>
+      <button type="button" class="btn-page-tab" data-page-target="resources/site.html" data-page-key="resources">
+        <span class="tab-dot"></span>
+        <span>Resources</span>
+        <span class="tab-badge">/resources</span>
+      </button>
+      <button type="button" class="btn-page-tab" data-page-target="about/site.html" data-page-key="about">
+        <span class="tab-dot"></span>
+        <span>About</span>
+        <span class="tab-badge">/about</span>
+      </button>
+      <button type="button" class="btn-page-tab" data-page-target="features/site.html" data-page-key="features">
+        <span class="tab-dot"></span>
+        <span>Features</span>
+        <span class="tab-badge">/features</span>
+      </button>
+      <button type="button" class="btn-page-tab" data-page-target="pricing/site.html" data-page-key="pricing">
+        <span class="tab-dot"></span>
+        <span>Pricing</span>
+        <span class="tab-badge">/pricing</span>
+      </button>
+      <button type="button" class="btn-page-tab" data-page-target="auth/site.html" data-page-key="auth">
+        <span class="tab-dot"></span>
+        <span>Auth</span>
+        <span class="tab-badge">/auth</span>
+      </button>
+      <button type="button" class="btn-page-tab" data-page-target="feedback/site.html" data-page-key="feedback">
+        <span class="tab-dot"></span>
+        <span>Feedback</span>
+        <span class="tab-badge">/feedback</span>
+      </button>
+    </div>
+
+    <!-- Dedicated Sub-Workbenches Shortcut Group -->
+    <div class="workbench-dedicated-links">
+      <span class="dedicated-label">Dedicated:</span>
+      <a class="btn-page-tab" href="creator/index.html" title="Open Creator Dedicated Workbench" style="font-size:0.75rem; padding:0.25rem 0.5rem;">Creator ↗</a>
+      <a class="btn-page-tab" href="templates/index.html" title="Open Templates Dedicated Workbench" style="font-size:0.75rem; padding:0.25rem 0.5rem;">Templates ↗</a>
+      <a class="btn-page-tab" href="resources/index.html" title="Open Resources Dedicated Workbench" style="font-size:0.75rem; padding:0.25rem 0.5rem;">Resources ↗</a>
+      <a class="btn-page-tab" href="about/index.html" title="Open About Dedicated Workbench" style="font-size:0.75rem; padding:0.25rem 0.5rem;">About ↗</a>
+      <a class="btn-page-tab" href="features/index.html" title="Open Features Dedicated Workbench" style="font-size:0.75rem; padding:0.25rem 0.5rem;">Features ↗</a>
+      <a class="btn-page-tab" href="pricing/index.html" title="Open Pricing Dedicated Workbench" style="font-size:0.75rem; padding:0.25rem 0.5rem;">Pricing ↗</a>
+      <a class="btn-page-tab" href="auth/index.html" title="Open Auth Dedicated Workbench" style="font-size:0.75rem; padding:0.25rem 0.5rem;">Auth ↗</a>
+      <a class="btn-page-tab" href="feedback/index.html" title="Open Feedback Dedicated Workbench" style="font-size:0.75rem; padding:0.25rem 0.5rem;">Feedback ↗</a>
+    </div>
+  </nav>
 
   <!-- ========================================================================
        SIDE-BY-SIDE VIEWPORT WORKSPACE
@@ -493,6 +707,18 @@
       if (path.includes('/feedback/') || path.endsWith('/feedback') || path.endsWith('/feedback/site.html')) {
         return 'feedback/site.html' + search + hash;
       }
+      if (path.includes('/creator/') || path.endsWith('/creator') || path.endsWith('/creator/site.html')) {
+        return 'creator/site.html' + search + hash;
+      }
+      if (path.includes('/templates/') || path.endsWith('/templates') || path.endsWith('/templates/site.html')) {
+        return 'templates/site.html' + search + hash;
+      }
+      if (path.includes('/resources') || path.includes('/openresources')) {
+        return 'resources/site.html' + search + hash;
+      }
+      if (path.includes('/studio') || path.includes('/app-studio')) {
+        return 'site.html' + search + (hash || '#app-studio');
+      }
       if (path === '/' || path.endsWith('/site.html') || path.endsWith('/index.html') || path === '') {
         return 'site.html' + search + hash;
       }
@@ -506,7 +732,10 @@
     function navigateBothFrames(targetPath) {
       if (!targetPath) return;
       currentReplicaPath = targetPath;
-      const navSrc = targetPath + (targetPath.includes('?') ? '&' : '?') + 'v=12';
+      const parts = targetPath.split('#');
+      const base = parts[0] || 'site.html';
+      const hashPart = parts[1] ? '#' + parts[1] : '';
+      const navSrc = base + (base.includes('?') ? '&' : '?') + 'v=12' + hashPart;
 
       if (desktopIframe) {
         desktopIframe.src = navSrc;
@@ -522,7 +751,36 @@
 
       // Update workbench URL with page param without full reload
       updateWorkbenchUrl(targetPath);
+      updateActivePageTab(targetPath);
     }
+
+    function updateActivePageTab(targetPath) {
+      if (!targetPath) return;
+      const tabs = document.querySelectorAll('.btn-page-tab[data-page-target]');
+      if (!tabs || tabs.length === 0) return;
+      let matchedKey = 'home';
+      if (targetPath.startsWith('creator')) matchedKey = 'creator';
+      else if (targetPath.startsWith('templates')) matchedKey = 'templates';
+      else if (targetPath.startsWith('resources')) matchedKey = 'resources';
+      else if (targetPath.startsWith('about')) matchedKey = 'about';
+      else if (targetPath.startsWith('features')) matchedKey = 'features';
+      else if (targetPath.startsWith('pricing')) matchedKey = 'pricing';
+      else if (targetPath.startsWith('auth')) matchedKey = 'auth';
+      else if (targetPath.startsWith('feedback')) matchedKey = 'feedback';
+      else if (targetPath.startsWith('site.html') || targetPath === '') matchedKey = 'home';
+
+      tabs.forEach(tab => {
+        tab.classList.toggle('active', tab.getAttribute('data-page-key') === matchedKey);
+      });
+    }
+
+    // Attach click listeners to page selector tabs
+    document.querySelectorAll('.btn-page-tab[data-page-target]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.getAttribute('data-page-target');
+        navigateBothFrames(target);
+      });
+    });
 
     function updateWorkbenchUrl(targetPath) {
       try {
@@ -533,6 +791,9 @@
         else if (targetPath.startsWith('pricing')) page = 'pricing';
         else if (targetPath.startsWith('auth')) page = 'auth';
         else if (targetPath.startsWith('feedback')) page = 'feedback';
+        else if (targetPath.startsWith('creator')) page = 'creator';
+        else if (targetPath.startsWith('templates')) page = 'templates';
+        else if (targetPath.startsWith('resources')) page = 'resources';
 
         if (page) {
           url.searchParams.set('page', page);
@@ -625,6 +886,9 @@
       else if (page === 'pricing') target = 'pricing/site.html';
       else if (page === 'auth') target = 'auth/site.html';
       else if (page === 'feedback') target = 'feedback/site.html';
+      else if (page === 'creator') target = 'creator/site.html';
+      else if (page === 'templates') target = 'templates/site.html';
+      else if (page === 'resources') target = 'resources/site.html';
       navigateBothFrames(target);
     });
 
@@ -638,6 +902,9 @@
       else if (initialPage === 'pricing') initialPath = 'pricing/site.html';
       else if (initialPage === 'auth') initialPath = 'auth/site.html';
       else if (initialPage === 'feedback') initialPath = 'feedback/site.html';
+      else if (initialPage === 'creator') initialPath = 'creator/site.html';
+      else if (initialPage === 'templates') initialPath = 'templates/site.html';
+      else if (initialPage === 'resources') initialPath = 'resources/site.html';
 
       if (initialPath) {
         currentReplicaPath = initialPath;
@@ -647,6 +914,7 @@
         if (standaloneLink) standaloneLink.href = initialPath;
       }
     }
+    updateActivePageTab(currentReplicaPath);
 
     function calculateFitScale() {
       // Total unscaled width of comparison workspace:

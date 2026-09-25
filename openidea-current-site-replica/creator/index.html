@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <script>
-    // Frame detection guard: If embedded inside an iframe (such as the desktop/mobile viewports of a comparison workbench),
+    // Frame detection guard: If embedded inside an iframe (such as desktop/mobile viewports of workbench),
     // immediately replace the location with the standalone replica page so a nested workbench is never displayed inside a viewport.
     if (window.self !== window.top) {
       window.location.replace('site.html');
     }
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Open Idea About Replica · Desktop &amp; Mobile Comparison Workspace</title>
-  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  <title>Open Idea Creator Replica · Desktop &amp; Mobile Comparison Workspace</title>
+  <link rel="icon" href="../assets/icons/favicon.ico" type="image/x-icon">
 
   <!-- Google Fonts: Space Grotesk & Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,7 +20,7 @@
 
   <style>
     /* ==========================================================================
-       DEVELOPMENT COMPARISON WORKSPACE STYLES - ABOUT PAGE
+       DEVELOPMENT COMPARISON WORKSPACE STYLES - CREATOR PAGE
        ========================================================================== */
     :root {
       --bg-workbench: #070c0f;
@@ -221,7 +221,7 @@
       height: 900px;
       border: none;
       display: block;
-      background: #0c2321;
+      background: #060e0d;
     }
 
     /* Exact Mobile Viewport: 390px */
@@ -234,7 +234,7 @@
       height: 844px;
       border: none;
       display: block;
-      background: #0c2321;
+      background: #060e0d;
     }
   </style>
 </head>
@@ -245,7 +245,7 @@
     <div class="workbench-branding">
       <img src="../assets/logos/logo.png" alt="Open Idea" class="workbench-logo">
       <span class="workbench-title">Open Idea Replica Workbench</span>
-      <span class="workbench-badge">About Page Replica</span>
+      <span class="workbench-badge">Creator Workspace</span>
     </div>
 
     <!-- Zoom & Utility Controls -->
@@ -258,8 +258,7 @@
       <button class="btn-control" data-scale="0.5" id="btn-zoom-50">50%</button>
       <button class="btn-control" id="btn-reload" title="Reload Views">↻ Reload</button>
       <a href="site.html" target="_blank" class="btn-control btn-action-primary">↗ Open Standalone</a>
-      <a href="../features/index.html" class="btn-control">Features Workbench</a>
-      <a href="../index.html" class="btn-control">← Home Workbench</a>
+      <a href="../index.html" class="btn-control">← Main Workbench</a>
     </div>
   </header>
 
@@ -276,7 +275,7 @@
         <span class="device-dimension">1440px &times; 900px</span>
       </div>
       <div class="viewport-frame desktop-frame">
-        <iframe src="site.html?v=12" id="iframe-desktop" title="Open Idea About Page - Desktop 1440px"></iframe>
+        <iframe src="site.html?v=2" id="iframe-desktop" title="Open Idea Creator - Desktop 1440px"></iframe>
       </div>
     </div>
 
@@ -290,7 +289,7 @@
         <span class="device-dimension">390px &times; 844px</span>
       </div>
       <div class="viewport-frame mobile-frame">
-        <iframe src="site.html?v=12" id="iframe-mobile" title="Open Idea About Page - Mobile 390px"></iframe>
+        <iframe src="site.html?v=2" id="iframe-mobile" title="Open Idea Creator - Mobile 390px"></iframe>
       </div>
     </div>
 
@@ -351,6 +350,13 @@
         iframeMobile.src = 'site.html?r=' + Date.now();
       });
 
+      // Window resize re-calculates auto fit
+      window.addEventListener('resize', () => {
+        if (currentScaleMode === 'auto') {
+          applyScale('auto');
+        }
+      });
+
       // Initialize
       applyScale('auto');
 
@@ -367,8 +373,10 @@
           else if (path.includes('/auth')) page = 'auth';
           else if (path.includes('/feedback')) page = 'feedback';
           else if (path.includes('/creator')) page = 'creator';
+          else if (path.includes('/templates')) page = 'templates';
+          else if (path.includes('/resources') || path.includes('/openresources')) page = 'resources';
           
-          const url = '../index.html' + (page ? '?page=' + page : '') + (data.search || '');
+          const url = '../index.html' + (page ? '?page=' + page : '') + (data.search || '') + (data.hash || '');
           window.location.href = url;
         } else if (data.type === 'WORKBENCH_THEME_CHANGE') {
           const theme = data.theme;
