@@ -11,7 +11,7 @@
  * - Mobile drawer & theme synchronization
  */
 
-document.addEventListener('DOMContentLoaded', () => {
+function initResourcesPage() {
   // --------------------------------------------------------------------------
   // AUTHENTIC RESOURCE DATA SET
   // --------------------------------------------------------------------------
@@ -253,8 +253,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnExploreConnections = document.getElementById('btn-explore-connections');
 
   // Mobile Hamburger Drawer
-  const hamburgerBtn = document.getElementById('hamburger-btn');
-  const mobileNavPanel = document.getElementById('mobile-nav') || document.getElementById('mobile-nav-panel');
+  const hamburgerBtn = document.getElementById('hamburger-btn') || document.getElementById('mobile-menu-toggle') || document.querySelector('.btn-hamburger');
+  const mobileNavPanel = document.getElementById('mobile-nav') || document.getElementById('mobile-nav-panel') || document.querySelector('.mobile-nav-panel');
 
   // --------------------------------------------------------------------------
   // SUMMARY CONTENT BY DIFFICULTY LEVEL
@@ -744,7 +744,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // MOBILE NAVIGATION DRAWER
   // --------------------------------------------------------------------------
   if (hamburgerBtn && mobileNavPanel) {
-    hamburgerBtn.addEventListener('click', () => {
+    hamburgerBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
       const isOpen = mobileNavPanel.classList.toggle('open');
       hamburgerBtn.setAttribute('aria-expanded', String(isOpen));
     });
@@ -774,4 +776,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initial render
   renderResources();
-});
+}
+
+// Resilient initialization guard
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initResourcesPage);
+} else {
+  initResourcesPage();
+}

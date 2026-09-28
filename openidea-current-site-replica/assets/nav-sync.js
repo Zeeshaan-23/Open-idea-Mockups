@@ -66,6 +66,14 @@
     if (!payload) return;
 
     if (action === 'INTERACT_CLICK') {
+      // Guard against applying remote clicks to mobile menu toggles or drawer (must remain strictly local to each frame)
+      if (payload.id === 'hamburger-btn' || payload.id === 'mobile-menu-toggle' || payload.ariaControls === 'mobile-nav' || payload.ariaControls === 'mobile-menu') {
+        return;
+      }
+      if (payload.selector && (payload.selector.includes('btn-hamburger') || payload.selector.includes('mobile-nav') || payload.selector.includes('mobile-menu'))) {
+        return;
+      }
+
       let target = null;
 
       // Match by ID
@@ -197,6 +205,11 @@
 
     // Ignore theme toggle buttons (handled semantically via theme.js and WORKBENCH_THEME_CHANGE)
     if (event.target.closest('.theme-toggle-btn, .mobile-theme-drawer-row, [data-action="toggle-theme"]')) {
+      return;
+    }
+
+    // Ignore mobile hamburger and mobile drawer elements (LOCAL UI state per frame, NEVER synchronized)
+    if (event.target.closest('.btn-hamburger, #hamburger-btn, #mobile-menu-toggle, .mobile-menu-toggle, [aria-controls="mobile-nav"], [aria-controls="mobile-menu"], [aria-label*="menu" i], [aria-label*="navigation" i], .mobile-nav-panel, #mobile-nav')) {
       return;
     }
 

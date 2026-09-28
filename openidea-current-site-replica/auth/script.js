@@ -62,14 +62,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const toastContainer = document.getElementById('toast-container');
 
   // Mobile Navigation
-  const hamburgerBtn = document.getElementById('hamburger-btn');
-  const mobileNav = document.getElementById('mobile-nav');
+  const hamburgerBtn = document.getElementById('hamburger-btn') || document.getElementById('mobile-menu-toggle') || document.querySelector('.btn-hamburger');
+  const mobileNav = document.getElementById('mobile-nav') || document.getElementById('mobile-nav-panel') || document.querySelector('.mobile-nav-panel');
 
   // --------------------------------------------------------------------------
   // 1. Mobile Navigation
   // --------------------------------------------------------------------------
   if (hamburgerBtn && mobileNav) {
-    hamburgerBtn.addEventListener('click', () => {
+    hamburgerBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
       const isOpen = mobileNav.classList.toggle('open');
       hamburgerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });

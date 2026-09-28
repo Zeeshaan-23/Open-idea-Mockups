@@ -19,7 +19,8 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  height: 56px;
+  min-height: 56px;
+  height: auto;
   background: rgba(12, 35, 33, 0.75);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -261,9 +262,21 @@
   background: rgba(255, 255, 255, 0.1);
 }
 
+.btn-hamburger svg,
+.btn-hamburger path {
+  pointer-events: none;
+}
+
 @media (min-width: 768px) {
+  .site-header {
+    height: 56px;
+  }
   .btn-hamburger {
-    display: none;
+    display: none !important;
+  }
+  .mobile-nav-panel,
+  .mobile-nav-panel.open {
+    display: none !important;
   }
 }
 

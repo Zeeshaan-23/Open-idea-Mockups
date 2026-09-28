@@ -934,6 +934,16 @@
       } else if (data.type === 'WORKBENCH_INTERACTION') {
         if (!isNavSyncEnabled) return;
 
+        // Never relay hamburger / mobile-menu toggle interactions between frames
+        if (data.payload) {
+          const id = data.payload.id || '';
+          const ariaControls = data.payload.ariaControls || '';
+          const selector = data.payload.selector || '';
+          if (id === 'hamburger-btn' || id === 'mobile-menu-toggle' || ariaControls === 'mobile-nav' || ariaControls === 'mobile-menu' || selector.includes('btn-hamburger') || selector.includes('mobile-nav') || selector.includes('mobile-menu')) {
+            return;
+          }
+        }
+
         // Relay interaction to the opposite frame
         let targetWindow = null;
         if (event.source === desktopIframe.contentWindow && mobileIframe) {

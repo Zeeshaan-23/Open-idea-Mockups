@@ -371,19 +371,39 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================================================
   // 5. MOBILE NAVIGATION DRAWER
   // ==========================================================================
-  if (mobileMenuBtn && mobileDrawer) {
-    mobileMenuBtn.addEventListener('click', () => {
-      const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
-      mobileMenuBtn.setAttribute('aria-expanded', !isExpanded);
-      mobileDrawer.classList.toggle('open');
+  const hamburgerBtn = document.getElementById('hamburger-btn') || document.getElementById('mobile-menu-toggle') || document.querySelector('.btn-hamburger');
+  const mobileNavPanel = document.getElementById('mobile-nav') || document.getElementById('mobile-nav-panel') || document.querySelector('.mobile-nav-panel');
+
+  if (hamburgerBtn && mobileNavPanel) {
+    hamburgerBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const isOpen = mobileNavPanel.classList.toggle('open');
+      hamburgerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
 
     // Close drawer when clicking a link inside
-    mobileDrawer.querySelectorAll('a').forEach(link => {
+    mobileNavPanel.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
-        mobileMenuBtn.setAttribute('aria-expanded', 'false');
-        mobileDrawer.classList.remove('open');
+        hamburgerBtn.setAttribute('aria-expanded', 'false');
+        mobileNavPanel.classList.remove('open');
       });
+    });
+
+    // Close on outside click
+    document.addEventListener('click', (e) => {
+      if (!hamburgerBtn.contains(e.target) && !mobileNavPanel.contains(e.target) && mobileNavPanel.classList.contains('open')) {
+        mobileNavPanel.classList.remove('open');
+        hamburgerBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileNavPanel.classList.contains('open')) {
+        mobileNavPanel.classList.remove('open');
+        hamburgerBtn.setAttribute('aria-expanded', 'false');
+      }
     });
   }
 

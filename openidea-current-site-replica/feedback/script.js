@@ -5,11 +5,13 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   // Mobile Navigation
-  const hamburgerBtn = document.getElementById('hamburger-btn');
-  const mobileNavPanel = document.getElementById('mobile-nav');
+  const hamburgerBtn = document.getElementById('hamburger-btn') || document.getElementById('mobile-menu-toggle') || document.querySelector('.btn-hamburger');
+  const mobileNavPanel = document.getElementById('mobile-nav') || document.getElementById('mobile-nav-panel') || document.querySelector('.mobile-nav-panel');
 
   if (hamburgerBtn && mobileNavPanel) {
-    hamburgerBtn.addEventListener('click', () => {
+    hamburgerBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
       const isOpen = mobileNavPanel.classList.toggle('open');
       hamburgerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
