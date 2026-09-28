@@ -1,0 +1,404 @@
+/* ==========================================================================
+   OPEN IDEA CANONICAL TOPBAR SYSTEM (SINGLE SOURCE OF TRUTH)
+   Derived strictly from the Homepage (site.html / styles.css).
+   Reused universally across all standard pages:
+   - /site.html (Home)
+   - /about/site.html (About)
+   - /features/site.html (Features)
+   - /pricing/site.html (Pricing)
+   - /resources/site.html (Resources)
+   - /auth/site.html (Sign In)
+   - /feedback/site.html (Feedback)
+   - /templates/site.html (Templates)
+   
+   /creator remains the intentional workspace exception.
+   ========================================================================== */
+
+/* 1. Header Wrapper & Container */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: 56px;
+  background: rgba(12, 35, 33, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--glass-border, rgba(255, 255, 255, 0.08));
+  transition: background-color 0.2s;
+}
+
+.header-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+@media (min-width: 640px) {
+  .header-container {
+    padding: 0 1.5rem;
+  }
+}
+
+/* 2. Brand Emblem + Name */
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  outline: none;
+  text-decoration: none;
+}
+
+.brand-logo:focus-visible {
+  outline: 2px solid rgba(52, 211, 153, 0.6);
+  border-radius: 0.375rem;
+}
+
+.logo-img {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.brand-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  white-space: nowrap;
+  margin-left: 0.25rem;
+  background: var(--gradient-text-logo, linear-gradient(to right, #34d399, #22d3ee));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* 3. Canonical Desktop Nav Center: Layout & Spacing */
+.desktop-nav {
+  display: none;
+  align-items: center;
+  gap: 0.875rem;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 680px;
+}
+
+@media (min-width: 1024px) {
+  .desktop-nav {
+    display: flex;
+  }
+}
+
+@media (min-width: 1280px) {
+  .desktop-nav {
+    gap: 1.25rem;
+  }
+}
+
+/* Standard Nav Links */
+.nav-link {
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  color: var(--gray-300, #d1d5db);
+  white-space: nowrap;
+  transition: all 0.15s ease;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  color: rgba(52, 211, 153, 0.9);
+  background: rgba(31, 41, 55, 0.5);
+}
+
+.nav-link:active {
+  transform: scale(0.95);
+  background: rgba(31, 41, 55, 0.7);
+}
+
+/* Active Nav State - Single visual difference allowed */
+.nav-link.active-page {
+  color: var(--emerald-400, #34d399);
+  font-weight: 600;
+  background: rgba(52, 211, 153, 0.1);
+  border: 1px solid rgba(52, 211, 153, 0.2);
+  box-shadow: 0 4px 6px -1px rgba(52, 211, 153, 0.1);
+}
+
+.nav-link.active-page:hover {
+  color: rgba(52, 211, 153, 0.9);
+  background: rgba(52, 211, 153, 0.15);
+}
+
+/* App Studio Highlighted CTA Button */
+.btn-app-studio {
+  padding: 0.375rem 1rem;
+  border-radius: 0.5rem;
+  background: var(--gradient-primary, linear-gradient(to right, #34d399, #22d3ee));
+  color: var(--gray-900, #111827);
+  font-weight: 600;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.btn-app-studio:hover {
+  box-shadow: 0 4px 12px rgba(34, 211, 238, 0.25);
+  transform: translateY(-1px);
+}
+
+/* 4. Header Right Actions */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+  .header-right {
+    gap: 0.75rem;
+  }
+}
+
+/* Desktop Actions Group: [ Theme ] [ Sign In ] Feedback [ BETA ] */
+.desktop-actions {
+  display: none;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .desktop-actions {
+    display: flex;
+  }
+}
+
+.btn-sign-in {
+  padding: 0.375rem 1rem;
+  border-radius: 0.5rem;
+  background: var(--gradient-primary, linear-gradient(to right, #34d399, #22d3ee));
+  color: var(--gray-900, #111827);
+  font-weight: 600;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  transition: all 0.2s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.btn-sign-in:hover {
+  box-shadow: 0 4px 12px rgba(34, 211, 238, 0.25);
+  transform: translateY(-1px);
+}
+
+.link-feedback {
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #ffffff;
+  white-space: nowrap;
+  transition: color 0.15s;
+  text-decoration: none;
+}
+
+.link-feedback:hover {
+  color: var(--emerald-400, #34d399);
+}
+
+.badge-beta {
+  padding: 0.125rem 0.375rem;
+  background: rgba(234, 179, 8, 0.2);
+  color: #facc15;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 0.25rem;
+  border: 1px solid rgba(234, 179, 8, 0.3);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* 5. Mobile Controls & Hamburger */
+.mobile-theme-toggle {
+  display: inline-flex;
+}
+
+@media (min-width: 768px) {
+  .mobile-theme-toggle {
+    display: none !important;
+  }
+}
+
+.btn-hamburger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  color: #ffffff;
+  flex-shrink: 0;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+}
+
+.btn-hamburger:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+@media (min-width: 768px) {
+  .btn-hamburger {
+    display: none;
+  }
+}
+
+/* 6. Mobile Nav Dropdown Panel */
+.mobile-nav-panel {
+  display: none;
+  grid-gap: 0.5rem;
+  padding: 1rem;
+  background: rgba(12, 35, 33, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid var(--glass-border, rgba(255, 255, 255, 0.08));
+  transition: all 0.2s ease-in-out;
+}
+
+.mobile-nav-panel.open {
+  display: grid;
+}
+
+.mobile-nav-panel .mobile-link {
+  display: block;
+  width: 100%;
+  font-size: 1.125rem;
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+  color: var(--gray-300, #d1d5db);
+  transition: all 0.15s ease;
+  text-decoration: none;
+}
+
+.mobile-nav-panel .mobile-link:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.mobile-nav-panel .mobile-link:active {
+  transform: scale(0.98);
+}
+
+.mobile-nav-panel .mobile-link.active-page {
+  color: var(--emerald-400, #34d399);
+  font-weight: 600;
+  background: rgba(52, 211, 153, 0.1);
+  border: 1px solid rgba(52, 211, 153, 0.2);
+}
+
+.mobile-btn-full {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  background: var(--gradient-primary, linear-gradient(to right, #34d399, #22d3ee));
+  color: var(--gray-900, #111827);
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+
+.mobile-btn-full:hover {
+  box-shadow: 0 4px 12px rgba(34, 211, 238, 0.25);
+  transform: translateY(-1px);
+}
+
+.mobile-beta-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+}
+
+/* 7. Theme-Specific Overrides for Light Mode */
+html[data-theme="light"] .site-header {
+  background: rgba(255, 255, 255, 0.88);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+html[data-theme="light"] .nav-link {
+  color: #334155;
+}
+
+html[data-theme="light"] .nav-link:hover {
+  color: #059669;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+html[data-theme="light"] .nav-link.active-page {
+  color: #059669;
+  background-color: rgba(5, 150, 105, 0.08);
+  border-color: rgba(5, 150, 105, 0.25);
+}
+
+html[data-theme="light"] .link-feedback {
+  color: #334155;
+}
+
+html[data-theme="light"] .link-feedback:hover {
+  color: #059669;
+}
+
+html[data-theme="light"] .badge-beta {
+  background-color: rgba(234, 179, 8, 0.15);
+  color: #b45309;
+  border-color: rgba(234, 179, 8, 0.35);
+}
+
+html[data-theme="light"] .btn-hamburger {
+  color: #0f172a;
+}
+
+html[data-theme="light"] .btn-hamburger:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+html[data-theme="light"] .mobile-nav-panel {
+  background: rgba(255, 255, 255, 0.97);
+  border-top-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+html[data-theme="light"] .mobile-link {
+  color: #334155;
+}
+
+html[data-theme="light"] .mobile-link:hover {
+  color: #0f172a;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+html[data-theme="light"] .mobile-link.active-page {
+  color: #059669;
+  background-color: rgba(5, 150, 105, 0.08);
+  border-color: rgba(5, 150, 105, 0.25);
+}

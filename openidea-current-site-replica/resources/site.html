@@ -21,7 +21,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700;900&display=swap" rel="stylesheet">
 
   <!-- Page Styles & Shared Theme Architecture -->
-  <link rel="stylesheet" href="styles.css?v=6">
+  <link rel="stylesheet" href="styles.css?v=16">
+  <link rel="stylesheet" href="../assets/topbar.css?v=16">
   <link rel="stylesheet" href="../assets/theme.css?v=14">
   <script src="../assets/theme.js?v=14"></script>
 </head>
@@ -41,17 +42,17 @@
   </div>
 
   <!-- ========================================================================
-       1. STICKY HEADER / NAVIGATION (UNIVERSAL STANDARD TOPBAR)
+       1. STICKY HEADER / NAVIGATION (CANONICAL HOMEPAGE TOPBAR)
        ======================================================================== -->
   <header class="site-header">
     <div class="header-container">
       <!-- Brand Logo -->
       <a class="brand-logo" href="../site.html" aria-label="Open Idea Home">
-        <img class="logo-img" src="../assets/logos/logo.png" alt="Open Idea Logo" width="32" height="32">
+        <img class="logo-img" src="../assets/logos/logo.png" alt="Open Idea Logo" width="36" height="36">
         <span class="brand-name">Open Idea</span>
       </a>
 
-      <!-- Desktop Nav -->
+      <!-- Desktop Nav (lg:flex) -->
       <nav class="desktop-nav" aria-label="Main Navigation">
         <a class="nav-link" href="../about/site.html">About</a>
         <a class="nav-link" href="../features/site.html">Features</a>
@@ -81,9 +82,9 @@
           </svg>
         </button>
 
-        <!-- Desktop Action Buttons -->
+        <!-- Desktop Action Buttons (hidden md:flex) -->
         <div class="desktop-actions">
-          <button type="button" class="theme-toggle-btn desktop-theme-toggle" id="theme-toggle-desktop" aria-label="Toggle theme" title="Toggle theme">
+          <button type="button" class="theme-toggle-btn" id="theme-toggle-desktop" aria-label="Toggle theme" title="Toggle theme">
             <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="12" r="5"></circle>
               <line x1="12" y1="1" x2="12" y2="3"></line>
@@ -104,8 +105,8 @@
           <span class="badge-beta">BETA</span>
         </div>
 
-        <!-- Mobile Hamburger Button -->
-        <button type="button" class="btn-hamburger" id="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+        <!-- Mobile Hamburger Button (md:hidden) -->
+        <button type="button" class="btn-hamburger" id="hamburger-btn" aria-label="Open menu" aria-controls="mobile-nav" aria-expanded="false">
           <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
@@ -113,8 +114,8 @@
       </div>
     </div>
 
-    <!-- Mobile Nav Drawer -->
-    <div class="mobile-nav-panel" id="mobile-nav-panel">
+    <!-- Mobile Nav Dropdown Panel -->
+    <div id="mobile-nav" class="mobile-nav-panel" aria-label="Mobile Navigation">
       <a class="mobile-link" href="../about/site.html">About</a>
       <a class="mobile-link" href="../features/site.html">Features</a>
       <a class="mobile-link" href="../pricing/site.html">Pricing</a>

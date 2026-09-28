@@ -254,7 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Mobile Hamburger Drawer
   const hamburgerBtn = document.getElementById('hamburger-btn');
-  const mobileNavPanel = document.getElementById('mobile-nav-panel');
+  const mobileNavPanel = document.getElementById('mobile-nav') || document.getElementById('mobile-nav-panel');
 
   // --------------------------------------------------------------------------
   // SUMMARY CONTENT BY DIFFICULTY LEVEL
@@ -749,8 +749,23 @@ document.addEventListener('DOMContentLoaded', () => {
       hamburgerBtn.setAttribute('aria-expanded', String(isOpen));
     });
 
+    // Close menu when a link inside is clicked
+    mobileNavPanel.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileNavPanel.classList.remove('open');
+        hamburgerBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+
     document.addEventListener('click', (e) => {
-      if (!hamburgerBtn.contains(e.target) && !mobileNavPanel.contains(e.target)) {
+      if (!hamburgerBtn.contains(e.target) && !mobileNavPanel.contains(e.target) && mobileNavPanel.classList.contains('open')) {
+        mobileNavPanel.classList.remove('open');
+        hamburgerBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileNavPanel.classList.contains('open')) {
         mobileNavPanel.classList.remove('open');
         hamburgerBtn.setAttribute('aria-expanded', 'false');
       }

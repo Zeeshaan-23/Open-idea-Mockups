@@ -726,7 +726,7 @@
         <span class="viewport-dims">1440px &times; 900px</span>
       </div>
       <div class="frame-wrapper">
-        <iframe id="desktop-iframe" name="desktop-frame" src="site.html?v=13" title="Open Idea Desktop Viewport (1440px)"></iframe>
+        <iframe id="desktop-iframe" name="desktop-frame" src="site.html?v=16" title="Open Idea Desktop Viewport (1440px)"></iframe>
       </div>
     </div>
 
@@ -740,7 +740,7 @@
         <span class="viewport-dims">390px &times; 844px</span>
       </div>
       <div class="frame-wrapper">
-        <iframe id="mobile-iframe" name="mobile-frame" src="site.html?v=13" title="Open Idea Mobile Viewport (390px)"></iframe>
+        <iframe id="mobile-iframe" name="mobile-frame" src="site.html?v=16" title="Open Idea Mobile Viewport (390px)"></iframe>
       </div>
     </div>
 
@@ -831,7 +831,7 @@
       const parts = targetPath.split('#');
       const base = parts[0] || 'site.html';
       const hashPart = parts[1] ? '#' + parts[1] : '';
-      const navSrc = base + (base.includes('?') ? '&' : '?') + 'v=12' + hashPart;
+      const navSrc = base + (base.includes('?') ? '&' : '?') + 'v=16' + hashPart;
 
       if (desktopIframe) {
         desktopIframe.src = navSrc;
@@ -1005,7 +1005,7 @@
 
       if (initialPath) {
         currentReplicaPath = initialPath;
-        const initialSrc = initialPath + (initialPath.includes('?') ? '&' : '?') + 'v=12';
+        const initialSrc = initialPath + (initialPath.includes('?') ? '&' : '?') + 'v=16';
         if (desktopIframe) desktopIframe.src = initialSrc;
         if (mobileIframe) mobileIframe.src = initialSrc;
         if (standaloneLink) standaloneLink.href = initialPath;
