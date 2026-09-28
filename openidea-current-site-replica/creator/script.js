@@ -536,16 +536,44 @@
     }
 
     if (hamburgerBtn) {
-      hamburgerBtn.addEventListener('click', openMobileDrawer);
+      hamburgerBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        openMobileDrawer();
+      });
     }
 
     if (drawerCloseBtn) {
-      drawerCloseBtn.addEventListener('click', closeMobileDrawer);
+      drawerCloseBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        closeMobileDrawer();
+      });
     }
 
     if (drawerBackdrop) {
-      drawerBackdrop.addEventListener('click', closeMobileDrawer);
+      drawerBackdrop.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        closeMobileDrawer();
+      });
     }
+
+    // Close drawer when an internal navigation link inside is clicked
+    if (mobileDrawer) {
+      mobileDrawer.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          closeMobileDrawer();
+        });
+      });
+    }
+
+    // Close on Escape key
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && mobileDrawer && mobileDrawer.classList.contains('open')) {
+        closeMobileDrawer();
+      }
+    });
 
     // ------------------------------------------------------------------------
     // 8. Topbar Dropdown Menus (Notifications & User Menu)

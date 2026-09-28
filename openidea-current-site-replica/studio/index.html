@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <script>
+    if (window.self !== window.top) {
+      window.location.replace('site.html');
+    }
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Open Idea App Studio Replica · Desktop &amp; Mobile Comparison Workspace</title>
+  <link rel="icon" href="../assets/icons/favicon.ico" type="image/x-icon">
+
+  <!-- Google Fonts: Space Grotesk & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-workbench: #070c0f;
+      --bg-panel: #0d1519;
+      --border-panel: rgba(255, 255, 255, 0.08);
+      --accent-emerald: #34d399;
+      --accent-cyan: #22d3ee;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --scrollbar-track: rgba(6, 18, 20, 0.75);
+      --scrollbar-thumb: rgba(52, 211, 153, 0.35);
+      --scrollbar-thumb-hover: rgba(52, 211, 153, 0.65);
+      --scrollbar-thumb-active: rgba(52, 211, 153, 0.9);
+      --scrollbar-corner: rgba(6, 18, 20, 0.75);
+    }
+
+    html[data-theme="light"] {
+      --bg-workbench: #f0f4f8;
+      --bg-panel: #ffffff;
+      --border-panel: rgba(0, 0, 0, 0.08);
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --scrollbar-track: #eef4f8;
+      --scrollbar-thumb: rgba(5, 150, 105, 0.35);
+      --scrollbar-thumb-hover: rgba(5, 150, 105, 0.65);
+      --scrollbar-thumb-active: rgba(4, 120, 87, 0.9);
+      --scrollbar-corner: #eef4f8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg-workbench);
+      color: var(--text-main);
+      font-family: 'Inter', -apple-system, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    .workbench-header {
+      background: var(--bg-panel);
+      border-bottom: 1px solid var(--border-panel);
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .workbench-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .brand-badge {
+      background: rgba(52, 211, 153, 0.15);
+      color: var(--accent-emerald);
+      border: 1px solid rgba(52, 211, 153, 0.3);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      padding: 0.125rem 0.5rem;
+      border-radius: 9999px;
+    }
+
+    .workbench-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-tool {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-panel);
+      color: var(--text-main);
+      font-size: 0.75rem;
+      padding: 0.375rem 0.75rem;
+      border-radius: 0.375rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+
+    .btn-tool:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-tool.active-tool {
+      background: rgba(52, 211, 153, 0.2);
+      border-color: var(--accent-emerald);
+      color: var(--accent-emerald);
+    }
+
+    .workbench-workspace {
+      flex: 1;
+      padding: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 2rem;
+      transform-origin: top center;
+    }
+
+    .viewport-column {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .viewport-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      padding: 0 0.25rem;
+    }
+
+    .viewport-frame {
+      border: 1px solid var(--border-panel);
+      border-radius: 0.75rem;
+      overflow: hidden;
+      background: #0c2321;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .desktop-frame {
+      width: 1440px;
+      height: 900px;
+    }
+
+    .mobile-frame {
+      width: 390px;
+      height: 844px;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="workbench-header">
+    <div class="workbench-brand">
+      <span class="brand-title">App Studio</span>
+      <span class="brand-badge">Comparison Workbench</span>
+    </div>
+
+    <div class="workbench-controls">
+      <button type="button" class="btn-tool active-tool" id="btn-scale-auto">Fit Auto</button>
+      <button type="button" class="btn-tool" id="btn-scale-100">100%</button>
+      <button type="button" class="btn-tool" id="btn-scale-75">75%</button>
+      <button type="button" class="btn-tool" id="btn-scale-50">50%</button>
+      <button type="button" class="btn-tool active-tool" id="btn-sync-toggle">Sync: ON</button>
+      <button type="button" class="btn-tool" id="btn-theme-toggle">🌓 Theme</button>
+      <a class="btn-tool" href="site.html" target="_blank">Direct Replica ↗</a>
+      <a class="btn-tool" href="../index.html">Master Workbench ↗</a>
+    </div>
+  </header>
+
+  <main class="workbench-workspace" id="workspace">
+    <!-- Desktop Viewport -->
+    <div class="viewport-column">
+      <div class="viewport-meta">
+        <span>Desktop Viewport (1440px)</span>
+        <span>100% Scale Target</span>
+      </div>
+      <div class="viewport-frame desktop-frame">
+        <iframe id="frame-desktop" src="site.html?viewport=desktop" title="Desktop App Studio Viewport"></iframe>
+      </div>
+    </div>
+
+    <!-- Mobile Viewport -->
+    <div class="viewport-column">
+      <div class="viewport-meta">
+        <span>Mobile Viewport (390px)</span>
+        <span>iPhone 15 Pro Scale Target</span>
+      </div>
+      <div class="viewport-frame mobile-frame">
+        <iframe id="frame-mobile" src="site.html?viewport=mobile" title="Mobile App Studio Viewport"></iframe>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const workspace = document.getElementById('workspace');
+    const desktopFrame = document.getElementById('frame-desktop');
+    const mobileFrame = document.getElementById('frame-mobile');
+    const btnSync = document.getElementById('btn-sync-toggle');
+    const btnTheme = document.getElementById('btn-theme-toggle');
+    let isSyncOn = true;
+
+    function applyScale(scale) {
+      workspace.style.transform = scale === 1 ? 'none' : `scale(${scale})`;
+      workspace.style.marginBottom = scale === 1 ? '0' : `-${(1 - scale) * 950}px`;
+    }
+
+    function autoFit() {
+      const availWidth = window.innerWidth - 64;
+      const totalWidth = 1440 + 32 + 390;
+      if (availWidth < totalWidth) {
+        applyScale(Math.max(0.35, availWidth / totalWidth));
+      } else {
+        applyScale(1);
+      }
+    }
+
+    window.addEventListener('resize', autoFit);
+    autoFit();
+
+    document.getElementById('btn-scale-auto').addEventListener('click', () => { autoFit(); });
+    document.getElementById('btn-scale-100').addEventListener('click', () => applyScale(1));
+    document.getElementById('btn-scale-75').addEventListener('click', () => applyScale(0.75));
+    document.getElementById('btn-scale-50').addEventListener('click', () => applyScale(0.5));
+
+    btnSync.addEventListener('click', () => {
+      isSyncOn = !isSyncOn;
+      btnSync.classList.toggle('active-tool', isSyncOn);
+      btnSync.textContent = isSyncOn ? 'Sync: ON' : 'Sync: OFF';
+    });
+
+    btnTheme.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme') || 'dark';
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('openidea-theme', next);
+
+      [desktopFrame, mobileFrame].forEach(frame => {
+        try {
+          frame.contentWindow.postMessage({ type: 'APPLY_REMOTE_THEME', theme: next }, '*');
+        } catch (_) {}
+      });
+    });
+
+    window.addEventListener('message', (event) => {
+      const data = event.data;
+      if (!data) return;
+
+      if (data.type === 'WORKBENCH_NAVIGATE') {
+        const dest = data.pathname || data.rawHref;
+        if (dest) {
+          desktopFrame.src = dest;
+          mobileFrame.src = dest;
+        }
+      } else if (data.type === 'WORKBENCH_INTERACTION' && isSyncOn) {
+        const target = event.source === desktopFrame.contentWindow ? mobileFrame : desktopFrame;
+        target.contentWindow.postMessage({
+          type: 'APPLY_REMOTE_INTERACTION',
+          action: data.action,
+          payload: data.payload
+        }, '*');
+      }
+    });
+  </script>
+</body>
+</html>

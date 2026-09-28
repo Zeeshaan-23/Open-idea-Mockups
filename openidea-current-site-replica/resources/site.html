@@ -21,7 +21,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700;900&display=swap" rel="stylesheet">
 
   <!-- Page Styles & Shared Theme Architecture -->
-  <link rel="stylesheet" href="styles.css?v=17">
+  <link rel="stylesheet" href="styles.css?v=20">
   <link rel="stylesheet" href="../assets/topbar.css?v=17">
   <link rel="stylesheet" href="../assets/theme.css?v=14">
   <script src="../assets/theme.js?v=14"></script>
@@ -59,7 +59,7 @@
         <a class="nav-link" href="../pricing/site.html">Pricing</a>
         <a class="nav-link active-page" href="site.html" aria-current="page">Resources</a>
         <a class="nav-link" href="../creator/site.html">Creator</a>
-        <a class="btn-app-studio" href="/studio">App Studio</a>
+        <a class="btn-app-studio" href="../studio/site.html">App Studio</a>
       </nav>
 
       <!-- Right Header Actions -->
@@ -121,7 +121,7 @@
       <a class="mobile-link" href="../pricing/site.html">Pricing</a>
       <a class="mobile-link active-page" href="site.html" aria-current="page">Resources</a>
       <a class="mobile-link" href="../creator/site.html">Creator</a>
-      <a class="mobile-btn-full" href="/studio">App Studio</a>
+      <a class="mobile-btn-full" href="../studio/site.html">App Studio</a>
       <a class="mobile-btn-full" href="../auth/site.html?redirect=%2Fresources">Sign In</a>
       <a class="mobile-link" href="../feedback/site.html">Feedback</a>
       <div class="mobile-beta-item">
@@ -177,6 +177,11 @@
                 <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+              </button>
+              <button type="button" class="chat-mobile-close-btn" id="chat-mobile-close-btn" title="Close Assistant" aria-label="Close Assistant">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
               </button>
             </div>
@@ -386,6 +391,14 @@
                 </button>
                 <span class="explore-hint">See how results connect by topic, author, and source</span>
               </div>
+
+              <!-- Compact Mobile AI Chat Assistant Entry Point -->
+              <button type="button" class="btn-chat-trigger-inline" id="btn-chat-trigger-inline" aria-label="Open Chat Assistant">
+                <svg class="action-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+                <span>Chat Assistant</span>
+              </button>
             </div>
 
             <!-- Primary Search Input Box -->
@@ -713,7 +726,69 @@
   </div>
 
   <!-- ========================================================================
-       5. STANDARDIZED 4-COLUMN FOOTER
+       5. INTERACTIVE EXPLORE CONNECTIONS MODAL (TOPIC, AUTHOR & SOURCE GRAPH)
+       ======================================================================== -->
+  <div class="modal-backdrop" id="explore-connections-modal" role="dialog" aria-modal="true" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog connections-modal-dialog">
+      <!-- Close Button -->
+      <button type="button" class="modal-close-btn" id="btn-close-connections-modal" aria-label="Close modal">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+        </svg>
+      </button>
+
+      <!-- Modal Header -->
+      <div class="modal-header connections-modal-header">
+        <div class="pill-connections">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
+          </svg>
+          <span>Resource Graph · 14 Nodes</span>
+        </div>
+        <h3 class="modal-title">Explore Resource Connections</h3>
+        <p class="modal-subtitle">Visualizing multi-dimensional relationships across topics, co-authors, citations, and datasets</p>
+      </div>
+
+      <!-- Dimension Selector Tabs (Topic, Author/Lab, Citation/Source) -->
+      <div class="modal-difficulty-section">
+        <span class="difficulty-label">Connection Dimension</span>
+        <div class="connections-tabs">
+          <button type="button" class="connection-tab-btn active-tab" data-dim="topic">
+            Topics &amp; Domains
+          </button>
+          <button type="button" class="connection-tab-btn" data-dim="author">
+            Authors &amp; Labs
+          </button>
+          <button type="button" class="connection-tab-btn" data-dim="source">
+            Citations &amp; Dataflow
+          </button>
+        </div>
+      </div>
+
+      <!-- Modal Content Body -->
+      <div class="modal-body">
+        <div class="connections-content-box" id="connections-content-box">
+          <!-- Dynamic Cluster Cards rendered by JavaScript -->
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer">
+        <div class="modal-tip">Tip: Tap any connected cluster to trace research provenance across Open Idea.</div>
+        <div class="modal-actions">
+          <button type="button" class="btn-modal-action" id="btn-copy-connections">
+            Copy connection map
+          </button>
+          <button type="button" class="btn-modal-close" id="btn-close-connections-action">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       6. STANDARDIZED 4-COLUMN FOOTER
        ======================================================================== -->
   <!-- Divider Line -->
   <div class="site-divider"></div>
@@ -781,7 +856,8 @@
             <li><a class="footer-nav-link" href="../pricing/site.html">Pricing</a></li>
             <li><a class="footer-nav-link" href="../templates/site.html">Templates</a></li>
             <li><a class="footer-nav-link" href="site.html">Open Resources</a></li>
-            <li><a class="footer-nav-link" href="/studio">App Studio</a></li>
+            <li><a class="footer-nav-link" href="../studio/site.html">App Studio</a></li>
+            <li><a class="footer-nav-link" href="../network/site.html">Open Network</a></li>
             <li><a class="footer-nav-link" href="../creator/site.html">Creator Workspace</a></li>
           </ul>
         </div>
@@ -790,8 +866,9 @@
         <div class="footer-col-links">
           <h4 class="footer-col-title">ECOSYSTEM</h4>
           <ul class="footer-links-list">
-            <li><a class="footer-nav-link" href="../site.html#it-services">Websites</a></li>
-            <li><a class="footer-nav-link" href="../site.html#community">Community</a></li>
+            <li><a class="footer-nav-link" href="../studio/site.html">App Studio</a></li>
+            <li><a class="footer-nav-link" href="../network/site.html">Open Network</a></li>
+            <li><a class="footer-nav-link" href="../community/site.html">Community</a></li>
             <li><a class="footer-nav-link" href="../feedback/site.html">Feedback</a></li>
             <li><a class="footer-nav-link" href="/contribute">Open Source Contribution</a></li>
             <li><a class="footer-nav-link" href="/form">Get a Website</a></li>
@@ -846,6 +923,9 @@
     </div>
   </footer>
 
+  <!-- Mobile Chat Backdrop Overlay -->
+  <div class="mobile-chat-backdrop" id="mobile-chat-backdrop" aria-hidden="true"></div>
+
   <!-- Floating Chat Button -->
   <div class="floating-chat-container">
     <button type="button" class="btn-floating-chat" id="floating-chat-btn" aria-label="Open chat">
@@ -856,7 +936,7 @@
     </button>
   </div>
 
-  <script src="script.js?v=7"></script>
-  <script src="../assets/nav-sync.js?v=3"></script>
+  <script src="script.js?v=9"></script>
+  <script src="../assets/nav-sync.js?v=4"></script>
 </body>
 </html>

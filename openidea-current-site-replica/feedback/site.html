@@ -53,7 +53,7 @@
         <a class="nav-link" href="../pricing/site.html">Pricing</a>
         <a class="nav-link" href="../resources/site.html">Resources</a>
         <a class="nav-link" href="../creator/site.html">Creator</a>
-        <a class="btn-app-studio" href="/studio">App Studio</a>
+        <a class="btn-app-studio" href="../studio/site.html">App Studio</a>
       </nav>
 
       <!-- Right Header Actions -->
@@ -115,7 +115,7 @@
       <a class="mobile-link" href="../pricing/site.html">Pricing</a>
       <a class="mobile-link" href="../resources/site.html">Resources</a>
       <a class="mobile-link" href="../creator/site.html">Creator</a>
-      <a class="mobile-btn-full" href="/studio">App Studio</a>
+      <a class="mobile-btn-full" href="../studio/site.html">App Studio</a>
       <a class="mobile-btn-full" href="../auth/site.html?redirect=%2Ffeedback">Sign In</a>
       <a class="mobile-link" href="site.html" aria-current="page">Feedback</a>
       <div class="mobile-beta-item">
@@ -141,7 +141,36 @@
           <h1 class="feedback-title">We value your feedback</h1>
           <form id="feedback-form" class="feedback-form" aria-label="Send us feedback">
             <textarea id="feedback-textarea" class="feedback-textarea" rows="5" placeholder="Share your thoughts..." required></textarea>
+
+            <!-- File Attachment Preview Chip (Visible when file selected) -->
+            <div id="feedback-attachment-preview" class="feedback-attachment-preview" style="display: none;">
+              <div class="attachment-chip">
+                <svg class="attachment-chip-icon" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path>
+                </svg>
+                <span id="attachment-filename" class="attachment-filename"></span>
+                <span id="attachment-filesize" class="attachment-filesize"></span>
+                <button type="button" id="btn-remove-attachment" class="btn-remove-attachment" title="Remove attached file" aria-label="Remove attached file">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Form Actions Row: Attach File & Submit Button -->
             <div class="feedback-actions">
+              <div class="feedback-attachment-control">
+                <input type="file" id="feedback-file-input" class="feedback-file-input" accept="image/*,.pdf,.doc,.docx,.txt,.csv,.json,.zip" style="display: none;">
+                <button type="button" id="btn-attach" class="btn-attach" aria-label="Attach file">
+                  <svg class="icon-paperclip" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path>
+                  </svg>
+                  <span>Attach file</span>
+                </button>
+                <span class="feedback-file-hint">Images, screenshots, docs (up to 10MB)</span>
+              </div>
               <button type="submit" id="btn-submit" class="btn-submit">Submit</button>
             </div>
             <div id="feedback-status" aria-live="polite"></div>
@@ -223,7 +252,8 @@
             <li><a class="footer-nav-link" href="../pricing/site.html">Pricing</a></li>
             <li><a class="footer-nav-link" href="../templates/site.html">Templates</a></li>
             <li><a class="footer-nav-link" href="../resources/site.html">Open Resources</a></li>
-            <li><a class="footer-nav-link" href="/studio">App Studio</a></li>
+            <li><a class="footer-nav-link" href="../studio/site.html">App Studio</a></li>
+            <li><a class="footer-nav-link" href="../network/site.html">Open Network</a></li>
             <li><a class="footer-nav-link" href="../creator/site.html">Creator Workspace</a></li>
           </ul>
         </div>
@@ -232,8 +262,9 @@
         <div class="footer-col-links">
           <h4 class="footer-col-title">ECOSYSTEM</h4>
           <ul class="footer-links-list">
-            <li><a class="footer-nav-link" href="../site.html#it-services">Websites</a></li>
-            <li><a class="footer-nav-link" href="../site.html#community">Community</a></li>
+            <li><a class="footer-nav-link" href="../studio/site.html">App Studio</a></li>
+            <li><a class="footer-nav-link" href="../network/site.html">Open Network</a></li>
+            <li><a class="footer-nav-link" href="../community/site.html">Community</a></li>
             <li><a class="footer-nav-link" href="site.html">Feedback</a></li>
             <li><a class="footer-nav-link" href="/contribute">Open Source Contribution</a></li>
             <li><a class="footer-nav-link" href="/form">Get a Website</a></li>

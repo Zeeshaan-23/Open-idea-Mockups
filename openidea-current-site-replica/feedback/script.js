@@ -33,11 +33,67 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Feedback Form Handler
+  // Feedback Form Handler & Attachment Control
   const feedbackForm = document.getElementById('feedback-form');
   const feedbackTextarea = document.getElementById('feedback-textarea');
   const submitBtn = document.getElementById('btn-submit');
   const statusContainer = document.getElementById('feedback-status');
+
+  const attachBtn = document.getElementById('btn-attach');
+  const fileInput = document.getElementById('feedback-file-input');
+  const attachmentPreview = document.getElementById('feedback-attachment-preview');
+  const filenameDisplay = document.getElementById('attachment-filename');
+  const filesizeDisplay = document.getElementById('attachment-filesize');
+  const removeAttachmentBtn = document.getElementById('btn-remove-attachment');
+
+  // File Attachment Interactions
+  function formatFileSize(bytes) {
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(0) + ' KB';
+    return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+  }
+
+  function clearAttachment() {
+    if (fileInput) fileInput.value = '';
+    if (attachmentPreview) attachmentPreview.style.display = 'none';
+    if (filenameDisplay) {
+      filenameDisplay.textContent = '';
+      filenameDisplay.removeAttribute('title');
+    }
+    if (filesizeDisplay) filesizeDisplay.textContent = '';
+  }
+
+  if (attachBtn && fileInput) {
+    attachBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      fileInput.click();
+    });
+
+    fileInput.addEventListener('change', () => {
+      if (fileInput.files && fileInput.files.length > 0) {
+        const file = fileInput.files[0];
+        if (filenameDisplay) {
+          filenameDisplay.textContent = file.name;
+          filenameDisplay.title = file.name;
+        }
+        if (filesizeDisplay) {
+          filesizeDisplay.textContent = '(' + formatFileSize(file.size) + ')';
+        }
+        if (attachmentPreview) {
+          attachmentPreview.style.display = 'flex';
+        }
+      } else {
+        clearAttachment();
+      }
+    });
+  }
+
+  if (removeAttachmentBtn) {
+    removeAttachmentBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      clearAttachment();
+    });
+  }
 
   if (feedbackForm && feedbackTextarea && submitBtn) {
     feedbackTextarea.addEventListener('input', () => {
@@ -62,6 +118,8 @@ document.addEventListener('DOMContentLoaded', () => {
       feedbackTextarea.disabled = true;
       submitBtn.disabled = true;
       submitBtn.textContent = 'Sending...';
+      if (attachBtn) attachBtn.disabled = true;
+      if (removeAttachmentBtn) removeAttachmentBtn.disabled = true;
       if (statusContainer) {
         statusContainer.innerHTML = '';
       }
@@ -71,7 +129,10 @@ document.addEventListener('DOMContentLoaded', () => {
         feedbackTextarea.disabled = false;
         submitBtn.disabled = false;
         submitBtn.textContent = 'Submit';
+        if (attachBtn) attachBtn.disabled = false;
+        if (removeAttachmentBtn) removeAttachmentBtn.disabled = false;
         feedbackTextarea.value = '';
+        clearAttachment();
 
         if (statusContainer) {
           statusContainer.innerHTML = '<p class="feedback-success-msg">Thank you for your feedback!</p>';

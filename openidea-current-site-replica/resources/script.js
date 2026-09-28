@@ -249,8 +249,21 @@ function initResourcesPage() {
   const btnToggleStats = document.getElementById('btn-toggle-stats');
   const followupButtons = document.querySelectorAll('.followup-btn');
 
-  // Explore Connections Button
+  // Explore Connections Button & Modal Elements
   const btnExploreConnections = document.getElementById('btn-explore-connections');
+  const exploreConnectionsModal = document.getElementById('explore-connections-modal');
+  const btnCloseConnectionsModal = document.getElementById('btn-close-connections-modal');
+  const btnCloseConnectionsAction = document.getElementById('btn-close-connections-action');
+  const btnCopyConnections = document.getElementById('btn-copy-connections');
+  const connectionsContentBox = document.getElementById('connections-content-box');
+  const connectionTabButtons = document.querySelectorAll('.connection-tab-btn');
+
+  // Mobile Chat Assistant Elements
+  const resourcesChatPanel = document.getElementById('resources-chat-panel');
+  const floatingChatBtn = document.getElementById('floating-chat-btn');
+  const inlineChatBtn = document.getElementById('btn-chat-trigger-inline');
+  const chatMobileCloseBtn = document.getElementById('chat-mobile-close-btn');
+  const mobileChatBackdrop = document.getElementById('mobile-chat-backdrop');
 
   // Mobile Hamburger Drawer
   const hamburgerBtn = document.getElementById('hamburger-btn') || document.getElementById('mobile-menu-toggle') || document.querySelector('.btn-hamburger');
@@ -715,13 +728,196 @@ function initResourcesPage() {
     });
   }
 
-  // Backdrop click & Escape key dismiss for both modals
-  [generalModal, paperModal].forEach(modal => {
+  // --------------------------------------------------------------------------
+  // EXPLORE CONNECTIONS MODAL LOGIC (INDEPENDENT FROM GENERAL SUMMARY)
+  // --------------------------------------------------------------------------
+  const CONNECTION_DATA = {
+    topic: {
+      tagline: 'Cross-Disciplinary Topic Clusters',
+      badge: '3 Core Topic Clusters',
+      clusters: [
+        {
+          title: 'Decentralized Science & Collective Intelligence',
+          tag: 'DeSci · P2P',
+          nodes: [
+            { type: 'Paper', title: 'Decentralized Intelligence in Open Innovation Networks', linkText: 'Foundational Theory' },
+            { type: 'Code', title: 'Open Idea Studio Next.js + Supabase Scaffold', linkText: 'Implementation Stack' },
+            { type: 'Paper', title: 'Decentralized Federated Preprint Registry', linkText: 'P2P Verification' }
+          ],
+          relationship: 'Connects decentralized peer critique theory with real-time open-source application scaffolds and verifiable audit trails.'
+        },
+        {
+          title: 'Transformers, Self-Attention & LLM Foundations',
+          tag: 'GenAI · Weights',
+          nodes: [
+            { type: 'Paper', title: 'Attention Is All You Need (Vaswani et al.)', linkText: 'Core Architecture' },
+            { type: 'Model', title: 'Llama-3-OpenIdea-70B-Instruct-v1', linkText: 'Trained Weights' },
+            { type: 'Video', title: 'Mathematical Deep Dive into Transformer Layers', linkText: 'Curriculum' }
+          ],
+          relationship: 'Direct lineage from multi-head self-attention formulation to open-weights parameter tuning and pedagogical video lectures.'
+        },
+        {
+          title: 'Climate Adaptation & Geospatial Sensing',
+          tag: 'ClimateTech · Open Data',
+          nodes: [
+            { type: 'Dataset', title: 'Global Climate Adaptation & Urban Sensor Index', linkText: 'Telemetry Dataset' },
+            { type: 'Paper', title: 'Empirical Microclimate Prediction in 140 Metropolises', linkText: 'Statistical Analysis' }
+          ],
+          relationship: 'Geospatial Parquet sensor matrices directly power predictive urban microclimate heat-island mitigation research.'
+        }
+      ]
+    },
+    author: {
+      tagline: 'Collaborative Lab & Author Networks',
+      badge: '18 Linked Researchers',
+      clusters: [
+        {
+          title: 'Open Idea Labs & EcoSyz Data Collective',
+          tag: 'Research Group',
+          nodes: [
+            { type: 'Team', title: 'Open Idea Engineering Team', linkText: 'Production Core' },
+            { type: 'Lab', title: 'EcoSyz Public Data Lab', linkText: 'Telemetry & Benchmarks' },
+            { type: 'Author', title: 'Dr. A. Sharma · Elena Rostova', linkText: 'Co-Principal Investigators' }
+          ],
+          relationship: 'Joint public lab initiative standardizing open scientific preprints, open dataset schemas, and distributed IDE scaffolds.'
+        },
+        {
+          title: 'Foundational AI Architecture Group',
+          tag: 'Author Collective',
+          nodes: [
+            { type: 'Author', title: 'Ashish Vaswani · Noam Shazeer', linkText: 'Primary Authors' },
+            { type: 'Author', title: 'Niki Parmar · Jakob Uszkoreit', linkText: 'Co-Inventors' },
+            { type: 'Lab', title: 'Google Brain / Research Collective', linkText: 'Original Institution' }
+          ],
+          relationship: 'Inter-institutional co-authorship driving global foundational transformer and self-attention breakthroughs.'
+        }
+      ]
+    },
+    source: {
+      tagline: 'Citation Trajectory & Federated Repositories',
+      badge: 'Verified Data Pipeline',
+      clusters: [
+        {
+          title: 'arXiv / Crossref → Hugging Face → GitHub',
+          tag: 'Reproducibility Pipeline',
+          nodes: [
+            { type: 'arXiv', title: 'Preprint Hypothesis & Peer Review', linkText: 'Origin Point' },
+            { type: 'Hugging Face', title: 'Open Model Weights & Safetensors', linkText: 'Artifact Hub' },
+            { type: 'GitHub', title: 'Reproducible Scaffolds & Deployment', linkText: 'Code Delivery' }
+          ],
+          relationship: '42% faster research verification when academic preprints link directly to open-weight checkpoints and executable codebases.'
+        },
+        {
+          title: 'data.gov / UN Urban Observatory → Open Data Pipelines',
+          tag: 'Data Pipeline',
+          nodes: [
+            { type: 'data.gov', title: 'Public Sensor Telemetry', linkText: 'Raw Source' },
+            { type: 'UN Observatory', title: 'Validated Global Climate Index', linkText: 'Harmonized Data' }
+          ],
+          relationship: 'Federated public data APIs provide reproducible citation chains and cryptographic data integrity hashes.'
+        }
+      ]
+    }
+  };
+
+  function renderConnectionClusters(dimKey) {
+    if (!connectionsContentBox) return;
+    const data = CONNECTION_DATA[dimKey] || CONNECTION_DATA.topic;
+    connectionsContentBox.innerHTML = `
+      <div class="summary-level-indicator" style="margin-bottom:0.75rem;">
+        <span class="badge-pill badge-purple">${data.badge}</span>
+        <span class="level-tagline">${data.tagline}</span>
+      </div>
+      ${data.clusters.map(c => `
+        <div class="connection-cluster-card">
+          <div class="cluster-header">
+            <span class="cluster-title">${c.title}</span>
+            <span class="cluster-tag">${c.tag}</span>
+          </div>
+          <div class="cluster-nodes-list">
+            ${c.nodes.map(n => `
+              <div class="cluster-node-item">
+                <span class="node-type-badge">${n.type}</span>
+                <span class="node-title-text">${n.title}</span>
+                <span class="node-link-text">${n.linkText}</span>
+              </div>
+            `).join('')}
+          </div>
+          <p class="cluster-relation-text">${c.relationship}</p>
+        </div>
+      `).join('')}
+    `;
+  }
+
+  function openConnectionsModal() {
+    if (!exploreConnectionsModal) return;
+    renderConnectionClusters('topic');
+    connectionTabButtons.forEach(b => {
+      b.classList.toggle('active-tab', b.getAttribute('data-dim') === 'topic');
+    });
+    exploreConnectionsModal.style.display = 'flex';
+    exploreConnectionsModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeConnectionsModal() {
+    if (!exploreConnectionsModal) return;
+    exploreConnectionsModal.style.display = 'none';
+    exploreConnectionsModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  // Explore Connections button trigger (Strictly independent from General Summary)
+  if (btnExploreConnections) {
+    btnExploreConnections.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      openConnectionsModal();
+    });
+  }
+
+  if (btnCloseConnectionsModal) {
+    btnCloseConnectionsModal.addEventListener('click', closeConnectionsModal);
+  }
+  if (btnCloseConnectionsAction) {
+    btnCloseConnectionsAction.addEventListener('click', closeConnectionsModal);
+  }
+
+  // Dimension switching inside Explore Connections modal
+  connectionTabButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      connectionTabButtons.forEach(b => b.classList.remove('active-tab'));
+      btn.classList.add('active-tab');
+      const dim = btn.getAttribute('data-dim') || 'topic';
+      renderConnectionClusters(dim);
+    });
+  });
+
+  // Copy connection map
+  if (btnCopyConnections) {
+    btnCopyConnections.addEventListener('click', async () => {
+      const text = connectionsContentBox ? connectionsContentBox.innerText.trim() : '';
+      try {
+        await navigator.clipboard.writeText(text);
+        const originalText = btnCopyConnections.textContent;
+        btnCopyConnections.textContent = 'Copied!';
+        setTimeout(() => {
+          btnCopyConnections.textContent = originalText;
+        }, 1500);
+      } catch (err) {
+        console.error('Clipboard copy failed:', err);
+      }
+    });
+  }
+
+  // Backdrop click & Escape key dismiss for all three modals
+  [generalModal, paperModal, exploreConnectionsModal].forEach(modal => {
     if (!modal) return;
     modal.addEventListener('click', (e) => {
       if (e.target === modal) {
         closeGeneralModal();
         closePaperModal();
+        closeConnectionsModal();
       }
     });
   });
@@ -730,15 +926,9 @@ function initResourcesPage() {
     if (e.key === 'Escape') {
       closeGeneralModal();
       closePaperModal();
+      closeConnectionsModal();
     }
   });
-
-  // Explore Connections button trigger
-  if (btnExploreConnections) {
-    btnExploreConnections.addEventListener('click', () => {
-      openGeneralModal();
-    });
-  }
 
   // --------------------------------------------------------------------------
   // MOBILE NAVIGATION DRAWER
@@ -773,6 +963,83 @@ function initResourcesPage() {
       }
     });
   }
+
+  // --------------------------------------------------------------------------
+  // MOBILE OPEN RESOURCES CHAT ASSISTANT DRAWER CONTROLLER
+  // --------------------------------------------------------------------------
+  function openMobileChat() {
+    if (resourcesChatPanel) {
+      resourcesChatPanel.classList.add('mobile-chat-open');
+    }
+    if (mobileChatBackdrop) {
+      mobileChatBackdrop.classList.add('active');
+    }
+    document.body.classList.add('mobile-chat-active');
+  }
+
+  function closeMobileChat() {
+    if (resourcesChatPanel) {
+      resourcesChatPanel.classList.remove('mobile-chat-open');
+    }
+    if (mobileChatBackdrop) {
+      mobileChatBackdrop.classList.remove('active');
+    }
+    document.body.classList.remove('mobile-chat-active');
+  }
+
+  if (floatingChatBtn) {
+    floatingChatBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      if (window.innerWidth < 1024) {
+        if (resourcesChatPanel && resourcesChatPanel.classList.contains('mobile-chat-open')) {
+          closeMobileChat();
+        } else {
+          openMobileChat();
+        }
+      } else {
+        if (chatUserInput) {
+          chatUserInput.focus();
+        }
+      }
+    });
+  }
+
+  if (inlineChatBtn) {
+    inlineChatBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      if (window.innerWidth < 1024) {
+        openMobileChat();
+      } else {
+        if (chatUserInput) {
+          chatUserInput.focus();
+        }
+      }
+    });
+  }
+
+  if (chatMobileCloseBtn) {
+    chatMobileCloseBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      closeMobileChat();
+    });
+  }
+
+  if (mobileChatBackdrop) {
+    mobileChatBackdrop.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      closeMobileChat();
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && resourcesChatPanel && resourcesChatPanel.classList.contains('mobile-chat-open')) {
+      closeMobileChat();
+    }
+  });
 
   // Initial render
   renderResources();

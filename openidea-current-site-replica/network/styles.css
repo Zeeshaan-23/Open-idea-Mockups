@@ -1,0 +1,759 @@
+/**
+ * Open Idea - Open Network Architecture & Visualizer Styles
+ * Dual theme (Dark / Light) with interactive node graph & protocol dashboard
+ */
+
+:root {
+  --bg-dark-1: #0c2321;
+  --bg-dark-2: #121f22;
+  --bg-dark-3: #0a1016;
+
+  --bg-primary: #060f14;
+  --bg-surface: #0a171f;
+  --bg-card: #0d1e28;
+  --bg-card-hover: #122834;
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-subtle: rgba(255, 255, 255, 0.05);
+
+  --text-primary: #f3f4f6;
+  --text-secondary: #9ca3af;
+  --text-muted: #6b7280;
+
+  --accent-purple: #c084fc;
+  --accent-purple-glow: rgba(192, 132, 252, 0.15);
+  --accent-cyan: #22d3ee;
+  --accent-emerald: #34d399;
+  --accent-blue: #60a5fa;
+
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+html[data-theme="light"] {
+  --bg-primary: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-card: #f1f5f9;
+  --bg-card-hover: #e2e8f0;
+  --border-color: rgba(0, 0, 0, 0.08);
+  --border-subtle: rgba(0, 0, 0, 0.04);
+
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+
+  --accent-purple: #9333ea;
+  --accent-purple-glow: rgba(147, 51, 234, 0.1);
+  --accent-cyan: #0891b2;
+  --accent-emerald: #059669;
+  --accent-blue: #2563eb;
+}
+
+html[data-theme="light"],
+html[data-theme="light"] body {
+  background: linear-gradient(135deg, #f8fbff 0%, #f0f6fc 45%, #e8f2fa 100%) !important;
+  color: #0f172a;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: linear-gradient(to bottom right, var(--bg-dark-1, #0c2321), var(--bg-dark-2, #121f22), var(--bg-dark-3, #0a1016));
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Background Atmosphere Layers - Matches homepage source of truth */
+.hero-bg-wrapper {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}
+
+.hero-globe-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right center;
+  opacity: 0.28;
+}
+
+.hero-radial-glow {
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  height: 400px;
+  background: radial-gradient(ellipse at center, rgba(34, 211, 238, 0.2) 0%, rgba(34, 211, 238, 0.05) 50%, transparent 70%);
+  opacity: 0.8;
+  filter: blur(64px);
+}
+
+html[data-theme="light"] .hero-bg-wrapper {
+  opacity: 0;
+  display: none !important;
+}
+
+.network-main {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  padding-bottom: 5rem;
+  background: transparent;
+}
+
+.network-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* ==========================================================================
+   Hero Section
+   ========================================================================== */
+.network-hero {
+  padding: 4rem 0 2.5rem;
+  text-align: center;
+}
+
+.hero-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--accent-purple-glow);
+  border: 1px solid rgba(192, 132, 252, 0.3);
+  color: var(--accent-purple);
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1.25rem;
+}
+
+.network-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.25rem;
+  color: var(--text-primary);
+}
+
+.network-title .highlight-purple {
+  background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-cyan) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.network-subtitle {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: var(--text-secondary);
+  max-width: 760px;
+  margin: 0 auto 2rem;
+  line-height: 1.6;
+}
+
+/* Key Metrics Counter Bar */
+.network-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.metric-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  text-align: left;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.metric-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(192, 132, 252, 0.4);
+}
+
+.metric-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.35rem;
+}
+
+.metric-value {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+}
+
+.metric-trend {
+  font-size: 0.75rem;
+  color: var(--accent-emerald);
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   Topology Visualizer Section
+   ========================================================================== */
+.topology-section {
+  margin: 2.5rem 0;
+}
+
+.topology-container-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+
+.topology-header {
+  padding: 1rem 1.5rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.topology-title-area {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.topology-icon-wrap {
+  width: 32px;
+  height: 32px;
+  border-radius: 0.5rem;
+  background: var(--accent-purple-glow);
+  color: var(--accent-purple);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.topology-title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.topology-filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.filter-chip {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.3rem 0.65rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.filter-chip:hover,
+.filter-chip.active {
+  background: var(--accent-purple-glow);
+  border-color: var(--accent-purple);
+  color: var(--accent-purple);
+}
+
+/* Dual Column Layout: Canvas + Node Inspector */
+.topology-workspace-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  min-height: 480px;
+}
+
+.topology-canvas-area {
+  position: relative;
+  background: radial-gradient(circle at center, rgba(192, 132, 252, 0.03) 0%, transparent 70%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid var(--border-color);
+  padding: 1.5rem;
+  overflow: hidden;
+}
+
+.topology-canvas-svg {
+  width: 100%;
+  max-width: 680px;
+  height: auto;
+  user-select: none;
+}
+
+/* Interactive SVG Node Styling */
+.svg-node-group {
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.svg-node-group:hover circle:first-child {
+  stroke-width: 2.5;
+  stroke: var(--accent-purple);
+}
+
+.svg-node-group.node-selected circle:first-child {
+  stroke: var(--accent-cyan);
+  stroke-width: 3;
+  filter: drop-shadow(0 0 10px rgba(34, 211, 238, 0.6));
+}
+
+.pulse-ring {
+  transform-origin: center;
+  animation: pulseAnimation 3s infinite ease-out;
+}
+
+@keyframes pulseAnimation {
+  0% { r: 32px; opacity: 0.6; }
+  100% { r: 52px; opacity: 0; }
+}
+
+/* Inspector Column */
+.topology-inspector {
+  padding: 1.5rem;
+  background: var(--bg-surface);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.inspector-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.75rem;
+}
+
+.inspector-title {
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.node-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent-emerald);
+}
+
+.node-status-badge::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-emerald);
+  box-shadow: 0 0 8px var(--accent-emerald);
+}
+
+.inspector-node-name {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.inspector-node-type {
+  font-size: 0.8125rem;
+  color: var(--accent-purple);
+  font-weight: 500;
+}
+
+.inspector-stats-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.inspector-stat-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8125rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.inspector-stat-item .stat-k {
+  color: var(--text-muted);
+}
+
+.inspector-stat-item .stat-v {
+  font-family: var(--font-mono);
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.btn-inspect-action {
+  width: 100%;
+  padding: 0.65rem 1rem;
+  background: var(--accent-purple-glow);
+  border: 1px solid var(--accent-purple);
+  color: var(--accent-purple);
+  border-radius: 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-align: center;
+  margin-top: auto;
+}
+
+.btn-inspect-action:hover {
+  background: var(--accent-purple);
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   Architecture Pillars Grid
+   ========================================================================== */
+.pillars-section {
+  margin: 4rem 0;
+}
+
+.section-head {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 2.5rem;
+}
+
+.section-headline {
+  font-family: var(--font-display);
+  font-size: 1.875rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.section-lead {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.pillar-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 0.875rem;
+  padding: 1.75rem;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.pillar-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(192, 132, 252, 0.4);
+}
+
+.pillar-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 0.65rem;
+  background: var(--accent-purple-glow);
+  color: var(--accent-purple);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.pillar-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.65rem;
+  color: var(--text-primary);
+}
+
+.pillar-desc {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   Live Protocol Event Stream (Simulated Real-Time Log)
+   ========================================================================== */
+.stream-section {
+  margin: 4rem 0;
+}
+
+.stream-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.stream-header {
+  padding: 1rem 1.5rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.stream-title {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.live-indicator-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-emerald);
+  box-shadow: 0 0 8px var(--accent-emerald);
+  animation: blink 2s infinite ease-in-out;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.stream-log-container {
+  padding: 1rem 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  max-height: 240px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.log-entry {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--text-secondary);
+}
+
+.log-time {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+.log-badge {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  padding: 0.125rem 0.35rem;
+  border-radius: 0.25rem;
+  text-transform: uppercase;
+}
+
+.log-badge.badge-packet {
+  background: rgba(34, 211, 238, 0.15);
+  color: var(--accent-cyan);
+}
+
+.log-badge.badge-consensus {
+  background: rgba(192, 132, 252, 0.15);
+  color: var(--accent-purple);
+}
+
+.log-badge.badge-node {
+  background: rgba(52, 211, 153, 0.15);
+  color: var(--accent-emerald);
+}
+
+.log-text {
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Run a Node CLI Callout
+   ========================================================================== */
+.cli-banner-section {
+  margin: 3.5rem 0 1rem;
+}
+
+.cli-card {
+  background: linear-gradient(135deg, rgba(192, 132, 252, 0.08) 0%, rgba(34, 211, 238, 0.05) 100%);
+  border: 1px solid rgba(192, 132, 252, 0.25);
+  border-radius: 1rem;
+  padding: 2.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.cli-info h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.cli-info p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+}
+
+.cli-command-box {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--text-primary);
+}
+
+.btn-copy-cli {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-copy-cli:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+}
+
+/* Toast */
+.network-toast {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: #111e26;
+  border: 1px solid var(--accent-purple);
+  color: #f3f4f6;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 9999;
+}
+
+.network-toast.toast-show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* ==========================================================================
+   Mobile Responsive Adjustments (375px & 390px)
+   ========================================================================== */
+@media (max-width: 992px) {
+  .network-metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .topology-workspace-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .topology-canvas-area {
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    min-height: 320px;
+  }
+
+  .pillars-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cli-card {
+    grid-template-columns: 1fr;
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .network-metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .network-hero {
+    padding: 2.5rem 0 1.5rem;
+  }
+
+  .topology-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cli-command-box {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    overflow-x: auto;
+    width: 100%;
+  }
+
+  .btn-copy-cli {
+    align-self: flex-end;
+  }
+}

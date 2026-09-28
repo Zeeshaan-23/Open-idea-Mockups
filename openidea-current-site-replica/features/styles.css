@@ -547,3 +547,39 @@ html[data-theme="light"] .features-hero-section,
 html[data-theme="light"] .main-content {
   background: transparent !important;
 }
+
+/* ==========================================================================
+   MOBILE RESPONSIVE HARDENING (375px & 390px Viewports)
+   ========================================================================== */
+@media (max-width: 640px) {
+  .features-container {
+    padding: 0 1rem;
+  }
+
+  .features-center-stage {
+    padding: 3rem 0;
+    min-height: auto;
+  }
+
+  .features-title {
+    font-size: 2rem;
+  }
+
+  .features-subtitle {
+    font-size: 1.125rem;
+  }
+
+  .features-cards-grid {
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .feature-card {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-4px);
+  }
+}
+

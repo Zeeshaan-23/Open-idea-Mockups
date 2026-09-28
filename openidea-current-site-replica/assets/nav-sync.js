@@ -66,11 +66,11 @@
     if (!payload) return;
 
     if (action === 'INTERACT_CLICK') {
-      // Guard against applying remote clicks to mobile menu toggles or drawer (must remain strictly local to each frame)
-      if (payload.id === 'hamburger-btn' || payload.id === 'mobile-menu-toggle' || payload.ariaControls === 'mobile-nav' || payload.ariaControls === 'mobile-menu') {
+      // Guard against applying remote clicks to mobile menu toggles, drawer, or mobile chat sheet (must remain strictly local to each frame)
+      if (payload.id === 'hamburger-btn' || payload.id === 'mobile-menu-toggle' || payload.id === 'creator-hamburger' || payload.id === 'creator-drawer-close' || payload.id === 'floating-chat-btn' || payload.id === 'btn-chat-trigger-inline' || payload.id === 'chat-mobile-close-btn' || payload.id === 'mobile-chat-backdrop' || payload.ariaControls === 'mobile-nav' || payload.ariaControls === 'mobile-menu' || payload.ariaControls === 'creator-mobile-drawer') {
         return;
       }
-      if (payload.selector && (payload.selector.includes('btn-hamburger') || payload.selector.includes('mobile-nav') || payload.selector.includes('mobile-menu'))) {
+      if (payload.selector && (payload.selector.includes('btn-hamburger') || payload.selector.includes('creator-hamburger') || payload.selector.includes('mobile-nav') || payload.selector.includes('mobile-menu') || payload.selector.includes('creator-mobile-drawer') || payload.selector.includes('creator-mobile-backdrop') || payload.selector.includes('floating-chat') || payload.selector.includes('chat-trigger') || payload.selector.includes('chat-mobile-close') || payload.selector.includes('mobile-chat-backdrop') || payload.selector.includes('resources-chat-panel'))) {
         return;
       }
 
@@ -208,8 +208,8 @@
       return;
     }
 
-    // Ignore mobile hamburger and mobile drawer elements (LOCAL UI state per frame, NEVER synchronized)
-    if (event.target.closest('.btn-hamburger, #hamburger-btn, #mobile-menu-toggle, .mobile-menu-toggle, [aria-controls="mobile-nav"], [aria-controls="mobile-menu"], [aria-label*="menu" i], [aria-label*="navigation" i], .mobile-nav-panel, #mobile-nav')) {
+    // Ignore mobile hamburger, mobile drawer, and mobile chat drawer elements (LOCAL UI state per frame, NEVER synchronized)
+    if (event.target.closest('.btn-hamburger, #hamburger-btn, #mobile-menu-toggle, .mobile-menu-toggle, .creator-hamburger-btn, #creator-hamburger, #creator-drawer-close, .drawer-close-btn, [aria-controls="mobile-nav"], [aria-controls="mobile-menu"], [aria-controls="creator-mobile-drawer"], [aria-label*="menu" i], [aria-label*="navigation" i], .mobile-nav-panel, #mobile-nav, .creator-mobile-drawer, #creator-mobile-drawer, .creator-mobile-drawer *, .creator-mobile-backdrop, #creator-mobile-backdrop, #floating-chat-btn, .btn-floating-chat, #btn-chat-trigger-inline, .btn-chat-trigger-inline, #chat-mobile-close-btn, .chat-mobile-close-btn, #mobile-chat-backdrop, .mobile-chat-backdrop, .resources-chat-panel')) {
       return;
     }
 

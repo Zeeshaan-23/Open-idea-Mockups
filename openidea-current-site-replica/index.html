@@ -629,6 +629,38 @@
         </svg>
         <span>Resources Workbench</span>
       </a>
+
+      <!-- Open App Studio Workbench Link -->
+      <a class="btn-action-tool" href="studio/index.html" title="Open App Studio Comparison Workbench">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="16 18 22 12 16 6"></polyline>
+          <polyline points="8 6 2 12 8 18"></polyline>
+        </svg>
+        <span>Studio Workbench</span>
+      </a>
+
+      <!-- Open Community Workbench Link -->
+      <a class="btn-action-tool" href="community/index.html" title="Open Community Comparison Workbench">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+          <circle cx="9" cy="7" r="4"></circle>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+        </svg>
+        <span>Community Workbench</span>
+      </a>
+
+      <!-- Open Network Workbench Link -->
+      <a class="btn-action-tool" href="network/index.html" title="Open Network Comparison Workbench">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="18" cy="5" r="3"></circle>
+          <circle cx="6" cy="12" r="3"></circle>
+          <circle cx="18" cy="19" r="3"></circle>
+          <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+          <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+        </svg>
+        <span>Network Workbench</span>
+      </a>
     </div>
   </header>
 
@@ -692,6 +724,21 @@
         <span>Feedback</span>
         <span class="tab-badge">/feedback</span>
       </button>
+      <button type="button" class="btn-page-tab" data-page-target="studio/site.html" data-page-key="studio">
+        <span class="tab-dot"></span>
+        <span>App Studio</span>
+        <span class="tab-badge">/studio</span>
+      </button>
+      <button type="button" class="btn-page-tab" data-page-target="community/site.html" data-page-key="community">
+        <span class="tab-dot"></span>
+        <span>Community</span>
+        <span class="tab-badge">/community</span>
+      </button>
+      <button type="button" class="btn-page-tab" data-page-target="network/site.html" data-page-key="network">
+        <span class="tab-dot"></span>
+        <span>Open Network</span>
+        <span class="tab-badge">/network</span>
+      </button>
     </div>
 
     <!-- Dedicated Sub-Workbenches Shortcut Group -->
@@ -705,6 +752,9 @@
       <a class="btn-page-tab" href="pricing/index.html" title="Open Pricing Dedicated Workbench" style="font-size:0.75rem; padding:0.25rem 0.5rem;">Pricing ↗</a>
       <a class="btn-page-tab" href="auth/index.html" title="Open Auth Dedicated Workbench" style="font-size:0.75rem; padding:0.25rem 0.5rem;">Auth ↗</a>
       <a class="btn-page-tab" href="feedback/index.html" title="Open Feedback Dedicated Workbench" style="font-size:0.75rem; padding:0.25rem 0.5rem;">Feedback ↗</a>
+      <a class="btn-page-tab" href="studio/index.html" title="Open App Studio Dedicated Workbench" style="font-size:0.75rem; padding:0.25rem 0.5rem;">Studio ↗</a>
+      <a class="btn-page-tab" href="community/index.html" title="Open Community Dedicated Workbench" style="font-size:0.75rem; padding:0.25rem 0.5rem;">Community ↗</a>
+      <a class="btn-page-tab" href="network/index.html" title="Open Network Dedicated Workbench" style="font-size:0.75rem; padding:0.25rem 0.5rem;">Network ↗</a>
     </div>
   </nav>
 
@@ -812,8 +862,14 @@
       if (path.includes('/resources') || path.includes('/openresources')) {
         return 'resources/site.html' + search + hash;
       }
-      if (path.includes('/studio') || path.includes('/app-studio')) {
-        return 'site.html' + search + (hash || '#app-studio');
+      if (path.includes('/studio') || path.endsWith('/studio') || path.endsWith('/studio/site.html')) {
+        return 'studio/site.html' + search + hash;
+      }
+      if (path.includes('/community') || path.endsWith('/community') || path.endsWith('/community/site.html')) {
+        return 'community/site.html' + search + hash;
+      }
+      if (path.includes('/network') || path.endsWith('/network') || path.endsWith('/network/site.html') || path.includes('/open-network')) {
+        return 'network/site.html' + search + hash;
       }
       if (path === '/' || path.endsWith('/site.html') || path.endsWith('/index.html') || path === '') {
         return 'site.html' + search + hash;
@@ -831,7 +887,7 @@
       const parts = targetPath.split('#');
       const base = parts[0] || 'site.html';
       const hashPart = parts[1] ? '#' + parts[1] : '';
-      const navSrc = base + (base.includes('?') ? '&' : '?') + 'v=16' + hashPart;
+      const navSrc = base + (base.includes('?') ? '&' : '?') + 'v=20' + hashPart;
 
       if (desktopIframe) {
         desktopIframe.src = navSrc;
@@ -863,6 +919,9 @@
       else if (targetPath.startsWith('pricing')) matchedKey = 'pricing';
       else if (targetPath.startsWith('auth')) matchedKey = 'auth';
       else if (targetPath.startsWith('feedback')) matchedKey = 'feedback';
+      else if (targetPath.startsWith('studio')) matchedKey = 'studio';
+      else if (targetPath.startsWith('community')) matchedKey = 'community';
+      else if (targetPath.startsWith('network')) matchedKey = 'network';
       else if (targetPath.startsWith('site.html') || targetPath === '') matchedKey = 'home';
 
       tabs.forEach(tab => {
@@ -890,6 +949,9 @@
         else if (targetPath.startsWith('creator')) page = 'creator';
         else if (targetPath.startsWith('templates')) page = 'templates';
         else if (targetPath.startsWith('resources')) page = 'resources';
+        else if (targetPath.startsWith('studio')) page = 'studio';
+        else if (targetPath.startsWith('community')) page = 'community';
+        else if (targetPath.startsWith('network')) page = 'network';
 
         if (page) {
           url.searchParams.set('page', page);
@@ -939,7 +1001,7 @@
           const id = data.payload.id || '';
           const ariaControls = data.payload.ariaControls || '';
           const selector = data.payload.selector || '';
-          if (id === 'hamburger-btn' || id === 'mobile-menu-toggle' || ariaControls === 'mobile-nav' || ariaControls === 'mobile-menu' || selector.includes('btn-hamburger') || selector.includes('mobile-nav') || selector.includes('mobile-menu')) {
+          if (id === 'hamburger-btn' || id === 'mobile-menu-toggle' || id === 'creator-hamburger' || id === 'creator-drawer-close' || id === 'floating-chat-btn' || id === 'btn-chat-trigger-inline' || id === 'chat-mobile-close-btn' || id === 'mobile-chat-backdrop' || ariaControls === 'mobile-nav' || ariaControls === 'mobile-menu' || ariaControls === 'creator-mobile-drawer' || selector.includes('btn-hamburger') || selector.includes('creator-hamburger') || selector.includes('mobile-nav') || selector.includes('creator-mobile-drawer') || selector.includes('drawer') || selector.includes('floating-chat') || selector.includes('chat-trigger') || selector.includes('chat-mobile-close') || selector.includes('mobile-chat-backdrop') || selector.includes('resources-chat-panel')) {
             return;
           }
         }
@@ -996,6 +1058,9 @@
       else if (page === 'creator') target = 'creator/site.html';
       else if (page === 'templates') target = 'templates/site.html';
       else if (page === 'resources') target = 'resources/site.html';
+      else if (page === 'studio') target = 'studio/site.html';
+      else if (page === 'community') target = 'community/site.html';
+      else if (page === 'network') target = 'network/site.html';
       navigateBothFrames(target);
     });
 
@@ -1012,10 +1077,13 @@
       else if (initialPage === 'creator') initialPath = 'creator/site.html';
       else if (initialPage === 'templates') initialPath = 'templates/site.html';
       else if (initialPage === 'resources') initialPath = 'resources/site.html';
+      else if (initialPage === 'studio') initialPath = 'studio/site.html';
+      else if (initialPage === 'community') initialPath = 'community/site.html';
+      else if (initialPage === 'network') initialPath = 'network/site.html';
 
       if (initialPath) {
         currentReplicaPath = initialPath;
-        const initialSrc = initialPath + (initialPath.includes('?') ? '&' : '?') + 'v=16';
+        const initialSrc = initialPath + (initialPath.includes('?') ? '&' : '?') + 'v=18';
         if (desktopIframe) desktopIframe.src = initialSrc;
         if (mobileIframe) mobileIframe.src = initialSrc;
         if (standaloneLink) standaloneLink.href = initialPath;

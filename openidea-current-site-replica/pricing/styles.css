@@ -706,4 +706,45 @@ button {
   background: linear-gradient(to right, transparent, rgba(52, 211, 153, 0.3), transparent);
 }
 
+/* ==========================================================================
+   MOBILE RESPONSIVE HARDENING (375px & 390px Viewports)
+   ========================================================================== */
+@media (max-width: 640px) {
+  .pricing-content-container {
+    padding: 3rem 1rem 4rem;
+  }
+
+  .pricing-title {
+    font-size: 1.875rem;
+  }
+
+  .pricing-card {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .pricing-grid {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .pricing-title {
+    font-size: 1.625rem;
+  }
+
+  .provider-btn {
+    padding: 0.45rem 0.75rem;
+    font-size: 0.8125rem;
+  }
+
+  .affiliate-box-wrap {
+    padding: 0 0.5rem;
+  }
+
+  .pricing-card {
+    padding: 1.35rem 1rem;
+  }
+}
+
+
 

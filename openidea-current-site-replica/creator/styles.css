@@ -822,6 +822,11 @@ html[data-theme="light"] .sidebar-user-btn:hover {
   background: rgba(255, 255, 255, 0.04);
 }
 
+.creator-hamburger-btn svg,
+.creator-hamburger-btn path {
+  pointer-events: none;
+}
+
 .mobile-topbar-brand {
   display: none;
   align-items: center;
@@ -1736,6 +1741,16 @@ html[data-theme="light"] .creator-chip.active-hint {
   transform: translateX(0);
 }
 
+@media (min-width: 901px) {
+  .creator-hamburger-btn,
+  .creator-mobile-drawer,
+  .creator-mobile-backdrop {
+    display: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+}
+
 .creator-mobile-backdrop {
   position: fixed;
   top: 0;
@@ -1906,7 +1921,7 @@ html[data-theme="light"] .drawer-search-input {
   }
 
   .creator-hamburger-btn {
-    display: inline-flex;
+    display: inline-flex !important;
   }
 
   .mobile-topbar-brand {
@@ -1925,8 +1940,21 @@ html[data-theme="light"] .drawer-search-input {
     display: none;
   }
 
+  .topbar-notif-wrapper {
+    display: none;
+  }
+
+  .topbar-user-control {
+    display: none;
+  }
+
+  .topbar-right {
+    gap: 0.5rem;
+  }
+
   .creator-topbar {
     padding: 0 1rem;
+    justify-content: space-between;
   }
 
   .creator-workspace {

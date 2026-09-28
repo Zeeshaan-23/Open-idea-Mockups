@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Open Network Protocol &amp; Node Infrastructure · Open Idea</title>
+  <meta name="description" content="Decentralized collaboration, open APIs, and community-driven node infrastructure empowering builders and researchers across global borders.">
+
+  <!-- Favicon -->
+  <link rel="icon" href="../assets/icons/favicon.ico" type="image/x-icon">
+
+  <!-- Google Fonts: Space Grotesk & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Core Theme & Topbar Styles -->
+  <link rel="stylesheet" href="../assets/topbar.css">
+  <link rel="stylesheet" href="../assets/theme.css">
+  <link rel="stylesheet" href="styles.css">
+
+  <script src="../assets/theme.js"></script>
+</head>
+<body>
+
+  <!-- ========================================================================
+       SHARED LIGHT THEME ATMOSPHERIC BACKGROUND LAYER
+       Visible only in Light Mode via assets/theme.css
+       ======================================================================== -->
+  <div class="light-theme-atmosphere" aria-hidden="true">
+    <div class="light-theme-globe"></div>
+    <div class="light-theme-sun-glow"></div>
+    <div class="light-theme-cloud-haze"></div>
+  </div>
+
+  <!-- ========================================================================
+       SHARED DARK THEME ATMOSPHERIC BACKGROUND LAYER
+       Visible only in Dark Mode via styles.css
+       ======================================================================== -->
+  <div class="hero-bg-wrapper" aria-hidden="true">
+    <img class="hero-globe-img" src="../assets/images/hero-globe.png" alt="Digital Globe Background">
+    <div class="hero-radial-glow"></div>
+  </div>
+
+  <!-- ========================================================================
+       CANONICAL TOPBAR (HOMEPAGE SOURCE OF TRUTH)
+       ======================================================================== -->
+  <header class="site-header" id="topbar">
+    <div class="header-container">
+      <!-- Left: Brand Logo & Wordmark -->
+      <a class="brand-logo" href="../site.html" aria-label="Open Idea Home">
+        <img class="logo-img" src="../assets/logos/logo.png" alt="Open Idea Logo" width="36" height="36">
+        <span class="brand-name">Open Idea</span>
+      </a>
+
+      <!-- Center: Desktop Nav Links -->
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <a class="nav-link" href="../about/site.html">About</a>
+        <a class="nav-link" href="../features/site.html">Features</a>
+        <a class="nav-link" href="../pricing/site.html">Pricing</a>
+        <a class="nav-link" href="../resources/site.html">Resources</a>
+        <a class="nav-link" href="../creator/site.html">Creator</a>
+        <a class="btn-app-studio" href="../studio/site.html">App Studio</a>
+      </nav>
+
+      <!-- Right: Actions & Theme Toggle -->
+      <div class="header-right">
+        <!-- Mobile Header Theme Toggle Button -->
+        <button type="button" class="theme-toggle-btn mobile-theme-toggle" id="theme-toggle-mobile" aria-label="Toggle theme" title="Toggle theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <div class="desktop-actions">
+          <button type="button" class="theme-toggle-btn" id="theme-toggle-desktop" aria-label="Toggle visual theme">
+            <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
+          <a class="link-feedback" href="../feedback/site.html">Feedback</a>
+          <span class="badge-beta">BETA</span>
+          <a class="btn-sign-in" href="../auth/site.html?redirect=%2Fnetwork">Sign In</a>
+        </div>
+
+        <!-- Hamburger Button -->
+        <button type="button" class="btn-hamburger" id="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-nav">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-nav-panel" id="mobile-nav" aria-label="Mobile Navigation">
+      <a class="mobile-link" href="../about/site.html">About</a>
+      <a class="mobile-link" href="../features/site.html">Features</a>
+      <a class="mobile-link" href="../pricing/site.html">Pricing</a>
+      <a class="mobile-link" href="../resources/site.html">Resources</a>
+      <a class="mobile-link" href="../creator/site.html">Creator</a>
+      <a class="mobile-btn-full" href="../studio/site.html">App Studio</a>
+      <a class="mobile-btn-full" href="../auth/site.html?redirect=%2Fnetwork">Sign In</a>
+      <a class="mobile-link" href="../feedback/site.html">Feedback</a>
+      <div class="mobile-beta-item">
+        <span class="badge-beta">BETA</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       MAIN APPLICATION CONTENT: OPEN NETWORK
+       ======================================================================== -->
+  <main class="network-main">
+    <div class="network-container">
+
+      <!-- Hero Section -->
+      <section class="network-hero">
+        <div class="hero-pill-badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+          <span>Ecosyz Open Mesh Architecture</span>
+        </div>
+
+        <h1 class="network-title">
+          Open Network Protocol &amp; <span class="highlight-purple">Node Mesh</span>
+        </h1>
+        <p class="network-subtitle">
+          Decentralized collaboration, open APIs, and community-driven node infrastructure empowering builders and researchers across global borders. Built on open source protocols without centralized gatekeeping.
+        </p>
+
+        <!-- Network Key Metrics Bar -->
+        <div class="network-metrics-grid">
+          <div class="metric-card">
+            <div class="metric-label">Active Nodes</div>
+            <div class="metric-value" id="val-nodes">142 <span class="metric-trend">+8 this week</span></div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">Network Latency</div>
+            <div class="metric-value" id="val-latency">24ms <span class="metric-trend">Global Avg</span></div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">Protocol Uptime</div>
+            <div class="metric-value">99.98% <span class="metric-trend">30-day</span></div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">Consensus State</div>
+            <div class="metric-value">Synchronized <span class="metric-trend">Block #489,120</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Interactive Topology Visualizer Section -->
+      <section class="topology-section">
+        <div class="topology-container-card">
+          <div class="topology-header">
+            <div class="topology-title-area">
+              <div class="topology-icon-wrap">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="18" cy="5" r="3"></circle>
+                  <circle cx="6" cy="12" r="3"></circle>
+                  <circle cx="18" cy="19" r="3"></circle>
+                  <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                  <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                </svg>
+              </div>
+              <div>
+                <h2 class="topology-title">Interactive Mesh Topology Visualizer</h2>
+                <span class="preview-status-badge">Click any node to inspect telemetry</span>
+              </div>
+            </div>
+
+            <!-- Filter Chips -->
+            <div class="topology-filter-bar">
+              <button type="button" class="filter-chip active" data-filter="all">All Topologies</button>
+              <button type="button" class="filter-chip" data-filter="core">Core Relays</button>
+              <button type="button" class="filter-chip" data-filter="gateway">Gateways</button>
+              <button type="button" class="filter-chip" data-filter="compute">Compute Nodes</button>
+            </div>
+          </div>
+
+          <div class="topology-workspace-grid">
+            <!-- Topology Canvas -->
+            <div class="topology-canvas-area">
+              <svg class="topology-canvas-svg" viewBox="0 0 600 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Outer glow and connectors -->
+                <line x1="300" y1="180" x2="130" y2="90" stroke="rgba(192, 132, 252, 0.35)" stroke-width="1.8" stroke-dasharray="6 6" />
+                <line x1="300" y1="180" x2="470" y2="90" stroke="rgba(192, 132, 252, 0.35)" stroke-width="1.8" stroke-dasharray="6 6" />
+                <line x1="300" y1="180" x2="130" y2="270" stroke="rgba(192, 132, 252, 0.35)" stroke-width="1.8" stroke-dasharray="6 6" />
+                <line x1="300" y1="180" x2="470" y2="270" stroke="rgba(192, 132, 252, 0.35)" stroke-width="1.8" stroke-dasharray="6 6" />
+                <line x1="130" y1="90" x2="130" y2="270" stroke="rgba(34, 211, 238, 0.25)" stroke-width="1.5" />
+                <line x1="470" y1="90" x2="470" y2="270" stroke="rgba(34, 211, 238, 0.25)" stroke-width="1.5" />
+
+                <!-- Pulse animation around core -->
+                <circle class="pulse-ring" cx="300" cy="180" r="42" fill="none" stroke="rgba(192, 132, 252, 0.4)" stroke-width="1.5" />
+
+                <!-- Central Hub: Core Protocol Relay -->
+                <g class="svg-node-group node-selected" id="node-core" data-role="core" data-name="Core Protocol Relay" data-latency="12ms" data-pkts="1,492,800" data-status="Primary Hub" data-pubkey="0x7f4c...98a2">
+                  <circle cx="300" cy="180" r="40" fill="rgba(192, 132, 252, 0.15)" stroke="#c084fc" stroke-width="2" />
+                  <circle cx="300" cy="180" r="10" fill="#c084fc" />
+                  <text x="300" y="235" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700" font-family="'Space Grotesk', sans-serif">Core Protocol Relay</text>
+                  <text x="300" y="250" text-anchor="middle" fill="#9ca3af" font-size="10" font-family="'Inter', sans-serif">Root Consensus</text>
+                </g>
+
+                <!-- Node 1: Top Left - Data Mesh Layer -->
+                <g class="svg-node-group" id="node-datamesh" data-role="core" data-name="Data Mesh Layer" data-latency="18ms" data-pkts="840,210" data-status="Synchronized" data-pubkey="0x3b11...e45f">
+                  <circle cx="130" cy="90" r="28" fill="rgba(12, 20, 24, 0.95)" stroke="rgba(192, 132, 252, 0.45)" stroke-width="1.8" />
+                  <circle cx="130" cy="90" r="6" fill="#a855f7" />
+                  <text x="130" y="132" text-anchor="middle" fill="#f3f4f6" font-size="11" font-weight="600" font-family="'Space Grotesk', sans-serif">Data Mesh Layer</text>
+                  <text x="130" y="146" text-anchor="middle" fill="#9ca3af" font-size="10" font-family="'Inter', sans-serif">Sub-GHz Telemetry</text>
+                </g>
+
+                <!-- Node 2: Top Right - API Gateway -->
+                <g class="svg-node-group" id="node-gateway" data-role="gateway" data-name="API Gateway" data-latency="16ms" data-pkts="2,140,500" data-status="Active" data-pubkey="0x9a88...c130">
+                  <circle cx="470" cy="90" r="28" fill="rgba(12, 20, 24, 0.95)" stroke="rgba(34, 211, 238, 0.45)" stroke-width="1.8" />
+                  <circle cx="470" cy="90" r="6" fill="#22d3ee" />
+                  <text x="470" y="132" text-anchor="middle" fill="#f3f4f6" font-size="11" font-weight="600" font-family="'Space Grotesk', sans-serif">API Gateway</text>
+                  <text x="470" y="146" text-anchor="middle" fill="#9ca3af" font-size="10" font-family="'Inter', sans-serif">HTTP / WebSocket Edge</text>
+                </g>
+
+                <!-- Node 3: Bottom Left - Compute Node -->
+                <g class="svg-node-group" id="node-compute" data-role="compute" data-name="Compute Node Alpha" data-latency="29ms" data-pkts="512,040" data-status="Online" data-pubkey="0x11ee...77bd">
+                  <circle cx="130" cy="270" r="28" fill="rgba(12, 20, 24, 0.95)" stroke="rgba(52, 211, 153, 0.45)" stroke-width="1.8" />
+                  <circle cx="130" cy="270" r="6" fill="#34d399" />
+                  <text x="130" y="312" text-anchor="middle" fill="#f3f4f6" font-size="11" font-weight="600" font-family="'Space Grotesk', sans-serif">Compute Node</text>
+                  <text x="130" y="326" text-anchor="middle" fill="#9ca3af" font-size="10" font-family="'Inter', sans-serif">WASM Task Worker</text>
+                </g>
+
+                <!-- Node 4: Bottom Right - Community Relay -->
+                <g class="svg-node-group" id="node-community" data-role="gateway" data-name="Community Relay Beta" data-latency="34ms" data-pkts="394,180" data-status="Synchronized" data-pubkey="0x44cd...f881">
+                  <circle cx="470" cy="270" r="28" fill="rgba(12, 20, 24, 0.95)" stroke="rgba(192, 132, 252, 0.45)" stroke-width="1.8" />
+                  <circle cx="470" cy="270" r="6" fill="#c084fc" />
+                  <text x="470" y="312" text-anchor="middle" fill="#f3f4f6" font-size="11" font-weight="600" font-family="'Space Grotesk', sans-serif">Community Relay</text>
+                  <text x="470" y="326" text-anchor="middle" fill="#9ca3af" font-size="10" font-family="'Inter', sans-serif">P2P Seed Node</text>
+                </g>
+              </svg>
+            </div>
+
+            <!-- Node Inspector Card -->
+            <div class="topology-inspector">
+              <div class="inspector-header">
+                <span class="inspector-title">Node Telemetry</span>
+                <span class="node-status-badge" id="inspector-badge">Active</span>
+              </div>
+
+              <div>
+                <h3 class="inspector-node-name" id="inspector-name">Core Protocol Relay</h3>
+                <span class="inspector-node-type" id="inspector-type">Root Mesh Interconnect</span>
+              </div>
+
+              <div class="inspector-stats-list">
+                <div class="inspector-stat-item">
+                  <span class="stat-k">Latency</span>
+                  <span class="stat-v" id="inspector-latency">12ms</span>
+                </div>
+                <div class="inspector-stat-item">
+                  <span class="stat-k">Packets Relayed</span>
+                  <span class="stat-v" id="inspector-pkts">1,492,800</span>
+                </div>
+                <div class="inspector-stat-item">
+                  <span class="stat-k">Consensus Role</span>
+                  <span class="stat-v" id="inspector-role">Leader Relay</span>
+                </div>
+                <div class="inspector-stat-item">
+                  <span class="stat-k">Public Key</span>
+                  <span class="stat-v" id="inspector-pubkey">0x7f4c...98a2</span>
+                </div>
+              </div>
+
+              <button type="button" class="btn-inspect-action" id="btn-ping-node">
+                Ping Node Telemetry
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Architecture Pillars -->
+      <section class="pillars-section">
+        <div class="section-head">
+          <h2 class="section-headline">Architectural Foundation</h2>
+          <p class="section-lead">The Open Network is built on transparent primitives engineered for high fault tolerance and zero proprietary lock-in.</p>
+        </div>
+
+        <div class="pillars-grid">
+          <div class="pillar-card">
+            <div class="pillar-icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+              </svg>
+            </div>
+            <h3 class="pillar-title">Sub-GHz + P2P Mesh</h3>
+            <p class="pillar-desc">
+              Multi-frequency telemetry routing capable of bridging local LoRa hardware arrays with browser WebRTC nodes without single points of failure.
+            </p>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+            </div>
+            <h3 class="pillar-title">Zero-Knowledge State</h3>
+            <p class="pillar-desc">
+              Lightweight cryptographic state proofs ensure data provenance, prevent packet spoofing, and guarantee authentic sensor readings across untrusted peers.
+            </p>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polygon points="12 6 12 12 16 14"></polygon>
+              </svg>
+            </div>
+            <h3 class="pillar-title">Distributed WASM Workers</h3>
+            <p class="pillar-desc">
+              Stateless compute workloads compiled to WebAssembly run across participating community relay nodes, returning verified deterministic results.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Live Protocol Stream -->
+      <section class="stream-section">
+        <div class="stream-card">
+          <div class="stream-header">
+            <span class="stream-title">
+              <span class="live-indicator-dot"></span>
+              Live Protocol Event Stream (Heartbeat &amp; Ledger)
+            </span>
+            <span class="preview-status-badge">WebSocket: CONNECTED</span>
+          </div>
+
+          <div class="stream-log-container" id="stream-logs">
+            <div class="log-entry">
+              <span class="log-time">19:30:14.280</span>
+              <span class="log-badge badge-packet">PACKET</span>
+              <span class="log-text">Telemetry packet 0x88f2 routed from LoRa Node #14 -> Core Protocol Relay (42 bytes)</span>
+            </div>
+            <div class="log-entry">
+              <span class="log-time">19:30:13.910</span>
+              <span class="log-badge badge-consensus">CONSENSUS</span>
+              <span class="log-text">Block #489,120 attested by 14 validator relays · Hash: 0x93ac...3301</span>
+            </div>
+            <div class="log-entry">
+              <span class="log-time">19:30:12.604</span>
+              <span class="log-badge badge-node">PEER JOIN</span>
+              <span class="log-text">New Edge Relay connected: 104.28.19.42 (Region: AP-South-1)</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CLI Install Node Banner -->
+      <section class="cli-banner-section">
+        <div class="cli-card">
+          <div class="cli-info">
+            <h3>Run a Community Relay Node</h3>
+            <p>
+              Join 140+ global contributors in running open network infrastructure. Help relay open telemetry and earn community reputation.
+            </p>
+            <a class="discovery-btn-primary btn-purple" href="https://github.com/Sony17/Ecosyz" target="_blank" rel="noopener noreferrer">
+              <span>View GitHub Repo</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+            </a>
+          </div>
+
+          <div class="cli-command-box">
+            <code>curl -sSL https://openidea.world/install-node.sh | bash</code>
+            <button type="button" class="btn-copy-cli" id="btn-copy-cli">Copy</button>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ========================================================================
+       UNIVERSAL FOOTER (HOMEPAGE SOURCE OF TRUTH)
+       ======================================================================== -->
+  <footer class="site-footer" id="universal-footer">
+    <div class="footer-container">
+      <div class="footer-top-grid">
+        <!-- Col 1: Brand & Identity -->
+        <div class="footer-col-brand">
+          <a class="footer-brand-title" href="../site.html">Open Idea</a>
+          <p class="footer-brand-desc">
+            An open platform for sharing, building, and exploring ideas. Empowering innovators worldwide through open source software and collaboration.
+          </p>
+          <div class="footer-social-icons">
+            <a class="social-icon-btn" href="https://github.com/Sony17/Ecosyz" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+              </svg>
+            </a>
+            <a class="social-icon-btn" href="https://discord.gg/4weahHXQYY" target="_blank" rel="noopener noreferrer" aria-label="Discord">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 6h0a14.5 14.5 0 0 0-4-1.5 9.6 9.6 0 0 0-.4 1.8 13.9 13.9 0 0 0-3.2 0 9.6 9.6 0 0 0-.4-1.8A14.5 14.5 0 0 0 6 6c-3 4.5-3.8 8.8-3.4 13.1a14.8 14.8 0 0 0 4.5 2.3 11 11 0 0 0 1-1.6 9.6 9.6 0 0 1-1.6-.8l.4-.3c3.1 1.5 6.5 1.5 9.6 0l.4.3a9.6 9.6 0 0 1-1.6.8 11 11 0 0 0 1 1.6 14.8 14.8 0 0 0 4.5-2.3C21.8 14.8 21 10.5 18 6zM8.5 15.5c-1 0-1.7-.9-1.7-2s.7-2 1.7-2 1.7.9 1.7 2-.7 2-1.7 2zm7 0c-1 0-1.7-.9-1.7-2s.7-2 1.7-2 1.7.9 1.7 2-.7 2-1.7 2z"></path>
+              </svg>
+            </a>
+            <a class="social-icon-btn" href="https://x.com/openidea" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+              </svg>
+            </a>
+            <a class="social-icon-btn" href="https://linkedin.com/company/openidea" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+            </a>
+            <a class="social-icon-btn" href="https://youtube.com/@openidea" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Col 2: Product Links -->
+        <div class="footer-col-links">
+          <h4 class="footer-col-title">PRODUCT</h4>
+          <ul class="footer-links-list">
+            <li><a class="footer-nav-link" href="../features/site.html">Features</a></li>
+            <li><a class="footer-nav-link" href="../pricing/site.html">Pricing</a></li>
+            <li><a class="footer-nav-link" href="../resources/site.html">Resources</a></li>
+            <li><a class="footer-nav-link" href="../templates/site.html">Templates</a></li>
+            <li><a class="footer-nav-link" href="../creator/site.html">Creator Workspace</a></li>
+            <li><a class="footer-nav-link" href="../studio/site.html">App Studio</a></li>
+            <li><a class="footer-nav-link" href="site.html">Open Network</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Resources Links -->
+        <div class="footer-col-links">
+          <h4 class="footer-col-title">RESOURCES</h4>
+          <ul class="footer-links-list">
+            <li><a class="footer-nav-link" href="../about/site.html">About</a></li>
+            <li><a class="footer-nav-link" href="../community/site.html">Community</a></li>
+            <li><a class="footer-nav-link" href="../feedback/site.html">Feedback</a></li>
+            <li><a class="footer-nav-link" href="/contribute">Open Source Contribution</a></li>
+            <li><a class="footer-nav-link" href="/form">Get a Website</a></li>
+            <li><a class="footer-nav-link" href="/support">Support Desk</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Company Links -->
+        <div class="footer-col-links">
+          <h4 class="footer-col-title">COMPANY</h4>
+          <ul class="footer-links-list">
+            <li><a class="footer-nav-link" href="/careers">Careers</a></li>
+            <li><a class="footer-nav-link" href="/intern-fellowship">Fellowship</a></li>
+            <li><a class="footer-nav-link" href="/partnership">Partnerships</a></li>
+            <li><a class="footer-nav-link" href="/founder-contact">Founder Contact</a></li>
+            <li><a class="footer-nav-link" href="/newsletter">Newsletter</a></li>
+            <li><a class="footer-phone-link" href="tel:+918130296940" aria-label="Phone"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg><span>+91 81302 96940</span></a></li>
+            <li><a class="footer-phone-link" href="tel:+911141193699" aria-label="Landline"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg><span>011 4119 3699</span></a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Secondary Quick Links Row -->
+      <div class="footer-secondary-row">
+        <a class="footer-secondary-link" href="/intern-fellowship">Intern Fellowship</a>
+        <a class="footer-secondary-link" href="/contribute">Open Source Contribution</a>
+        <a class="footer-secondary-link" href="/partnership">Partnership</a>
+        <a class="footer-secondary-link" href="/careers">Careers</a>
+        <a class="footer-secondary-link" href="/problems-and-ideas">Problems &amp; Ideas</a>
+        <a class="footer-secondary-link" href="/founder-contact">Founder Contact</a>
+        <a class="footer-secondary-link" href="/newsletter">Newsletter</a>
+        <a class="footer-secondary-link" href="/ai-news">AI News</a>
+        <a class="footer-secondary-link" href="/form">Get a Website</a>
+      </div>
+
+      <!-- Legal Links Row -->
+      <div class="footer-legal-row">
+        <a class="footer-legal-link" href="/privacy">Privacy Policy</a>
+        <a class="footer-legal-link" href="/terms">Terms of Use</a>
+        <a class="footer-legal-link" href="/cookies">Cookie Policy</a>
+      </div>
+
+      <!-- Registered Address -->
+      <div class="footer-address">
+        Registered Address: 8125, 8th Floor, Gaur City Mall Office Space, Sector 4, Greater Noida West, Gautam Buddha Nagar, 201318
+      </div>
+
+      <!-- Copyright Statement -->
+      <div class="footer-copyright">
+        &copy; 2026 Open Idea. All rights reserved. Proudly built in India 🇮🇳 with ❤️ for global innovation.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Chat Button -->
+  <div class="floating-chat-container">
+    <button type="button" class="btn-floating-chat" id="floating-chat-btn" aria-label="Open chat">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+      </svg>
+      <span>Chat</span>
+    </button>
+  </div>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+  <script src="../assets/nav-sync.js?v=2"></script>
+</body>
+</html>
